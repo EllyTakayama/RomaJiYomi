@@ -11,6 +11,9 @@ public class PanelChange : MonoBehaviour
         Panel1,
         Panel2,
         Panel3,
+        Panel4,
+        Panel5,
+        Panel6,
     }
     // 現在表示しているパネル
     Panel currentPanel;
@@ -19,6 +22,7 @@ public class PanelChange : MonoBehaviour
     public GameObject LeftButton;
     public GameObject SettingButton;
     public GameObject HomeButton;
+    public int currentMode;
 
     // 矢印の表示/非表示
     
@@ -28,6 +32,20 @@ public class PanelChange : MonoBehaviour
         currentPanel = Panel.Panel0;
          LeftButton.SetActive(false);
          RightButton.SetActive(false);
+    }
+    //あ行を覚えようボタン
+    public void SelectRomajiA(){
+         ShowPanel(Panel.Panel1);
+         currentMode = 2;
+    }
+    //50音を覚えようボタン
+    public void SelectRomaji50(){
+        ShowPanel(Panel.Panel4);
+         currentMode = 4;
+    }
+    //50音を覚えようボタン
+    public void SelectRomajiHoka(){
+        transform.localPosition = new Vector2(1000, -3000);
     }
 
     void ShowPanel(Panel panel){
@@ -39,43 +57,85 @@ public class PanelChange : MonoBehaviour
 
             case Panel.Panel1:
                 transform.localPosition = new Vector2(-1000, 0);
-                LeftButton.SetActive(true);
+                LeftButton.SetActive(false);
+                RightButton.SetActive(true);
                 break;
 
             case Panel.Panel2:
-                transform.localPosition = new Vector2(2000, 0);
-                 RightButton.SetActive(true);
+                transform.localPosition = new Vector2(-2000, 0);
+                LeftButton.SetActive(true);
                 break;
 
             case Panel.Panel3:
-                transform.localPosition = new Vector2(3000, 0);
+                transform.localPosition = new Vector2(-3000, 0);
                  RightButton.SetActive(false);
+                break;
+            
+            case Panel.Panel4:
+                transform.localPosition = new Vector2(-1000, 1500);
+                LeftButton.SetActive(false);
+                RightButton.SetActive(true);
+                break;
+
+            case Panel.Panel5:
+                transform.localPosition = new Vector2(-2000, 1500);
+                LeftButton.SetActive(true);
+                //RightButton.SetActive(true);
+                break;
+
+            case Panel.Panel6:
+                transform.localPosition = new Vector2(-3000, 1500);
+                //LeftButton.SetActive(false);
+                RightButton.SetActive(false);
                 break;
         }
     }
     public void OnRightButton(){
-        if(currentPanel == Panel.Panel0 ){
+        /*if(currentPanel == Panel.Panel0 ){
         ShowPanel(Panel.Panel1);
         Debug.Log("1");
-    }
-    else if(currentPanel == Panel.Panel1 ){
+    }*/
+    if(currentPanel == Panel.Panel1 ){
         ShowPanel(Panel.Panel2);
-        Debug.Log("2");}
+        //Debug.Log("2");
+        }
+
     else if(currentPanel == Panel.Panel2 ){
         ShowPanel(Panel.Panel3);
-        Debug.Log("3");}
+        //Debug.Log("3");
+        }
+
+    else if(currentPanel == Panel.Panel4 ){
+        ShowPanel(Panel.Panel5);
+        //Debug.Log("5");
+    }
+    else if(currentPanel == Panel.Panel5 ){
+        ShowPanel(Panel.Panel6);
+        //Debug.Log("6");
+        }
     }
     public void OnLeftButton(){
         if(currentPanel == Panel.Panel3 ){
         ShowPanel(Panel.Panel2);
-        Debug.Log("2");
+        //Debug.Log("2");
     }
     else if(currentPanel == Panel.Panel2){
         ShowPanel(Panel.Panel1);
-        Debug.Log("1");}
-    else if(currentPanel == Panel.Panel1 ){
+        //Debug.Log("1");
+        }
+
+    else if(currentPanel == Panel.Panel6){
+        ShowPanel(Panel.Panel5);
+        //Debug.Log("5");
+        }
+
+    else if(currentPanel == Panel.Panel5){
+        ShowPanel(Panel.Panel4);
+        Debug.Log("4");
+        }
+    /*else if(currentPanel == Panel.Panel1 ){
         ShowPanel(Panel.Panel0);
-        Debug.Log("0");}
+        Debug.Log("0");}*/
         
     }
 
