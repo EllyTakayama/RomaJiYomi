@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;//ローマ字読みの基本画面の出題メソッド
-
+//11月25日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -17,8 +17,8 @@ public class QuesManager : MonoBehaviour
     public int currentMode;
     public GameObject PanelParent;
     private int n;
-   
     int[] ary = new int[5];
+    int[] moji50 = new int[46];
     public bool isTall;//大文字か小文字か選択
     public enum KihonType
     {
@@ -28,13 +28,69 @@ public class QuesManager : MonoBehaviour
     }
     string[] src = {"Tokyo", "Osaka", "Nagoya"};
     string[] hiragana50 = new string[]{
-        "あ","い","う","え","お"
+        //0-4
+        "あ","い","う","え","お",
+        //5-9
+        "か","き","く","け","こ",
+        //10-14
+        "さ","し","す","せ","そ",
+        //15-19
+        "た","ち","つ","て","と",
+        //20-24
+        "な","に","ぬ","ね","の",
+        //25-29
+        "は","ひ","ふ","へ","ほ",
+        //30-34
+        "ま","み","む","め","も",
+        //35-37
+        "や","ゆ","よ",
+        //38-42
+        "ら","り","る","れ","ろ",
+        //43-44
+        "わ","を","ん"
 　　　　　　};
 　　　string[] romaji50 = new string[]{
-        "a","i","u","e","o"
+        //0-4
+        "a","i","u","e","o",
+        //5-9
+        "ka","ki","ku","ke","ko",
+        //10-14
+        "sa","si","su","se","so",
+        //15-19
+        "ta","ti","tu","te","to",
+        //20-24
+        "na","ni","nu","ne","no",
+        //25-29
+        "ha","hi","hu","he","ho",
+        //30-34
+        "ma","mi","mu","me","mo",
+        //35-37
+        "ya","yu","yo",
+        //38-42
+        "ra","ri","ru","re","ro",
+        //43-44
+        "wa","wo","'n"
 　　　　　　};
      string[] RomaJi50 = new string[]{
-        "A","I","U","E","O"
+        "A","I","U","E","O",
+        //5-9
+        "KA","KI","KU","KE","KO",
+        //10-14
+        "SA","SI","SU","SE","SO",
+        //15-19
+        "TA","TI","TU","TE","TO",
+        //20-24
+        "NA","NI","NU","NE","NO",
+        //25-29
+        "HA","HI","HU","HE","HO",
+        //30-34
+        "MA","MI","MU","ME","MO",
+        //35-37
+        "YA","YU","YO",
+        //38-42
+        "RA","RI","RU","RE","RO",
+        //43-44
+        "WA","WO","'N"
 　　　　　　};
 
     // Start is called before the first frame update
