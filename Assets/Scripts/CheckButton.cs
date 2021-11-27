@@ -27,6 +27,7 @@ public class CheckButton : MonoBehaviour
         else{
             Debug.Log("間違い");
         }
-
+        QuesManager.instance.RomajiQues();
     }
+
 }

@@ -17,16 +17,22 @@ public class QuesManager : MonoBehaviour
     public int currentMode;
     public GameObject PanelParent;
     private int n;
-    int[] ary = new int[5];
+    public int a;
+    public int b;
+    public int c;
+    public int QuesCount;
+    int[] ary = new int[]{0,1,2,3,4};
     int[] moji50 = new int[46];
-    public bool isTall;//大文字か小文字か選択
+    public bool isTall=true;//大文字か小文字か選択
+     [SerializeField] private Dropdown dropdown;
     public enum KihonType
     {
         ARomaji,
         Romaji50,
         HokaRomaji
     }
-    string[] src = {"Tokyo", "Osaka", "Nagoya"};
+    string[] shutudai = new string[5];//出題用のひらがなを代入する配列
+    string[] kotae = new string[5];//解答用のローマ字を代入する配列
     string[] hiragana50 = new string[]{
         //0-4
         "あ","い","う","え","お",
@@ -72,6 +78,7 @@ public class QuesManager : MonoBehaviour
         "wa","wo","'n"
 　　　　　　};
      string[] RomaJi50 = new string[]{
+         //0-4
         "A","I","U","E","O",
         //5-9
         "KA","KI","KU","KE","KO",
@@ -90,7 +97,7 @@ public class QuesManager : MonoBehaviour
         //38-42
         "RA","RI","RU","RE","RO",
         //43-44
-        "WA","WO","'N"
+        "WA","WO","NN"
 　　　　　　};
 
     // Start is called before the first frame update
@@ -111,6 +118,7 @@ public class QuesManager : MonoBehaviour
     {
         CurrentMode();
         RomajiQues();
+        QuesCount = 0;
 
     }
     void CurrentMode(){
@@ -128,10 +136,10 @@ public class QuesManager : MonoBehaviour
         //配列内1~9の値を格納
         for (int i = 0; i < ary.Length; i++)
         {
-            ary[i] = i + 1;
+            ary[i] = i;
         }
         //配列をシャッフル
-        for (int i = ary.Length - 1; i >= 0; i--)
+        for (int i = ary.Length-1; i >= 0; i--)
         {
             //Nextメソッドは引数未満の数値がランダムで返る
             int j = randomNum.Next(i + 1);
@@ -139,7 +147,7 @@ public class QuesManager : MonoBehaviour
             int tmp = ary[i];
             ary[i] = ary[j];
             ary[j] = tmp;
-            Debug.Log(ary[j])
+            //Debug.Log(ary[n])
             ;}
             //ログに乱数を表示
     }
@@ -159,23 +167,38 @@ public class QuesManager : MonoBehaviour
     }
 
     public void ARomaji(){
-        int b = ary[n]-1;
-        int a = ary[n+1]-1;
-        int c = ary[n+2]-1;
-        Debug.Log("b"+b);
-        QuesText.text = hiragana50[b];
+        if(n+1 > ary.Length){
+            Debug.Log("5問目");
+            n = 0;
+        }
+        QuesCount++;
+        //Debug.Log("QuesCount"+QuesCount);
+        b = ary[n];
+        //4 
+        if(n >2){
+            a = ary[n-1];
+            c = ary[n-2];
+        }
+        else if(n <3) {
+            a = ary[n+1];
+            c = ary[n+2];
+        }
         answer = RomaJi50[b];
-        Debug.Log(hiragana50[b]);
-        Debug.Log(answer);
-        Debug.Log(RomaJi50[b]);
-        Debug.Log("a"+a);
+        QuesText.text = hiragana50[b];
+        n++;
+        /*
+        Debug.Log("n"+n);
+        Debug.Log("N"+ary[n]);
         Debug.Log("b"+b);
         Debug.Log("c"+c);
-        
-        n++;
-
-        locationOfAnswer = UnityEngine.Random.Range(0,3);
-        Debug.Log("locationOfAnswer"+locationOfAnswer);
+        Debug.Log("a"+a); 
+        Debug.Log(answer);
+        Debug.Log("b"+hiragana50[b]);
+        Debug.Log("c"+hiragana50[c]);
+        Debug.Log("a"+hiragana50[a]);
+       */
+         locationOfAnswer = UnityEngine.Random.Range(0,3);
+        //Debug.Log("locationOfAnswer"+locationOfAnswer);
          if(locationOfAnswer == 0)
        {
         AnsButtons[0].GetComponentInChildren<Text>().text = answer; 
@@ -197,4 +220,62 @@ public class QuesManager : MonoBehaviour
 
         }
     }
+    public void OnRomaji(){
+        if(dropdown.value == 0){
+            
+                Debug.Log("か");
+            }
+            /*
+         string shutudai[] = {"か","き","く","け","こ"};
+         string kotae [] = {"KA","KI","KU","KE","KO"};
+                Debug.Log("drop");
+                  Debug.Log(shutudai[0]);
+                   Debug.Log(shutudai[4]);
+                   */
+      
+        //10-14
+        else if(dropdown.value == 1){
+             Debug.Log("さ");
+            /*
+            string[] shutudai ={ "さ","し","す","せ","そ"};
+            string[] kotae ={ "SA","SI","SU","SE","SO"};*/
+        }else if(dropdown.value == 2){
+             Debug.Log("た");
+            //15-19
+         /*string[] shutudai ={"た","ち","つ","て","と"};
+          string[] kotae ={"TA","TI","TU","TE","TO"};*/
+        }else if(dropdown.value == 3){
+              Debug.Log("Na");
+        //20-24
+          /*string[] shutudai ={"な","に","ぬ","ね","の"};
+          string[] kotae ={"TA","TI","TU","TE","TO"};*/
+        }else if(dropdown.value == 4){
+               Debug.Log("HA");
+        //25-29
+         /*string[] shutudai ={"は","ひ","ふ","へ","ほ"};
+         string[] kotae ={"HA","HI","HU","HE","HO"};*/
+        }else if(dropdown.value == 5){
+              Debug.Log("MA");
+        //30-34
+         /*string[] shutudai ={ "ま","み","む","め","も"};
+         string[] kotae ={"MA","MI","MU","ME","MO"};*/
+        }else if(dropdown.value == 6){
+              Debug.Log("YA");
+        //35-37
+          /*string[] shutudai ={"や","ゆ","よ"};
+          string[] kotae ={"YA","YU","YO"};*/
+        }else if(dropdown.value == 7){
+              Debug.Log("RA");
+        //38-42
+         /*string[] shutudai ={"ら","り","る","れ","ろ"};
+         string[] kotae ={ "RA","RI","RU","RE","RO"};*/
+         }else if(dropdown.value == 8){
+               Debug.Log("WA");
+        //43-44
+        /*string[] shutudai ={ "わ","を","ん"};
+         string[] kotae ={ "WA","WO","NN"};*/
+
+　　　　　　};
+    }
+
 }
