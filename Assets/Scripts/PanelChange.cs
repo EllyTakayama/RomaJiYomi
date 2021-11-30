@@ -36,12 +36,18 @@ public class PanelChange : MonoBehaviour
     //あ行を覚えようボタン
     public void SelectRomajiA(){
          ShowPanel(Panel.Panel1);
-         currentMode = 2;
+         QuesManager.instance.currentMode =2;
+         QuesManager.instance.CurrentMode();
+         QuesManager.instance.RomajiQues();
+        
     }
     //50音を覚えようボタン
     public void SelectRomaji50(){
         ShowPanel(Panel.Panel4);
-         currentMode = 4;
+         QuesManager.instance.currentMode = 4;
+         Debug.Log(QuesManager.instance.currentMode);
+         QuesManager.instance.CurrentMode();
+         QuesManager.instance.RomajiQues();
     }
     //50音を覚えようボタン
     public void SelectRomajiHoka(){
