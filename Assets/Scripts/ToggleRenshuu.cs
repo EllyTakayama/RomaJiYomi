@@ -1,0 +1,282 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using System;
+//練習問題の基本画面の出題メソッド
+//12月4日更新
+
+public class ToggleRenshuu : MonoBehaviour
+{
+    public static ToggleRenshuu instance;
+    public Toggle[] toggle;
+    public List<int> shutsudaiNum = new List<int>();
+    public int s;
+    public GameObject ShutudaiPanel;
+    //public List<string> renshuuHiragana50 = new List<string>();
+    //public List<string> renshuuRomaji50 = new List<string>();
+    string[] hiraganaR50 = new string[]{
+        //0-4 
+        "あ","い","う","え","お",
+        //5-9
+        "か","き","く","け","こ",
+        //10-14
+        "さ","し","す","せ","そ",
+        //15-19
+        "た","ち","つ","て","と",
+        //20-24
+        "な","に","ぬ","ね","の",
+        //25-29
+        "は","ひ","ふ","へ","ほ",
+        //30-34
+        "ま","み","む","め","も",
+        //35-37
+        "や","ゆ","よ",
+        //38-42
+        "ら","り","る","れ","ろ",
+        //43-45
+        "わ","を","ん",
+        
+        //46-50
+        "が","ぎ","ぐ","げ","ご",
+        //51-55
+        "ざ","じ","ず","ぜ","ぞ",
+        //56-60
+        "だ","ぢ","づ","で","ど",
+        //61-65
+        "ば","び","ぶ","べ","ぼ",
+        //66-70
+        "ぱ","ぴ","ぷ","ぺ","ぽ"
+　　　　　　};
+    string[] RomaJiR50 = new string[]{
+         //0-4
+        "A","I","U","E","O",
+        //5-9
+        "KA","KI","KU","KE","KO",
+        //10-14
+        "SA","SI","SU","SE","SO",
+        //15-19
+        "TA","TI","TU","TE","TO",
+        //20-24
+        "NA","NI","NU","NE","NO",
+        //25-29
+        "HA","HI","HU","HE","HO",
+        //30-34
+        "MA","MI","MU","ME","MO",
+         //35-37
+        "YA","YU","YO",
+        //38-42
+        "RA","RI","RU","RE","RO",
+        //43-45
+         "WA","WO","NN",
+
+        //46-50
+        "GA","GI","GU","GE","GO",
+        //51-55
+        "ZA","ZI","ZU","ZE","ZO",
+        //56-60
+        "DA","DI","DU","DE","DO",
+        //61-65
+        "BA","BI","BU","BE","BO",
+        //66-70
+        "PA","PI","PU","PE","PO"
+        };
+
+     void Awake()
+    {
+       MakeInstance();
+    }
+
+     void MakeInstance()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+      
+        
+    }
+
+        public void SelectToggle(){
+        //0 あ行　0-4
+        if(toggle[0].isOn == true){
+            for(int i=0; i<5; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);
+            //}
+             Debug.Log("a"+toggle[0].isOn);
+             }
+       
+        //1 か行　5-9    
+        if(toggle[1].isOn == true){
+            for(int i=5; i<10; i++){
+                shutsudaiNum.Add(i);
+         }
+            /*
+            for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);
+            }*/
+            Debug.Log("ka"+toggle[1].isOn);
+            }
+        
+        //2 さ行　10-14
+        if(toggle[2].isOn == true){
+            for(int i=10; i<15; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("sa"+toggle[2].isOn);
+            }
+       
+            //3 た行　15-19    
+        if(toggle[3].isOn == true){
+            for(int i=15; i<20; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+             //   Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("ta"+toggle[3].isOn);
+            }
+        //4 な行　20-24
+        if(toggle[4].isOn == true){
+            for(int i=20; i<25; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+            //    Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("na"+toggle[4].isOn);
+            }
+       
+        //5 は行　25-29    
+        if(toggle[5].isOn == true){
+            for(int i=25; i<30; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+            //    Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("ha"+toggle[5].isOn);
+        }
+        
+        //6 ま行　30-34
+        if(toggle[6].isOn == true){
+            for(int i=30; i<35; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("ma"+toggle[6].isOn);
+            }
+       
+        //7 や行　35-37    
+        if(toggle[7].isOn == true){
+            for(int i=35; i<38; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+             //   Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("ya"+toggle[7].isOn);
+            }
+        
+        //8 ら行　38-42
+        if(toggle[8].isOn == true){
+            for(int i=38; i<43; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);
+            Debug.Log("ra"+toggle[8].isOn);}
+            
+        //9 わ行　43-45
+       
+        if(toggle[9].isOn == true){
+            for(int i=43; i<46; i++){
+                shutsudaiNum.Add(i);
+            }
+            for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);
+            }
+            Debug.Log("wa"+toggle[9].isOn);
+            Debug.Log("要素数"+shutsudaiNum.Count);
+            //ShuffleM();
+            }
+      
+        //10 が行　46-50
+       
+            for(int i=46; i<51; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("ga"+toggle[10].isOn);
+        
+        //11 ざ行　51-55    
+        if(toggle[11].isOn == true){
+            for(int i=51; i<56; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+             //   Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("za"+toggle[11].isOn);
+            }
+        
+        //12 だ行　56-60
+        
+        if(toggle[12].isOn == true){
+            for(int i=56; i<61; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);
+            Debug.Log("da"+toggle[12].isOn);
+            }
+        //13 ば行　61-65
+       
+        if(toggle[13].isOn == true){
+            for(int i=61; i<66; i++){
+                shutsudaiNum.Add(i);
+            }
+            Debug.Log("ba"+toggle[13].isOn);
+            } 
+            
+            Debug.Log("要素数"+shutsudaiNum.Count);
+            ShuffleM();
+            ShutudaiPanel.SetActive(true);
+    }
+
+
+
+        void ShuffleM(){
+            int n = shutsudaiNum.Count;
+        // nが1より小さくなるまで繰り返す
+    while (n > 1)
+    {
+        n--;
+        // nは 0 ～ n+1 の間のランダムな値
+        int k = UnityEngine.Random.Range(0, n + 1);
+ 
+        // k番目のカードをtempに代入
+        int temp = shutsudaiNum[k];
+        shutsudaiNum[k] = shutsudaiNum[n];
+        shutsudaiNum[n] = temp;
+        }
+            for(int j=0;j<shutsudaiNum.Count;j++){
+                Debug.Log("k"+shutsudaiNum[j]);
+            }
+        }
+        
+
+}
