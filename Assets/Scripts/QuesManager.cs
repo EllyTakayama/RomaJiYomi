@@ -363,6 +363,7 @@ public class QuesManager : MonoBehaviour
            dropdown.value == 3||
            dropdown.value == 4||
            dropdown.value == 5||
+           dropdown.value == 6||
            dropdown.value == 7)
            {
         if(n+1 > ary.Length){

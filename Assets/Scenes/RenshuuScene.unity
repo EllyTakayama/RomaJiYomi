@@ -2208,7 +2208,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 398207667}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40886e5f833e743c780c570470ff3999, type: 3}
+  m_Script: {fileID: 11500000, guid: 607007bb29d0d41f783bb2df726c922a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &398207670
@@ -2256,7 +2256,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 398207669}
-        m_TargetAssemblyTypeName: CheckButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: RenCheckButton, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
@@ -7890,11 +7890,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -8942,7 +8942,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1575734627}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40886e5f833e743c780c570470ff3999, type: 3}
+  m_Script: {fileID: 11500000, guid: 607007bb29d0d41f783bb2df726c922a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1575734630
@@ -8990,7 +8990,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1575734629}
-        m_TargetAssemblyTypeName: CheckButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: RenCheckButton, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
@@ -9098,11 +9098,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -10410,7 +10410,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1799906051}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40886e5f833e743c780c570470ff3999, type: 3}
+  m_Script: {fileID: 11500000, guid: 607007bb29d0d41f783bb2df726c922a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &1799906054
@@ -10458,7 +10458,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1799906053}
-        m_TargetAssemblyTypeName: CheckButton, Assembly-CSharp
+        m_TargetAssemblyTypeName: RenCheckButton, Assembly-CSharp
         m_MethodName: CheckAnswer
         m_Mode: 1
         m_Arguments:
@@ -11412,11 +11412,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   renshuuAnswer1: 
   renshuuAnswer2: 
-  RenshuuAnsButtons: []
+  renshuuType: 0
+  RenAnsButtons:
+  - {fileID: 398207667}
+  - {fileID: 1575734627}
+  - {fileID: 1799906051}
   tagOfButton: 
-  RenshuuQuesText: {fileID: 0}
+  RenQuesText: {fileID: 2050302594}
   RenshuuCount: 0
   RenshuuPanel: {fileID: 870929418}
+  b: 0
+  a: 0
+  c: 0
   renshuuNum: 
 --- !u!1 &1982486081
 GameObject:
@@ -11858,7 +11865,7 @@ GameObject:
   - component: {fileID: 2050302595}
   - component: {fileID: 2050302594}
   m_Layer: 5
-  m_Name: QuesText
+  m_Name: RenQuesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11905,11 +11912,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 65
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 65
     m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -12134,11 +12141,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 60
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
