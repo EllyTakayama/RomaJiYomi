@@ -256,6 +256,147 @@ public class ToggleRenshuu : MonoBehaviour
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }
+        //その他の音の代入
+        public void SelectToggle1(){
+        //14 行71-73
+        if(toggle[14].isOn == true){
+            for(int i=71; i<74; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);
+            //}
+             Debug.Log("kya"+toggle[14].isOn);
+             }
+       
+        //15 行　74-76   
+        if(toggle[15].isOn == true){
+            for(int i=74; i<77; i++){
+                shutsudaiNum.Add(i);
+         }
+            /*
+            for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);
+            }*/
+            Debug.Log("sha"+toggle[15].isOn);
+            }
+        
+        //16 行　77-79
+        if(toggle[16].isOn == true){
+            for(int i=77; i<80; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("tya"+toggle[16].isOn);
+            }
+       
+            //3 nya行　80-82    
+        if(toggle[17].isOn == true){
+            for(int i=80; i<83; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+             //   Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("nya"+toggle[17].isOn);
+            }
+        //18 hya行　84-86
+        if(toggle[18].isOn == true){
+            for(int i=84; i<87; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+            //    Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("hya"+toggle[18].isOn);
+            }
+       
+        //19 行　87-89    
+        if(toggle[19].isOn == true){
+            for(int i=87; i<90; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+            //    Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("mya"+toggle[19].isOn);
+        }
+        
+        //20 rya行　90-92
+        if(toggle[20].isOn == true){
+            for(int i=90; i<93; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("ma"+toggle[20].isOn);
+            }
+       
+        //21 gya行　93-95    
+        if(toggle[21].isOn == true){
+            for(int i=93; i<96; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+             //   Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("gya"+toggle[21].isOn);
+            }
+        
+        //22 jya行　96-98
+        if(toggle[22].isOn == true){
+            for(int i=96; i<99; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);
+            Debug.Log("jya"+toggle[22].isOn);}
+            
+        //23 dya行　99-101
+       
+        if(toggle[23].isOn == true){
+            for(int i=99; i<102; i++){
+                shutsudaiNum.Add(i);
+            }
+            for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);
+            }
+            Debug.Log("dya"+toggle[23].isOn);
+            Debug.Log("要素数"+shutsudaiNum.Count);
+            //ShuffleM();
+            }
+      
+        //24 bya行　102-104
+        if(toggle[24].isOn == true){
+            for(int i=96; i<99; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("bya"+toggle[24].isOn);}
+        
+        //25 pya行　105-107    
+        if(toggle[25].isOn == true){
+            for(int i=105; i<108; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+             //   Debug.Log(shutsudaiNum[j]);}
+            Debug.Log("za"+toggle[25].isOn);
+            }
+        
+        //26 pa行　
+        
+        if(toggle[26].isOn == true){
+            for(int i=56; i<61; i++){
+                shutsudaiNum.Add(i);
+            }
+            //for(int j =0; j<shutsudaiNum.Count; j++){
+              //  Debug.Log(shutsudaiNum[j]);
+            Debug.Log("pa"+toggle[26].isOn);
+            }
+            Debug.Log("要素数"+shutsudaiNum.Count);
+            ShuffleM();
+            ShutudaiPanel.SetActive(true);
+    }
+        
 
 
 
