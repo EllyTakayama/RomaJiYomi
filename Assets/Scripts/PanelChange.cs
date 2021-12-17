@@ -30,15 +30,15 @@ public class PanelChange : MonoBehaviour
     void Start()
     {
         currentPanel = Panel.Panel0;
-         LeftButton.SetActive(false);
-         RightButton.SetActive(false);
+        LeftButton.SetActive(false);
+        RightButton.SetActive(false);
     }
     //あ行を覚えようボタン
     public void SelectRomajiA(){
          ShowPanel(Panel.Panel1);
          QuesManager.instance.currentMode =2;
          QuesManager.instance.CurrentMode();
-         QuesManager.instance.RomajiQues();
+         //QuesManager.instance.RomajiQues();
         
     }
     //50音を覚えようボタン
@@ -49,9 +49,10 @@ public class PanelChange : MonoBehaviour
          QuesManager.instance.CurrentMode();
          QuesManager.instance.RomajiQues();
     }
-    //50音を覚えようボタン
+    //その他音を覚えようボタン
     public void SelectRomajiHoka(){
-        transform.localPosition = new Vector2(1000, -3000);
+        ShowPanel(Panel.Panel4);
+        
     }
 
     void ShowPanel(Panel panel){
@@ -70,6 +71,7 @@ public class PanelChange : MonoBehaviour
             case Panel.Panel2:
                 transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
+                QuesManager.instance.RomajiQues();
                 break;
 
             case Panel.Panel3:

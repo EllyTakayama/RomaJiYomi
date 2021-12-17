@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class CheckButton : MonoBehaviour
 {
+    public int iNum;//QuesManagerのindex番号を取得
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +24,8 @@ public class CheckButton : MonoBehaviour
          if (gameObject.CompareTag( QuesManager.instance.tagOfButton))
         {
             Debug.Log("正解");
+            iNum = QuesManager.instance.b;
+            //SoundManager.instance.PlaySE(iNum);
         }
         else{
             Debug.Log("間違い");

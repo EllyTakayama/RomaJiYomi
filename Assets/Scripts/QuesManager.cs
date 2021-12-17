@@ -28,9 +28,11 @@ public class QuesManager : MonoBehaviour
     public int QuesCount;
     int[] ary = new int[]{0,1,2,3,4};
     int[] ary3 = new int[]{0,1,2};
+    int[] ary6 = new int[]{0,1,2,3,4,5};
     int[] moji50 = new int[46];
     public bool isTall=true;//大文字か小文字か選択
-     [SerializeField] private Dropdown dropdown;
+    [SerializeField] private Dropdown dropdown;//k-w行
+     [SerializeField] private Dropdown dropdown2;//g-pya行
     public enum KihonType
     {
         ARomaji,
@@ -235,7 +237,7 @@ public class QuesManager : MonoBehaviour
     void Start()
     {
         CurrentMode();
-        RomajiQues();
+        //RomajiQues();
     
         //Debug.Log("currentMode"+currentMode);
         /*
@@ -288,8 +290,8 @@ public class QuesManager : MonoBehaviour
             ary[m] = tmp;
             //Debug.Log(ary[n])
             }
-            
     }
+
     public void RomajiQues(){
         switch (kihonType)
         {
@@ -330,6 +332,7 @@ public class QuesManager : MonoBehaviour
         answer = RomaJi50[b];
         QuesText.text = hiragana50[b];
         n++;
+        SoundManager.instance.PlaySE(b);
         /*
         Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
@@ -424,7 +427,80 @@ public class QuesManager : MonoBehaviour
                    Debug.Log(shutudai3hoka[i]);}
                Debug.Log("WA");
 　　　　　　};
-    }
+         //その他の音のindexの取得
+         if(dropdown2.value == 0){
+            dropShutudai = new int[]{46,47,48,49,50};
+            for(int i =0;i<dropShutudai.Length;i++){
+                Debug.Log(dropShutudai[i]);
+            }
+                Debug.Log("が");
+            }
+        //10-14
+        else if(dropdown2.value == 1){
+            dropShutudai = new int[]{51,52,53,54,55};
+            for(int i =0;i<dropShutudai.Length;i++){
+                Debug.Log(dropShutudai[i]);
+            }
+             Debug.Log("ざ");
+        }
+         //56-60
+        else if(dropdown2.value == 2){
+            dropShutudai = new int[]{56,57,58,59,60};
+            for(int i =0;i<dropShutudai.Length;i++){
+                Debug.Log(dropShutudai[i]);
+            }
+             Debug.Log("だ");
+             //61-65
+        }else if(dropdown2.value == 3){
+            dropShutudai = new int[]{61,62,63,64,65};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("ば");
+              //66-70
+        }else if(dropdown2.value == 4){
+            dropShutudai = new int[]{66,67,68,69,70};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+               Debug.Log("ぱ");
+               //71-76
+        }else if(dropdown2.value == 5){
+            dropShutudai = new int[]{71,72,73,74,75,76};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("きゃ、しゃ");
+               //77-82
+        }else if(dropdown2.value == 6){
+            shutudai3hoka = new int[]{77,78,79,80,81,82};
+            for(int i =0;i<shutudai3hoka.Length;i++){
+                   Debug.Log(shutudai3hoka[i]);}
+              Debug.Log("ちゃ、にゃ");
+              //83-88
+        }else if(dropdown2.value == 7){
+            dropShutudai = new int[]{83,84,85,86,87,88};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("ひゃ、みゃ");
+              //89-94
+         }else if(dropdown2.value == 8){
+             shutudai3hoka = new int[]{89,90,91,92,93,94};
+            for(int i =0;i<shutudai3hoka.Length;i++){
+                   Debug.Log(shutudai3hoka[i]);}
+               Debug.Log("りゃ、ぎゃ");
+               //95-100
+　　　　　　}else if(dropdown2.value == 9){
+            dropShutudai = new int[]{95,96,97,98,99,100};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("じゃ、ぢゃ");
+              //101-106
+         }else if(dropdown2.value == 10){
+             shutudai3hoka = new int[]{101,102,103,104,105,106};
+            for(int i =0;i<shutudai3hoka.Length;i++){
+                   Debug.Log(shutudai3hoka[i]);}
+               Debug.Log("びゃ、ぴゃ");
+               }
+        }
+
     public void Romaji50(){
         if(dropdown.value == 0||
            dropdown.value == 1||
@@ -433,12 +509,18 @@ public class QuesManager : MonoBehaviour
            dropdown.value == 4||
            dropdown.value == 5||
            dropdown.value == 6||
-           dropdown.value == 7)
+           dropdown.value == 7||
+           dropdown2.value == 0||
+           dropdown2.value == 1||
+           dropdown2.value == 2||
+           dropdown2.value == 3||
+           dropdown2.value == 4)
            {
         if(n+1 > ary.Length){
             Debug.Log("5問目");
             n = 0;
         }
+
         QuesCount++;
         Debug.Log("QuesCount"+QuesCount);
         b = ary[n];
@@ -557,5 +639,4 @@ public class QuesManager : MonoBehaviour
         }
     }
     }
-
 }
