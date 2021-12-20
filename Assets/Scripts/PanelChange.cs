@@ -23,6 +23,10 @@ public class PanelChange : MonoBehaviour
     public GameObject SettingButton;
     public GameObject HomeButton;
     public int currentMode;
+    public GameObject hokaImage;
+    public GameObject hiraganaImage;//ひらがな選択
+    public GameObject Dropdown;//ひらがな選択
+    public GameObject Dropdown2;
 
     // 矢印の表示/非表示
     
@@ -32,26 +36,48 @@ public class PanelChange : MonoBehaviour
         currentPanel = Panel.Panel0;
         LeftButton.SetActive(false);
         RightButton.SetActive(false);
+        Dropdown2.SetActive(false);
+         hokaImage.SetActive(false);
+         Dropdown.SetActive(false);
+         hiraganaImage.SetActive(false);
     }
     //あ行を覚えようボタン
     public void SelectRomajiA(){
          ShowPanel(Panel.Panel1);
          QuesManager.instance.currentMode =2;
          QuesManager.instance.CurrentMode();
-         //QuesManager.instance.RomajiQues();
+        
         
     }
     //50音を覚えようボタン
     public void SelectRomaji50(){
         ShowPanel(Panel.Panel4);
          QuesManager.instance.currentMode = 4;
+         Dropdown2.SetActive(false);
+         hokaImage.SetActive(false);
+         Dropdown.SetActive(true);
+         hiraganaImage.SetActive(true);
          Debug.Log(QuesManager.instance.currentMode);
+        QuesManager.instance.OnRomaji();
          QuesManager.instance.CurrentMode();
-         QuesManager.instance.RomajiQues();
+         
+        
+         //QuesManager.instance.RomajiQues();
+
     }
     //その他音を覚えようボタン
     public void SelectRomajiHoka(){
         ShowPanel(Panel.Panel4);
+         QuesManager.instance.currentMode = 4;
+         Dropdown2.SetActive(true);
+         hokaImage.SetActive(true);
+         Dropdown.SetActive(false);
+         hiraganaImage.SetActive(false);
+         Debug.Log(QuesManager.instance.currentMode);
+         QuesManager.instance.OnRomajiHoka();
+         QuesManager.instance.CurrentMode();
+         
+         //QuesManager.instance.RomajiQues();
         
     }
 
@@ -71,6 +97,7 @@ public class PanelChange : MonoBehaviour
             case Panel.Panel2:
                 transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
+                QuesManager.instance.OnRomaji();
                 QuesManager.instance.RomajiQues();
                 break;
 
@@ -83,11 +110,13 @@ public class PanelChange : MonoBehaviour
                 transform.localPosition = new Vector2(-1000, 1500);
                 LeftButton.SetActive(false);
                 RightButton.SetActive(true);
+                
                 break;
 
             case Panel.Panel5:
                 transform.localPosition = new Vector2(-2000, 1500);
                 LeftButton.SetActive(true);
+                QuesManager.instance.RomajiQues();
                 //RightButton.SetActive(true);
                 break;
 

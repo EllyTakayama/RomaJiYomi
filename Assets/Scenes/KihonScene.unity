@@ -387,7 +387,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2099242488}
         m_TargetAssemblyTypeName: QuesManager, Assembly-CSharp
-        m_MethodName: OnRomaji
+        m_MethodName: OnRomajiHoka
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1191,7 +1191,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &142038864
 MonoBehaviour:
@@ -1215,11 +1215,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 70
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -1773,6 +1773,10 @@ MonoBehaviour:
   SettingButton: {fileID: 0}
   HomeButton: {fileID: 0}
   currentMode: 0
+  hokaImage: {fileID: 627602581}
+  hiraganaImage: {fileID: 511032195}
+  Dropdown: {fileID: 1936263444}
+  Dropdown2: {fileID: 64029004}
 --- !u!224 &292542545
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2593,7 +2597,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &511032196
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4229,7 +4233,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &736991655
 MonoBehaviour:
@@ -4253,11 +4257,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 70
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 4
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -8074,15 +8078,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 907387309091309703, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.043652713
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 907387309091309703, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23380923
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 907387309091309703, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 90.0235
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 907387309091309703, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
       propertyPath: m_LocalRotation.w
@@ -9483,11 +9487,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 60
+    m_FontSize: 80
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
-    m_MaxSize: 60
+    m_MaxSize: 80
     m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -9920,7 +9924,7 @@ MonoBehaviour:
   QuesCount: 0
   isTall: 0
   dropdown: {fileID: 1936263446}
-  dropdown2: {fileID: 0}
+  dropdown2: {fileID: 64029006}
 --- !u!4 &2099242489
 Transform:
   m_ObjectHideFlags: 0
@@ -10255,7 +10259,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2141767149
 MonoBehaviour:
@@ -10279,11 +10283,11 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 70
     m_FontStyle: 0
-    m_BestFit: 0
+    m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 70
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1

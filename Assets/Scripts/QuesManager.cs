@@ -367,66 +367,7 @@ public class QuesManager : MonoBehaviour
 
         }
     }
-    public void OnRomaji(){
-        if(dropdown.value == 0){
-            dropShutudai = new int[]{5,6,7,8,9};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
-            }
-                Debug.Log("か");
-            }
-        //10-14
-        else if(dropdown.value == 1){
-            dropShutudai = new int[]{10,11,12,13,14};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
-            }
-             Debug.Log("さ");
-        }
-         //15-19
-        else if(dropdown.value == 2){
-            dropShutudai = new int[]{15,16,17,18,19};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
-            }
-             Debug.Log("た");
-             //20-24
-        }else if(dropdown.value == 3){
-            dropShutudai = new int[]{20,21,22,23,24};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
-              Debug.Log("Na");
-              //25-29
-        }else if(dropdown.value == 4){
-            dropShutudai = new int[]{25,26,27,28,29};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
-               Debug.Log("HA");
-               //30-34
-        }else if(dropdown.value == 5){
-            dropShutudai = new int[]{30,31,32,33,34};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
-              Debug.Log("MA");
-               //35-37
-        }else if(dropdown.value == 6){
-            shutudai3hoka = new int[]{35,36,37};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
-              Debug.Log("YA");
-              //38-42
-        }else if(dropdown.value == 7){
-            dropShutudai = new int[]{38,39,40,41,42};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
-              Debug.Log("RA");
-              //43-45
-         }else if(dropdown.value == 8){
-             shutudai3hoka = new int[]{43,44,45};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
-               Debug.Log("WA");
-　　　　　　};
+        public void OnRomajiHoka(){
          //その他の音のindexの取得
          if(dropdown2.value == 0){
             dropShutudai = new int[]{46,47,48,49,50};
@@ -501,6 +442,68 @@ public class QuesManager : MonoBehaviour
                }
         }
 
+        public void OnRomaji(){
+        if(dropdown.value == 0){
+            dropShutudai = new int[]{5,6,7,8,9};
+            for(int i =0;i<dropShutudai.Length;i++){
+                Debug.Log(dropShutudai[i]);
+            }
+                Debug.Log("か");
+            }
+        //10-14
+        else if(dropdown.value == 1){
+            dropShutudai = new int[]{10,11,12,13,14};
+            for(int i =0;i<dropShutudai.Length;i++){
+                Debug.Log(dropShutudai[i]);
+            }
+             Debug.Log("さ");
+        }
+         //15-19
+        else if(dropdown.value == 2){
+            dropShutudai = new int[]{15,16,17,18,19};
+            for(int i =0;i<dropShutudai.Length;i++){
+                Debug.Log(dropShutudai[i]);
+            }
+             Debug.Log("た");
+             //20-24
+        }else if(dropdown.value == 3){
+            dropShutudai = new int[]{20,21,22,23,24};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("Na");
+              //25-29
+        }else if(dropdown.value == 4){
+            dropShutudai = new int[]{25,26,27,28,29};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+               Debug.Log("HA");
+               //30-34
+        }else if(dropdown.value == 5){
+            dropShutudai = new int[]{30,31,32,33,34};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("MA");
+               //35-37
+        }else if(dropdown.value == 6){
+            shutudai3hoka = new int[]{35,36,37};
+            for(int i =0;i<shutudai3hoka.Length;i++){
+                   Debug.Log(shutudai3hoka[i]);}
+              Debug.Log("YA");
+              //38-42
+        }else if(dropdown.value == 7){
+            dropShutudai = new int[]{38,39,40,41,42};
+            for(int i =0;i<dropShutudai.Length;i++){
+                   Debug.Log(dropShutudai[i]);}
+              Debug.Log("RA");
+              //43-45
+         }else if(dropdown.value == 8){
+             shutudai3hoka = new int[]{43,44,45};
+            for(int i =0;i<shutudai3hoka.Length;i++){
+                   Debug.Log(shutudai3hoka[i]);}
+               Debug.Log("WA");
+　　　　　　};
+        }
+
     public void Romaji50(){
         if(dropdown.value == 0||
            dropdown.value == 1||
@@ -536,6 +539,7 @@ public class QuesManager : MonoBehaviour
         int d = dropShutudai[b];
         int e = dropShutudai[a];
         int f = dropShutudai[c];
+        /*
         Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
         Debug.Log("b"+b);
@@ -543,12 +547,12 @@ public class QuesManager : MonoBehaviour
         Debug.Log("a"+a); 
         Debug.Log("d"+d);
         Debug.Log("e"+e);
-        Debug.Log("f"+f); 
+        Debug.Log("f"+f); */
        
         //配列の要素5で割り振り
         //d が答え、e fが選択肢として出題される
-        answer4 = hiragana50[d];
-        QuesText4.text = RomaJi50[d];
+        answer4 = RomaJi50[d];
+        QuesText4.text = hiragana50[d];
         Debug.Log("d"+d);
         Debug.Log(RomaJi50[d]);
         n++;
@@ -558,21 +562,21 @@ public class QuesManager : MonoBehaviour
          if(locationOfAnswer == 3)
        {
         AnsButtons[3].GetComponentInChildren<Text>().text = answer4; 
-        AnsButtons[4].GetComponentInChildren<Text>().text = hiragana50[e];
-        AnsButtons[5].GetComponentInChildren<Text>().text = hiragana50[f];
+        AnsButtons[4].GetComponentInChildren<Text>().text = RomaJi50[e];
+        AnsButtons[5].GetComponentInChildren<Text>().text = RomaJi50[f];
         }
         else if(locationOfAnswer ==4)
         {
         AnsButtons[4].GetComponentInChildren<Text>().text = answer4;
-        AnsButtons[5].GetComponentInChildren<Text>().text = hiragana50[e];
-        AnsButtons[3].GetComponentInChildren<Text>().text = hiragana50[f];
+        AnsButtons[5].GetComponentInChildren<Text>().text = RomaJi50[e];
+        AnsButtons[3].GetComponentInChildren<Text>().text = RomaJi50[f];
     
         }
         else if(locationOfAnswer ==5)
         {
         AnsButtons[5].GetComponentInChildren<Text>().text = answer4;
-        AnsButtons[4].GetComponentInChildren<Text>().text = hiragana50[e];
-        AnsButtons[3].GetComponentInChildren<Text>().text = hiragana50[f];
+        AnsButtons[4].GetComponentInChildren<Text>().text = RomaJi50[e];
+        AnsButtons[3].GetComponentInChildren<Text>().text = RomaJi50[f];
         }
            }
         else {
