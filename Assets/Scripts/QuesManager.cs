@@ -85,7 +85,7 @@ public class QuesManager : MonoBehaviour
         //80-82
         "にゃ","にゅ","にょ",
         //83-85
-        "ひゃ","ひゅ","ひょ",
+        "ひゃ","ひゅ","ひょ",
         //86-88
         "みゃ","みゅ","みょ",
         //89-91
@@ -95,14 +95,13 @@ public class QuesManager : MonoBehaviour
         //95-97
         "じゃ","じゅ","じょ",
         //98-100
-        "ぢゃ","ぢゅ","ぢょ",
+        "ぢゃ","ぢゅ","ぢょ",
         //101-103
         "びゃ","びゅ","びょ",
         //104-106
-        "ぴゃ","ぴゅ","ぴょ"
-　　　　　　};
-
-　　　string[] romaji50 = new string[]{
+        "ぴゃ","ぴゅ","ぴょ"};
+        
+        string[] romaji50 = new string[]{
         //0-4
         "a","i","u","e","o",
         //5-9
@@ -144,7 +143,7 @@ public class QuesManager : MonoBehaviour
         //80-82
         "nya","nyu","nyo",
         //83-85
-        "hya","hyu","hyo",
+        "hya","hyu","hyo",
         //86-88
         "mya","myu","myo",
         //89-91
@@ -154,12 +153,11 @@ public class QuesManager : MonoBehaviour
         //95-97
         "jya","jyu","jyo",
         //98-100
-        "dya","dyu","dyo",
+        "dya","dyu","dyo",
         //101-103
         "bya","byu","byo",
         //104-106
-        "pya","pyu","pyo"
-　　　　　　};
+        "pya","pyu","pyo"};
      string[] RomaJi50 = new string[]{
          //0-4
         "A","I","U","E","O",
@@ -202,7 +200,7 @@ public class QuesManager : MonoBehaviour
         //80-82
         "NYA","NYU","NYO",
         //83-85
-        "HYA","HYU","HYO",
+        "HYA","HYU","HYO",
         //86-88
         "MYA","MYU","MYO",
         //89-91
@@ -212,13 +210,12 @@ public class QuesManager : MonoBehaviour
         //95-97
         "JYA","JYU","JYO",
         //98-100
-        "DYA","DYU","DYO",
+        "DYA","DYU","DYO",
         //101-103
         "BYA","BYU","BYO",
         //104-106
-        "PYA","PYU","PYO"
-       
-　　　　　　};
+        "PYA","PYU","PYO"
+        };
 
     // Start is called before the first frame update
      void Awake()
@@ -331,8 +328,9 @@ public class QuesManager : MonoBehaviour
 
         answer = RomaJi50[b];
         QuesText.text = hiragana50[b];
+        StartCoroutine("PlayHiragana");
         n++;
-        SoundManager.instance.PlaySE(b);
+        //SoundManager.instance.PlaySE(b);
         /*
         Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
@@ -428,7 +426,7 @@ public class QuesManager : MonoBehaviour
                    Debug.Log(shutudai3hoka[i]);}
                Debug.Log("りゃ、ぎゃ");
                //95-100
-　　　　　　}else if(dropdown2.value == 9){
+               }else if(dropdown2.value == 9){
             dropShutudai = new int[]{95,96,97,98,99,100};
             for(int i =0;i<dropShutudai.Length;i++){
                    Debug.Log(dropShutudai[i]);}
@@ -501,8 +499,9 @@ public class QuesManager : MonoBehaviour
             for(int i =0;i<shutudai3hoka.Length;i++){
                    Debug.Log(shutudai3hoka[i]);}
                Debug.Log("WA");
-　　　　　　};
+               };
         }
+
 
     public void Romaji50(){
         if(dropdown.value == 0||
@@ -553,6 +552,9 @@ public class QuesManager : MonoBehaviour
         //d が答え、e fが選択肢として出題される
         answer4 = RomaJi50[d];
         QuesText4.text = hiragana50[d];
+        //StartCoroutine("Play46Hiragana");
+        SoundManager.instance.PlaySE(d);
+        StartCoroutine("PlayDore");
         Debug.Log("d"+d);
         Debug.Log(RomaJi50[d]);
         n++;
@@ -616,8 +618,13 @@ public class QuesManager : MonoBehaviour
         //d が答え、e fが選択肢として出題される
         answer4 = hiragana50[d];
         QuesText4.text = RomaJi50[d];
+
         Debug.Log("d"+d);
         Debug.Log(RomaJi50[d]);
+        SoundManager.instance.PlaySE(d);
+        StartCoroutine("PlayDore");
+
+        //StartCoroutine("Play46Hiragana");
         n++;
         
          locationOfAnswer = UnityEngine.Random.Range(3,6);
@@ -643,4 +650,30 @@ public class QuesManager : MonoBehaviour
         }
     }
     }
+
+    IEnumerator PlayHiragana()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.PlaySE(b);
+        Debug.Log("a");
+        Debug.Log("a"+currentMode);
+        StartCoroutine("PlayDore");
+    }
+
+    /*IEnumerator Play46Hiragana()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.PlaySE(d);
+        Debug.Log("46"+d);
+        Debug.Log("a");
+        Debug.Log("a"+currentMode);
+        StartCoroutine("PlayDore");
+    }*/
+
+    IEnumerator PlayDore()
+    {//1秒停止
+        yield return new WaitForSeconds(0.6f);
+        SoundManager.instance.PlaySEDore();//どれ
+    }
 }
+

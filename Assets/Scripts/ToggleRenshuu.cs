@@ -109,7 +109,7 @@ public class ToggleRenshuu : MonoBehaviour
     }
 
         public void SelectToggle(){
-        //0 あ行　0-4
+        //0 あ行0-4
         if(toggle[0].isOn == true){
             for(int i=0; i<5; i++){
                 shutsudaiNum.Add(i);
@@ -201,7 +201,6 @@ public class ToggleRenshuu : MonoBehaviour
             Debug.Log("ra"+toggle[8].isOn);}
             
         //9 わ行　43-45
-       
         if(toggle[9].isOn == true){
             for(int i=43; i<46; i++){
                 shutsudaiNum.Add(i);
@@ -210,19 +209,19 @@ public class ToggleRenshuu : MonoBehaviour
                 Debug.Log(shutsudaiNum[j]);
             }
             Debug.Log("wa"+toggle[9].isOn);
-            Debug.Log("要素数"+shutsudaiNum.Count);
+            //Debug.Log("要素数"+shutsudaiNum.Count);
             //ShuffleM();
             }
       
         //10 が行　46-50
-       
+        if(toggle[10].isOn == true){
             for(int i=46; i<51; i++){
                 shutsudaiNum.Add(i);
             }
             //for(int j =0; j<shutsudaiNum.Count; j++){
               //  Debug.Log(shutsudaiNum[j]);}
             Debug.Log("ga"+toggle[10].isOn);
-        
+        }
         //11 ざ行　51-55    
         if(toggle[11].isOn == true){
             for(int i=51; i<56; i++){
@@ -393,10 +392,6 @@ public class ToggleRenshuu : MonoBehaviour
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }
-        
-
-
-
         void ShuffleM(){
             int n = shutsudaiNum.Count;
         // nが1より小さくなるまで繰り返す

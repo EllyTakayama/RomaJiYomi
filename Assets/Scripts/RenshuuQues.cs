@@ -72,7 +72,7 @@ public class RenshuuQues : MonoBehaviour
         //80-82
         "にゃ","にゅ","にょ",
         //83-85
-        "ひゃ","ひゅ","ひょ",
+        "ひゃ","ひゅ","ひょ",
         //86-88
         "みゃ","みゅ","みょ",
         //89-91
@@ -82,11 +82,11 @@ public class RenshuuQues : MonoBehaviour
         //95-97
         "じゃ","じゅ","じょ",
         //98-100
-        "ぢゃ","ぢゅ","ぢょ",
+        "ぢゃ","ぢゅ","ぢょ",
         //101-103
         "びゃ","びゅ","びょ",
         //104-106
-        "ぴゃ","ぴゅ","ぴょ"
+        "ぴゃ","ぴゅ","ぴょ"
 　　　　　　};
 
     string[] RomaJiR50 = new string[]{
@@ -131,7 +131,7 @@ public class RenshuuQues : MonoBehaviour
         //80-82
         "NYA","NYU","NYO",
         //83-85
-        "HYA","HYU","HYO",
+        "HYA","HYU","HYO",
         //86-88
         "MYA","MYU","MYO",
         //89-91
@@ -141,12 +141,12 @@ public class RenshuuQues : MonoBehaviour
         //95-97
         "JYA","JYU","JYO",
         //98-100
-        "DYA","DYU","DYO",
+        "DYA","DYU","DYO",
         //101-103
         "BYA","BYU","BYO",
         //104-106
-        "PYA","PYU","PYO"
-        　};
+        "PYA","PYU","PYO"
+        };
 
     // Start is called before the first frame update
      void Awake()
@@ -191,6 +191,7 @@ public class RenshuuQues : MonoBehaviour
         tagOfButton = locationOfRenshuuAnswer.ToString();
         
     }
+    
     public void RenRomaji50(){
        if(n+1 > renshuuNum.Count){
             Debug.Log("5問目");
@@ -211,6 +212,8 @@ public class RenshuuQues : MonoBehaviour
 
         renshuuAnswer1 = RomaJiR50[b];
         RenQuesText.text = hiraganaR50[b];
+        Debug.Log("b"+b);
+        SoundManager.instance.PlaySE(b);
         n++;
         locationOfRenshuuAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
