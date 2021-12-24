@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 //練習問題画面の出題メソッド
-//12月1日更新
+//12月22日更新
 
 public class RenshuuQues : MonoBehaviour
 {
@@ -200,20 +200,37 @@ public class RenshuuQues : MonoBehaviour
         RenshuuCount++;
         Debug.Log("RenshuuCount"+RenshuuCount);
         b = renshuuNum[n];
-        //4 
+        //3
+        if(renshuuNum.Count == 3){
+            if(n==0){
+            a = renshuuNum[n+1];
+            c = renshuuNum[n+2];
+            }
+            else if(n==1){
+            a = renshuuNum[n-1];
+            c = renshuuNum[n+1];
+            }
+            else if(n==2){
+            a = renshuuNum[n-2];
+            c = renshuuNum[n-1];
+            }
+        }else{
+            
         if(n >2){
             a = renshuuNum[n-1];
             c = renshuuNum[n-2];
         }
-        else if(n <3) {
+        if(n <3) {
             a = renshuuNum[n+1];
             c = renshuuNum[n+2];
+        }
         }
 
         renshuuAnswer1 = RomaJiR50[b];
         RenQuesText.text = hiraganaR50[b];
         Debug.Log("b"+b);
-        SoundManager.instance.PlaySE(b);
+        StartCoroutine("PlayHiragana");
+        //SoundManager.instance.PlaySE(b);
         n++;
         locationOfRenshuuAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
@@ -237,6 +254,19 @@ public class RenshuuQues : MonoBehaviour
         RenAnsButtons[0].GetComponentInChildren<Text>().text = RomaJiR50[c];
 
         }
+    }
+
+    IEnumerator PlayHiragana()
+    {
+        yield return new WaitForSeconds(0.3f);
+        SoundManager.instance.PlaySE(b);
+        Debug.Log("b"+b);
+        StartCoroutine("PlayDore");
+    }
+    IEnumerator PlayDore()
+    {//1秒停止
+        yield return new WaitForSeconds(0.6f);
+        SoundManager.instance.PlaySEDore();//どれ
     }
 
 }

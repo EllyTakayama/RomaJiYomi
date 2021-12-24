@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;//ローマ字読みの基本画面の出題メソッド
-//11月29日更新
+//12月22日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -327,6 +327,7 @@ public class QuesManager : MonoBehaviour
         }
 
         answer = RomaJi50[b];
+
         QuesText.text = hiragana50[b];
         StartCoroutine("PlayHiragana");
         n++;
@@ -535,9 +536,9 @@ public class QuesManager : MonoBehaviour
             a = ary[n+1];
             c = ary[n+2];
         }
-        int d = dropShutudai[b];
-        int e = dropShutudai[a];
-        int f = dropShutudai[c];
+        d = dropShutudai[b];
+        e = dropShutudai[a];
+        f = dropShutudai[c];
         /*
         Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
@@ -552,9 +553,9 @@ public class QuesManager : MonoBehaviour
         //d が答え、e fが選択肢として出題される
         answer4 = RomaJi50[d];
         QuesText4.text = hiragana50[d];
-        //StartCoroutine("Play46Hiragana");
-        SoundManager.instance.PlaySE(d);
-        StartCoroutine("PlayDore");
+        StartCoroutine("Play46Hiragana");
+        //SoundManager.instance.PlaySE(d);
+        //StartCoroutine("PlayDore");
         Debug.Log("d"+d);
         Debug.Log(RomaJi50[d]);
         n++;
@@ -602,9 +603,9 @@ public class QuesManager : MonoBehaviour
             a = ary3[n+1];
             c = ary3[n+2];
         }
-        int d = shutudai3hoka[b];
-        int e = shutudai3hoka[a];
-        int f = shutudai3hoka[c];
+        d = shutudai3hoka[b];
+        e = shutudai3hoka[a];
+        f = shutudai3hoka[c];
         Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
         Debug.Log("b"+b);
@@ -655,20 +656,19 @@ public class QuesManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
         SoundManager.instance.PlaySE(b);
-        Debug.Log("a");
+        Debug.Log("a"+a);
         Debug.Log("a"+currentMode);
         StartCoroutine("PlayDore");
     }
 
-    /*IEnumerator Play46Hiragana()
+    IEnumerator Play46Hiragana()
     {
         yield return new WaitForSeconds(0.3f);
         SoundManager.instance.PlaySE(d);
-        Debug.Log("46"+d);
-        Debug.Log("a");
-        Debug.Log("a"+currentMode);
+        Debug.Log("d"+d);
+        Debug.Log("d"+currentMode);
         StartCoroutine("PlayDore");
-    }*/
+    }
 
     IEnumerator PlayDore()
     {//1秒停止
