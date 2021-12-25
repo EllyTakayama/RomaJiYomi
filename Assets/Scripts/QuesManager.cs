@@ -26,6 +26,8 @@ public class QuesManager : MonoBehaviour
     public int e;
     public int f;
     public int QuesCount;
+    public bool isKihon;
+    public List<int> kihonNum = new List<int>();
     int[] ary = new int[]{0,1,2,3,4};
     int[] ary3 = new int[]{0,1,2};
     int[] ary6 = new int[]{0,1,2,3,4,5};

@@ -19,6 +19,7 @@ public class RenshuuQues : MonoBehaviour
     public Text RenQuesText;
     public int RenshuuCount;
     public GameObject RenshuuPanel;
+    public bool isFive;
     public enum RenshuuType
     {
         RenRomaji50,
