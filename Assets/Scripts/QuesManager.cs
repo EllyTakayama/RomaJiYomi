@@ -236,14 +236,7 @@ public class QuesManager : MonoBehaviour
     void Start()
     {
         CurrentMode();
-        //RomajiQues();
-    
         //Debug.Log("currentMode"+currentMode);
-        /*
-        for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);}*/
-        for(int i =0;i<ary3.Length;i++){
-                Debug.Log(ary3[i]);}    
         QuesCount = 0;
 
     }
@@ -370,177 +363,241 @@ public class QuesManager : MonoBehaviour
     }
         public void OnRomajiHoka(){
          //その他の音のindexの取得
+         //46-50が行
          if(dropdown2.value == 0){
-            dropShutudai = new int[]{46,47,48,49,50};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
+              for(int i=46; i<51; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);
             }
                 Debug.Log("が");
             }
-        //10-14
+        //51-55ざ
         else if(dropdown2.value == 1){
-            dropShutudai = new int[]{51,52,53,54,55};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
+            kihonNum.Clear();
+            for(int i=51; i<56; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);
             }
              Debug.Log("ざ");
         }
          //56-60
         else if(dropdown2.value == 2){
-            dropShutudai = new int[]{56,57,58,59,60};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
+            kihonNum.Clear();
+            for(int i=56; i<61; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);
             }
              Debug.Log("だ");
              //61-65
         }else if(dropdown2.value == 3){
-            dropShutudai = new int[]{61,62,63,64,65};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=61; i<66; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("ば");
               //66-70
         }else if(dropdown2.value == 4){
-            dropShutudai = new int[]{66,67,68,69,70};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=66; i<71; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
                Debug.Log("ぱ");
                //71-76
         }else if(dropdown2.value == 5){
-            dropShutudai = new int[]{71,72,73,74,75,76};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=71; i<77; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("きゃ、しゃ");
                //77-82
         }else if(dropdown2.value == 6){
-            shutudai3hoka = new int[]{77,78,79,80,81,82};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
+            kihonNum.Clear();
+            for(int i=77; i<83; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("ちゃ、にゃ");
               //83-88
         }else if(dropdown2.value == 7){
-            dropShutudai = new int[]{83,84,85,86,87,88};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=83; i<89; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("ひゃ、みゃ");
               //89-94
          }else if(dropdown2.value == 8){
-             shutudai3hoka = new int[]{89,90,91,92,93,94};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
+             kihonNum.Clear();
+            for(int i=89; i<95; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
                Debug.Log("りゃ、ぎゃ");
                //95-100
                }else if(dropdown2.value == 9){
-            dropShutudai = new int[]{95,96,97,98,99,100};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+             kihonNum.Clear();
+            for(int i=95; i<101; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("じゃ、ぢゃ");
               //101-106
          }else if(dropdown2.value == 10){
-             shutudai3hoka = new int[]{101,102,103,104,105,106};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
+             kihonNum.Clear();
+            for(int i=101; i<107; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
                Debug.Log("びゃ、ぴゃ");
                }
+            //ShuffleM();
         }
 
         public void OnRomaji(){
+            //4-9 ka
         if(dropdown.value == 0){
-            dropShutudai = new int[]{5,6,7,8,9};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
+            kihonNum.Clear();
+            for(int i=5; i<10; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);
             }
                 Debug.Log("か");
             }
         //10-14
         else if(dropdown.value == 1){
-            dropShutudai = new int[]{10,11,12,13,14};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
+            kihonNum.Clear();
+            for(int i=10; i<15; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);
             }
              Debug.Log("さ");
         }
          //15-19
         else if(dropdown.value == 2){
-            dropShutudai = new int[]{15,16,17,18,19};
-            for(int i =0;i<dropShutudai.Length;i++){
-                Debug.Log(dropShutudai[i]);
+            kihonNum.Clear();
+            for(int i=15; i<20; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);
             }
              Debug.Log("た");
-             //20-24
+             //20-24Na
         }else if(dropdown.value == 3){
-            dropShutudai = new int[]{20,21,22,23,24};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=20; i<25; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("Na");
               //25-29
         }else if(dropdown.value == 4){
-            dropShutudai = new int[]{25,26,27,28,29};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=25; i<30; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
                Debug.Log("HA");
-               //30-34
+               //30-34Ma
         }else if(dropdown.value == 5){
-            dropShutudai = new int[]{30,31,32,33,34};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=30; i<35; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("MA");
-               //35-37
+               //35-37ya
         }else if(dropdown.value == 6){
-            shutudai3hoka = new int[]{35,36,37};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
+            kihonNum.Clear();
+            for(int i=35; i<38; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("YA");
               //38-42
         }else if(dropdown.value == 7){
-            dropShutudai = new int[]{38,39,40,41,42};
-            for(int i =0;i<dropShutudai.Length;i++){
-                   Debug.Log(dropShutudai[i]);}
+            kihonNum.Clear();
+            for(int i=38; i<43; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("RA");
               //43-45
          }else if(dropdown.value == 8){
-             shutudai3hoka = new int[]{43,44,45};
-            for(int i =0;i<shutudai3hoka.Length;i++){
-                   Debug.Log(shutudai3hoka[i]);}
+            kihonNum.Clear();
+            for(int i=43; i<46; i++){
+                kihonNum.Add(i);
+            }
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
                Debug.Log("WA");
                };
+               //ShuffleM();
         }
 
 
     public void Romaji50(){
-        if(dropdown.value == 0||
-           dropdown.value == 1||
-           dropdown.value == 2||
-           dropdown.value == 3||
-           dropdown.value == 4||
-           dropdown.value == 5||
-           dropdown.value == 6||
-           dropdown.value == 7||
-           dropdown2.value == 0||
-           dropdown2.value == 1||
-           dropdown2.value == 2||
-           dropdown2.value == 3||
-           dropdown2.value == 4)
-           {
-        if(n+1 > ary.Length){
+        if(n+1 > kihonNum.Count){
             Debug.Log("5問目");
             n = 0;
         }
-
-        QuesCount++;
-        Debug.Log("QuesCount"+QuesCount);
-        b = ary[n];
+        b = kihonNum[n];
+        if(kihonNum.Count == 3){
+            if(n==0){
+            a = kihonNum[n+1];
+            c = kihonNum[n+2];
+            }
+            else if(n==1){
+            a = kihonNum[n-1];
+            c = kihonNum[n+1];
+            }
+            else if(n==2){
+            a = kihonNum[n-2];
+            c = kihonNum[n-1];
+            }
+        }else{
+        
         //4 
         if(n >2){
-            a = ary[n-1];
-            c = ary[n-2];
+            a = kihonNum[n-1];
+            c = kihonNum[n-2];
         }
         else if(n <3) {
-            a = ary[n+1];
-            c = ary[n+2];
+            a = kihonNum[n+1];
+            c = kihonNum[n+2];
         }
-        d = dropShutudai[b];
-        e = dropShutudai[a];
-        f = dropShutudai[c];
+        }
+        d = b;
+        e = a;
+        f = c;
+        QuesCount++;
+        Debug.Log("QuesCount"+QuesCount);
         /*
         Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
@@ -584,75 +641,7 @@ public class QuesManager : MonoBehaviour
         AnsButtons[3].GetComponentInChildren<Text>().text = RomaJi50[f];
         }
            }
-        else {
-        if(n+1 > ary3.Length){
-            Debug.Log("3問目");
-            n = 0;
-        }
-        QuesCount++;
-        Debug.Log("QuesCount"+QuesCount);
-        b = ary3[n];
-        //4 
-        if(n ==2){
-            a = ary3[n-1];
-            c = ary3[n-2];
-        }
-        else if(n ==1) {
-            a = ary3[n+1];
-            c = ary3[n-1];
-        }
-        else if(n == 0){
-            a = ary3[n+1];
-            c = ary3[n+2];
-        }
-        d = shutudai3hoka[b];
-        e = shutudai3hoka[a];
-        f = shutudai3hoka[c];
-        Debug.Log("n"+n);
-        Debug.Log("N"+ary[n]);
-        Debug.Log("b"+b);
-        Debug.Log("c"+c);
-        Debug.Log("a"+a); 
-        Debug.Log("d"+d);
-        Debug.Log("e"+e);
-        Debug.Log("f"+f); 
-       
-        //配列の要素5で割り振り
-        //d が答え、e fが選択肢として出題される
-        answer4 = hiragana50[d];
-        QuesText4.text = RomaJi50[d];
-
-        Debug.Log("d"+d);
-        Debug.Log(RomaJi50[d]);
-        SoundManager.instance.PlaySE(d);
-        StartCoroutine("PlayDore");
-
-        //StartCoroutine("Play46Hiragana");
-        n++;
         
-         locationOfAnswer = UnityEngine.Random.Range(3,6);
-        //Debug.Log("locationOfAnswer"+locationOfAnswer);
-         if(locationOfAnswer == 3)
-       {
-        AnsButtons[3].GetComponentInChildren<Text>().text = answer4; 
-        AnsButtons[4].GetComponentInChildren<Text>().text = hiragana50[e];
-        AnsButtons[5].GetComponentInChildren<Text>().text = hiragana50[f];
-        }
-        else if(locationOfAnswer ==4)
-        {
-        AnsButtons[4].GetComponentInChildren<Text>().text = answer4;
-        AnsButtons[5].GetComponentInChildren<Text>().text = hiragana50[e];
-        AnsButtons[3].GetComponentInChildren<Text>().text = hiragana50[f];
-    
-        }
-        else if(locationOfAnswer ==5)
-        {
-        AnsButtons[5].GetComponentInChildren<Text>().text = answer4;
-        AnsButtons[4].GetComponentInChildren<Text>().text = hiragana50[e];
-        AnsButtons[3].GetComponentInChildren<Text>().text = hiragana50[f];
-        }
-    }
-    }
 
     IEnumerator PlayHiragana()
     {
@@ -677,5 +666,23 @@ public class QuesManager : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         SoundManager.instance.PlaySEDore();//どれ
     }
+    void ShuffleM(){
+            int n = kihonNum.Count;
+        // nが1より小さくなるまで繰り返す
+    while (n > 1)
+    {
+        n--;
+        // nは 0 ～ n+1 の間のランダムな値
+        int k = UnityEngine.Random.Range(0, n + 1);
+ 
+        // k番目のカードをtempに代入
+        int temp = kihonNum[k];
+        kihonNum[k] = kihonNum[n];
+        kihonNum[n] = temp;
+        }
+            for(int j=0;j<kihonNum.Count;j++){
+                Debug.Log("k"+kihonNum[j]);
+            }
+        }
 }
 

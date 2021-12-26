@@ -38,10 +38,10 @@ public class PanelChange : MonoBehaviour
         LeftButton.SetActive(false);
         RightButton.SetActive(false);
         Dropdown2.SetActive(false);
-         hokaImage.SetActive(false);
-         Dropdown.SetActive(false);
-         hiraganaImage.SetActive(false);
-         kihonButton.SetActive(false);
+        hokaImage.SetActive(false);
+        Dropdown.SetActive(false);
+        hiraganaImage.SetActive(false);
+        kihonButton.SetActive(false);
     }
     //あ行を覚えようボタン
     public void SelectRomajiA(){
@@ -60,7 +60,7 @@ public class PanelChange : MonoBehaviour
          Dropdown.SetActive(true);
          hiraganaImage.SetActive(true);
          Debug.Log(QuesManager.instance.currentMode);
-        QuesManager.instance.OnRomaji();
+         QuesManager.instance.OnRomaji();
          QuesManager.instance.CurrentMode();
          
         

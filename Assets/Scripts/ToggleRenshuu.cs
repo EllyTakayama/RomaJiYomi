@@ -98,7 +98,7 @@ public class ToggleRenshuu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        shutsudaiNum.Clear();
     }
 
     // Update is called once per frame
@@ -252,6 +252,8 @@ public class ToggleRenshuu : MonoBehaviour
             } 
             
             Debug.Log("要素数"+shutsudaiNum.Count);
+            for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);}
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }
@@ -309,7 +311,7 @@ public class ToggleRenshuu : MonoBehaviour
             Debug.Log("hya"+toggle[18].isOn);
             }
        
-        //19 行　86-88    
+        //19 mya行　86-88    
         if(toggle[19].isOn == true){
             for(int i=86; i<89; i++){
                 shutsudaiNum.Add(i);
@@ -326,7 +328,7 @@ public class ToggleRenshuu : MonoBehaviour
             }
             //for(int j =0; j<shutsudaiNum.Count; j++){
               //  Debug.Log(shutsudaiNum[j]);}
-            Debug.Log("ma"+toggle[20].isOn);
+            Debug.Log("rya"+toggle[20].isOn);
             }
        
         //21 gya行　92-94    
@@ -353,11 +355,11 @@ public class ToggleRenshuu : MonoBehaviour
             for(int i=98; i<101; i++){
                 shutsudaiNum.Add(i);
             }
-            for(int j =0; j<shutsudaiNum.Count; j++){
+            /*for(int j =0; j<shutsudaiNum.Count; j++){
                 Debug.Log(shutsudaiNum[j]);
-            }
+            }*/
             Debug.Log("dya"+toggle[23].isOn);
-            Debug.Log("要素数"+shutsudaiNum.Count);
+    
             //ShuffleM();
             }
       
@@ -389,6 +391,8 @@ public class ToggleRenshuu : MonoBehaviour
             Debug.Log("pa"+toggle[26].isOn);
             }
             Debug.Log("要素数"+shutsudaiNum.Count);
+             for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);}
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }

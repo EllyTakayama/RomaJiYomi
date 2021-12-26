@@ -169,8 +169,7 @@ public class RenshuuQues : MonoBehaviour
     {
         renshuuNum = new List<int>(ToggleRenshuu.instance.shutsudaiNum);
         for(int i =0; i< renshuuNum.Count; i++){
-            Debug.Log("r"+renshuuNum[i]);
-        }
+            Debug.Log("r"+renshuuNum[i]);}
         Renshuu();
     }
     public void Renshuu(){
@@ -195,7 +194,7 @@ public class RenshuuQues : MonoBehaviour
     
     public void RenRomaji50(){
        if(n+1 > renshuuNum.Count){
-            Debug.Log("5問目");
+            Debug.Log("リセット");
             n = 0;
         }
         RenshuuCount++;
@@ -230,8 +229,10 @@ public class RenshuuQues : MonoBehaviour
         renshuuAnswer1 = RomaJiR50[b];
         RenQuesText.text = hiraganaR50[b];
         Debug.Log("b"+b);
-        StartCoroutine("PlayHiragana");
-        //SoundManager.instance.PlaySE(b);
+        //StartCoroutine("PlayHiragana");
+        SoundManager.instance.PlaySE(b);
+        StartCoroutine("PlayDore");
+
         n++;
         locationOfRenshuuAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
