@@ -10,7 +10,7 @@ using System;
 public class RenshuuQues : MonoBehaviour
 {
     public static RenshuuQues instance;
-    [HideInInspector] public string renshuuAnswer1;
+    public string renshuuAnswer1;
     [HideInInspector] public string renshuuAnswer2;
     public RenshuuType renshuuType;
     private int locationOfRenshuuAnswer;
@@ -19,7 +19,7 @@ public class RenshuuQues : MonoBehaviour
     public Text RenQuesText;
     public int RenshuuCount;
     public GameObject RenshuuPanel;
-    public bool isFive;
+    //public bool isHiragana;
     public enum RenshuuType
     {
         RenRomaji50,
@@ -167,10 +167,12 @@ public class RenshuuQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         renshuuNum = new List<int>(ToggleRenshuu.instance.shutsudaiNum);
         for(int i =0; i< renshuuNum.Count; i++){
             Debug.Log("r"+renshuuNum[i]);}
         Renshuu();
+
     }
     public void Renshuu(){
         switch (renshuuType)
@@ -270,5 +272,7 @@ public class RenshuuQues : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         SoundManager.instance.PlaySEDore();//どれ
     }
+
+
 
 }

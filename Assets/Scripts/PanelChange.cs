@@ -101,6 +101,7 @@ public class PanelChange : MonoBehaviour
             case Panel.Panel2:
                 transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
+                RightButton.SetActive(false);
                 QuesManager.instance.OnRomaji();
                 QuesManager.instance.RomajiQues();
                 break;
@@ -121,6 +122,7 @@ public class PanelChange : MonoBehaviour
             case Panel.Panel5:
                 transform.localPosition = new Vector2(-2000, 1500);
                 LeftButton.SetActive(true);
+                RightButton.SetActive(false);
                 QuesManager.instance.RomajiQues();
                 //RightButton.SetActive(true);
                 break;

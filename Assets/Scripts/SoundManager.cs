@@ -25,7 +25,8 @@ public class SoundManager : MonoBehaviour
 
     public AudioSource audioSourceSE; // SEのスピーカー
     public AudioClip[] hiragana50; //ひらがな単音配列に対応したAudioClip配列
-    public AudioClip[] aKihon; //あ行の説明音声を収録したAudioClip配列
+    public AudioClip[] sousaSE;
+    //public AudioClip[] aKihon; //あ行の説明音声を収録したAudioClip配列
     public AudioClip dore; //あ行の説明音声を収録したAudioClip配列
 
 
@@ -53,6 +54,11 @@ public class SoundManager : MonoBehaviour
         audioSourceSE.PlayOneShot(hiragana50[index]); // SEを一度だけならす
         //Debug.Log("Se");
     }
+
+    public void PlaySousaSE(int index){
+        audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす
+    }
+
     public void PlaySEDore(){
         audioSourceSE.PlayOneShot(dore); // doreを一度だけ鳴らす
     }

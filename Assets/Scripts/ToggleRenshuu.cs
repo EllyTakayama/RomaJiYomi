@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+
 //練習問題の基本画面の出題メソッド
-//12月4日更新
+//12月28日更新
 
 public class ToggleRenshuu : MonoBehaviour
 {
     public static ToggleRenshuu instance;
+    public Toggle toggle50;//基本の50音・濁音のPanel選択
+    public Toggle toggleHoka;//拗音などその他の平仮名のPanel選択
     public Toggle[] toggle;
     public List<int> shutsudaiNum = new List<int>();
     public int s;
     public GameObject ShutudaiPanel;
     //public List<string> renshuuHiragana50 = new List<string>();
     //public List<string> renshuuRomaji50 = new List<string>();
+    public bool isHiragana;//toggleが50音か他かのbool
     string[] hiraganaR50 = new string[]{
         //0-4 
         "あ","い","う","え","お",
@@ -98,6 +102,9 @@ public class ToggleRenshuu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        RenTogLoad();
+        Debug.Log("スタートtoggle50f"+toggle50.isOn);
+        Debug.Log("スタートtoggleHoka"+toggleHoka.isOn);
         shutsudaiNum.Clear();
     }
 
@@ -415,5 +422,36 @@ public class ToggleRenshuu : MonoBehaviour
             }
         }
         
+    public void OnRenTog(){
+        if(toggle50.isOn == true){
+            //50音
+            isHiragana = true;
+            ES3.Save<bool>("isHiragana", isHiragana);
+            Debug.Log("クリックtoggle50f"+isHiragana);
+        }
+        else{
+            //その他の音選択
+            isHiragana = false;
+            ES3.Save<bool>("isHiragana", isHiragana);
+            //Debug.Log("クリックtoggle50f"+isHiragana);
+        }
+        }
+
+    public void RenTogLoad(){
+        isHiragana = ES3.Load<bool>("isHiragana",true);
+         //Debug.Log("クリックtoggle50f"+isHiragana);
+        if(isHiragana ==true){
+            toggle50.isOn = true;
+            toggleHoka.isOn = false;
+            //Debug.Log("ロードtoggle50f"+toggle50.isOn);
+            //Debug.Log("ロードtoggle50f"+toggleHoka.isOn);
+        }
+        else{
+            toggle50.isOn = false;
+            toggleHoka.isOn = true;
+        }
+         //Debug.Log("ロードtoggle50f"+toggle50.isOn);
+
+    }
 
 }
