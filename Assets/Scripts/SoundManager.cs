@@ -62,4 +62,20 @@ public class SoundManager : MonoBehaviour
     public void PlaySEDore(){
         audioSourceSE.PlayOneShot(dore); // doreを一度だけ鳴らす
     }
+    public void BGMmute(){
+        audioSourceBGM.mute = true;
+    }
+    
+    public void UnmuteBGM(){
+        audioSourceBGM.mute = false;
+    }
+    
+    public void SEmute(){
+        audioSourceSE.mute = true;
+    }
+    
+    public void UnmuteSE(){
+        audioSourceSE.mute = false;
+    }
+
 }
