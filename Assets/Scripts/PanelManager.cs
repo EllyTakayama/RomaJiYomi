@@ -29,5 +29,8 @@ public class PanelManager : MonoBehaviour
     public void TikaraSceneMove(){
         SceneManager.LoadScene("TikaraScene");
     }
+    public void SettingSceneMove(){
+        SceneManager.LoadScene("SettingScene");
+    }
 
 }

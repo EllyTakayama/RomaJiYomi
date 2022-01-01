@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//1月1日更新
 
 public class SoundManager : MonoBehaviour
 {
@@ -28,7 +29,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] sousaSE;
     //public AudioClip[] aKihon; //あ行の説明音声を収録したAudioClip配列
     public AudioClip dore; //あ行の説明音声を収録したAudioClip配列
-
+    public bool isSfontSize;
+    public bool isSkunrei;
 
     public void PlayBGM(string sceneName)
     {
@@ -54,7 +56,7 @@ public class SoundManager : MonoBehaviour
         audioSourceSE.PlayOneShot(hiragana50[index]); // SEを一度だけならす
         //Debug.Log("Se");
     }
-
+    //0/正解 1/不正解
     public void PlaySousaSE(int index){
         audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす
     }
@@ -76,6 +78,11 @@ public class SoundManager : MonoBehaviour
     
     public void UnmuteSE(){
         audioSourceSE.mute = false;
+    }
+    public void SaveFont(){
+        isSfontSize = SettingManager.instance.isfontSize;
+        ES3.Save<bool>("isSfontSize", isSfontSize);
+        Debug.Log("クリックisSfontSize"+isSfontSize);
     }
 
 }

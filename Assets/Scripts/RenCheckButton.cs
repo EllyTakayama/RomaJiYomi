@@ -56,6 +56,7 @@ public class RenCheckButton : MonoBehaviour
             Debug.Log("間違い");
             isPressed = true;
             batsuImage.SetActive(true);
+            SoundManager.instance.PlaySousaSE(1);
             bQuesText.text = RenshuuQues.instance.RenQuesText.text;
             seikaiText.text = RenshuuQues.instance.renshuuAnswer1;
         }

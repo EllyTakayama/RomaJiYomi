@@ -51,7 +51,7 @@ public class CheckButton : MonoBehaviour
                 time = 0.0f;
                 isPressed = false;
             }
-        }else{
+        　　}else{
             if (maru1Image.gameObject.activeSelf == true)
             {   
                 maru1Image.gameObject.SetActive(false);
@@ -64,7 +64,7 @@ public class CheckButton : MonoBehaviour
                 isPressed = false;
             }
 
-        }
+        　}
         }
         }
     }
@@ -78,7 +78,7 @@ public class CheckButton : MonoBehaviour
             Debug.Log("maru");
             maru1Image.SetActive(true);
             Debug.Log("正解");
-            //正解音
+            //0正解音
             SoundManager.instance.PlaySousaSE(0);
             iNum = QuesManager.instance.b;
             //SoundManager.instance.PlaySE(iNum);
@@ -87,6 +87,8 @@ public class CheckButton : MonoBehaviour
             Debug.Log("間違い");
             isPressed = true;
             QuesMode = QuesManager.instance.currentMode;
+            //1不正解音
+            SoundManager.instance.PlaySousaSE(1);
             if(QuesMode ==2){
                 batsuImage.SetActive(true);
                 kQuesText.text = QuesManager.instance.QuesText.text;

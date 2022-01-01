@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;//ローマ字読みの基本画面の出題メソッド
-//12月22日更新
+//12月30日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -238,7 +238,9 @@ public class QuesManager : MonoBehaviour
         CurrentMode();
         //Debug.Log("currentMode"+currentMode);
         QuesCount = 0;
-
+        GameManager.instance.LoadGfontsize();
+        isTall = GameManager.instance.isGfontSize;
+        Debug.Log("大文字"+isTall);
     }
 
     public void CurrentMode(){
@@ -320,9 +322,7 @@ public class QuesManager : MonoBehaviour
             a = ary[n+1];
             c = ary[n+2];
         }
-
         answer = RomaJi50[b];
-
         QuesText.text = hiragana50[b];
         StartCoroutine("PlayHiragana");
         n++;
@@ -338,8 +338,9 @@ public class QuesManager : MonoBehaviour
         Debug.Log("c"+hiragana50[c]);
         Debug.Log("a"+hiragana50[a]);
        */
-         locationOfAnswer = UnityEngine.Random.Range(0,3);
+        locationOfAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
+        //Debug.Log("answer"+answer);
          if(locationOfAnswer == 0)
        {
         AnsButtons[0].GetComponentInChildren<Text>().text = answer; 
@@ -649,7 +650,7 @@ public class QuesManager : MonoBehaviour
         SoundManager.instance.PlaySE(b);
         Debug.Log("a"+a);
         Debug.Log("a"+currentMode);
-        StartCoroutine("PlayDore");
+        StartCoroutine(PlayDore());
     }
 
     IEnumerator Play46Hiragana()
