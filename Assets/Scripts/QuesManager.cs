@@ -324,7 +324,7 @@ public class QuesManager : MonoBehaviour
         }
         answer = RomaJi50[b];
         QuesText.text = hiragana50[b];
-        StartCoroutine("PlayHiragana");
+        StartCoroutine(PlayHiragana());
         n++;
         //SoundManager.instance.PlaySE(b);
         /*
@@ -613,7 +613,7 @@ public class QuesManager : MonoBehaviour
         //d が答え、e fが選択肢として出題される
         answer4 = RomaJi50[d];
         QuesText4.text = hiragana50[d];
-        StartCoroutine("Play46Hiragana");
+        StartCoroutine(Play46Hiragana());
         //SoundManager.instance.PlaySE(d);
         //StartCoroutine("PlayDore");
         Debug.Log("d"+d);
@@ -644,7 +644,7 @@ public class QuesManager : MonoBehaviour
            }
         
 
-    IEnumerator PlayHiragana()
+    public IEnumerator PlayHiragana()
     {
         yield return new WaitForSeconds(0.3f);
         SoundManager.instance.PlaySE(b);
@@ -653,13 +653,13 @@ public class QuesManager : MonoBehaviour
         StartCoroutine(PlayDore());
     }
 
-    IEnumerator Play46Hiragana()
+    public IEnumerator Play46Hiragana()
     {
         yield return new WaitForSeconds(0.3f);
         SoundManager.instance.PlaySE(d);
         Debug.Log("d"+d);
         Debug.Log("d"+currentMode);
-        StartCoroutine("PlayDore");
+        StartCoroutine(PlayDore());
     }
 
     IEnumerator PlayDore()
@@ -667,6 +667,7 @@ public class QuesManager : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         SoundManager.instance.PlaySEDore();//どれ
     }
+
     void ShuffleM(){
             int n = kihonNum.Count;
         // nが1より小さくなるまで繰り返す

@@ -20,6 +20,7 @@ public class SettingManager : MonoBehaviour
 
     public bool isfontSize = true;// true なら大文字
     public bool isKunrei = true;// true なら訓令式書式
+    public bool TestfontSize;//テスト用データ
 
     private void Awake()
     {
@@ -53,6 +54,7 @@ public class SettingManager : MonoBehaviour
             //大文字選択ならisfontSizeはtrue
             isfontSize = true;
             ES3.Save<bool>("isfontSize", isfontSize);
+            ES3.Save<bool>("TestfontSize", isfontSize,"hogehoge2.es3");
             SoundManager.instance.SaveFont();
             GameManager.instance.SaveGfontsize();
             //Debug.Log("クリックisfontSize"+isfontSize);
@@ -61,16 +63,18 @@ public class SettingManager : MonoBehaviour
             //小文字が選択されているなら
             isfontSize = false;
             ES3.Save<bool>("isfontSize", isfontSize);
+            ES3.Save<bool>("TestfontSize", isfontSize,"hogehoge2.es3");
             SoundManager.instance.SaveFont();
             GameManager.instance.SaveGfontsize();
         }
-        Debug.Log("クリックisfontSize"+isfontSize);
+        Debug.Log("クリックTestfontSize"+isfontSize);
     }
 
     public void FontTogLoad(){
          //if(ES3.KeyExists("isfontSize"))
          isfontSize = ES3.Load<bool>("isfontSize",true);
-         //Debug.Log("クリックisfontSize"+isfontSize);
+         TestfontSize = ES3.Load<bool>("TestfontSize",true);
+         Debug.Log("クリックTestfontSize"+isfontSize);
         if(isfontSize ==true){
             tallToggle.isOn = true;
             smallToggle.isOn = false;

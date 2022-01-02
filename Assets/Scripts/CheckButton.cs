@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-
+//1月2日更新
 public class CheckButton : MonoBehaviour
 {
     public int iNum;//QuesManagerのindex番号を取得
     public bool isPressed;//ボタンが押されると時間の測定を開始
-    float time=0.0f;
+    //float time=0.0f;
+    public GameObject Ques;
     [SerializeField] private GameObject maruImage;  
     [SerializeField] private GameObject batsuImage;
     [SerializeField] private GameObject maru1Image;  
@@ -30,63 +30,27 @@ public class CheckButton : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        if(isPressed == true)
-        {    
-         time += Time.deltaTime;
-        if(time> 0.7f)
-        {
-             QuesMode = QuesManager.instance.currentMode;
-             if(QuesMode ==2){
-            if (maruImage.gameObject.activeSelf == true)
-            {   
-                maruImage.gameObject.SetActive(false);
-                time = 0.0f;
-                isPressed = false;
-            }else
-            {                
-                batsuImage.gameObject.SetActive(false);
-                time = 0.0f;
-                isPressed = false;
-            }
-        　　}else{
-            if (maru1Image.gameObject.activeSelf == true)
-            {   
-                maru1Image.gameObject.SetActive(false);
-                time = 0.0f;
-                isPressed = false;
-            }else
-            {                
-                batsu1Image.gameObject.SetActive(false);
-                time = 0.0f;
-                isPressed = false;
-            }
-
-        　}
-        }
-        }
-    }
     public void CheckAnswer(){
-        Debug.Log("QuesManager.instance.tagOfButton"+QuesManager.instance.tagOfButton);
-        Debug.Log("gameObject.tag"+gameObject.tag);
+        QuesMode = QuesManager.instance.currentMode;
+        //Debug.Log("QuesManager.instance.tagOfButton"+QuesManager.instance.tagOfButton);
+        //Debug.Log("gameObject.tag"+gameObject.tag);
          if (gameObject.CompareTag( QuesManager.instance.tagOfButton))
-        {
+        {   
             isPressed = true;
-            maruImage.SetActive(true);
-            Debug.Log("maru");
-            maru1Image.SetActive(true);
-            Debug.Log("正解");
             //0正解音
             SoundManager.instance.PlaySousaSE(0);
+            if(QuesMode ==2){
+            maruImage.SetActive(true);
+            Debug.Log("maru");}
+            else{maru1Image.SetActive(true);
+            Debug.Log("正解");}
             iNum = QuesManager.instance.b;
+            StartCoroutine(MaruButton());
             //SoundManager.instance.PlaySE(iNum);
         }
         else{
             Debug.Log("間違い");
             isPressed = true;
-            QuesMode = QuesManager.instance.currentMode;
             //1不正解音
             SoundManager.instance.PlaySousaSE(1);
             if(QuesMode ==2){
@@ -98,8 +62,32 @@ public class CheckButton : MonoBehaviour
                 hokaQuesText.text = QuesManager.instance.QuesText4.text;
                 hokaseikaiText.text = QuesManager.instance.answer4;
             }
+            StartCoroutine(BatsuButton());
         }
+        //QuesManager.instance.RomajiQues();
+    }
+    IEnumerator MaruButton()
+    {  yield return new WaitForSeconds(0.7f);
+            if(QuesMode ==2){
+            maruImage.SetActive(false);
+            Debug.Log("maru");}
+            else{maru1Image.SetActive(false);
+            Debug.Log("正解");}
+      
         QuesManager.instance.RomajiQues();
     }
+    IEnumerator BatsuButton()
+    {  yield return new WaitForSeconds(1.5f);
+            if(QuesMode ==2){
+            batsuImage.SetActive(false);
+            Debug.Log("バツ");}
+            else{
+                batsu1Image.SetActive(false);
+            Debug.Log("バツ1");}
+        yield return new WaitForSeconds(0.5f);
+        QuesManager.instance.RomajiQues();
+    }
+       
+       
 
 }
