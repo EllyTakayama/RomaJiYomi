@@ -47,6 +47,9 @@ public class SoundManager : MonoBehaviour
             case "TikaraScene":
                 audioSourceBGM.clip = audioClipsBGM[2];
                 break;
+            case "SettingScene":
+                audioSourceBGM.clip = audioClipsBGM[0];
+                break;
             
         }
         audioSourceBGM.Play();
@@ -78,11 +81,6 @@ public class SoundManager : MonoBehaviour
     
     public void UnmuteSE(){
         audioSourceSE.mute = false;
-    }
-    public void SaveFont(){
-        isSfontSize = SettingManager.instance.isfontSize;
-        ES3.Save<bool>("isSfontSize", isSfontSize);
-        Debug.Log("クリックisSfontSize"+isSfontSize);
     }
 
 }

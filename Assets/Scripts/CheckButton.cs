@@ -40,9 +40,12 @@ public class CheckButton : MonoBehaviour
             //0正解音
             SoundManager.instance.PlaySousaSE(0);
             if(QuesMode ==2){
+            QuesManager.instance.StopYomiage();
             maruImage.SetActive(true);
             Debug.Log("maru");}
-            else{maru1Image.SetActive(true);
+            else{
+            QuesManager.instance.Stop46Yomiage();
+            maru1Image.SetActive(true);
             Debug.Log("正解");}
             iNum = QuesManager.instance.b;
             StartCoroutine(MaruButton());
@@ -66,6 +69,7 @@ public class CheckButton : MonoBehaviour
         }
         //QuesManager.instance.RomajiQues();
     }
+   
     IEnumerator MaruButton()
     {  yield return new WaitForSeconds(0.7f);
             if(QuesMode ==2){

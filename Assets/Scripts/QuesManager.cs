@@ -10,6 +10,8 @@ public class QuesManager : MonoBehaviour
     public static QuesManager instance;
     public KihonType kihonType;
     [HideInInspector] public string answer;
+    [HideInInspector] public string select1;//選択肢
+     [HideInInspector] public string select2;//選択肢
     [HideInInspector] public string answer4;
     private int locationOfAnswer;
     public GameObject[] AnsButtons;
@@ -32,7 +34,7 @@ public class QuesManager : MonoBehaviour
     int[] ary3 = new int[]{0,1,2};
     int[] ary6 = new int[]{0,1,2,3,4,5};
     int[] moji50 = new int[46];
-    public bool isTall=true;//大文字か小文字か選択
+    public bool isTall;//大文字か小文字か選択
     [SerializeField] private Dropdown dropdown;//k-w行
      [SerializeField] private Dropdown dropdown2;//g-pya行
     public enum KihonType
@@ -233,14 +235,22 @@ public class QuesManager : MonoBehaviour
         }
     }
 
+
     void Start()
-    {
+    {//GameManager経由でSettingScene内のセーブデータを取得
+    //今回はfontsize 大文字小文字の選択だけです
+    //SoundはSoundManagerで管理しています
         CurrentMode();
         //Debug.Log("currentMode"+currentMode);
         QuesCount = 0;
+        isTall = true;
+        //Debug.Log("大文字isTall"+isTall);
+        
         GameManager.instance.LoadGfontsize();
-        isTall = GameManager.instance.isGfontSize;
-        Debug.Log("大文字"+isTall);
+        isTall = GameManager.instance.isGfontsize;
+        Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
+        //デフォルトだとfalse
+        //Debug.Log("GameManagerisTall"+isTall);
     }
 
     public void CurrentMode(){
@@ -322,7 +332,19 @@ public class QuesManager : MonoBehaviour
             a = ary[n+1];
             c = ary[n+2];
         }
-        answer = RomaJi50[b];
+        //SettingPanelの大文字選択はtrue
+        if(isTall == true){
+           answer = RomaJi50[b];
+           select1 = RomaJi50[a];
+           select2 = RomaJi50[c];
+           Debug.Log("isTall"+isTall);
+        }
+        else{
+           answer = romaji50[b]; 
+           select1 = romaji50[a]; 
+           select2 = romaji50[c]; 
+           Debug.Log("isTall"+isTall);
+        }
         QuesText.text = hiragana50[b];
         StartCoroutine(PlayHiragana());
         n++;
@@ -344,21 +366,21 @@ public class QuesManager : MonoBehaviour
          if(locationOfAnswer == 0)
        {
         AnsButtons[0].GetComponentInChildren<Text>().text = answer; 
-        AnsButtons[1].GetComponentInChildren<Text>().text = RomaJi50[a];
-        AnsButtons[2].GetComponentInChildren<Text>().text = RomaJi50[c];
+        AnsButtons[1].GetComponentInChildren<Text>().text = select1;
+        AnsButtons[2].GetComponentInChildren<Text>().text = select2;
         }
         else if(locationOfAnswer ==1)
         {
         AnsButtons[1].GetComponentInChildren<Text>().text = answer;
-        AnsButtons[2].GetComponentInChildren<Text>().text = RomaJi50[a];
-        AnsButtons[0].GetComponentInChildren<Text>().text = RomaJi50[c];
+        AnsButtons[2].GetComponentInChildren<Text>().text = select1;
+        AnsButtons[0].GetComponentInChildren<Text>().text = select2;
     
         }
         else if(locationOfAnswer ==2)
         {
         AnsButtons[2].GetComponentInChildren<Text>().text = answer;
-        AnsButtons[1].GetComponentInChildren<Text>().text = RomaJi50[a];
-        AnsButtons[0].GetComponentInChildren<Text>().text = RomaJi50[c];
+        AnsButtons[1].GetComponentInChildren<Text>().text = select1;
+        AnsButtons[0].GetComponentInChildren<Text>().text = select2;
 
         }
     }
@@ -642,7 +664,14 @@ public class QuesManager : MonoBehaviour
         AnsButtons[3].GetComponentInChildren<Text>().text = RomaJi50[f];
         }
            }
-        
+
+    public void Stop46Yomiage(){
+         StopCoroutine(Play46Hiragana());
+    }
+    
+    public void StopYomiage(){
+         StopCoroutine(PlayHiragana());
+    }
 
     public IEnumerator PlayHiragana()
     {

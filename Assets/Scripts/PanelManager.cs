@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PanelManager : MonoBehaviour
 {
+    public GameObject Panel0;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,6 +32,13 @@ public class PanelManager : MonoBehaviour
     }
     public void SettingSceneMove(){
         SceneManager.LoadScene("SettingScene");
+    }
+    public void SetPanelMove(){
+        Panel0.SetActive(false);
+        
+    }
+    public void TopPanelMove(){
+        Panel0.SetActive(true);
     }
 
 }

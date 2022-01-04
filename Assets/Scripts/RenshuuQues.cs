@@ -231,9 +231,8 @@ public class RenshuuQues : MonoBehaviour
         renshuuAnswer1 = RomaJiR50[b];
         RenQuesText.text = hiraganaR50[b];
         Debug.Log("b"+b);
-        //StartCoroutine("PlayHiragana");
-        SoundManager.instance.PlaySE(b);
-        StartCoroutine("PlayDore");
+        StartCoroutine(PlayRenHiragana());
+        
 
         n++;
         locationOfRenshuuAnswer = UnityEngine.Random.Range(0,3);
@@ -259,13 +258,16 @@ public class RenshuuQues : MonoBehaviour
 
         }
     }
+    public void StopRenYomiage(){
+         StopCoroutine(PlayRenHiragana());
+    }
 
-    IEnumerator PlayHiragana()
+    IEnumerator PlayRenHiragana()
     {
         yield return new WaitForSeconds(0.3f);
         SoundManager.instance.PlaySE(b);
         Debug.Log("b"+b);
-        StartCoroutine("PlayDore");
+        StartCoroutine(PlayDore());
     }
     IEnumerator PlayDore()
     {//1秒停止

@@ -40,8 +40,9 @@ public class SettingManager : MonoBehaviour
     {
         FontTogLoad();
         ShosikiTogLoad();
-        BGMLoad();
-        SELoad();
+        SetBGMLoad();
+        SetSELoad();
+        Debug.Log("スタートロード");
     }
 
     // Update is called once per frame
@@ -50,35 +51,30 @@ public class SettingManager : MonoBehaviour
         
     }
     public void FontSelectToggle(){
+        SoundManager.instance.PlaySousaSE(2);
         if(tallToggle.isOn == true){
             //大文字選択ならisfontSizeはtrue
             isfontSize = true;
             ES3.Save<bool>("isfontSize", isfontSize);
-            ES3.Save<bool>("TestfontSize", isfontSize,"hogehoge2.es3");
-            SoundManager.instance.SaveFont();
             GameManager.instance.SaveGfontsize();
-            //Debug.Log("クリックisfontSize"+isfontSize);
+            Debug.Log("クリックisfontSize"+isfontSize);
         }
         else{
             //小文字が選択されているなら
             isfontSize = false;
             ES3.Save<bool>("isfontSize", isfontSize);
-            ES3.Save<bool>("TestfontSize", isfontSize,"hogehoge2.es3");
-            SoundManager.instance.SaveFont();
             GameManager.instance.SaveGfontsize();
         }
-        Debug.Log("クリックTestfontSize"+isfontSize);
+        Debug.Log("クリックisfontSize"+isfontSize);
     }
 
     public void FontTogLoad(){
-         //if(ES3.KeyExists("isfontSize"))
-         isfontSize = ES3.Load<bool>("isfontSize",true);
-         TestfontSize = ES3.Load<bool>("TestfontSize",true);
-         Debug.Log("クリックTestfontSize"+isfontSize);
+        ES3.Load<bool>("isfontSize", isfontSize);
+         isfontSize = ES3.Load<bool>("isfontSize", isfontSize);
+         Debug.Log("isfontSize"+isfontSize);
         if(isfontSize ==true){
             tallToggle.isOn = true;
             smallToggle.isOn = false;
-            
         }
         else{
             tallToggle.isOn = false;
@@ -89,6 +85,7 @@ public class SettingManager : MonoBehaviour
     }
 
     public void ShosikiSelectToggle(){
+        //SoundManager.instance.PlaySousaSE(2);
         if(kunreiToggle.isOn == true){
             //訓令選択はtrue
                 isKunrei = true;
@@ -122,6 +119,7 @@ public class SettingManager : MonoBehaviour
     }
 
     public void OnClickBGMToggle(){
+        SoundManager.instance.PlaySousaSE(2);
         if (bgmToggle.isOn == false){
             SoundManager.instance.BGMmute();
             ES3.Save<bool>("BGM_OnOf", bgmToggle.isOn);
@@ -129,6 +127,7 @@ public class SettingManager : MonoBehaviour
             } 
         else if(bgmToggle.isOn ==true){
         SoundManager.instance.UnmuteBGM();
+        SoundManager.instance.PlayBGM("SettingScene");
         ES3.Save<bool>("BGM_OnOf", bgmToggle.isOn);
         //Debug.Log("クリックBGM"+bgmToggle.isOn);
         }
@@ -136,6 +135,7 @@ public class SettingManager : MonoBehaviour
        
     }
     public void OnClickSEToggle(){
+        SoundManager.instance.PlaySousaSE(2);
         if (seToggle.isOn ==false){
             SoundManager.instance.SEmute(); 
             ES3.Save<bool>("SE_OnOf", seToggle.isOn); 
@@ -154,10 +154,11 @@ public class SettingManager : MonoBehaviour
     {
         canAnswer = true;//問題に答えた時ボタン押せないブールをtrueに戻しておく
     }
-    public void BGMLoad(){
+    public void SetBGMLoad(){
      bgmToggle.isOn = ES3.Load<bool>("BGM_OnOf",true);
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
+             SoundManager.instance.PlayBGM("SettingScene");
              }
         else{
             SoundManager.instance.BGMmute();
@@ -165,10 +166,11 @@ public class SettingManager : MonoBehaviour
         Debug.Log("ロードBGM"+bgmToggle.isOn);
     }
 
-    public void SELoad(){
+    public void SetSELoad(){
       seToggle.isOn  = ES3.Load<bool>("SE_OnOf",true);
       if (seToggle.isOn ==true){
              SoundManager.instance.UnmuteSE();
+             
              Debug.Log("SEunmute");
              }
         else{

@@ -22,6 +22,7 @@ public class RenCheckButton : MonoBehaviour
     }
 
     public void CheckAnswer(){
+        RenshuuQues.instance.StopRenYomiage();
         Debug.Log("gameObject.tag"+gameObject.tag);
          if (gameObject.CompareTag( RenshuuQues.instance.tagOfButton))
         {

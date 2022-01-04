@@ -5,9 +5,10 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public bool isGfontSize;
-
-    
+    public bool isGfontsize;
+    public bool isGKunrei;
+   public bool isGfontSize;
+   
 
     private void Awake()
     {
@@ -35,14 +36,14 @@ public class GameManager : MonoBehaviour
         
     }
     public void SaveGfontsize(){
-        isGfontSize = SettingManager.instance.isfontSize;
-        ES3.Save<bool>("isGfontSize", isGfontSize);
-        Debug.Log("クリックisGfontSize"+isGfontSize);
+        //isGfontsize = SettingManager.instance.isfontSize;
+        ES3.Save<bool>("isGfontsize", SettingManager.instance.isfontSize);
+        Debug.Log("クリックisGfontsize"+isGfontsize);
     }
 
     public void LoadGfontsize(){
          //if(ES3.KeyExists("isfontSize"))
-         isGfontSize = ES3.Load<bool>("isGfontSize",true);
-         Debug.Log("クリックisGfontSize"+isGfontSize);
+         isGfontsize = ES3.Load<bool>("isGfontsize",true);
+         Debug.Log("クリックisGfontSize"+isGfontsize);
     }
 }
