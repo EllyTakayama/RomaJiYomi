@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
     }
     public void SaveGfontsize(){
         //isGfontsize = SettingManager.instance.isfontSize;
-        ES3.Save<bool>("isGfontsize", SettingManager.instance.isfontSize);
+        ES3.Save<bool>("isGfontsize",isGfontsize );
         Debug.Log("クリックisGfontsize"+isGfontsize);
     }
 

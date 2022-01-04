@@ -1531,6 +1531,7 @@ GameObject:
   - component: {fileID: 184671271}
   - component: {fileID: 184671273}
   - component: {fileID: 184671272}
+  - component: {fileID: 184671274}
   m_Layer: 5
   m_Name: yubiImage
   m_TagString: Untagged
@@ -1554,9 +1555,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -305}
+  m_AnchoredPosition: {x: -35, y: -300}
   m_SizeDelta: {x: 90, y: 90}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &184671272
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1595,6 +1596,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 184671270}
   m_CullTransparentMesh: 1
+--- !u!95 &184671274
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184671270}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 07e7c0a97e5f64ed6a4bc8565c6988e4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &191336209
 GameObject:
   m_ObjectHideFlags: 0
@@ -11611,6 +11631,8 @@ MonoBehaviour:
   select1: 
   select2: 
   answer4: 
+  select3: 
+  select4: 
   AnsButtons:
   - {fileID: 1660432099}
   - {fileID: 1057762993}
@@ -11618,6 +11640,13 @@ MonoBehaviour:
   - {fileID: 422426871}
   - {fileID: 696077320}
   - {fileID: 82091148}
+  AnsButton:
+  - {fileID: 1660432101}
+  - {fileID: 1057762995}
+  - {fileID: 3543624}
+  - {fileID: 422426873}
+  - {fileID: 696077322}
+  - {fileID: 82091150}
   tagOfButton: 
   QuesText: {fileID: 1920219914}
   QuesText4: {fileID: 682801334}

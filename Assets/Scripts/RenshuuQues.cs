@@ -11,15 +11,18 @@ public class RenshuuQues : MonoBehaviour
 {
     public static RenshuuQues instance;
     public string renshuuAnswer1;
-    [HideInInspector] public string renshuuAnswer2;
+    [HideInInspector] public string Reselect1;//選択肢
+     [HideInInspector] public string Reselect2;//選択肢
+    //[HideInInspector] public string renshuuAnswer2;
     public RenshuuType renshuuType;
     private int locationOfRenshuuAnswer;
     public GameObject[] RenAnsButtons;
+    public Button[] RenAnsButton;
     public string tagOfButton;
     public Text RenQuesText;
     public int RenshuuCount;
     public GameObject RenshuuPanel;
-    //public bool isHiragana;
+    public bool isRTall;//大文字か小文字かのbool
     public enum RenshuuType
     {
         RenRomaji50,
@@ -87,8 +90,66 @@ public class RenshuuQues : MonoBehaviour
         //101-103
         "びゃ","びゅ","びょ",
         //104-106
-        "ぴゃ","ぴゅ","ぴょ"
-　　　　　　};
+        "ぴゃ","ぴゅ","ぴょ"};
+    
+    string[] romajiR50 = new string[]{
+        //0-4
+        "a","i","u","e","o",
+        //5-9
+        "ka","ki","ku","ke","ko",
+        //10-14
+        "sa","si","su","se","so",
+        //15-19
+        "ta","ti","tu","te","to",
+        //20-24
+        "na","ni","nu","ne","no",
+        //25-29
+        "ha","hi","hu","he","ho",
+        //30-34
+        "ma","mi","mu","me","mo",
+         //35-37
+        "ya","yu","yo",
+         //38-42
+        "ra","ri","ru","re","ro",
+        //43-45
+        "wa","wo","'n",
+
+        //46-50
+        "ga","gi","gu","ge","go",
+       //51-55
+        "za","zi","zu","ze","zo",
+        //56-60
+        "da","di","du","de","do",
+        //61-65
+        "ba","bi","bu","be","bo",
+         //66-70
+        "pa","pi","pu","pe","po",
+
+        //71-73
+        "kya","kyu","kyo",
+        //74-76
+        "sha","shu","sho",
+        //77-79
+        "tya","tyu","tyo",
+        //80-82
+        "nya","nyu","nyo",
+        //83-85
+        "hya","hyu","hyo",
+        //86-88
+        "mya","myu","myo",
+        //89-91
+        "rya","ryu","ryo",
+        //92-94
+        "gya","gyu","gyo",
+        //95-97
+        "jya","jyu","jyo",
+        //98-100
+        "dya","dyu","dyo",
+        //101-103
+        "bya","byu","byo",
+        //104-106
+        "pya","pyu","pyo"};
+    
 
     string[] RomaJiR50 = new string[]{
          //0-4
@@ -167,7 +228,9 @@ public class RenshuuQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.instance.LoadGfontsize();
+        isRTall = GameManager.instance.isGfontsize;
+        Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
         renshuuNum = new List<int>(ToggleRenshuu.instance.shutsudaiNum);
         for(int i =0; i< renshuuNum.Count; i++){
             Debug.Log("r"+renshuuNum[i]);}
@@ -195,6 +258,9 @@ public class RenshuuQues : MonoBehaviour
     }
     
     public void RenRomaji50(){
+        RenAnsButton[0].enabled = true;
+        RenAnsButton[1].enabled = true;
+        RenAnsButton[2].enabled = true;
        if(n+1 > renshuuNum.Count){
             Debug.Log("リセット");
             n = 0;
@@ -228,9 +294,20 @@ public class RenshuuQues : MonoBehaviour
         }
         }
 
-        renshuuAnswer1 = RomaJiR50[b];
         RenQuesText.text = hiraganaR50[b];
-        Debug.Log("b"+b);
+        if(isRTall == true){
+           renshuuAnswer1 = RomaJiR50[b];
+           Reselect1 = RomaJiR50[a];
+           Reselect2 = RomaJiR50[c];
+        }
+        else{
+           renshuuAnswer1 = romajiR50[b]; 
+           Reselect1 = romajiR50[a]; 
+           Reselect2 = romajiR50[c]; 
+          
+        }
+         Debug.Log("isRall"+isRTall);
+        //Debug.Log("b"+b);
         StartCoroutine(PlayRenHiragana());
         
 
@@ -239,22 +316,22 @@ public class RenshuuQues : MonoBehaviour
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
          if(locationOfRenshuuAnswer == 0)
        {
-        RenAnsButtons[0].GetComponentInChildren<Text>().text = renshuuAnswer1; 
-        RenAnsButtons[1].GetComponentInChildren<Text>().text = RomaJiR50[a];
-        RenAnsButtons[2].GetComponentInChildren<Text>().text = RomaJiR50[c];
+        RenAnsButton[0].GetComponentInChildren<Text>().text = renshuuAnswer1; 
+        RenAnsButton[1].GetComponentInChildren<Text>().text = Reselect1;
+        RenAnsButton[2].GetComponentInChildren<Text>().text = Reselect2;
         }
         else if(locationOfRenshuuAnswer ==1)
         {
-        RenAnsButtons[1].GetComponentInChildren<Text>().text = renshuuAnswer1;
-        RenAnsButtons[2].GetComponentInChildren<Text>().text = RomaJiR50[a];
-        RenAnsButtons[0].GetComponentInChildren<Text>().text = RomaJiR50[c];
+        RenAnsButton[1].GetComponentInChildren<Text>().text = renshuuAnswer1;
+        RenAnsButton[2].GetComponentInChildren<Text>().text = Reselect1;
+        RenAnsButton[0].GetComponentInChildren<Text>().text = Reselect2;
     
         }
         else if(locationOfRenshuuAnswer ==2)
         {
-        RenAnsButtons[2].GetComponentInChildren<Text>().text = renshuuAnswer1;
-        RenAnsButtons[1].GetComponentInChildren<Text>().text = RomaJiR50[a];
-        RenAnsButtons[0].GetComponentInChildren<Text>().text = RomaJiR50[c];
+        RenAnsButton[2].GetComponentInChildren<Text>().text = renshuuAnswer1;
+        RenAnsButton[1].GetComponentInChildren<Text>().text = Reselect1;
+        RenAnsButton[0].GetComponentInChildren<Text>().text = Reselect2;
 
         }
     }

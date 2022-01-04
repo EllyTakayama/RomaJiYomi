@@ -34,6 +34,16 @@ public class CheckButton : MonoBehaviour
         QuesMode = QuesManager.instance.currentMode;
         //Debug.Log("QuesManager.instance.tagOfButton"+QuesManager.instance.tagOfButton);
         //Debug.Log("gameObject.tag"+gameObject.tag);
+        if(QuesMode ==2){
+            QuesManager.instance.AnsButton[0].enabled = false;
+            QuesManager.instance.AnsButton[1].enabled = false;
+            QuesManager.instance.AnsButton[2].enabled = false;
+        }
+        else{
+            QuesManager.instance.AnsButton[3].enabled = false;
+            QuesManager.instance.AnsButton[4].enabled = false;
+            QuesManager.instance.AnsButton[5].enabled = false;
+        }
          if (gameObject.CompareTag( QuesManager.instance.tagOfButton))
         {   
             isPressed = true;

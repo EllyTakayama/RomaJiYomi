@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-//12月30日更新
+//1月4日更新
 
 
 public class SettingManager : MonoBehaviour
 {
-    public static SettingManager instance;
-
     public Toggle tallToggle;//大文字の選択 /A
     public Toggle smallToggle;//小文字の選択 /a
     public Toggle hebonToggle;//ヘボン式の選択 /shi
@@ -22,20 +20,6 @@ public class SettingManager : MonoBehaviour
     public bool isKunrei = true;// true なら訓令式書式
     public bool TestfontSize;//テスト用データ
 
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
-    }
-    //--シングルトン終わり--
-    // Start is called before the first frame update
     void Start()
     {
         FontTogLoad();
@@ -51,10 +35,10 @@ public class SettingManager : MonoBehaviour
         
     }
     public void FontSelectToggle(){
-        SoundManager.instance.PlaySousaSE(2);
         if(tallToggle.isOn == true){
             //大文字選択ならisfontSizeはtrue
             isfontSize = true;
+            GameManager.instance.isGfontsize = isfontSize;
             ES3.Save<bool>("isfontSize", isfontSize);
             GameManager.instance.SaveGfontsize();
             Debug.Log("クリックisfontSize"+isfontSize);
@@ -62,6 +46,7 @@ public class SettingManager : MonoBehaviour
         else{
             //小文字が選択されているなら
             isfontSize = false;
+            GameManager.instance.isGfontsize = isfontSize;
             ES3.Save<bool>("isfontSize", isfontSize);
             GameManager.instance.SaveGfontsize();
         }
@@ -71,6 +56,7 @@ public class SettingManager : MonoBehaviour
     public void FontTogLoad(){
         ES3.Load<bool>("isfontSize", isfontSize);
          isfontSize = ES3.Load<bool>("isfontSize", isfontSize);
+         GameManager.instance.isGfontsize = isfontSize;
          Debug.Log("isfontSize"+isfontSize);
         if(isfontSize ==true){
             tallToggle.isOn = true;
@@ -85,7 +71,6 @@ public class SettingManager : MonoBehaviour
     }
 
     public void ShosikiSelectToggle(){
-        //SoundManager.instance.PlaySousaSE(2);
         if(kunreiToggle.isOn == true){
             //訓令選択はtrue
                 isKunrei = true;
@@ -119,7 +104,6 @@ public class SettingManager : MonoBehaviour
     }
 
     public void OnClickBGMToggle(){
-        SoundManager.instance.PlaySousaSE(2);
         if (bgmToggle.isOn == false){
             SoundManager.instance.BGMmute();
             ES3.Save<bool>("BGM_OnOf", bgmToggle.isOn);
@@ -135,7 +119,6 @@ public class SettingManager : MonoBehaviour
        
     }
     public void OnClickSEToggle(){
-        SoundManager.instance.PlaySousaSE(2);
         if (seToggle.isOn ==false){
             SoundManager.instance.SEmute(); 
             ES3.Save<bool>("SE_OnOf", seToggle.isOn); 

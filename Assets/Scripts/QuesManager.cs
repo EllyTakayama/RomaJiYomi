@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;//ローマ字読みの基本画面の出題メソッド
-//12月30日更新
+//1月4日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -13,8 +13,11 @@ public class QuesManager : MonoBehaviour
     [HideInInspector] public string select1;//選択肢
      [HideInInspector] public string select2;//選択肢
     [HideInInspector] public string answer4;
+    [HideInInspector] public string select3;//選択肢
+     [HideInInspector] public string select4;//選択肢
     private int locationOfAnswer;
-    public GameObject[] AnsButtons;
+    //public GameObject[] AnsButtons;
+    public Button[] AnsButton;
     public string tagOfButton;
     public Text QuesText;
     public Text QuesText4;
@@ -243,9 +246,6 @@ public class QuesManager : MonoBehaviour
         CurrentMode();
         //Debug.Log("currentMode"+currentMode);
         QuesCount = 0;
-        isTall = true;
-        //Debug.Log("大文字isTall"+isTall);
-        
         GameManager.instance.LoadGfontsize();
         isTall = GameManager.instance.isGfontsize;
         Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
@@ -316,6 +316,9 @@ public class QuesManager : MonoBehaviour
     }
 
     public void ARomaji(){
+        AnsButton[0].enabled = true;
+        AnsButton[1].enabled = true;
+        AnsButton[2].enabled = true;
        if(n+1 > ary.Length){
             Debug.Log("5問目");
             n = 0;
@@ -365,22 +368,22 @@ public class QuesManager : MonoBehaviour
         //Debug.Log("answer"+answer);
          if(locationOfAnswer == 0)
        {
-        AnsButtons[0].GetComponentInChildren<Text>().text = answer; 
-        AnsButtons[1].GetComponentInChildren<Text>().text = select1;
-        AnsButtons[2].GetComponentInChildren<Text>().text = select2;
+        AnsButton[0].GetComponentInChildren<Text>().text = answer; 
+        AnsButton[1].GetComponentInChildren<Text>().text = select1;
+        AnsButton[2].GetComponentInChildren<Text>().text = select2;
         }
         else if(locationOfAnswer ==1)
         {
-        AnsButtons[1].GetComponentInChildren<Text>().text = answer;
-        AnsButtons[2].GetComponentInChildren<Text>().text = select1;
-        AnsButtons[0].GetComponentInChildren<Text>().text = select2;
+        AnsButton[1].GetComponentInChildren<Text>().text = answer;
+        AnsButton[2].GetComponentInChildren<Text>().text = select1;
+        AnsButton[0].GetComponentInChildren<Text>().text = select2;
     
         }
         else if(locationOfAnswer ==2)
         {
-        AnsButtons[2].GetComponentInChildren<Text>().text = answer;
-        AnsButtons[1].GetComponentInChildren<Text>().text = select1;
-        AnsButtons[0].GetComponentInChildren<Text>().text = select2;
+        AnsButton[2].GetComponentInChildren<Text>().text = answer;
+        AnsButton[1].GetComponentInChildren<Text>().text = select1;
+        AnsButton[0].GetComponentInChildren<Text>().text = select2;
 
         }
     }
@@ -586,6 +589,9 @@ public class QuesManager : MonoBehaviour
 
 
     public void Romaji50(){
+        AnsButton[3].enabled = true;
+        AnsButton[4].enabled = true;
+        AnsButton[5].enabled = true;
         if(n+1 > kihonNum.Count){
             Debug.Log("5問目");
             n = 0;
@@ -619,25 +625,35 @@ public class QuesManager : MonoBehaviour
         d = b;
         e = a;
         f = c;
+       
+        QuesText4.text = hiragana50[d];
+         if(isTall == true){
+           answer4 = RomaJi50[d];
+           select3 = RomaJi50[e];
+           select4 = RomaJi50[f];
+           Debug.Log("isTall"+isTall);
+        }
+        else{
+           answer4 = romaji50[d]; 
+           select3 = romaji50[e]; 
+           select4 = romaji50[f]; 
+           Debug.Log("isTall"+isTall);
+        }
         QuesCount++;
-        Debug.Log("QuesCount"+QuesCount);
-        /*
-        Debug.Log("n"+n);
+        //Debug.Log("QuesCount"+QuesCount);
+       
+        /*Debug.Log("n"+n);
         Debug.Log("N"+ary[n]);
         Debug.Log("b"+b);
         Debug.Log("c"+c);
         Debug.Log("a"+a); 
         Debug.Log("d"+d);
-        Debug.Log("e"+e);
-        Debug.Log("f"+f); */
+        Debug.Log("e"+e);*/
        
         //配列の要素5で割り振り
         //d が答え、e fが選択肢として出題される
-        answer4 = RomaJi50[d];
-        QuesText4.text = hiragana50[d];
+        
         StartCoroutine(Play46Hiragana());
-        //SoundManager.instance.PlaySE(d);
-        //StartCoroutine("PlayDore");
         Debug.Log("d"+d);
         Debug.Log(RomaJi50[d]);
         n++;
@@ -646,22 +662,22 @@ public class QuesManager : MonoBehaviour
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
          if(locationOfAnswer == 3)
        {
-        AnsButtons[3].GetComponentInChildren<Text>().text = answer4; 
-        AnsButtons[4].GetComponentInChildren<Text>().text = RomaJi50[e];
-        AnsButtons[5].GetComponentInChildren<Text>().text = RomaJi50[f];
+        AnsButton[3].GetComponentInChildren<Text>().text = answer4; 
+        AnsButton[4].GetComponentInChildren<Text>().text = select3;
+        AnsButton[5].GetComponentInChildren<Text>().text = select4;
         }
         else if(locationOfAnswer ==4)
         {
-        AnsButtons[4].GetComponentInChildren<Text>().text = answer4;
-        AnsButtons[5].GetComponentInChildren<Text>().text = RomaJi50[e];
-        AnsButtons[3].GetComponentInChildren<Text>().text = RomaJi50[f];
+        AnsButton[4].GetComponentInChildren<Text>().text = answer4;
+        AnsButton[5].GetComponentInChildren<Text>().text = select3;
+        AnsButton[3].GetComponentInChildren<Text>().text = select4;
     
         }
         else if(locationOfAnswer ==5)
         {
-        AnsButtons[5].GetComponentInChildren<Text>().text = answer4;
-        AnsButtons[4].GetComponentInChildren<Text>().text = RomaJi50[e];
-        AnsButtons[3].GetComponentInChildren<Text>().text = RomaJi50[f];
+        AnsButton[5].GetComponentInChildren<Text>().text = answer4;
+        AnsButton[4].GetComponentInChildren<Text>().text = select3;
+        AnsButton[3].GetComponentInChildren<Text>().text = select4;
         }
            }
 
