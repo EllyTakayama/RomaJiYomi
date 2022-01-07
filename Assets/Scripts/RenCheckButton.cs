@@ -39,7 +39,7 @@ public class RenCheckButton : MonoBehaviour
             Debug.Log("間違い");
             isPressed = true;
             batsuImage.SetActive(true);
-            SoundManager.instance.PlaySousaSE(1);
+            SoundManager.instance.PlaySousaSE(3);
             bQuesText.text = RenshuuQues.instance.RenQuesText.text;
             seikaiText.text = RenshuuQues.instance.renshuuAnswer1;
             StartCoroutine(Batsu1Button());
@@ -54,10 +54,12 @@ public class RenCheckButton : MonoBehaviour
        RenshuuQues.instance.Renshuu();
     }
     IEnumerator Batsu1Button()
-    {  yield return new WaitForSeconds(1.5f);
+    {   yield return new WaitForSeconds(0.2f);
+        SoundManager.instance.PlaySousaSE(1);
+        yield return new WaitForSeconds(1.5f);
             batsuImage.SetActive(false);
             Debug.Log("バツ");
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         RenshuuQues.instance.Renshuu();
     }
 }

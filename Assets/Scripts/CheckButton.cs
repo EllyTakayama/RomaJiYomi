@@ -65,7 +65,7 @@ public class CheckButton : MonoBehaviour
             Debug.Log("間違い");
             isPressed = true;
             //1不正解音
-            SoundManager.instance.PlaySousaSE(1);
+            SoundManager.instance.PlaySousaSE(3);
             if(QuesMode ==2){
                 batsuImage.SetActive(true);
                 kQuesText.text = QuesManager.instance.QuesText.text;
@@ -81,7 +81,7 @@ public class CheckButton : MonoBehaviour
     }
    
     IEnumerator MaruButton()
-    {  yield return new WaitForSeconds(0.7f);
+    {  yield return new WaitForSeconds(0.6f);
             if(QuesMode ==2){
             maruImage.SetActive(false);
             Debug.Log("maru");}
@@ -91,14 +91,16 @@ public class CheckButton : MonoBehaviour
         QuesManager.instance.RomajiQues();
     }
     IEnumerator BatsuButton()
-    {  yield return new WaitForSeconds(1.5f);
+    {    yield return new WaitForSeconds(0.2f);
+        SoundManager.instance.PlaySousaSE(1);
+        yield return new WaitForSeconds(1.4f);
             if(QuesMode ==2){
             batsuImage.SetActive(false);
             Debug.Log("バツ");}
             else{
                 batsu1Image.SetActive(false);
             Debug.Log("バツ1");}
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         QuesManager.instance.RomajiQues();
     }
        
