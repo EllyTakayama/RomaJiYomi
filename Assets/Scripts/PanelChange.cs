@@ -48,7 +48,7 @@ public class PanelChange : MonoBehaviour
          ShowPanel(Panel.Panel1);
          QuesManager.instance.currentMode =2;
          QuesManager.instance.CurrentMode();
-        
+        SoundManager.instance.PlaySousaSE(2);
         
     }
     //50音を覚えようボタン
@@ -62,7 +62,7 @@ public class PanelChange : MonoBehaviour
          Debug.Log(QuesManager.instance.currentMode);
          QuesManager.instance.OnRomaji();
          QuesManager.instance.CurrentMode();
-         
+         SoundManager.instance.PlaySousaSE(2);
         
          //QuesManager.instance.RomajiQues();
 
@@ -78,7 +78,7 @@ public class PanelChange : MonoBehaviour
          Debug.Log(QuesManager.instance.currentMode);
          QuesManager.instance.OnRomajiHoka();
          QuesManager.instance.CurrentMode();
-         
+         SoundManager.instance.PlaySousaSE(2);
          //QuesManager.instance.RomajiQues();
         
     }

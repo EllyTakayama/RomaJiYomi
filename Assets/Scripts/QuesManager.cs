@@ -248,7 +248,7 @@ public class QuesManager : MonoBehaviour
         QuesCount = 0;
         GameManager.instance.LoadGfontsize();
         isTall = GameManager.instance.isGfontsize;
-        Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
+        //Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
         //デフォルトだとfalse
         //Debug.Log("GameManagerisTall"+isTall);
     }
@@ -320,7 +320,7 @@ public class QuesManager : MonoBehaviour
         AnsButton[1].enabled = true;
         AnsButton[2].enabled = true;
        if(n+1 > ary.Length){
-            Debug.Log("5問目");
+            //Debug.Log("5問目");
             n = 0;
         }
         QuesCount++;
@@ -340,13 +340,13 @@ public class QuesManager : MonoBehaviour
            answer = RomaJi50[b];
            select1 = RomaJi50[a];
            select2 = RomaJi50[c];
-           Debug.Log("isTall"+isTall);
+           //Debug.Log("isTall"+isTall);
         }
         else{
            answer = romaji50[b]; 
            select1 = romaji50[a]; 
            select2 = romaji50[c]; 
-           Debug.Log("isTall"+isTall);
+           //Debug.Log("isTall"+isTall);
         }
         QuesText.text = hiragana50[b];
         StartCoroutine(PlayHiragana());
