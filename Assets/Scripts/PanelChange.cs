@@ -99,6 +99,7 @@ public class PanelChange : MonoBehaviour
                 break;
 
             case Panel.Panel2:
+                SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
                 RightButton.SetActive(false);

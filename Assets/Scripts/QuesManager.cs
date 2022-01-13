@@ -240,7 +240,9 @@ public class QuesManager : MonoBehaviour
 
 
     void Start()
-    {//GameManager経由でSettingScene内のセーブデータを取得
+    {
+        Debug.Log("start");
+        //GameManager経由でSettingScene内のセーブデータを取得
     //今回はfontsize 大文字小文字の選択だけです
     //SoundはSoundManagerで管理しています
         CurrentMode();
@@ -394,9 +396,8 @@ public class QuesManager : MonoBehaviour
               for(int i=46; i<51; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                Debug.Log(kihonNum[i]);
-            }
+            //for(int i =0;i<kihonNum.Count;i++){
+              //  Debug.Log(kihonNum[i]);}
                 Debug.Log("が");
             }
         //51-55ざ
@@ -416,9 +417,8 @@ public class QuesManager : MonoBehaviour
             for(int i=56; i<61; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                Debug.Log(kihonNum[i]);
-            }
+            //for(int i =0;i<kihonNum.Count;i++){
+              //  Debug.Log(kihonNum[i]); }
              Debug.Log("だ");
              //61-65
         }else if(dropdown2.value == 3){
@@ -426,8 +426,8 @@ public class QuesManager : MonoBehaviour
             for(int i=61; i<66; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("ば");
               //66-70
         }else if(dropdown2.value == 4){
@@ -435,8 +435,8 @@ public class QuesManager : MonoBehaviour
             for(int i=66; i<71; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+                //   Debug.Log(kihonNum[i]);}
                Debug.Log("ぱ");
                //71-76
         }else if(dropdown2.value == 5){
@@ -444,8 +444,8 @@ public class QuesManager : MonoBehaviour
             for(int i=71; i<77; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("きゃ、しゃ");
                //77-82
         }else if(dropdown2.value == 6){
@@ -453,8 +453,8 @@ public class QuesManager : MonoBehaviour
             for(int i=77; i<83; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("ちゃ、にゃ");
               //83-88
         }else if(dropdown2.value == 7){
@@ -462,8 +462,8 @@ public class QuesManager : MonoBehaviour
             for(int i=83; i<89; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("ひゃ、みゃ");
               //89-94
          }else if(dropdown2.value == 8){
@@ -471,8 +471,8 @@ public class QuesManager : MonoBehaviour
             for(int i=89; i<95; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
                Debug.Log("りゃ、ぎゃ");
                //95-100
                }else if(dropdown2.value == 9){
@@ -489,8 +489,8 @@ public class QuesManager : MonoBehaviour
             for(int i=101; i<107; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
                Debug.Log("びゃ、ぴゃ");
                }
             //ShuffleM();
@@ -514,9 +514,8 @@ public class QuesManager : MonoBehaviour
             for(int i=10; i<15; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                Debug.Log(kihonNum[i]);
-            }
+            //for(int i =0;i<kihonNum.Count;i++){
+              //  Debug.Log(kihonNum[i]);}
              Debug.Log("さ");
         }
          //15-19
@@ -525,9 +524,8 @@ public class QuesManager : MonoBehaviour
             for(int i=15; i<20; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                Debug.Log(kihonNum[i]);
-            }
+            //for(int i =0;i<kihonNum.Count;i++){
+              //  Debug.Log(kihonNum[i]);}
              Debug.Log("た");
              //20-24Na
         }else if(dropdown.value == 3){
@@ -535,8 +533,8 @@ public class QuesManager : MonoBehaviour
             for(int i=20; i<25; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("Na");
               //25-29
         }else if(dropdown.value == 4){
@@ -544,8 +542,8 @@ public class QuesManager : MonoBehaviour
             for(int i=25; i<30; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
                Debug.Log("HA");
                //30-34Ma
         }else if(dropdown.value == 5){
@@ -553,8 +551,8 @@ public class QuesManager : MonoBehaviour
             for(int i=30; i<35; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("MA");
                //35-37ya
         }else if(dropdown.value == 6){
@@ -562,8 +560,8 @@ public class QuesManager : MonoBehaviour
             for(int i=35; i<38; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("YA");
               //38-42
         }else if(dropdown.value == 7){
@@ -571,8 +569,8 @@ public class QuesManager : MonoBehaviour
             for(int i=38; i<43; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
               Debug.Log("RA");
               //43-45
          }else if(dropdown.value == 8){
@@ -580,8 +578,8 @@ public class QuesManager : MonoBehaviour
             for(int i=43; i<46; i++){
                 kihonNum.Add(i);
             }
-            for(int i =0;i<kihonNum.Count;i++){
-                   Debug.Log(kihonNum[i]);}
+            //for(int i =0;i<kihonNum.Count;i++){
+              //     Debug.Log(kihonNum[i]);}
                Debug.Log("WA");
                };
                //ShuffleM();
