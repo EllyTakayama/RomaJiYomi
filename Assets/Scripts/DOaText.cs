@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
-//1月12日更新
+//1月15日更新
 
 public class DOaText : MonoBehaviour
 {

@@ -28,6 +28,7 @@ public class PanelChange : MonoBehaviour
     public GameObject Dropdown;//ひらがな選択
     public GameObject Dropdown2;
     public GameObject kihonButton;
+    public GameObject KiriPanel;
 
     // 矢印の表示/非表示
     
@@ -101,10 +102,13 @@ public class PanelChange : MonoBehaviour
             case Panel.Panel2:
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-2000, 0);
+                KiriPanel.SetActive(true);
                 LeftButton.SetActive(true);
                 RightButton.SetActive(false);
                 QuesManager.instance.OnRomaji();
-                QuesManager.instance.RomajiQues();
+                Invoke("ReKiriPanel",0.8f);
+                Invoke("ReQues",0.8f);
+                //QuesManager.instance.RomajiQues();
                 break;
 
             case Panel.Panel3:
@@ -135,6 +139,14 @@ public class PanelChange : MonoBehaviour
                 break;
         }
     }
+    public void ReKiriPanel(){
+        KiriPanel.GetComponent<KiriPanel>().OffKiriPanel();
+    }
+
+    public void ReQues(){
+        QuesManager.instance.RomajiQues();
+    }
+
     public void OnRightButton(){
         /*if(currentPanel == Panel.Panel0 ){
         ShowPanel(Panel.Panel1);
