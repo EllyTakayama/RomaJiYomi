@@ -94,7 +94,7 @@ public class CheckButton : MonoBehaviour
     IEnumerator BatsuButton()
     {    yield return new WaitForSeconds(0.2f);
         SoundManager.instance.PlaySousaSE(1);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.2f);
         pekeImage.SetActive(false);
         yield return new WaitForSeconds(1.2f);
             if(QuesMode ==2){

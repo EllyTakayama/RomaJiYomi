@@ -15,12 +15,14 @@ public class QuesManager : MonoBehaviour
     [HideInInspector] public string answer4;
     [HideInInspector] public string select3;//選択肢
      [HideInInspector] public string select4;//選択肢
+    [SerializeField] private GameObject AgradePanel;
     private int locationOfAnswer;
     //public GameObject[] AnsButtons;
     public Button[] AnsButton;
     public string tagOfButton;
     public Text QuesText;
     public Text QuesText4;
+    public Text QuesCountText;
     public int currentMode;
     public GameObject PanelParent;
     private int n;
@@ -31,6 +33,7 @@ public class QuesManager : MonoBehaviour
     public int e;
     public int f;
     public int QuesCount;
+    public int QuesCount1;
     public bool isKihon;
     public List<int> kihonNum = new List<int>();
     int[] ary = new int[]{0,1,2,3,4};
@@ -247,6 +250,7 @@ public class QuesManager : MonoBehaviour
     //SoundはSoundManagerで管理しています
         CurrentMode();
         //Debug.Log("currentMode"+currentMode);
+        AgradePanel.SetActive(false);
         QuesCount = 0;
         GameManager.instance.LoadGfontsize();
         isTall = GameManager.instance.isGfontsize;
@@ -318,6 +322,14 @@ public class QuesManager : MonoBehaviour
     }
 
     public void ARomaji(){
+        QuesCount++;
+        QuesCountText.text = QuesCount.ToString();
+        if(QuesCount >10){
+            AgradePanel.SetActive(true);
+            AgradePanel.GetComponent<DOaPanel>().APanel();
+            Debug.Log("Apanel");
+            return;
+        }
         AnsButton[0].enabled = true;
         AnsButton[1].enabled = true;
         AnsButton[2].enabled = true;
@@ -325,7 +337,7 @@ public class QuesManager : MonoBehaviour
             //Debug.Log("5問目");
             n = 0;
         }
-        QuesCount++;
+        
         Debug.Log("QuesCount"+QuesCount);
         b = ary[n];
         //4 
@@ -353,6 +365,7 @@ public class QuesManager : MonoBehaviour
         QuesText.text = hiragana50[b];
         StartCoroutine(PlayHiragana());
         n++;
+        
         //SoundManager.instance.PlaySE(b);
         /*
         Debug.Log("n"+n);
@@ -386,8 +399,8 @@ public class QuesManager : MonoBehaviour
         AnsButton[2].GetComponentInChildren<Text>().text = answer;
         AnsButton[1].GetComponentInChildren<Text>().text = select1;
         AnsButton[0].GetComponentInChildren<Text>().text = select2;
-
         }
+        
     }
         public void OnRomajiHoka(){
          //その他の音のindexの取得
@@ -637,7 +650,7 @@ public class QuesManager : MonoBehaviour
            select4 = romaji50[f]; 
            Debug.Log("isTall"+isTall);
         }
-        QuesCount++;
+        QuesCount1++;
         //Debug.Log("QuesCount"+QuesCount);
        
         /*Debug.Log("n"+n);
