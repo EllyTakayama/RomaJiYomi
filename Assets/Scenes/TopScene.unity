@@ -328,7 +328,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8905808, g: 0.8962264, b: 0.5030705, a: 1}
+  m_Color: {r: 0.935025, g: 0.9433962, b: 0.5206479, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -588,10 +588,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 907387309091309702, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
-      propertyPath: Panel0
-      value: 
-      objectReference: {fileID: 870929418}
     - target: {fileID: 907387309091309703, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -640,19 +636,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PanelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 8468859720453597507, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+      propertyPath: Panel0
+      value: 
+      objectReference: {fileID: 870929418}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
---- !u!114 &99882593 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 907387309091309702, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
-  m_PrefabInstance: {fileID: 99882592}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69a808d75b3aa493fa0eb1d8edc36e22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &118785385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2611,7 +2600,7 @@ GameObject:
   - component: {fileID: 870929421}
   - component: {fileID: 870929420}
   m_Layer: 5
-  m_Name: Panel0
+  m_Name: topPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3331,7 +3320,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 99882593}
+      - m_Target: {fileID: 1277922693}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: TikaraSceneMove
         m_Mode: 1
@@ -3671,7 +3660,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 99882593}
+      - m_Target: {fileID: 1277922693}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: SetPanelMove
         m_Mode: 1
@@ -3872,6 +3861,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1276203477}
   m_CullTransparentMesh: 1
+--- !u!114 &1277922693 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8468859720453597507, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+  m_PrefabInstance: {fileID: 99882592}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69a808d75b3aa493fa0eb1d8edc36e22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1331236583
 GameObject:
   m_ObjectHideFlags: 0
@@ -4030,7 +4030,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 907387309091309702, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+      - m_Target: {fileID: 1277922693}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: RenshuuSceneMove
         m_Mode: 1
@@ -5278,7 +5278,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 907387309091309702, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+      - m_Target: {fileID: 1277922693}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: KihonSceneMove
         m_Mode: 1
@@ -5565,7 +5565,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 99882593}
+      - m_Target: {fileID: 1277922693}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
         m_MethodName: TopPanelMove
         m_Mode: 1

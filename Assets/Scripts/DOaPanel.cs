@@ -55,7 +55,7 @@ public class DOaPanel : MonoBehaviour
         StartCoroutine(StampMove());
     }
     IEnumerator StampMove()
-    {   
+    {   yield return new WaitForSeconds(0.2f);
         stampImage.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         stampImage.SetActive(false);

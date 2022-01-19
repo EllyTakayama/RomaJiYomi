@@ -697,8 +697,10 @@ public class QuesManager : MonoBehaviour
     }
     
     public void StopYomiage(){
-         StopCoroutine(PlayHiragana());
-    }
+        StopAllCoroutines();
+         //StopCoroutine(PlayHiragana());
+         }
+    
 
     public IEnumerator PlayHiragana()
     {

@@ -44,6 +44,14 @@ public class PanelManager : MonoBehaviour
         DOTween.KillAll();
         SceneManager.LoadScene("SettingScene");
     }
+     //
+    public void TopSettingMove(){
+        DOTween.KillAll();
+        SoundManager.instance.PlaySousaSE(2);
+        SceneManager.LoadScene("TopScene");
+        Panel0.SetActive(false);
+    }
+
     public void SetPanelMove(){
         Panel0.SetActive(false);
         
@@ -51,5 +59,6 @@ public class PanelManager : MonoBehaviour
     public void TopPanelMove(){
         Panel0.SetActive(true);
     }
+
 
 }

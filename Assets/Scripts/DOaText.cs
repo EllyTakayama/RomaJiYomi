@@ -16,18 +16,18 @@ public class DOaText : MonoBehaviour
      public int bnum;
      public Image AnsImage;
      string[] Agyou = new string[]{
-         "A / a",
-         "I / i",
-         "U / u",
-         "E / e",
-         "O / o"
+         "A  a",
+         "I  i",
+         "U  u",
+         "E  e",
+         "O  o"
      };
      string[] Awa = new string[]{
-         "A / a は 「あ」",
-         "I / i は 「い」",
-         "U / u は 「う」",
-         "E / e は 「え」",
-         "O / o は 「お」"
+         "A  a は 「あ」",
+         "I  i は 「い」",
+         "U  u は 「う」",
+         "E  e は 「え」",
+         "O  o は 「お」"
      };
 
 
@@ -36,7 +36,7 @@ public class DOaText : MonoBehaviour
         +"\nまず、基本のあ行を覚えましょう。"
         , 3f)
         .OnComplete(MoveButtons);
-        Invoke("LateSE",1.1f);
+        Invoke("LateSE",0.0f);
         print("aText");
     }
     
@@ -47,6 +47,7 @@ public class DOaText : MonoBehaviour
     .SetEase(Ease.OutBack)
     ;
     }
+    
     public void LateSE(){
         SoundManager.instance.PlayAgSE(5);}
 
@@ -75,7 +76,7 @@ public class DOaText : MonoBehaviour
         bButton[2].enabled = true;
         bButton[3].enabled = true;
         yield return new WaitForSeconds(0.2f);
-        AnsImage.GetComponentInChildren<Text>().text = "";
+        AnsImage.GetComponentInChildren<Text>().text = "ボタンを押すとふうせんが出るよ";
     }
 
     

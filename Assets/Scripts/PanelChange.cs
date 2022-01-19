@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
+//1月18日更新
 
 public class PanelChange : MonoBehaviour
 {
@@ -29,6 +31,7 @@ public class PanelChange : MonoBehaviour
     public GameObject Dropdown2;
     public GameObject kihonButton;
     public GameObject KiriPanel;
+    public Text aText;
 
     // 矢印の表示/非表示
     
@@ -93,6 +96,8 @@ public class PanelChange : MonoBehaviour
             break;
 
             case Panel.Panel1:
+                QuesManager.instance.StopYomiage();
+                SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-1000, 0);
                 LeftButton.SetActive(false);
                 RightButton.SetActive(true);
@@ -100,6 +105,7 @@ public class PanelChange : MonoBehaviour
                 break;
 
             case Panel.Panel2:
+                aText.DOKill(true);
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-2000, 0);
                 KiriPanel.SetActive(true);

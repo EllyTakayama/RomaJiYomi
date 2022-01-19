@@ -58,17 +58,18 @@ public class SoundManager : MonoBehaviour
     public void StopSE()
     {
         audioSourceSE.Stop();
+        Debug.Log("stopSE");
     }
     
     public void PlaySE(int index)
     {
         audioSourceSE.PlayOneShot(hiragana50[index]); // SEを一度だけならす
-        //Debug.Log("Se");
+        Debug.Log("Se");
     }
     public void PlayAgSE(int index)
     {
         audioSourceSE.PlayOneShot(aKihon[index]); // SEを一度だけならす
-        //Debug.Log("Se");
+        Debug.Log("AGSe");
     }
     //0/正解 1/不正解
     public void PlaySousaSE(int index){
