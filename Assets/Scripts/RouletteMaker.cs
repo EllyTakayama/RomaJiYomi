@@ -19,23 +19,15 @@ public class RouletteMaker : MonoBehaviour
         GameManager.instance.LoadGfontsize();
         isRouletteTall = GameManager.instance.isGfontsize;
         Debug.Log("大文字"+isRouletteTall);
-        if(isRouletteTall == true){
             choices.Clear();
-            choices.AddRange(tHiragana);
-            hiraganaButtons[0].GetComponentInChildren<Text> ().text ="A";
-            hiraganaButtons[1].GetComponentInChildren<Text> ().text ="I";
-            hiraganaButtons[2].GetComponentInChildren<Text> ().text ="U";
-            hiraganaButtons[3].GetComponentInChildren<Text> ().text ="E";
-            hiraganaButtons[4].GetComponentInChildren<Text> ().text ="O";
-        }else{
-            choices.Clear();
-            choices.AddRange(sHiragana);
-            hiraganaButtons[0].GetComponentInChildren<Text> ().text ="a";
-            hiraganaButtons[1].GetComponentInChildren<Text> ().text ="i";
-            hiraganaButtons[2].GetComponentInChildren<Text> ().text ="u";
-            hiraganaButtons[3].GetComponentInChildren<Text> ().text ="e";
-            hiraganaButtons[4].GetComponentInChildren<Text> ().text ="o";
-        }
+            if(isRouletteTall == true){
+                 choices.AddRange(tHiragana);
+            }else{
+                choices.AddRange(sHiragana);
+            }
+            for (int i=0; i<hiraganaButtons.Length; i++){
+                 hiraganaButtons[i].gameObject.SetActive(false);
+                 }
         for (int i=0;i< choices.Count; i++){
           Debug.Log("choices"+choices[i]);}
         float ratePerRoulette = 1 / (float) choices.Count;
