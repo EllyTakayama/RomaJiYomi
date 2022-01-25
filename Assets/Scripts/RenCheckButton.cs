@@ -13,12 +13,14 @@ public class RenCheckButton : MonoBehaviour
     [SerializeField] private GameObject batsuImage;
     [SerializeField] private Text bQuesText;//間違えた時の問題
     [SerializeField] private Text seikaiText;//間違えた時の正解表示
+    [SerializeField] private GameObject pekeImage;
 
     // Start is called before the first frame update
     void Start()
     {
         maruImage.SetActive(false);
-        batsuImage.SetActive(false);   
+        batsuImage.SetActive(false); 
+        pekeImage.SetActive(false);
     }
 
     public void CheckAnswer(){
@@ -38,6 +40,7 @@ public class RenCheckButton : MonoBehaviour
         else{
             Debug.Log("間違い");
             isPressed = true;
+            pekeImage.SetActive(true);
             batsuImage.SetActive(true);
             SoundManager.instance.PlaySousaSE(3);
             bQuesText.text = RenshuuQues.instance.RenQuesText.text;
@@ -56,6 +59,7 @@ public class RenCheckButton : MonoBehaviour
     IEnumerator Batsu1Button()
     {   yield return new WaitForSeconds(0.2f);
         SoundManager.instance.PlaySousaSE(1);
+        pekeImage.SetActive(false);
         yield return new WaitForSeconds(1.5f);
             batsuImage.SetActive(false);
             Debug.Log("バツ");

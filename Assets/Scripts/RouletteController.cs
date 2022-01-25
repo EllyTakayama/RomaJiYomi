@@ -25,6 +25,11 @@ public class RouletteController : MonoBehaviour
     [SerializeField] private string[] sRCHiragana = new string[]{"k","s","t","n","h","m","y","r","w"};
     [SerializeField] private string[] tRCHiragana = new string[]{"K","S","T","N","H","M","Y","R","W"} ;
     public bool isRCTall;//RouletteControllerで大文字かどうか//trueなら大文字
+    [SerializeField] private GameObject Ballon1Image;
+    [SerializeField] private GameObject hButtonPanel;
+    [SerializeField] private GameObject[] rcBallons;
+    [SerializeField] private GameObject hBallonImage;
+    public List<int> RCNum = new List<int>();
 
     public void SetRoulette () {
         isPlaying = false;
@@ -57,7 +62,7 @@ public class RouletteController : MonoBehaviour
     private void StartOnClick () {
         rouletteSpeed = 14f;
         startButton.gameObject.SetActive (false);
-        Invoke ("ShowStopButton", 1.5f);
+        Invoke ("ShowStopButton", 0.2f);
         isPlaying = true;
     }
 
@@ -89,22 +94,28 @@ public class RouletteController : MonoBehaviour
         if(result == "k"||result =="K"){
             gyou = "か";
             int j = 5;
+              RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                RCNum.Add(j);
                 if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
                 }
                     Debug.Log("i"+i);
                     Debug.Log("j"+j);
                     Debug.Log("j"+romajiRC50[j]);
+                    Debug.Log("j"+RCNum[i]);
                     j++;
                 }
           
         }else if(result == "s"||result =="S"){
             gyou = "さ";
+            RCNum.Clear();
             int j = 10;
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                  RCNum.Add(j);
                if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
@@ -113,12 +124,14 @@ public class RouletteController : MonoBehaviour
                   j++;
                     Debug.Log("i"+i);
                     Debug.Log("j"+romajiRC50[j]);
-               
+                    Debug.Log("j"+RCNum[i]);
             }
         }else if(result == "t"||result =="T"){
             gyou = "た";
             int j = 15;
+            RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                    RCNum.Add(j);
                 if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
@@ -127,12 +140,14 @@ public class RouletteController : MonoBehaviour
                        j++;
                     Debug.Log("i"+i);
                     Debug.Log("j"+romajiRC50[j]);
-                
+                 Debug.Log("j"+RCNum[i]);
             }
         }else if(result == "n"||result =="N"){
             gyou = "な";
             int j = 20;
+             RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                 RCNum.Add(j);
                 if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
@@ -141,12 +156,14 @@ public class RouletteController : MonoBehaviour
                        j++;
                     Debug.Log("i"+i);
                     Debug.Log("j"+romajiRC50[j]);
-               
+                Debug.Log("j"+RCNum[i]);
             }
         }else if(result == "h"||result =="H"){
             gyou = "は";
             int j =25;
+             RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                 RCNum.Add(j);
                 if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
@@ -155,12 +172,14 @@ public class RouletteController : MonoBehaviour
                        j++;
                     Debug.Log("i"+i);
                     Debug.Log("j"+romajiRC50[j]);
-               
+                Debug.Log("j"+RCNum[i]);
             }
         }else if(result == "m"||result =="M"){
             gyou = "ま";
             int j = 30;
+              RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                  RCNum.Add(j);
                 if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
@@ -169,12 +188,18 @@ public class RouletteController : MonoBehaviour
                        j++;
                     Debug.Log("i"+i);
                     Debug.Log("j"+romajiRC50[j]);
+                    Debug.Log("j"+RCNum[i]);
                 
             }
         }else if(result == "y"||result =="Y"){
             gyou = "や";
+            RCNum.Clear();
+
             hiraganaButtons[1].gameObject.SetActive(false);
             hiraganaButtons[3].gameObject.SetActive(false);
+            RCNum.Clear();
+            int[]array = {35,0,36,0,37};
+            RCNum.AddRange(array);  
             if(isRCTall== true){
                hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[35];
                hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[36];
@@ -187,7 +212,9 @@ public class RouletteController : MonoBehaviour
         }else if(result == "r"||result =="R"){
             gyou = "ら";
             int j = 38;
+              RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
+                 RCNum.Add(j);
                 if(isRCTall== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
@@ -196,10 +223,14 @@ public class RouletteController : MonoBehaviour
                        j++;
                     Debug.Log("i"+i);
                     Debug.Log("j"+romajiRC50[j]);
+                    Debug.Log("j"+RCNum[i]);
                
             }
             }else if(result == "w"||result =="W"){
             gyou = "わ";
+            int[]array = {43,0,44,0,45};
+            RCNum.Clear();
+            RCNum.AddRange(array);  
             hiraganaButtons[1].gameObject.SetActive(false);
             hiraganaButtons[3].gameObject.SetActive(false);
             if(isRCTall== true){
@@ -214,7 +245,43 @@ public class RouletteController : MonoBehaviour
             }
 
         resultText.text = result+"  ("+gyou+"行)" + "\nが選ばれた！";
-        retryButton.gameObject.SetActive(true);
+        SetRoulette();
+        //startButton.gameObject.SetActive(true);
+    }
+    public void OnRCclick(int Bnum){
+               StopCoroutine(RCButton(Bnum));
+               StartCoroutine(RCButton(Bnum));
+               SoundManager.instance.PlaySE(RCNum[Bnum]);
+               SpawnB1(Bnum);
+               Debug.Log("Bnumber"+Bnum);
+    }
+    //Panel4で平仮名をSpawnさせる
+    public void SpawnB1(int n){
+        hBallonImage = Instantiate(rcBallons[n],
+        new Vector3 (Random.Range(-200f,200f), Random.Range(-200f,50f), 0.0f),//生成時の位置xをランダムするVector3を指定
+            transform.rotation);//生成時の向き
+        hBallonImage.transform.SetParent(hButtonPanel.transform,false);  
+        if(isRCTall== true){
+            hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
+            }else{
+                hBallonImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[n]];
+                }
+    }
+    IEnumerator RCButton(int bnum)
+    {   //AnsImage.GetComponentInChildren<Text>().text = Awa[bnum];
+        hiraganaButtons[0].enabled = false;
+        hiraganaButtons[1].enabled = false;
+        hiraganaButtons[2].enabled = false;
+        hiraganaButtons[3].enabled = false;
+        hiraganaButtons[4].enabled = false;
+        yield return new WaitForSeconds(0.8f);
+        hiraganaButtons[0].enabled = true;
+        hiraganaButtons[1].enabled = true;
+        hiraganaButtons[2].enabled = true;
+        hiraganaButtons[3].enabled = true;
+        hiraganaButtons[4].enabled = true;
+        //yield return new WaitForSeconds(0.2f);
+        //AnsImage.GetComponentInChildren<Text>().text = "ボタンを押すとふうせんが出るよ";
     }
     string[] romajiRC50 = new string[]{
         //0-4

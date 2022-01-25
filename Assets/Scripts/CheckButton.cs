@@ -13,7 +13,8 @@ public class CheckButton : MonoBehaviour
     [SerializeField] private GameObject batsuImage;
     [SerializeField] private GameObject maru1Image;  
     [SerializeField] private GameObject batsu1Image;
-     [SerializeField] private GameObject pekeImage;
+    [SerializeField] private GameObject pekeImage;
+    [SerializeField] private GameObject peke1Image;
     [SerializeField] private Text kQuesText;//a行間違えた時の問題
     [SerializeField] private Text seikaiText;//a行間違えた時の正解表示
     [SerializeField] private Text hokaQuesText;//他の行間違えた時の問題
@@ -28,6 +29,7 @@ public class CheckButton : MonoBehaviour
         maru1Image.SetActive(false);
         batsu1Image.SetActive(false); 
         pekeImage.SetActive(false);
+        peke1Image.SetActive(false);
     }
 
     public void CheckAnswer(){
@@ -72,6 +74,7 @@ public class CheckButton : MonoBehaviour
                 kQuesText.text = QuesManager.instance.QuesText.text;
                 seikaiText.text = QuesManager.instance.answer;}
             else{
+                peke1Image.SetActive(true);
                 batsu1Image.SetActive(true);
                 hokaQuesText.text = QuesManager.instance.QuesText4.text;
                 hokaseikaiText.text = QuesManager.instance.answer4;
@@ -96,6 +99,7 @@ public class CheckButton : MonoBehaviour
         SoundManager.instance.PlaySousaSE(1);
         yield return new WaitForSeconds(0.2f);
         pekeImage.SetActive(false);
+        peke1Image.SetActive(false);
         yield return new WaitForSeconds(1.2f);
             if(QuesMode ==2){
             batsuImage.SetActive(false);
