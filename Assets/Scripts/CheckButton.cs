@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CheckButton : MonoBehaviour
 {
     public int iNum;//QuesManagerのindex番号を取得
-    public bool isPressed;//ボタンが押されると時間の測定を開始
+    //public bool isPressed;//ボタンが押されると時間の測定を開始
     //float time=0.0f;
     public GameObject Ques;
     [SerializeField] private GameObject maruImage;  
@@ -20,6 +20,9 @@ public class CheckButton : MonoBehaviour
     [SerializeField] private Text hokaQuesText;//他の行間違えた時の問題
     [SerializeField] private Text hokaseikaiText;//他の行間違えた時の正解表示
     public int QuesMode;//currentModeを取得してオブジェクトの表示を切り分ける
+    public int AcorrectCount;
+    public int HcorrectCount;
+   
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +33,22 @@ public class CheckButton : MonoBehaviour
         batsu1Image.SetActive(false); 
         pekeImage.SetActive(false);
         peke1Image.SetActive(false);
+        AcorrectCount = 0;
+        HcorrectCount = 0;
+        GameManager.instance.AcorrectCount = AcorrectCount;
+        GameManager.instance.HcorrectCount = HcorrectCount;
+        
+
+    }
+    void Update()
+    {
+        AcorrectCount = GameManager.instance.AcorrectCount;
+        HcorrectCount = GameManager.instance.HcorrectCount;
     }
 
+
     public void CheckAnswer(){
+        
         QuesMode = QuesManager.instance.currentMode;
         //Debug.Log("QuesManager.instance.tagOfButton"+QuesManager.instance.tagOfButton);
         //Debug.Log("gameObject.tag"+gameObject.tag);
@@ -48,14 +64,20 @@ public class CheckButton : MonoBehaviour
         }
          if (gameObject.CompareTag( QuesManager.instance.tagOfButton))
         {   
-            isPressed = true;
+            //isPressed = true;
             //0正解音
             SoundManager.instance.PlaySousaSE(0);
             if(QuesMode ==2){
+            AcorrectCount++;
+            GameManager.instance.AcorrectCount = AcorrectCount;
+            Debug.Log("seikai"+ AcorrectCount);
             QuesManager.instance.StopYomiage();
             maruImage.SetActive(true);
             Debug.Log("maru");}
             else{
+                HcorrectCount++;
+            GameManager.instance.HcorrectCount = HcorrectCount;
+            Debug.Log("Hseikai"+ HcorrectCount);
             QuesManager.instance.Stop46Yomiage();
             maru1Image.SetActive(true);
             Debug.Log("正解");}
@@ -65,7 +87,7 @@ public class CheckButton : MonoBehaviour
         }
         else{
             Debug.Log("間違い");
-            isPressed = true;
+            //isPressed = true;
             //1不正解音
             SoundManager.instance.PlaySousaSE(3);
             if(QuesMode ==2){

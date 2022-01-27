@@ -16,6 +16,7 @@ public class QuesManager : MonoBehaviour
     [HideInInspector] public string select3;//選択肢
      [HideInInspector] public string select4;//選択肢
     [SerializeField] private GameObject AgradePanel;
+    [SerializeField] private GameObject HiraGradePanel;
     private int locationOfAnswer;
     //public GameObject[] AnsButtons;
     public Button[] AnsButton;
@@ -42,7 +43,7 @@ public class QuesManager : MonoBehaviour
     int[] moji50 = new int[46];
     public bool isTall;//大文字か小文字か選択
     [SerializeField] private Dropdown dropdown;//k-w行
-     [SerializeField] private Dropdown dropdown2;//g-pya行
+    [SerializeField] private Dropdown dropdown2;//g-pya行
     public enum KihonType
     {
         ARomaji,
@@ -600,6 +601,14 @@ public class QuesManager : MonoBehaviour
 
 
     public void Romaji50(){
+        QuesCount1++;
+        //QuesCountText.text = QuesCount.ToString();
+        if(QuesCount1 >10){
+            HiraGradePanel.SetActive(true);
+            HiraGradePanel.GetComponent<DOaPanel>().HiraPanel();
+            Debug.Log("Apanel");
+            return;
+        }
         AnsButton[3].enabled = true;
         AnsButton[4].enabled = true;
         AnsButton[5].enabled = true;
@@ -650,7 +659,7 @@ public class QuesManager : MonoBehaviour
            select4 = romaji50[f]; 
            Debug.Log("isTall"+isTall);
         }
-        QuesCount1++;
+
         //Debug.Log("QuesCount"+QuesCount);
        
         /*Debug.Log("n"+n);

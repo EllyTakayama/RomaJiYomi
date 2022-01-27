@@ -12,31 +12,44 @@ public class DOaPanel : MonoBehaviour
     [SerializeField] private Text yatta1Text;
     [SerializeField] private GameObject stampImage;
     [SerializeField] private GameObject nekoStaImage;
+    [SerializeField] private GameObject LeftButton;
+    public string AhiraganaCorrect;
+    [SerializeField] private GameObject hiraGradePanel;
+    [SerializeField] private Text yatta2Text;
+    [SerializeField] private Text yatta3Text;
+    [SerializeField] private GameObject stamp1Image;
+    [SerializeField] private GameObject neko1StaImage;
+    public string HhiraganaCorrect;
     
     void Start()
     {
         yattaText.text = "";
         yatta1Text.text = "";
-        //AgradePanel.SetActive(false);
+        yatta2Text.text = "";
+        yatta3Text.text = "";
+       
         stampImage.SetActive(false);
         nekoStaImage.SetActive(false);
+        stamp1Image.SetActive(false);
+        neko1StaImage.SetActive(false);
+        LeftButton.SetActive(false);
+        AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
+        HhiraganaCorrect = GameManager.instance.HcorrectCount.ToString();
     }
    
     public void APanel(){
-        StartCoroutine(AgyouPanel());
+         StartCoroutine(AgyouPanel());
     }
+
+    //public void HiraGPanel(){
+      //  StartCoroutine(AgyouPanel());}
 	
     IEnumerator AgyouPanel()
     {   QuesManager.instance.QuesCount = 0;
         yield return new WaitForSeconds(0.5f);
         YattaText();
         yield return new WaitForSeconds(0.8f);
-        //stampImage.SetActive(true);
         
-        //yield return new WaitForSeconds(0.3f);
-        //stampImage.SetActive(false);
-        //nekoStaImage.SetActive(true);
-
     }
     public void YattaText(){
         yattaText.DOText("やったね！"
@@ -46,7 +59,7 @@ public class DOaPanel : MonoBehaviour
     }
     public void Yatta1Text(){
         yatta1Text.DOText("\nあ行のクイズに"
-        +"\n10問答えたよ！"
+        +"\n"+AhiraganaCorrect+"問正解したね！"
         , 0.8f)
         .OnComplete(Stamps);
         print("yatta1Text");
@@ -60,6 +73,44 @@ public class DOaPanel : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         stampImage.SetActive(false);
         nekoStaImage.SetActive(true);
+        GameManager.instance.AcorrectCount=0;
+
+    }
+
+    public void HiraPanel(){
+        StartCoroutine(HiraganaPanel());
+    }
+    IEnumerator HiraganaPanel()
+    {   QuesManager.instance.QuesCount1 = 0;
+        yield return new WaitForSeconds(0.5f);
+        Yatta2Text();
+        yield return new WaitForSeconds(0.8f);
+        
+    }
+    public void Yatta2Text(){
+        yatta2Text.DOText("すごい！"
+        , 0.5f)
+       .OnComplete(Yatta3Text);
+        print("yatta2Text");
+    }
+    public void Yatta3Text(){
+        yatta3Text.DOText("\nひらがなクイズに"
+        +"\n"+HhiraganaCorrect+"問正解したね！"
+        , 0.8f)
+        .OnComplete(Stamps1);
+        print("yatta3Text");
+    }
+    public void Stamps1(){
+        StartCoroutine(Stamp1Move());
+    }
+    IEnumerator Stamp1Move()
+    {   yield return new WaitForSeconds(0.2f);
+        stamp1Image.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        stamp1Image.SetActive(false);
+        neko1StaImage.SetActive(true);
+        GameManager.instance.HcorrectCount=0;
+
     }
 
 }

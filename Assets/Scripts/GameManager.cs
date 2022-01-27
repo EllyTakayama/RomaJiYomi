@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    public bool isGfontsize;
-    public bool isGKunrei;
+   public static GameManager instance;
+   public bool isGfontsize;
+   public bool isGKunrei;
    public bool isGfontSize;
+   public int AcorrectCount;//基本Sceneあのスコア保存
+   public int AtotalCount;//累計の正解数
+   public int HcorrectCount;//基本Sceneあのスコア保存
    
 
     private void Awake()
@@ -46,4 +49,15 @@ public class GameManager : MonoBehaviour
          isGfontsize = ES3.Load<bool>("isGfontsize",true);
          Debug.Log("クリックisGfontSize"+isGfontsize);
     }
+    //KihonSceneあ行の正解数保存
+    public void SaveACount(){
+        //isGfontsize = SettingManager.instance.isfontSize;
+        ES3.Save<int>("Acorrect",AcorrectCount,"AcCount.es3");
+        Debug.Log("クリックAcorrect"+AcorrectCount);
+    }
+    public void LoadACount(){
+        AcorrectCount = ES3.Load<int>("Acorrect",0);
+        Debug.Log("クリックAcorrect"+AcorrectCount);
+    }
+
 }
