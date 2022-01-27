@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;//ローマ字読みの基本画面の出題メソッド
-//1月4日更新
+//1月27日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -24,6 +24,7 @@ public class QuesManager : MonoBehaviour
     public Text QuesText;
     public Text QuesText4;
     public Text QuesCountText;
+    public Text QuesCountText4;
     public int currentMode;
     public GameObject PanelParent;
     private int n;

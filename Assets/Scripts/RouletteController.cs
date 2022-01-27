@@ -255,6 +255,10 @@ public class RouletteController : MonoBehaviour
                SpawnB1(Bnum);
                Debug.Log("Bnumber"+Bnum);
     }
+    public void Bclick(int B){
+       SoundManager.instance.PlaySE(RCNum[B]);
+       //Destroy(gameObject);
+    }
     //Panel4で平仮名をSpawnさせる
     public void SpawnB1(int n){
         hBallonImage = Instantiate(rcBallons[n],
