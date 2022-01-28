@@ -74,7 +74,7 @@ public class PanelChange : MonoBehaviour
     //その他音を覚えようボタン
     public void SelectRomajiHoka(){
         ShowPanel(Panel.Panel4);
-         QuesManager.instance.currentMode = 4;
+         QuesManager.instance.currentMode = 5;
          Dropdown2.SetActive(true);
          hokaImage.SetActive(true);
          Dropdown.SetActive(false);

@@ -20,7 +20,7 @@ public class RouletteController : MonoBehaviour
     [SerializeField] private Text resultText;
     [SerializeField] private Button startButton;
     [SerializeField] private Button stopButton;
-    [SerializeField] private Button retryButton;
+    //[SerializeField] private Button retryButton;
     [SerializeField] private Button[] hiraganaButtons;
     [SerializeField] private string[] sRCHiragana = new string[]{"k","s","t","n","h","m","y","r","w"};
     [SerializeField] private string[] tRCHiragana = new string[]{"K","S","T","N","H","M","Y","R","W"} ;
@@ -38,10 +38,10 @@ public class RouletteController : MonoBehaviour
         isRCTall = GameManager.instance.isGfontsize;
         startButton.gameObject.SetActive (true);
         stopButton.gameObject.SetActive (false);
-        retryButton.gameObject.SetActive(false);
+        //retryButton.gameObject.SetActive(false);
         startButton.onClick.AddListener (StartOnClick);
         stopButton.onClick.AddListener (StopOnClick);
-        retryButton.onClick.AddListener (RetryOnClick);
+        //retryButton.onClick.AddListener (RetryOnClick);
     }
 
     private void Update () {
@@ -60,7 +60,7 @@ public class RouletteController : MonoBehaviour
     }
 
     private void StartOnClick () {
-        rouletteSpeed = 14f;
+        rouletteSpeed = Random.Range (30f, 50f);;
         startButton.gameObject.SetActive (false);
         Invoke ("ShowStopButton", 0.2f);
         isPlaying = true;
