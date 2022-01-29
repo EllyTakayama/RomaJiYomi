@@ -262,7 +262,7 @@ public class RouletteController : MonoBehaviour
     //Panel4で平仮名をSpawnさせる
     public void SpawnB1(int n){
         hBallonImage = Instantiate(rcBallons[n],
-        new Vector3 (Random.Range(-200f,200f), Random.Range(-200f,50f), 0.0f),//生成時の位置xをランダムするVector3を指定
+        new Vector3 (Random.Range(-300f,100f), Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
             transform.rotation);//生成時の向き
         hBallonImage.transform.SetParent(hButtonPanel.transform,false);  
         if(isRCTall== true){

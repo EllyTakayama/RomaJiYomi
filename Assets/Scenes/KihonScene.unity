@@ -5064,7 +5064,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 950, y: -650}
+  m_AnchoredPosition: {x: 0, y: -650}
   m_SizeDelta: {x: 750, y: 762.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564294881
@@ -5123,6 +5123,7 @@ MonoBehaviour:
   Ballons: []
   BallonImage: {fileID: 0}
   bnum: 0
+  isATall: 0
   AnsImage: {fileID: 0}
 --- !u!114 &564294884
 MonoBehaviour:
@@ -5142,6 +5143,7 @@ MonoBehaviour:
   Ballons: []
   BallonImage: {fileID: 0}
   bnum: 0
+  isATall: 0
   AnsImage: {fileID: 0}
 --- !u!1 &570847108
 GameObject:
@@ -11064,6 +11066,7 @@ MonoBehaviour:
   - {fileID: 673062146489296471, guid: 5d036ea7753154190a0624b2b8bccd1c, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
+  isATall: 0
   AnsImage: {fileID: 1460647713}
 --- !u!1 &1077637263
 GameObject:
@@ -11549,6 +11552,7 @@ GameObject:
   - component: {fileID: 1210688495}
   - component: {fileID: 1210688494}
   - component: {fileID: 1210688493}
+  - component: {fileID: 1210688496}
   m_Layer: 5
   m_Name: AaButton
   m_TagString: Untagged
@@ -11670,6 +11674,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1210688491}
   m_CullTransparentMesh: 1
+--- !u!114 &1210688496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210688491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c0b77cfd51c4cce885b8bd13014e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aText: {fileID: 1071214209}
+  ButtonPanel: {fileID: 564294879}
+  bButton:
+  - {fileID: 1210688493}
+  - {fileID: 1856381445}
+  - {fileID: 1452581153}
+  - {fileID: 1849463923}
+  - {fileID: 1504597212}
+  Ballons: []
+  BallonImage: {fileID: 586645202}
+  bnum: 0
+  isATall: 0
+  AnsImage: {fileID: 1460647713}
 --- !u!1 &1226394936
 GameObject:
   m_ObjectHideFlags: 0
@@ -13694,6 +13723,7 @@ GameObject:
   - component: {fileID: 1452581155}
   - component: {fileID: 1452581154}
   - component: {fileID: 1452581153}
+  - component: {fileID: 1452581156}
   m_Layer: 5
   m_Name: UuButton
   m_TagString: Untagged
@@ -13815,6 +13845,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452581151}
   m_CullTransparentMesh: 1
+--- !u!114 &1452581156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1452581151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c0b77cfd51c4cce885b8bd13014e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aText: {fileID: 1071214209}
+  ButtonPanel: {fileID: 564294879}
+  bButton:
+  - {fileID: 1210688493}
+  - {fileID: 1856381445}
+  - {fileID: 1452581153}
+  - {fileID: 1849463923}
+  - {fileID: 1504597212}
+  Ballons: []
+  BallonImage: {fileID: 586645202}
+  bnum: 0
+  isATall: 0
+  AnsImage: {fileID: 1460647713}
 --- !u!1 &1460647711
 GameObject:
   m_ObjectHideFlags: 0
@@ -14374,6 +14429,7 @@ GameObject:
   - component: {fileID: 1504597214}
   - component: {fileID: 1504597213}
   - component: {fileID: 1504597212}
+  - component: {fileID: 1504597215}
   m_Layer: 5
   m_Name: EeButton
   m_TagString: Untagged
@@ -14495,6 +14551,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504597210}
   m_CullTransparentMesh: 1
+--- !u!114 &1504597215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1504597210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c0b77cfd51c4cce885b8bd13014e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aText: {fileID: 1071214209}
+  ButtonPanel: {fileID: 564294879}
+  bButton:
+  - {fileID: 1210688493}
+  - {fileID: 1856381445}
+  - {fileID: 1452581153}
+  - {fileID: 1849463923}
+  - {fileID: 1504597212}
+  Ballons: []
+  BallonImage: {fileID: 586645202}
+  bnum: 0
+  isATall: 0
+  AnsImage: {fileID: 1460647713}
 --- !u!1 &1507799695
 GameObject:
   m_ObjectHideFlags: 0
@@ -17987,6 +18068,7 @@ GameObject:
   - component: {fileID: 1849463925}
   - component: {fileID: 1849463924}
   - component: {fileID: 1849463923}
+  - component: {fileID: 1849463926}
   m_Layer: 5
   m_Name: OoButton
   m_TagString: Untagged
@@ -18108,6 +18190,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1849463921}
   m_CullTransparentMesh: 1
+--- !u!114 &1849463926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1849463921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c0b77cfd51c4cce885b8bd13014e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aText: {fileID: 1071214209}
+  ButtonPanel: {fileID: 564294879}
+  bButton:
+  - {fileID: 1210688493}
+  - {fileID: 1856381445}
+  - {fileID: 1452581153}
+  - {fileID: 1849463923}
+  - {fileID: 1504597212}
+  Ballons: []
+  BallonImage: {fileID: 586645202}
+  bnum: 0
+  isATall: 0
+  AnsImage: {fileID: 1460647713}
 --- !u!1 &1856381443
 GameObject:
   m_ObjectHideFlags: 0
@@ -18120,6 +18227,7 @@ GameObject:
   - component: {fileID: 1856381447}
   - component: {fileID: 1856381446}
   - component: {fileID: 1856381445}
+  - component: {fileID: 1856381448}
   m_Layer: 5
   m_Name: IiButton
   m_TagString: Untagged
@@ -18241,6 +18349,31 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1856381443}
   m_CullTransparentMesh: 1
+--- !u!114 &1856381448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1856381443}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62c0b77cfd51c4cce885b8bd13014e8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  aText: {fileID: 1071214209}
+  ButtonPanel: {fileID: 564294879}
+  bButton:
+  - {fileID: 1210688493}
+  - {fileID: 1856381445}
+  - {fileID: 1452581153}
+  - {fileID: 1849463923}
+  - {fileID: 1504597212}
+  Ballons: []
+  BallonImage: {fileID: 586645202}
+  bnum: 0
+  isATall: 0
+  AnsImage: {fileID: 1460647713}
 --- !u!1 &1857647424
 GameObject:
   m_ObjectHideFlags: 0

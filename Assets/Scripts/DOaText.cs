@@ -14,13 +14,23 @@ public class DOaText : MonoBehaviour
     [SerializeField] private GameObject[] Ballons;
     [SerializeField] private GameObject BallonImage;
      public int bnum;
+     public bool isATall;
      public Image AnsImage;
-     string[] Agyou = new string[]{
-         "A  a",
-         "I  i",
-         "U  u",
-         "E  e",
-         "O  o"
+     //大文字
+    string[] Agyou = new string[]{
+         "A",
+         "I",
+         "U",
+         "E",
+         "O"
+     };
+     //小文字
+     string[] aGyou = new string[]{
+         "a",
+         "i",
+         "u",
+         "e",
+         "o"
      };
      string[] Awa = new string[]{
          "A  a は 「あ」",
@@ -41,8 +51,17 @@ public class DOaText : MonoBehaviour
     }
     
     public void MoveButtons(){
+        isATall = GameManager.instance.isGfontsize;
+            for(int i = 0; i<bButton.Length; i++){
+                if(isATall ==true){
+                     bButton[i].GetComponentInChildren<Text>().text = Agyou[i]; 
+                     }
+                    else{
+                        bButton[i].GetComponentInChildren<Text>().text = aGyou[i]; 
+                    }
+            }
         ButtonPanel.GetComponent<RectTransform>()   
-        .DOAnchorPos(new Vector2(-950,0), 1.5f)
+        .DOAnchorPos(new Vector2(-950,0), 0.5f)
         .SetRelative(true)
     .SetEase(Ease.OutBack)
     ;

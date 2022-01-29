@@ -261,6 +261,10 @@ public class ToggleRenshuu : MonoBehaviour
             Debug.Log("要素数"+shutsudaiNum.Count);
             for(int j =0; j<shutsudaiNum.Count; j++){
                 Debug.Log(shutsudaiNum[j]);}
+            if(shutsudaiNum.Count ==0){
+                Debug.Log("Tkara");
+                return;
+            }
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }
@@ -400,6 +404,10 @@ public class ToggleRenshuu : MonoBehaviour
             Debug.Log("要素数"+shutsudaiNum.Count);
              for(int j =0; j<shutsudaiNum.Count; j++){
                 Debug.Log(shutsudaiNum[j]);}
+            if(shutsudaiNum.Count ==0){
+                Debug.Log("Tkara");
+                return;
+            }
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }
