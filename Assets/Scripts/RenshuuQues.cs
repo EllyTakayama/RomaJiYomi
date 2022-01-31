@@ -257,16 +257,18 @@ public class RenshuuQues : MonoBehaviour
         
     }
     
-    public void RenRomaji50(){if(renshuuNum.Count == 0){
+    public void RenRomaji50(){
+        /*if(renshuuNum.Count == 0){
             Debug.Log("kara");
             return;
-        }
+        }*/
         RenAnsButton[0].enabled = true;
         RenAnsButton[1].enabled = true;
         RenAnsButton[2].enabled = true;
        if(n+1 > renshuuNum.Count){
             Debug.Log("リセット");
             n = 0;
+            RenshuuCount=0;
         }
         RenshuuCount++;
         Debug.Log("RenshuuCount"+RenshuuCount);

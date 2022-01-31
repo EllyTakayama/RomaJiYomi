@@ -52,20 +52,34 @@ public class DOaText : MonoBehaviour
     
     public void MoveButtons(){
         isATall = GameManager.instance.isGfontsize;
-            for(int i = 0; i<bButton.Length; i++){
-                if(isATall ==true){
-                     bButton[i].GetComponentInChildren<Text>().text = Agyou[i]; 
-                     }
-                    else{
-                        bButton[i].GetComponentInChildren<Text>().text = aGyou[i]; 
-                    }
-            }
+        if(isATall ==true){
+             for(int i =0;i<bButton.Length;i++){
+                 bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = Agyou[i];
+             }
+         }else{
+             for(int i =0;i<bButton.Length;i++){
+                 bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = aGyou[i];
+                 }
+         }
         ButtonPanel.GetComponent<RectTransform>()   
         .DOAnchorPos(new Vector2(-950,0), 0.5f)
         .SetRelative(true)
     .SetEase(Ease.OutBack)
     ;
     }
+    /*
+    public void AtextChange(){
+         isATall = GameManager.instance.isGfontsize;
+         if(isATall ==true){
+             for(int i =0;i<bButton.Length;i++){
+                 bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = Agyou[i];
+             }
+         }else{
+             for(int i =0;i<bButton.Length;i++){
+                 bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = aGyou[i];
+         }
+         }
+    }*/
     
     public void LateSE(){
         SoundManager.instance.PlayAgSE(5);}

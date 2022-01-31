@@ -3363,7 +3363,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1416946173}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -5032,7 +5032,6 @@ GameObject:
   - component: {fileID: 564294880}
   - component: {fileID: 564294882}
   - component: {fileID: 564294881}
-  - component: {fileID: 564294884}
   - component: {fileID: 564294883}
   m_Layer: 5
   m_Name: ButtonPanel
@@ -5064,7 +5063,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -650}
+  m_AnchoredPosition: {x: 950, y: -650}
   m_SizeDelta: {x: 750, y: 762.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &564294881
@@ -5119,32 +5118,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aText: {fileID: 1071214209}
   ButtonPanel: {fileID: 564294879}
-  bButton: []
-  Ballons: []
-  BallonImage: {fileID: 0}
+  bButton:
+  - {fileID: 1210688493}
+  - {fileID: 1856381445}
+  - {fileID: 1452581153}
+  - {fileID: 1504597212}
+  - {fileID: 1849463923}
+  Ballons:
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
+  BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
-  AnsImage: {fileID: 0}
---- !u!114 &564294884
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 564294879}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62c0b77cfd51c4cce885b8bd13014e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  aText: {fileID: 0}
-  ButtonPanel: {fileID: 0}
-  bButton: []
-  Ballons: []
-  BallonImage: {fileID: 0}
-  bnum: 0
-  isATall: 0
-  AnsImage: {fileID: 0}
+  AnsImage: {fileID: 1460647713}
 --- !u!1 &570847108
 GameObject:
   m_ObjectHideFlags: 0
@@ -5510,7 +5499,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1416946173}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9416,7 +9405,7 @@ RectTransform:
   m_Children:
   - {fileID: 1363090881}
   m_Father: {fileID: 1416946173}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -11059,11 +11048,11 @@ MonoBehaviour:
   - {fileID: 1504597212}
   - {fileID: 1849463923}
   Ballons:
-  - {fileID: 3922702496981091447, guid: 50ec59597f7844741afeb4b6cfc44d74, type: 3}
-  - {fileID: 3473123892203713685, guid: 5db9d8b2b825e416dbcaffffa19440e8, type: 3}
-  - {fileID: 5213358937910804198, guid: 41a96646f22444ef49e220d5e6f31a00, type: 3}
-  - {fileID: 3328114966031906921, guid: 60de6e8c067ed4a4cad7df5e722af289, type: 3}
-  - {fileID: 673062146489296471, guid: 5d036ea7753154190a0624b2b8bccd1c, type: 3}
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
@@ -11694,7 +11683,12 @@ MonoBehaviour:
   - {fileID: 1452581153}
   - {fileID: 1849463923}
   - {fileID: 1504597212}
-  Ballons: []
+  Ballons:
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
@@ -13546,10 +13540,10 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 670184777}
-  - {fileID: 2122618439}
   - {fileID: 307385399}
   - {fileID: 586645203}
   - {fileID: 922368180}
+  - {fileID: 2122618439}
   m_Father: {fileID: 292542545}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -13865,7 +13859,12 @@ MonoBehaviour:
   - {fileID: 1452581153}
   - {fileID: 1849463923}
   - {fileID: 1504597212}
-  Ballons: []
+  Ballons:
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
@@ -14571,7 +14570,12 @@ MonoBehaviour:
   - {fileID: 1452581153}
   - {fileID: 1849463923}
   - {fileID: 1504597212}
-  Ballons: []
+  Ballons:
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
@@ -18210,7 +18214,12 @@ MonoBehaviour:
   - {fileID: 1452581153}
   - {fileID: 1849463923}
   - {fileID: 1504597212}
-  Ballons: []
+  Ballons:
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
@@ -18369,7 +18378,12 @@ MonoBehaviour:
   - {fileID: 1452581153}
   - {fileID: 1849463923}
   - {fileID: 1504597212}
-  Ballons: []
+  Ballons:
+  - {fileID: 1105022318796147581, guid: c5e147417471f4159a3ca04c103e310b, type: 3}
+  - {fileID: 1864467414472207380, guid: fcd340984863340639bb9993fb726289, type: 3}
+  - {fileID: 1537164745060027736, guid: 38319306587ee450091b33177ae8c695, type: 3}
+  - {fileID: 2753941797887944921, guid: 5ac2c2f35d7cb4d3fbbad51b29f5ee57, type: 3}
+  - {fileID: 2205382968282840929, guid: a194d7c0d5cc441e9a235658e0c8c151, type: 3}
   BallonImage: {fileID: 586645202}
   bnum: 0
   isATall: 0
@@ -20420,7 +20434,7 @@ RectTransform:
   - {fileID: 564294880}
   - {fileID: 1677373913}
   m_Father: {fileID: 1416946173}
-  m_RootOrder: 1
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
