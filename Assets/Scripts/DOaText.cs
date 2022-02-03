@@ -4,7 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
 using TMPro;
-//1月15日更新
+//1月31日更新
 
 public class DOaText : MonoBehaviour
 {
@@ -33,11 +33,18 @@ public class DOaText : MonoBehaviour
          "o"
      };
      string[] Awa = new string[]{
-         "A  a は 「あ」",
-         "I  i は 「い」",
-         "U  u は 「う」",
-         "E  e は 「え」",
-         "O  o は 「お」"
+         "A は 「あ」",
+         "I は 「い」",
+         "U は 「う」",
+         "E は 「え」",
+         "O は 「お」"
+     };
+     string[] aWa = new string[]{
+         "a は 「あ」",
+         "i は 「い」",
+         "u は 「う」",
+         "e は 「え」",
+         "o は 「お」"
      };
 
 
@@ -67,19 +74,6 @@ public class DOaText : MonoBehaviour
     .SetEase(Ease.OutBack)
     ;
     }
-    /*
-    public void AtextChange(){
-         isATall = GameManager.instance.isGfontsize;
-         if(isATall ==true){
-             for(int i =0;i<bButton.Length;i++){
-                 bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = Agyou[i];
-             }
-         }else{
-             for(int i =0;i<bButton.Length;i++){
-                 bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = aGyou[i];
-         }
-         }
-    }*/
     
     public void LateSE(){
         SoundManager.instance.PlayAgSE(5);}
@@ -98,7 +92,11 @@ public class DOaText : MonoBehaviour
         BallonImage.transform.SetParent(ButtonPanel.transform,false);  
     }
     IEnumerator AButton(int bnum)
-    {   AnsImage.GetComponentInChildren<Text>().text = Awa[bnum];
+    {   if(isATall ==true){
+        AnsImage.GetComponentInChildren<Text>().text = Awa[bnum];}
+        else{
+            AnsImage.GetComponentInChildren<Text>().text = aWa[bnum];
+        }
         bButton[0].enabled = false;
         bButton[1].enabled = false;
         bButton[2].enabled = false;

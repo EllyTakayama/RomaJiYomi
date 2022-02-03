@@ -2043,7 +2043,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -400}
+  m_AnchoredPosition: {x: -46, y: -433}
   m_SizeDelta: {x: 600, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &230815610
@@ -2076,10 +2076,10 @@ MonoBehaviour:
     m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 0
+    m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u7DF4\u7FD2\u3059\u308B\u884C\u3092\u9078\u3093\u3067\u306D\n\u8907\u6570\u9078\u3079\u307E\u3059"
+  m_Text: "\u7DF4\u7FD2\u3059\u308B\u3072\u3089\u304C\u306A\u3092\u9078\u307C\u3046\n\u8907\u6570\u9078\u3079\u307E\u3059"
 --- !u!222 &230815611
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7801,6 +7801,7 @@ RectTransform:
   - {fileID: 279941776}
   - {fileID: 1244983905}
   - {fileID: 1777439337}
+  - {fileID: 1193048696}
   m_Father: {fileID: 85776877}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7892,6 +7893,10 @@ MonoBehaviour:
   shutsudaiNum: 
   s: 0
   ShutudaiPanel: {fileID: 1978125762}
+  RenshuuPanel: {fileID: 870929418}
+  SetsuImage: {fileID: 1193048695}
+  SetPanels:
+  - {fileID: 9123911305600265804, guid: ba83aa97980124f5eba2ad679cfd8824, type: 3}
   isHiragana: 0
 --- !u!1 &877062688
 GameObject:
@@ -9349,18 +9354,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u305D\u306E\u4ED6\n\u306E\u97F3"
+  m_Text: "\u305D\u306E\u4ED6"
 --- !u!222 &1049438035
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -10041,6 +10046,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1181895457}
   m_CullTransparentMesh: 1
+--- !u!1 &1193048695
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1193048696}
+  m_Layer: 5
+  m_Name: SetsuImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1193048696
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1193048695}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 870929419}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1222134581
 GameObject:
   m_ObjectHideFlags: 0
@@ -13384,18 +13424,18 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 40
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
-    m_MaxSize: 40
+    m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3072\u3089\u304C\u306A\n50\u97F3\u30FB\u6FC1\u97F3"
+  m_Text: "50\u97F3\u6FC1\u97F3"
 --- !u!222 &1694028851
 CanvasRenderer:
   m_ObjectHideFlags: 0

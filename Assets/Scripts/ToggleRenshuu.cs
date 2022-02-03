@@ -16,6 +16,10 @@ public class ToggleRenshuu : MonoBehaviour
     public List<int> shutsudaiNum = new List<int>();
     public int s;
     public GameObject ShutudaiPanel;
+    [SerializeField] private GameObject RenshuuPanel;
+    [SerializeField] private GameObject SetsuImage;
+    [SerializeField] private GameObject[] SetPanels;
+    //プレハブの生成のため
     //public List<string> renshuuHiragana50 = new List<string>();
     //public List<string> renshuuRomaji50 = new List<string>();
     public bool isHiragana;//toggleが50音か他かのbool
@@ -107,13 +111,13 @@ public class ToggleRenshuu : MonoBehaviour
         Debug.Log("スタートtoggleHoka"+toggleHoka.isOn);
         shutsudaiNum.Clear();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-      
-        
+    public void SpawnSetPanel(){
+        SetsuImage = Instantiate(SetPanels[0],
+        new Vector3 (0.0f, 0.0f, 0.0f),//生成時の位置xをランダムするVector3を指定
+            transform.rotation);//生成時の向き
+        SetsuImage.transform.SetParent(RenshuuPanel.transform,false);  
     }
+    
 
         public void SelectToggle(){
         //0 あ行0-4
@@ -264,6 +268,7 @@ public class ToggleRenshuu : MonoBehaviour
                 }
 
             if(shutsudaiNum.Count ==0){
+                SpawnSetPanel();
                 Debug.Log("Tkara");
                 return;
             }
@@ -408,6 +413,7 @@ public class ToggleRenshuu : MonoBehaviour
                 Debug.Log(shutsudaiNum[j]);}
 
             if(shutsudaiNum.Count ==0){
+                SpawnSetPanel();
                 Debug.Log("T1kara");
                 return;
             }

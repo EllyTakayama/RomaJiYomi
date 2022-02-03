@@ -8,25 +8,35 @@ using TMPro;
 
 public class DOhiraText : MonoBehaviour
 {
-     public Text hiraganaText; 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Text hiraganaText; 
+    public bool isHTall;
+    public Toggle hPanelToggle;
+    public GameObject hyouImage;
+    
+    
     public void HiraganaText(){
-        hiraganaText.DOText("\nひらがな50音の"+
-　　　　　　　　"\nアルファベットの組み合わせをおぼえましょう。"
-        , 3f)
-        //.OnComplete(MoveButtons)
-        ;
-        Invoke("LateSE",1.1f);
-        print("aText");
+        isHTall = GameManager.instance.isGfontsize;
+        if( isHTall ==true){
+            hiraganaText.DOText("ローマ字はアルファベットの子音と母音（あ行）で表現します。", 3f)
+            .OnComplete(HiraganaHyo);
+        }
+        else{
+            hiraganaText.DOText("ローマ字はアルファベットの子音と母音（あ行）で表現します。"
+        ,3f)
+        .OnComplete(HiraganaHyo);
+        }
+        
+        Invoke("LatehSE",0.5f);
+        print("hText");
+    }
+    public void LatehSE(){
+        SoundManager.instance.PlayAgSE(6);}
+    
+    public void HiraganaHyo(){
+        hyouImage.SetActive(true);
+    }
+    
+    public void HiraganaRoulette(){
+        hPanelToggle.isOn = true;
     }
 }

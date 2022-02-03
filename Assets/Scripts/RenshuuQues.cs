@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 //練習問題画面の出題メソッド
-//12月22日更新
+//1月31日更新
 
 public class RenshuuQues : MonoBehaviour
 {
