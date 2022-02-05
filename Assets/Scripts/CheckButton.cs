@@ -48,7 +48,6 @@ public class CheckButton : MonoBehaviour
 
 
     public void CheckAnswer(){
-        
         QuesMode = QuesManager.instance.currentMode;
         //Debug.Log("QuesManager.instance.tagOfButton"+QuesManager.instance.tagOfButton);
         //Debug.Log("gameObject.tag"+gameObject.tag);
@@ -62,19 +61,24 @@ public class CheckButton : MonoBehaviour
             QuesManager.instance.AnsButton[4].enabled = false;
             QuesManager.instance.AnsButton[5].enabled = false;
         }
+        //正解のとき
          if (gameObject.CompareTag( QuesManager.instance.tagOfButton))
         {   
             //isPressed = true;
             //0正解音
             SoundManager.instance.PlaySousaSE(0);
+            //あ行の出題の時
             if(QuesMode ==2){
+            //正解数を追加
             AcorrectCount++;
             GameManager.instance.AcorrectCount = AcorrectCount;
             Debug.Log("seikai"+ AcorrectCount);
             QuesManager.instance.StopYomiage();
             maruImage.SetActive(true);
             Debug.Log("maru");}
+            //50音の出題の時
             else{
+                //50音出題の時の時
                 HcorrectCount++;
             GameManager.instance.HcorrectCount = HcorrectCount;
             Debug.Log("Hseikai"+ HcorrectCount);

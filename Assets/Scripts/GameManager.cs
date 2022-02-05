@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+//2月5日更新
 
 public class GameManager : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
    public int AcorrectCount;//基本Sceneあのスコア保存
    public int AtotalCount;//累計の正解数
    public int HcorrectCount;//基本Sceneあのスコア保存
-   
+   public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
 
     private void Awake()
     {

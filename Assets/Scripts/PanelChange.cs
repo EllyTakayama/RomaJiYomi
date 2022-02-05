@@ -29,7 +29,7 @@ public class PanelChange : MonoBehaviour
     public GameObject hiraganaImage;//ひらがな選択
     public GameObject Dropdown;//ひらがな選択
     public GameObject Dropdown2;
-    public GameObject kihonButton;
+    //public GameObject kihonButton;
     public GameObject KiriPanel;
     public Text aText;
 
@@ -45,7 +45,7 @@ public class PanelChange : MonoBehaviour
         hokaImage.SetActive(false);
         Dropdown.SetActive(false);
         hiraganaImage.SetActive(false);
-        kihonButton.SetActive(false);
+        //kihonButton.SetActive(false);
     }
     //あ行を覚えようボタン
     public void SelectRomajiA(){
@@ -92,7 +92,7 @@ public class PanelChange : MonoBehaviour
         switch(panel){
             case Panel.Panel0:
             transform.localPosition = new Vector2(0, 0);
-            kihonButton.SetActive(false);
+            //kihonButton.SetActive(false);
             break;
 
             case Panel.Panel1:
@@ -101,7 +101,7 @@ public class PanelChange : MonoBehaviour
                 transform.localPosition = new Vector2(-1000, 0);
                 LeftButton.SetActive(false);
                 RightButton.SetActive(true);
-                kihonButton.SetActive(true);
+                //kihonButton.SetActive(true);
                 break;
 
             case Panel.Panel2:
@@ -124,7 +124,7 @@ public class PanelChange : MonoBehaviour
             
             case Panel.Panel4:
                 transform.localPosition = new Vector2(-1000, 1500);
-                kihonButton.SetActive(true);
+                //kihonButton.SetActive(true);
                 LeftButton.SetActive(false);
                 RightButton.SetActive(true);
                 
