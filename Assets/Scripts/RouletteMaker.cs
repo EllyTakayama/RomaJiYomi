@@ -13,18 +13,82 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private Button[] hiraganaButtons;
     [SerializeField] private string[] sHiragana = new string[]{"k","s","t","n","h","m","y","r","w"};
     [SerializeField] private string[] tHiragana = new string[]{"K","S","T","N","H","M","Y","R","W"} ;
+    [SerializeField] private string[] sHiragana5 = new string[]{"g","z","d","b","p","v"};
+    [SerializeField] private string[] tHiragana5 = new string[]{"G","Z","D","B","P","V"} ;
+    [SerializeField] private string[] sHiragana51 = new string[]{"ky\nsh","ty\nny","hy\nmy","ry\ngy","jy\ndy","by\npy"};
+    [SerializeField] private string[] tHiragana51 = new string[]{"KY\nSH","TY\nNY","HY\nMY","RY\nGY","JY\nDY","BY\nPY"} ;
     public bool isRouletteTall;//大文字かどうか
+    public int RcurrentMode;//currentModeをルーレットの設定に反映
     
     void Start () {
         GameManager.instance.LoadGfontsize();
+        RcurrentMode = QuesManager.instance.currentMode;
         isRouletteTall = GameManager.instance.isGfontsize;
         Debug.Log("大文字"+isRouletteTall);
+        Debug.Log("mode"+RcurrentMode);
             choices.Clear();
+        if(RcurrentMode == 4){
             if(isRouletteTall == true){
                  choices.AddRange(tHiragana);
             }else{
                 choices.AddRange(sHiragana);
             }
+        }else if(RcurrentMode == 5) {
+            if(isRouletteTall == true){
+                 choices.AddRange(sHiragana5);
+            }else{
+                choices.AddRange(sHiragana5);
+            }
+
+        }
+        if(QuesManager.instance.currentMode ==4){
+             for (int i=0; i<hiraganaButtons.Length-1; i++){
+                 hiraganaButtons[i].gameObject.SetActive(false);
+                 }
+        }else{
+            for (int i=0; i<hiraganaButtons.Length; i++){
+                 hiraganaButtons[i].gameObject.SetActive(false);
+                 }
+        }
+        for (int i=0;i< choices.Count; i++){
+          Debug.Log("choices"+choices[i]);}
+        float ratePerRoulette = 1 / (float) choices.Count;
+        float rotatePerRoulette = 360 / (float) (choices.Count);
+        for (int i = 0; i < choices.Count; i++) {
+            var obj = Instantiate (rouletteImage, imageParentTransform);
+            obj.color = rouletteColors[(choices.Count - 1 - i)];
+            obj.fillAmount = ratePerRoulette * (choices.Count - i);
+            obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
+            obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+        }
+        rController.SetRoulette();
+        rController.rMaker = this;
+        rController.rotatePerRoulette = rotatePerRoulette;
+        rController.roulette = imageParentTransform.gameObject;
+    }
+    public void RMaker(){
+
+        GameManager.instance.LoadGfontsize();
+        RcurrentMode = QuesManager.instance.currentMode;
+        isRouletteTall = GameManager.instance.isGfontsize;
+        Debug.Log("大文字"+isRouletteTall);
+        Debug.Log("mode"+RcurrentMode);
+            choices.Clear();
+        if(RcurrentMode == 4){
+            if(isRouletteTall == true){
+                 choices.AddRange(tHiragana);
+            }else{
+                choices.AddRange(sHiragana);
+            }
+        }else if(RcurrentMode == 5) {
+            if(isRouletteTall == true){
+                 choices.AddRange(sHiragana5);
+            }else{
+                choices.AddRange(sHiragana5);
+            }
+
+        }
+            
             for (int i=0; i<hiraganaButtons.Length; i++){
                  hiraganaButtons[i].gameObject.SetActive(false);
                  }
