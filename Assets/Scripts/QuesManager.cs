@@ -34,8 +34,8 @@ public class QuesManager : MonoBehaviour
     public int d;
     public int e;
     public int f;
-    public int QuesCount;
-    public int QuesCount1;
+    public int QuesCount;//あ行用
+    public int QuesCount1;//ひらがな50、他用
     public bool isKihon;
     public List<int> kihonNum = new List<int>();
     int[] ary = new int[]{0,1,2,3,4};
@@ -43,6 +43,7 @@ public class QuesManager : MonoBehaviour
     int[] ary6 = new int[]{0,1,2,3,4,5};
     int[] moji50 = new int[46];
     public bool isTall;//大文字か小文字か選択
+    public bool isGomoji= true;
     [SerializeField] private Dropdown dropdown;//k-w行
     [SerializeField] private Dropdown dropdown2;//g-pya行
     public enum KihonType
@@ -253,7 +254,9 @@ public class QuesManager : MonoBehaviour
         CurrentMode();
         //Debug.Log("currentMode"+currentMode);
         AgradePanel.SetActive(false);
+        HiraGradePanel.SetActive(false);
         QuesCount = 0;
+        QuesCount1 = 0;
         GameManager.instance.LoadGfontsize();
         isTall = GameManager.instance.isGfontsize;
         //Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
@@ -333,7 +336,7 @@ public class QuesManager : MonoBehaviour
     public void ARomaji(){
         QuesCount++;
         QuesCountText.text = QuesCount.ToString();
-        if(QuesCount >10){
+        if(QuesCount >5){
             AgradePanel.SetActive(true);
             AgradePanel.GetComponent<DOaPanel>().APanel();
             Debug.Log("Apanel");
@@ -610,11 +613,11 @@ public class QuesManager : MonoBehaviour
 
     public void Romaji50(){
         QuesCount1++;
-        //QuesCountText.text = QuesCount.ToString();
-        if(QuesCount1 >10){
+        QuesCountText4.text = QuesCount1.ToString();
+        if(QuesCount1 >5){
             HiraGradePanel.SetActive(true);
             HiraGradePanel.GetComponent<DOaPanel>().HiraPanel();
-            Debug.Log("Apanel");
+            Debug.Log("hirapanel");
             return;
         }
         AnsButton[3].enabled = true;

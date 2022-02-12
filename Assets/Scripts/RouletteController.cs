@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
+using UnityEngine.SceneManagement;//2月8日更新
 
 public class RouletteController : MonoBehaviour
 {
@@ -39,6 +39,7 @@ public class RouletteController : MonoBehaviour
         isRCTall = GameManager.instance.isGfontsize;
         startButton.gameObject.SetActive (true);
         stopButton.gameObject.SetActive (false);
+        //hiraganaImage.gameObject.SetActive (false);
         //retryButton.gameObject.SetActive(false);
         startButton.onClick.AddListener (StartOnClick);
         stopButton.onClick.AddListener (StopOnClick);
@@ -61,7 +62,9 @@ public class RouletteController : MonoBehaviour
     }
 
     private void StartOnClick () {
-        rouletteSpeed = Random.Range (30f, 50f);;
+        resultText.text = "ルーレットをストップ\nしてローマ字をゲット！";
+        rouletteSpeed = Random.Range (30f, 50f);
+        hiraganaImage.gameObject.SetActive (false);  
         startButton.gameObject.SetActive (false);
         Invoke ("ShowStopButton", 0.2f);
         isPlaying = true;
@@ -91,6 +94,7 @@ public class RouletteController : MonoBehaviour
          for (int i=0; i<hiraganaButtons.Length; i++){
                  hiraganaButtons[i].gameObject.SetActive(true);
                  }
+         hiraganaImage.gameObject.SetActive (true);
         GameManager.instance.RoulletteNum.Clear();
    
         if(result == "k"||result =="K"){
@@ -347,12 +351,28 @@ public class RouletteController : MonoBehaviour
                     Debug.Log("j"+RCNum[i]);
                }
             }
-            
-           
+            else if(result == "v"||result =="V"){
+            gyou = "ヴァ";
+            int j = 107;
+              RCNum.Clear();
+            for(int i = 0; i<hiraganaButtons.Length; i++){
+                 RCNum.Add(j);
+                if(isRCTall== true){
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                }else{
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
+                }
+                       j++;
+                    Debug.Log("i"+i);
+                    Debug.Log("j"+romajiRC50[j]);
+                    Debug.Log("j"+RCNum[i]);
+               }
+            }
+        hiraganaImage.gameObject.SetActive (true);  
         GameManager.instance.RoulletteNum = new List<int>(RCNum);
         resultText.text = result+"  ("+gyou+"行)" + "\nが選ばれた！";
         SetRoulette();
-        //startButton.gameObject.SetActive(true);
+        
     }
     public void OnRCclick(int Bnum){
                StopCoroutine(RCButton(Bnum));
@@ -383,7 +403,7 @@ public class RouletteController : MonoBehaviour
                 }else{
                     hiraganaImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[bnum]]+" は "+hiragana50[RCNum[bnum]];
                 }
-        //AnsImage.GetComponentInChildren<Text>().text = Awa[bnum];
+        
         hiraganaButtons[0].enabled = false;
         hiraganaButtons[1].enabled = false;
         hiraganaButtons[2].enabled = false;
@@ -396,7 +416,7 @@ public class RouletteController : MonoBehaviour
         hiraganaButtons[3].enabled = true;
         hiraganaButtons[4].enabled = true;
         yield return new WaitForSeconds(0.2f);
-        hiraganaImage.GetComponentInChildren<Text>().text = "ふうせんをタッチしよう";
+        hiraganaImage.GetComponentInChildren<Text>().text = "ふうせんをタッチ!";
     }
     
     string[] romajiRC50 = new string[]{
@@ -455,7 +475,9 @@ public class RouletteController : MonoBehaviour
         //101-103
         "bya","byu","byo",
         //104-106
-        "pya","pyu","pyo"};
+        "pya","pyu","pyo",
+        //107-111
+        "va","vi","vu","ve","vo"};
 
      string[] RomaJiRC50 = new string[]{
          //0-4
@@ -513,7 +535,9 @@ public class RouletteController : MonoBehaviour
         //101-103
         "BYA","BYU","BYO",
         //104-106
-        "PYA","PYU","PYO"
+        "PYA","PYU","PYO",
+        //107-111
+        "VA","VI","VU","VE","VO"
         };
         string[] hiragana50 = new string[]{
         //0-4
@@ -571,7 +595,10 @@ public class RouletteController : MonoBehaviour
         //101-103
         "びゃ","びゅ","びょ",
         //104-106
-        "ぴゃ","ぴゅ","ぴょ"};
+        "ぴゃ","ぴゅ","ぴょ",
+        //107-111
+       "ヴァ","ヴィ","ヴ","ヴェ","ヴォ"
+        };
 
 
 }

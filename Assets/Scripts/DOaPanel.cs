@@ -35,10 +35,17 @@ public class DOaPanel : MonoBehaviour
         LeftButton.SetActive(false);
         AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
         HhiraganaCorrect = GameManager.instance.HcorrectCount.ToString();
+        //Debug.Log("A"+AhiraganaCorrect);
     }
-   
     public void APanel(){
-         StartCoroutine(AgyouPanel());
+        yattaText.text = "";
+        yatta1Text.text = "";
+        stampImage.SetActive(false);
+        nekoStaImage.SetActive(false);
+        LeftButton.SetActive(false);
+        AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
+        
+        StartCoroutine(AgyouPanel());
     }
 
     //public void HiraGPanel(){
@@ -63,6 +70,7 @@ public class DOaPanel : MonoBehaviour
         , 0.8f)
         .OnComplete(Stamps);
         print("yatta1Text");
+        print("正解数"+HhiraganaCorrect);
     }
     public void Stamps(){
         StartCoroutine(StampMove());
@@ -78,6 +86,13 @@ public class DOaPanel : MonoBehaviour
     }
 
     public void HiraPanel(){
+        HhiraganaCorrect = GameManager.instance.HcorrectCount.ToString();
+        yatta2Text.text = "";
+        yatta3Text.text = "";
+        stamp1Image.SetActive(false);
+        neko1StaImage.SetActive(false);
+        LeftButton.SetActive(false);
+
         StartCoroutine(HiraganaPanel());
     }
     IEnumerator HiraganaPanel()
@@ -99,6 +114,7 @@ public class DOaPanel : MonoBehaviour
         , 0.8f)
         .OnComplete(Stamps1);
         print("yatta3Text");
+        print("正解数"+HhiraganaCorrect);
     }
     public void Stamps1(){
         StartCoroutine(Stamp1Move());

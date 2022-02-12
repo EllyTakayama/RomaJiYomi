@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;
+//using System;
 
 public class TikaraQues : MonoBehaviour
 {
@@ -12,10 +12,11 @@ public class TikaraQues : MonoBehaviour
     [HideInInspector] public string TikaraAnswer;
     public string tagOfButton;
     public Text TikaraText;
+    public Text furiganaText;
     public int TikaraCount;
     public int TcurrentMode;
     public GameObject ShutudaiPanel;
-    public GameObject Shutudai2Panel;
+    //public GameObject Shutudai2Panel;
     public Toggle toggle1;//簡単・難しい分岐
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> romeSlice = new List<string>();
@@ -33,6 +34,8 @@ public class TikaraQues : MonoBehaviour
     [SerializeField] TextAsset JinmeiRomajiT;
     [SerializeField] TextAsset TChimeiRomaji;
     [SerializeField] TextAsset Tentatei;
+    [SerializeField] TextAsset Tfood;
+    [SerializeField] TextAsset Tdoubutu;
 
     //テキストデータを格納
     public string[,] TSTable;
@@ -40,7 +43,7 @@ public class TikaraQues : MonoBehaviour
     private int tateNumber; // 行 縦
     private int yokoNumber; // 列　横
     public string[] Tromelines;//テキストアセット取得に使う
-    private DictionaryChange cd;
+    //private DictionaryChange cd;
 
     // Start is called before the first frame update
      void Awake()
@@ -59,9 +62,9 @@ public class TikaraQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       cd = GetComponent<DictionaryChange>();
-       ShutudaiPanel.SetActive(false);
-       Shutudai2Panel.SetActive(false);
+       //cd = GetComponent<DictionaryChange>();
+       //ShutudaiPanel.SetActive(false);
+       
     }
     // Update is called once per frame
     void Update()
@@ -71,13 +74,14 @@ public class TikaraQues : MonoBehaviour
     }
 
     public void Kantan(string buttonname){
-        if(toggle1.isOn == true){
+        
         switch (buttonname)
             {
                 case "Button1":
                 TcurrentMode = 1;
                 SetList();
                 Debug.Log("1");
+                DebugTable();
                 ShutudaiPanel.SetActive(true);
                 TKantan();
                     break;
@@ -92,19 +96,13 @@ public class TikaraQues : MonoBehaviour
                 TcurrentMode = 4;
                 SetList();
                 Debug.Log("4");
+                DebugTable();
                 ShutudaiPanel.SetActive(true);
+
                 TKantan();
                     break;
            }
-           }else{
-            switch (buttonname)
-            {
-                case "Button1":
-                Debug.Log("1");
-                Shutudai2Panel.SetActive(true);
-                    break;
-            }
-        }
+          
         /*
         if(n+1 > TikaraTempt[0].Length){
             Debug.Log("5問目");
@@ -140,30 +138,31 @@ public class TikaraQues : MonoBehaviour
 
 
         public void  TKantan(){
-       
-        TikaraAnswer = TSTable[0,1];
-        TikaraText.text = TSTable[0,0];
-        n++;
+        int n = Random.Range(0,tateNumber);
+        TikaraAnswer = TSTable[n,2];
+        TikaraText.text = TSTable[n,1];
+        furiganaText.text = TSTable[n,0];
+        //n++;
         locationOfTikaraAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
          if(locationOfTikaraAnswer == 0)
        {
         TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer; 
-        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[0,2];
-        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[0,3];
+        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n,3];
+        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n,4];
         }
         else if(locationOfTikaraAnswer ==1)
         {
         TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer;
-        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[0,4];
-        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[0,2];
+        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n,4];
+        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n,5];
     
         }
         else if(locationOfTikaraAnswer ==2)
         {
         TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer;
-        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[0,2];
-        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[0,3];
+        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n,5];
+        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n,3];
 
         }
     }
@@ -173,13 +172,13 @@ public class TikaraQues : MonoBehaviour
         //押したButtonに応じて分岐
         //textAsset の取得　改行で分ける
         if(TcurrentMode ==1){
-        Tromelines = JinmeiRomajiT.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        Tromelines = Tfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         else if(TcurrentMode ==2){
         Tromelines = TChimeiRomaji.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         else if(TcurrentMode ==4){
-        Tromelines = Tentatei.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        Tromelines = Tdoubutu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         // 行数と列数の取得
         yokoNumber = Tromelines[0].Split(',').Length;

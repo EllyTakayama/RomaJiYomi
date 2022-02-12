@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//1月2日更新
+//2月8日更新
 public class CheckButton : MonoBehaviour
 {
     public int iNum;//QuesManagerのindex番号を取得
@@ -33,17 +33,14 @@ public class CheckButton : MonoBehaviour
         batsu1Image.SetActive(false); 
         pekeImage.SetActive(false);
         peke1Image.SetActive(false);
-        AcorrectCount = 0;
-        HcorrectCount = 0;
-        GameManager.instance.AcorrectCount = AcorrectCount;
-        GameManager.instance.HcorrectCount = HcorrectCount;
+        GameManager.instance.AcorrectCount = 0;
+        GameManager.instance.HcorrectCount = 0;
         
 
     }
     void Update()
     {
-        AcorrectCount = GameManager.instance.AcorrectCount;
-        HcorrectCount = GameManager.instance.HcorrectCount;
+        
     }
 
 
@@ -70,18 +67,16 @@ public class CheckButton : MonoBehaviour
             //あ行の出題の時
             if(QuesMode ==2){
             //正解数を追加
-            AcorrectCount++;
-            GameManager.instance.AcorrectCount = AcorrectCount;
-            Debug.Log("seikai"+ AcorrectCount);
+            GameManager.instance.AcorrectCount++;
+            Debug.Log("seikai"+ GameManager.instance.AcorrectCount);
             QuesManager.instance.StopYomiage();
             maruImage.SetActive(true);
             Debug.Log("maru");}
             //50音の出題の時
             else{
                 //50音出題の時の時
-                HcorrectCount++;
-            GameManager.instance.HcorrectCount = HcorrectCount;
-            Debug.Log("Hseikai"+ HcorrectCount);
+            GameManager.instance.HcorrectCount++;
+            Debug.Log("Hseikai"+ GameManager.instance.HcorrectCount);
             QuesManager.instance.Stop46Yomiage();
             maru1Image.SetActive(true);
             Debug.Log("正解");}
@@ -126,14 +121,14 @@ public class CheckButton : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         pekeImage.SetActive(false);
         peke1Image.SetActive(false);
-        yield return new WaitForSeconds(1.2f);
+        yield return new WaitForSeconds(1.0f);
             if(QuesMode ==2){
             batsuImage.SetActive(false);
             Debug.Log("バツ");}
             else{
                 batsu1Image.SetActive(false);
             Debug.Log("バツ1");}
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         QuesManager.instance.RomajiQues();
     }
        
