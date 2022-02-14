@@ -247,7 +247,7 @@ public class QuesManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("start");
+        //Debug.Log("start");
         //GameManager経由でSettingScene内のセーブデータを取得
     //今回はfontsize 大文字小文字の選択だけです
     //SoundはSoundManagerで管理しています

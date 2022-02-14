@@ -12,13 +12,14 @@ public class TiTypingManager : MonoBehaviour
     [SerializeField]Button[] TiButtons;//正誤判定Button
     public GameObject Shutudai2Panel;
     public int TicurrentMode;
+    public bool isKantan;//かんたんかButton6こまで難しい問題Button9こ
+    public bool isTallFont;//大文字か小文字かを取得
+    //public List<string> TyShutudai = new List<string>();
+    public string answerMoji;//Buttonのテキストを一時的に取得する
+    public string QuestionAnswer;//正解の文字取得
+    public int k=3;//配列でanswerを移動させるため
+    public int answerNum=0;//answerを移動させるため
 
-
-    //問題を用意しておく
-    private string[] _kanji = {"京都","北海道","東京"};
-    private string[] _question = {"きょうと","ほっかいどう","とうきょう"};
-    private string[] _answer1 = {"KYOTO","HOKKAIDO","TOKYO"};
-    private string[] _answer;
 
     //テキストデータを格納
     public string[,] TSTable;
@@ -29,26 +30,15 @@ public class TiTypingManager : MonoBehaviour
     public int qCount;//出題のインデックス数を取得して管理
 
     //テキストデータを読み込む
-    [SerializeField] TextAsset _Tfood;
+    [SerializeField] TextAsset Tyfood;
     //[SerializeField] TextAsset _question;
     //private DictionaryChange cd;
 
-    //テキストデータを格納するList
-    private List<string> _kanjiList = new List<string>();
-    private List<string> _questionList = new List<string>();
-    private List<string> _answerList = new List<string>();
+    //テキストアセットの何行の問題かの変数
+    public int _qNum;
 
-
-    //解答しているのが何番目の文字か指定するString
-    private string _kString;
-    private string _qString;
-    public string _aString;
-
-    //テキストアセットの何番目の問題かの変数
-    public int _qNum=0;
-
-    //出題の何番目の文字か
-    public int _aNum=0;
+    //あるべき回数正解したら問題を変えるテキストアセットから取得
+    public int _aNum;
 
 public void TyKantan(string buttonname){
         
@@ -81,29 +71,73 @@ public void TyKantan(string buttonname){
     }
 
     public void  TiKantan(){
+        Output();
         Debug.Log("osita");
     }
     
    //出題する
     void Output(){
-        _aNum=0;
-        _qNum = Random.Range(0,_question.Length);//2次元配列の行の選択
+       answerNum=0;
+       k=3;
+        //TyShutudai.Clear();
+        _qNum = Random.Range(0,tateNumber);//2次元配列の行の選択
+        _aNum = int.Parse(TSTable[_qNum,2]);
 
-        _kString = _kanji[_qNum];
-        _qString = _question[_qNum];
-        _aString = _answer[_qNum];
-
-        kanjiText.text = _kString;
-        qText.text = _qString;
-        aText.text = _aString;
-        Debug.Log("_aNum"+_aNum);
+        kanjiText.text = TSTable[_qNum,0];
+        qText.text = TSTable[_qNum,1];
+        aText.text = "";
+        //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
-        Debug.Log("_aString"+_aString[_aNum].ToString());
+        int j =3;
+        for(int i =0;i<yokoNumber-3;i++){
+                 TiButtons[i].GetComponentInChildren<Text>().text = TSTable[_qNum,j];
+                 j++;}
+        QuestionAnswer = TSTable[_qNum,k];
+        
     }
+
 
    /* public void TiCheckAnswer(int num){
        if(TiButtons[num].GetComponentInChildren<Text>().text) 
     }*/
+
+
+    public void PressButton(int Bnum){
+        answerMoji = TiButtons[Bnum].GetComponentInChildren<Text>().text;
+        Debug.Log("seikai"+answerMoji);
+        Debug.Log("k"+k);
+        Debug.Log("aNum"+_aNum);
+        Debug.Log("正解数"+answerNum);
+        if(QuestionAnswer == answerMoji){
+            Correct();
+        }
+        else{
+            Miss();
+        }
+        if(answerNum>=_aNum){
+            Output();
+            Debug.Log("output");
+        }
+    }
+
+    //正解した時の関数
+    void Correct(){
+        answerNum++;
+        //_aNum++;
+        k++;
+        QuestionAnswer = TSTable[_qNum,k];
+        aText.text += answerMoji;
+        Debug.Log("correct");
+        Debug.Log("aNum"+_aNum);
+        Debug.Log("k"+k);
+        Debug.Log("answerNum"+answerNum);
+        
+
+    }
+    //間違えた時の関数
+    void Miss(){
+        Debug.Log("miss");
+    }
 
 
 
@@ -111,11 +145,15 @@ public void TyKantan(string buttonname){
     // Start is called before the first frame update
     void Start()
     {
+        GameManager.instance.LoadGfontsize();
+        isTallFont = GameManager.instance.isGfontsize;
         //Output();
         //Debug.Log("_aString"+_aString[_aNum].ToString());
         //print("answer"+_aString);
-        //SetListTi();
-        //DebugTable();
+
+        SetListTi();
+        DebugTable();
+        
 
     }
      
@@ -123,7 +161,7 @@ public void TyKantan(string buttonname){
     void SetListTi(){
         //押したButtonに応じて分岐
         //textAsset の取得　改行で分ける
-        Tromelines = _Tfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        Tromelines = Tyfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
     
         // 行数と列数の取得
         yokoNumber = Tromelines[0].Split(',').Length;
@@ -150,19 +188,5 @@ public void TyKantan(string buttonname){
         }
     }
 
-
-    public void PressButton(int Bnum){
-        Debug.Log("b"+Bnum);
-
-    }
-    //正解した時の関数
-    void Correct(){
-        _aNum++;
-        Debug.Log("correct");
-    }
-    //間違えた時の関数
-    void Miss(){
-        Debug.Log("miss");
-    }
 
 }
