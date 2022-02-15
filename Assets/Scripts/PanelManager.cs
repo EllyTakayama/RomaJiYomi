@@ -21,31 +21,44 @@ public class PanelManager : MonoBehaviour
         
     }
     public void TopSceneMove(){
+        SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TopScene");
     }
     public void KihonSceneMove(){
+        SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("KihonScene");
     }
     public void RenshuuSceneMove(){
+        SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("RenshuuScene");
     }
     public void TikaraSceneMove(){
+        SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TikaraScene");
     }
+    public void TiTypeSceneMove(){
+        SoundManager.instance.StopSE();
+        DOTween.KillAll();
+        SoundManager.instance.PlaySousaSE(2);
+        SceneManager.LoadScene("TiTypeScene");
+    }
+
     public void SettingSceneMove(){
+        SoundManager.instance.StopSE();
         DOTween.KillAll();
         SceneManager.LoadScene("SettingScene");
     }
      //
     public void TopSettingMove(){
+        SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TopScene");
@@ -53,6 +66,7 @@ public class PanelManager : MonoBehaviour
     }
 
     public void SetPanelMove(){
+        SoundManager.instance.StopSE();
         Panel0.SetActive(false);
         
     }

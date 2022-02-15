@@ -79,6 +79,7 @@ public class DOaText : MonoBehaviour
         SoundManager.instance.PlayAgSE(5);}
 
     public void OnAclick(int Bnum){
+               SoundManager.instance.StopSE();
                StopCoroutine(AButton(Bnum));
                StartCoroutine(AButton(Bnum));
                SoundManager.instance.PlayAgSE(Bnum);
@@ -92,7 +93,8 @@ public class DOaText : MonoBehaviour
         BallonImage.transform.SetParent(ButtonPanel.transform,false);  
     }
     IEnumerator AButton(int bnum)
-    {   if(isATall ==true){
+    {
+        if(isATall ==true){
         AnsImage.GetComponentInChildren<Text>().text = Awa[bnum];}
         else{
             AnsImage.GetComponentInChildren<Text>().text = aWa[bnum];
@@ -101,7 +103,7 @@ public class DOaText : MonoBehaviour
         bButton[1].enabled = false;
         bButton[2].enabled = false;
         bButton[3].enabled = false;
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         bButton[0].enabled = true;
         bButton[1].enabled = true;
         bButton[2].enabled = true;

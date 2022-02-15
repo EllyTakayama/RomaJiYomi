@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-//using System;
+using System;
 
 public class TiTypingManager : MonoBehaviour
 {
     [SerializeField]Text kanjiText;//出題の漢字表記用テキスト
     [SerializeField]Text qText;//出題内容
-    [SerializeField]Text aText;//答え
-    [SerializeField]Button[] TiButtons;//正誤判定Button
+    [SerializeField]Text aText;//解答内容を代入
+    public Button[] TiButtons;//正誤判定Button
     public GameObject Shutudai2Panel;
     public int TicurrentMode;
     public bool isKantan;//かんたんかButton6こまで難しい問題Button9こ
@@ -19,18 +19,21 @@ public class TiTypingManager : MonoBehaviour
     public string QuestionAnswer;//正解の文字取得
     public int k=3;//配列でanswerを移動させるため
     public int answerNum=0;//answerを移動させるため
+    public List<int> ButtonNum = new List<int>();//Buttonをシャッフルさせるため
+    private int n;//シャッフル用の変数
 
 
     //テキストデータを格納
-    public string[,] TSTable;
+    public string[,] TiTable;
     public string[,] TikaraTempt;
     private int tateNumber; // 行 縦
     private int yokoNumber; // 列　横
-    public string[] Tromelines;//テキストアセット取得に使う
+    public string[] Tiromelines;//テキストアセット取得に使う
     public int qCount;//出題のインデックス数を取得して管理
 
     //テキストデータを読み込む
     [SerializeField] TextAsset Tyfood;
+    [SerializeField] TextAsset Tysfood;
     //[SerializeField] TextAsset _question;
     //private DictionaryChange cd;
 
@@ -39,6 +42,22 @@ public class TiTypingManager : MonoBehaviour
 
     //あるべき回数正解したら問題を変えるテキストアセットから取得
     public int _aNum;
+
+// Start is called before the first frame update
+  void Start(){ 
+      ShuffleB();
+      Debug.Log("start");
+       //cd = GetComponent<DictionaryChange>();
+       //ShutudaiPanel.SetActive(false);
+       GameManager.instance.LoadGfontsize();
+       isTallFont = GameManager.instance.isGfontsize;
+       Debug.Log("startfont"+isTallFont);
+        //Output();
+        //SetListTi();
+        //DebugTable();
+        
+    }
+    
 
 public void TyKantan(string buttonname){
         
@@ -79,20 +98,21 @@ public void TyKantan(string buttonname){
     void Output(){
        answerNum=0;
        k=3;
+       //ShuffleB();
         //TyShutudai.Clear();
-        _qNum = Random.Range(0,tateNumber);//2次元配列の行の選択
-        _aNum = int.Parse(TSTable[_qNum,2]);
+        _qNum = UnityEngine.Random.Range(0,tateNumber);//2次元配列の行の選択
+        _aNum = int.Parse(TiTable[_qNum,2]);
 
-        kanjiText.text = TSTable[_qNum,0];
-        qText.text = TSTable[_qNum,1];
+        kanjiText.text = TiTable[_qNum,0];
+        qText.text = TiTable[_qNum,1];
         aText.text = "";
         //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
         int j =3;
         for(int i =0;i<yokoNumber-3;i++){
-                 TiButtons[i].GetComponentInChildren<Text>().text = TSTable[_qNum,j];
+                 TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
                  j++;}
-        QuestionAnswer = TSTable[_qNum,k];
+        QuestionAnswer = TiTable[_qNum,k];
         
     }
 
@@ -114,10 +134,7 @@ public void TyKantan(string buttonname){
         else{
             Miss();
         }
-        if(answerNum>=_aNum){
-            Output();
-            Debug.Log("output");
-        }
+        
     }
 
     //正解した時の関数
@@ -125,54 +142,57 @@ public void TyKantan(string buttonname){
         answerNum++;
         //_aNum++;
         k++;
-        QuestionAnswer = TSTable[_qNum,k];
+        QuestionAnswer = TiTable[_qNum,k];
         aText.text += answerMoji;
         Debug.Log("correct");
         Debug.Log("aNum"+_aNum);
         Debug.Log("k"+k);
         Debug.Log("answerNum"+answerNum);
-        
-
+        if(answerNum>=_aNum){
+            StartCoroutine(TiChangeQues());
+            Debug.Log("output");
+        }
     }
     //間違えた時の関数
     void Miss(){
         Debug.Log("miss");
     }
-
-
-
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        GameManager.instance.LoadGfontsize();
-        isTallFont = GameManager.instance.isGfontsize;
-        //Output();
-        //Debug.Log("_aString"+_aString[_aNum].ToString());
-        //print("answer"+_aString);
-
-        SetListTi();
-        DebugTable();
-        
-
+    IEnumerator TiChangeQues(){
+        for(int i=0;i<TiButtons.Length;i++){
+        TiButtons[i].enabled =false;
     }
-     
+        yield return new WaitForSeconds(0.6f);
+        Output();
+        for(int i=0;i<TiButtons.Length;i++){
+        TiButtons[i].enabled =true;}
+    }
+   
 
     void SetListTi(){
-        //押したButtonに応じて分岐
-        //textAsset の取得　改行で分ける
-        Tromelines = Tyfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        //押したButtonに応じて分岐 TicurrentMode
+        if(isTallFont == true){
+            if(TicurrentMode ==1){
+            Tiromelines = Tyfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        }else{
+            if(TicurrentMode ==1){
+            Tiromelines = Tysfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        
+        }
+        
     
+        //textAsset の取得　改行で分ける
         // 行数と列数の取得
-        yokoNumber = Tromelines[0].Split(',').Length;
-        tateNumber = Tromelines.Length;//問題数
+        yokoNumber = Tiromelines[0].Split(',').Length;
+        tateNumber = Tiromelines.Length;//問題数
         //textAssetを二次元配列に代入
-        TSTable = new string[tateNumber,yokoNumber];
+        TiTable = new string[tateNumber,yokoNumber];
         for (int i =0;i < tateNumber; i++){
-            string[] tempt = Tromelines[i].Split(new[]{','});
+            string[] tempt = Tiromelines[i].Split(new[]{','});
             for(int j = 0; j < yokoNumber; j++)
             {
-                TSTable[i, j] = tempt[j];
+                TiTable[i, j] = tempt[j];
             }
         }
     }
@@ -183,10 +203,32 @@ public void TyKantan(string buttonname){
         {
             for (int j = 0; j < yokoNumber; j++)
             {
-               Debug.Log(i.ToString()+","+j.ToString()+TSTable[i, j]);
+               Debug.Log(i.ToString()+","+j.ToString()+TiTable[i, j]);
             }
         }
     }
+    void ShuffleB(){
+        for(int i =0;i < TiButtons.Length; i++){
+            ButtonNum.Add(i);
+        }
+            int n = ButtonNum.Count;
+        // nが1より小さくなるまで繰り返す
+    while (n > 1)
+    {
+        n--;
+        // nは 0 ～ n+1 の間のランダムな値
+        int k = UnityEngine.Random.Range(0, n + 1);
+ 
+        // k番目のカードをtempに代入
+        int temp = ButtonNum[k];
+        ButtonNum[k] = ButtonNum[n];
+        ButtonNum[n] = temp;
+        }
+            for(int j=0;j<ButtonNum.Count;j++){
+                Debug.Log("k"+ButtonNum[j]);
+            }
+        }
+    
 
 
 }
