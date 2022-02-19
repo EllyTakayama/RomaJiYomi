@@ -135,12 +135,14 @@ public class TikaraQues : MonoBehaviour
             c = renshuuNum[n+2];*/
        
     }
-
-
+    //ToLower() 小文字での表示
         public void  TKantan(){
         int n = Random.Range(0,tateNumber);
+        //正解のstring
         TikaraAnswer = TSTable[n,2];
+        //出題テキスト
         TikaraText.text = TSTable[n,1];
+        //漢字、ふりがな表示
         furiganaText.text = TSTable[n,0];
         //n++;
         locationOfTikaraAnswer = UnityEngine.Random.Range(0,3);
