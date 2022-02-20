@@ -21,6 +21,7 @@ public class TiTypingManager : MonoBehaviour
     public int answerNum=0;//answerを移動させるため
     public List<int> ButtonNum = new List<int>();//Buttonをシャッフルさせるため
     private int n;//シャッフル用の変数
+    public string textcolor;
 
 
     //テキストデータを格納
@@ -42,6 +43,8 @@ public class TiTypingManager : MonoBehaviour
 
     //あるべき回数正解したら問題を変えるテキストアセットから取得
     public int _aNum;
+    //正解したQuesTextを赤く表示するために設定
+    public int _mojiNum;
 
 // Start is called before the first frame update
   void Start(){ 
@@ -98,6 +101,7 @@ public void TyKantan(string buttonname){
     void Output(){
        answerNum=0;
        k=3;
+       _mojiNum=0;
        //ShuffleB();
         //TyShutudai.Clear();
         _qNum = UnityEngine.Random.Range(0,tateNumber);//2次元配列の行の選択
@@ -105,6 +109,7 @@ public void TyKantan(string buttonname){
 
         kanjiText.text = TiTable[_qNum,0];
         qText.text = TiTable[_qNum,1];
+        textcolor = TiTable[_qNum,1];
         aText.text = "";
         //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
@@ -113,6 +118,7 @@ public void TyKantan(string buttonname){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
                  j++;}
         QuestionAnswer = TiTable[_qNum,k];
+        
         
     }
 
@@ -127,7 +133,6 @@ public void TyKantan(string buttonname){
         Debug.Log("seikai"+answerMoji);
         Debug.Log("k"+k);
         Debug.Log("aNum"+_aNum);
-        Debug.Log("正解数"+answerNum);
         if(QuestionAnswer == answerMoji){
             Correct();
         }
@@ -139,6 +144,14 @@ public void TyKantan(string buttonname){
 
     //正解した時の関数
     void Correct(){
+        if(QuestionAnswer.Length==1){
+            _mojiNum += QuestionAnswer.Length;
+        }
+        else{
+            _mojiNum += QuestionAnswer.Length-1;
+        }
+        Debug.Log("moji"+_mojiNum);
+        qText.text = "<color=#6A6A6A>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         answerNum++;
         //_aNum++;
         k++;
@@ -161,7 +174,7 @@ public void TyKantan(string buttonname){
         for(int i=0;i<TiButtons.Length;i++){
         TiButtons[i].enabled =false;
     }
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(0.5f);
         Output();
         for(int i=0;i<TiButtons.Length;i++){
         TiButtons[i].enabled =true;}

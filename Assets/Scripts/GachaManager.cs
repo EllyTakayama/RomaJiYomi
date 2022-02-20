@@ -20,8 +20,7 @@ public class GachaManager : MonoBehaviour
 	int rollNum = 10000;
     public List<int> ControlNum = new List<int>();//各要素の基準のインデックスを管理
     public List<string> nameChara = new List<string>();//名前の管理
-    public GameObject[] characters;//画像の管理
-    public List<string> setsumei = new List<string>();//キャラ説明テキストの管理
+    
   
 
 	void Start(){
