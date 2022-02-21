@@ -151,7 +151,7 @@ public void TyKantan(string buttonname){
             _mojiNum += QuestionAnswer.Length-1;
         }
         Debug.Log("moji"+_mojiNum);
-        qText.text = "<color=#6A6A6A>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
+        qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         answerNum++;
         //_aNum++;
         k++;

@@ -17,35 +17,54 @@ public class GachaManager : MonoBehaviour
 	Dictionary<int, int> itemResultDict;
 
 	// 抽選回数
-	int rollNum = 10000;
+	int rollNum = 100;
+	public GameObject GachaObject;
     public List<int> ControlNum = new List<int>();//各要素の基準のインデックスを管理
     public List<string> nameChara = new List<string>();//名前の管理
-    
-  
+	public string[] names;
+	public string[] setumeis;
+	public int NameNum;//名前の個数を取得する
+	public GameObject getNekoPanel;
 
 	void Start(){
-		GetDropItem();
+		getNekoPanel.SetActive(false);
+		/*
+		names = GachaObject.GetComponent<GachaItem>().GachaChara;
+		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;
+		DebugNames();
+		GetDropItem();*/
 	}
+	void DebugNames()
+    {
+        for (int i = 0; i < names.Length; i++)
+        {
+            Debug.Log(i.ToString()+","+names[i]);
+            }
+    }
+	void DebugSetumeis()
+    {
+        for (int i = 0; i < setumeis.Length; i++)
+        {
+            Debug.Log(i.ToString()+","+setumeis[i]);
+            }
+    }
 
-	void GetDropItem(){
+	public void GetDropItem(){
 		// 各種辞書の初期化
 		InitializeDicts();
-
-		
         
-        //* ドロップアイテムの抽選の時35-43
-		/*
-        int itemId = Choose();
+        //* ドロップアイテムの抽選の時
+        //int itemId = Choose();
 
 		// アイテムIDに応じたメッセージ出力
-		if (itemId != 0){
+		/*if (itemId != 0){
 			string itemName = itemInfo[itemId];
 			Debug.Log(itemName + " を入手した!");
 		} else {
 			Debug.Log("アイテムは入手できませんでした。");
 		}*/
 
-        // Debugで確率を確認したい時のスクリプトここから確認用46-56
+        // Debugで確率を確認したい時のスクリプトここから確認用
 		for (int i = 0 ; i < rollNum; i++){
 			int itemId = Choose();
 			if (itemResultDict.ContainsKey(itemId)){
@@ -58,23 +77,23 @@ public class GachaManager : MonoBehaviour
 			string itemName = itemInfo[pair.Key];
 			Debug.Log(itemName + " は " + pair.Value + " 回でした。");
 		}
+		Invoke("ItemGet",2f);
+	}
+
+	void ItemGet(){
+		getNekoPanel.SetActive(true);
 	}
 
 	void InitializeDicts(){
+		names = GachaObject.GetComponent<GachaItem>().GachaChara;
 		itemInfo = new Dictionary<int, string>();
-		itemInfo.Add(0, "なし");
-		itemInfo.Add(1, "竜のひげ");
-		itemInfo.Add(2, "竜の爪");
-		itemInfo.Add(3, "竜のうろこ");
-		itemInfo.Add(4, "竜の翼");
-		itemInfo.Add(5, "竜の逆鱗");
-		itemInfo.Add(6, "竜の紅玉");
-
+		for(int i =0;i<names.Length;i++){
+			itemInfo.Add(i, names[i]);
+		}
 		itemDropDict = new Dictionary<int, float>();
 		itemDropDict.Add(0, 20.0f);
-		itemDropDict.Add(2, 25.0f);
-		itemDropDict.Add(3, 12.0f);
-		itemDropDict.Add(5, 3.0f);
+		itemDropDict.Add(1, 25.0f);
+		itemDropDict.Add(2, 12.0f);
         
         //Debugで確率の設定による実行結果を見たいときは以下ののスクリプト
         itemResultDict = new Dictionary<int, int>();
