@@ -25,6 +25,7 @@ public class GachaManager : MonoBehaviour
 	public string[] setumeis;
 	public int NameNum;//名前の個数を取得する
 	public GameObject getNekoPanel;
+	public Text nameText;//ガチャの結果表示
 
 	void Start(){
 		getNekoPanel.SetActive(false);
@@ -77,11 +78,13 @@ public class GachaManager : MonoBehaviour
 			string itemName = itemInfo[pair.Key];
 			Debug.Log(itemName + " は " + pair.Value + " 回でした。");
 		}
-		Invoke("ItemGet",2f);
+		StartCoroutine(ItemGet());
 	}
-
-	void ItemGet(){
+	IEnumerator ItemGet(){
+        yield return new WaitForSeconds(0.6f);
 		getNekoPanel.SetActive(true);
+		//nameText.text = itemName + "\nをゲットした"
+
 	}
 
 	void InitializeDicts(){
