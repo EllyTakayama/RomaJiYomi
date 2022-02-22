@@ -55,18 +55,17 @@ public class GachaManager : MonoBehaviour
 		InitializeDicts();
         
         //* ドロップアイテムの抽選の時
-        //int itemId = Choose();
+        int itemId = Choose();
 
 		// アイテムIDに応じたメッセージ出力
-		/*if (itemId != 0){
+		
 			string itemName = itemInfo[itemId];
 			Debug.Log(itemName + " を入手した!");
-		} else {
-			Debug.Log("アイテムは入手できませんでした。");
-		}*/
+
+		
 
         // Debugで確率を確認したい時のスクリプトここから確認用
-		for (int i = 0 ; i < rollNum; i++){
+		/*for (int i = 0 ; i < rollNum; i++){
 			int itemId = Choose();
 			if (itemResultDict.ContainsKey(itemId)){
 				itemResultDict[itemId]++;
@@ -77,11 +76,12 @@ public class GachaManager : MonoBehaviour
 		foreach (KeyValuePair<int, int> pair in itemResultDict){
 			string itemName = itemInfo[pair.Key];
 			Debug.Log(itemName + " は " + pair.Value + " 回でした。");
-		}
+		}*/
+		DebugNames();
 		StartCoroutine(ItemGet());
 	}
 	IEnumerator ItemGet(){
-        yield return new WaitForSeconds(0.6f);
+        yield return new WaitForSeconds(1.0f);
 		getNekoPanel.SetActive(true);
 		//nameText.text = itemName + "\nをゲットした"
 
@@ -95,8 +95,8 @@ public class GachaManager : MonoBehaviour
 		}
 		itemDropDict = new Dictionary<int, float>();
 		itemDropDict.Add(0, 20.0f);
-		itemDropDict.Add(1, 25.0f);
-		itemDropDict.Add(2, 12.0f);
+		itemDropDict.Add(1, 20.0f);
+		itemDropDict.Add(2, 20.0f);
         
         //Debugで確率の設定による実行結果を見たいときは以下ののスクリプト
         itemResultDict = new Dictionary<int, int>();

@@ -13,6 +13,7 @@ public class GachaItem : MonoBehaviour
     //public List<string> setsumei = new List<string>();//キャラ説明テキストの管理
     public string[] GachaChara;//textアセットからキャラ名の代入
     public string[] setumeiText;//textアセットからキャラ説明テキストの代入
+    public int[] charaKakuritu;//各キャラの確率を取得
 
 
      //テキストデータを読み込む
