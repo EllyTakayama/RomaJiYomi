@@ -26,6 +26,9 @@ public class GachaManager : MonoBehaviour
 	public int NameNum;//名前の個数を取得する
 	public GameObject getNekoPanel;
 	public Text nameText;//ガチャの結果表示
+	public GameObject openBallImage;//ガチャの開くBall Imageオブジェクト
+	public GameObject pOpenBallImage;//ガチャの開く前BallImageオブジェクト
+	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト
 
 	void Start(){
 		getNekoPanel.SetActive(false);
@@ -83,6 +86,13 @@ public class GachaManager : MonoBehaviour
 	IEnumerator ItemGet(){
         yield return new WaitForSeconds(1.0f);
 		getNekoPanel.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
+		openBallImage.SetActive(false);
+		pOpenBallImage.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
+		pOpenBallImage.SetActive(false);
+		flashImage.SetActive(true);
+
 		//nameText.text = itemName + "\nをゲットした"
 
 	}

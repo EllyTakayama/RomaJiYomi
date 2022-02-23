@@ -34,7 +34,8 @@ public class TiTypingManager : MonoBehaviour
 
     //テキストデータを読み込む
     [SerializeField] TextAsset Tyfood;
-    [SerializeField] TextAsset Tysfood;
+    //[SerializeField] TextAsset Tysfood;
+    [SerializeField] TextAsset Tydoubutu;
     //[SerializeField] TextAsset _question;
     //private DictionaryChange cd;
 
@@ -81,6 +82,13 @@ public void TyKantan(string buttonname){
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
+                case "Button3":
+                TicurrentMode = 3;
+                SetListTi();
+                Debug.Log("3");
+                Shutudai2Panel.SetActive(true);
+                TiKantan();
+                    break;
                 case "Button4":
                 TicurrentMode = 4;
                 SetListTi();
@@ -99,6 +107,7 @@ public void TyKantan(string buttonname){
     
    //出題する
     void Output(){
+       ShuffleB();
        answerNum=0;
        k=3;
        _mojiNum=0;
@@ -106,7 +115,6 @@ public void TyKantan(string buttonname){
         //TyShutudai.Clear();
         _qNum = UnityEngine.Random.Range(0,tateNumber);//2次元配列の行の選択
         _aNum = int.Parse(TiTable[_qNum,2]);
-
         kanjiText.text = TiTable[_qNum,0];
         qText.text = TiTable[_qNum,1];
         textcolor = TiTable[_qNum,1];
@@ -183,18 +191,13 @@ public void TyKantan(string buttonname){
 
     void SetListTi(){
         //押したButtonに応じて分岐 TicurrentMode
-        if(isTallFont == true){
+        
             if(TicurrentMode ==1){
             Tiromelines = Tyfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+            }
+            else if(TicurrentMode ==3){
+             Tiromelines = Tydoubutu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
-        }else{
-            if(TicurrentMode ==1){
-            Tiromelines = Tysfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
-        }
-        
-        }
-        
-    
         //textAsset の取得　改行で分ける
         // 行数と列数の取得
         yokoNumber = Tiromelines[0].Split(',').Length;
@@ -221,6 +224,7 @@ public void TyKantan(string buttonname){
         }
     }
     void ShuffleB(){
+        ButtonNum.Clear();
         for(int i =0;i < TiButtons.Length; i++){
             ButtonNum.Add(i);
         }
