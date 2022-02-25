@@ -36,6 +36,8 @@ public class TikaraQues : MonoBehaviour
     [SerializeField] TextAsset Tentatei;
     [SerializeField] TextAsset Tfood;
     [SerializeField] TextAsset Tdoubutu;
+    [SerializeField] TextAsset Ttabemono;
+    [SerializeField] TextAsset Tseikatu;
 
     //テキストデータを格納
     public string[,] TSTable;
@@ -89,6 +91,15 @@ public class TikaraQues : MonoBehaviour
                 TcurrentMode = 2;
                 SetList();
                 Debug.Log("2");
+                DebugTable();
+                ShutudaiPanel.SetActive(true);
+                TKantan();
+                    break;
+                case "Button3":
+                TcurrentMode = 3;
+                SetList();
+                Debug.Log("3");
+                DebugTable();
                 ShutudaiPanel.SetActive(true);
                 TKantan();
                     break;
@@ -177,10 +188,13 @@ public class TikaraQues : MonoBehaviour
         Tromelines = Tfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         else if(TcurrentMode ==2){
-        Tromelines = TChimeiRomaji.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        Tromelines = Tseikatu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if(TcurrentMode ==3){
+        Tromelines = Tdoubutu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         else if(TcurrentMode ==4){
-        Tromelines = Tdoubutu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        Tromelines = Ttabemono.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         // 行数と列数の取得
         yokoNumber = Tromelines[0].Split(',').Length;

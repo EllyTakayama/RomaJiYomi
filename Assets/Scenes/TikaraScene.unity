@@ -1905,7 +1905,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u98DF\u3079\u7269"
+  m_Text: "\u91CE\u83DC\u30FB\u679C\u7269"
 --- !u!222 &624151642
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2196,7 +2196,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u52D5\u7269"
+  m_Text: "\u751F\u304D\u7269"
 --- !u!222 &737061513
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2331,6 +2331,8 @@ MonoBehaviour:
   Tentatei: {fileID: 4900000, guid: 1efdd363ed221460bb42e5b05351af32, type: 3}
   Tfood: {fileID: 4900000, guid: 6b5ebe23de4af48f2a1b966f2d346dd0, type: 3}
   Tdoubutu: {fileID: 4900000, guid: 6393341197d354459a2af3999bb7b487, type: 3}
+  Ttabemono: {fileID: 4900000, guid: 2979141f2cc314bdc9907760ad2620b4, type: 3}
+  Tseikatu: {fileID: 4900000, guid: 611cb3a4264604926966e52c391fb75a, type: 3}
   Tromelines: []
 --- !u!4 &839093095
 Transform:
@@ -3221,7 +3223,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5730\u540D\u30FB\u3061\u3081\u3044"
+  m_Text: "\u751F\u6D3B"
 --- !u!222 &1186071130
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3322,7 +3324,7 @@ GameObject:
   - component: {fileID: 1321914692}
   - component: {fileID: 1321914691}
   m_Layer: 5
-  m_Name: doubutuButton4
+  m_Name: doubutuButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3401,7 +3403,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Button4
+          m_StringArgument: Button3
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1321914692
@@ -3675,7 +3677,7 @@ GameObject:
   - component: {fileID: 1478204752}
   - component: {fileID: 1478204751}
   m_Layer: 5
-  m_Name: chimeiButton
+  m_Name: seikatuButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3745,7 +3747,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 839093094}
         m_TargetAssemblyTypeName: TikaraQues, Assembly-CSharp
         m_MethodName: Kantan
         m_Mode: 5
@@ -3808,7 +3810,7 @@ GameObject:
   - component: {fileID: 1490589336}
   - component: {fileID: 1490589335}
   m_Layer: 5
-  m_Name: entertainButton
+  m_Name: tabemonoButton4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3878,7 +3880,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 839093094}
         m_TargetAssemblyTypeName: TikaraQues, Assembly-CSharp
         m_MethodName: Kantan
         m_Mode: 5
@@ -4655,7 +4657,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30A8\u30F3\u30BF\u30C6\u30A4\u30E1\u30F3\u30C8"
+  m_Text: "\u98DF\u3079\u7269"
 --- !u!222 &1693864832
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5462,7 +5464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2065466096
 RectTransform:
   m_ObjectHideFlags: 0

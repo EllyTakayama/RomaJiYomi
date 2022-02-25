@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Text.RegularExpressions;
 
 public class TiTypingManager : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class TiTypingManager : MonoBehaviour
     public List<int> ButtonNum = new List<int>();//Buttonをシャッフルさせるため
     private int n;//シャッフル用の変数
     public string textcolor;
+    public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
 
 
     //テキストデータを格納
@@ -34,9 +36,9 @@ public class TiTypingManager : MonoBehaviour
 
     //テキストデータを読み込む
     [SerializeField] TextAsset Tyfood;
-    //[SerializeField] TextAsset Tysfood;
+    [SerializeField] TextAsset Tyseikatu;
     [SerializeField] TextAsset Tydoubutu;
-    //[SerializeField] TextAsset _question;
+    [SerializeField] TextAsset Tytabemono;
     //private DictionaryChange cd;
 
     //テキストアセットの何行の問題かの変数
@@ -79,6 +81,7 @@ public void TyKantan(string buttonname){
                 TicurrentMode = 2;
                 SetListTi();
                 Debug.Log("2");
+                DebugTable();
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
@@ -86,6 +89,7 @@ public void TyKantan(string buttonname){
                 TicurrentMode = 3;
                 SetListTi();
                 Debug.Log("3");
+                DebugTable();
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
@@ -114,20 +118,38 @@ public void TyKantan(string buttonname){
        //ShuffleB();
         //TyShutudai.Clear();
         _qNum = UnityEngine.Random.Range(0,tateNumber);//2次元配列の行の選択
+        //_qNum = 11;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
-        kanjiText.text = TiTable[_qNum,0];
+
+        if(isTallFont==true){
+            kanjiText.text = TiTable[_qNum,0];
         qText.text = TiTable[_qNum,1];
         textcolor = TiTable[_qNum,1];
         aText.text = "";
-        //Debug.Log("_aNum"+_aNum);
-        Debug.Log("qNum"+_qNum);
+        
         int j =3;
         for(int i =0;i<yokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
                  j++;}
         QuestionAnswer = TiTable[_qNum,k];
+        //Debug.Log("_aNum"+_aNum);
+        Debug.Log("qNum"+_qNum);
+        }
+        else{
+            kanjiText.text = TiTable[_qNum,0].ToLower();
+        qText.text = TiTable[_qNum,1].ToLower();
+        textcolor = TiTable[_qNum,1].ToLower();
+        aText.text = "";
         
-        
+        int j =3;
+        for(int i =0;i<yokoNumber-3;i++){
+                 TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j].ToLower();
+                 j++;}
+        QuestionAnswer = TiTable[_qNum,k].ToLower();
+        //Debug.Log("_aNum"+_aNum);
+        Debug.Log("qNum"+_qNum);
+
+        }
     }
 
 
@@ -152,27 +174,43 @@ public void TyKantan(string buttonname){
 
     //正解した時の関数
     void Correct(){
+
         if(QuestionAnswer.Length==1){
             _mojiNum += QuestionAnswer.Length;
         }
         else{
-            _mojiNum += QuestionAnswer.Length-1;
+            if(Regex.IsMatch(QuestionAnswer, pattern)){
+                _mojiNum += QuestionAnswer.Length;
+                }
+            else{
+                _mojiNum += QuestionAnswer.Length-1;
+                }
         }
         Debug.Log("moji"+_mojiNum);
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         answerNum++;
+        if(answerNum>=_aNum){
+            StartCoroutine(TiChangeQues());
+            Debug.Log("output");
+            return;
+        }
+        
         //_aNum++;
         k++;
-        QuestionAnswer = TiTable[_qNum,k];
+        if(isTallFont==true){
+            QuestionAnswer = TiTable[_qNum,k];
+            }
+        else{
+             QuestionAnswer = TiTable[_qNum,k].ToLower();
+            }
+       
+        
         aText.text += answerMoji;
         Debug.Log("correct");
         Debug.Log("aNum"+_aNum);
         Debug.Log("k"+k);
         Debug.Log("answerNum"+answerNum);
-        if(answerNum>=_aNum){
-            StartCoroutine(TiChangeQues());
-            Debug.Log("output");
-        }
+        
     }
     //間違えた時の関数
     void Miss(){
@@ -195,8 +233,14 @@ public void TyKantan(string buttonname){
             if(TicurrentMode ==1){
             Tiromelines = Tyfood.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
             }
+             else if(TicurrentMode ==2){
+             Tiromelines = Tyseikatu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
             else if(TicurrentMode ==3){
              Tiromelines = Tydoubutu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if(TicurrentMode ==4){
+             Tiromelines = Tytabemono.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         //textAsset の取得　改行で分ける
         // 行数と列数の取得
