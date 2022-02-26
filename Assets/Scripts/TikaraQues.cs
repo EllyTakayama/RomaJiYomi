@@ -20,6 +20,7 @@ public class TikaraQues : MonoBehaviour
     public Toggle toggle1;//簡単・難しい分岐
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> romeSlice = new List<string>();
+    public bool isFontTall;
 
     public enum TikaraType
     {
@@ -66,6 +67,8 @@ public class TikaraQues : MonoBehaviour
     {
        //cd = GetComponent<DictionaryChange>();
        //ShutudaiPanel.SetActive(false);
+       GameManager.instance.LoadGfontsize();
+       isFontTall = GameManager.instance.isGfontsize;
        
     }
     // Update is called once per frame
@@ -158,7 +161,8 @@ public class TikaraQues : MonoBehaviour
         //n++;
         locationOfTikaraAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
-         if(locationOfTikaraAnswer == 0)
+        if(isFontTall==true){
+        if(locationOfTikaraAnswer == 0)
        {
         TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer; 
         TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n,3];
@@ -176,8 +180,31 @@ public class TikaraQues : MonoBehaviour
         TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer;
         TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n,5];
         TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n,3];
+        }
+        }
+        else{
+            if(locationOfTikaraAnswer == 0)
+       {
+        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower(); 
+        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n,3].ToLower();
+        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n,4].ToLower();
+        }
+        else if(locationOfTikaraAnswer ==1)
+        {
+        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
+        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n,4].ToLower();
+        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n,5].ToLower();
+    
+        }
+        else if(locationOfTikaraAnswer ==2)
+        {
+        TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
+        TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n,5].ToLower();
+        TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n,3].ToLower();
+        }
 
         }
+        
     }
 
     
