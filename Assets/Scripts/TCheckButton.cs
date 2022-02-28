@@ -7,7 +7,11 @@ public class TCheckButton : MonoBehaviour
 {
     [SerializeField] private GameObject maruImage;
     [SerializeField] private GameObject pekeImage;
-    [SerializeField] private Image enemyImage;
+    //[SerializeField] private GameObject enemyMaker;
+    public GameObject enemyDamageCall;
+
+    
+    //[SerializeField] private Image enemyImage;
    
     // Start is called before the first frame update
     void Start()
@@ -28,7 +32,7 @@ public class TCheckButton : MonoBehaviour
             maruImage.SetActive(true);
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");
-            
+            enemyDamageCall.GetComponent<EnemyDamage>().DamageCall();
             StartCoroutine(TiMaruButton());
         }
         else{
@@ -54,8 +58,5 @@ public class TCheckButton : MonoBehaviour
         yield return new WaitForSeconds(0.1f);
         TikaraQues.instance.TKantan();
     }
-    /*IEnumerator EnemyDamage()
-    {  
-    }*/
-
+    
 }
