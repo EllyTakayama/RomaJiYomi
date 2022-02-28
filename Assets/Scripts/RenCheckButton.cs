@@ -60,10 +60,10 @@ public class RenCheckButton : MonoBehaviour
     {   yield return new WaitForSeconds(0.2f);
         SoundManager.instance.PlaySousaSE(1);
         pekeImage.SetActive(false);
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1.4f);
             batsuImage.SetActive(false);
             Debug.Log("バツ");
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         RenshuuQues.instance.Renshuu();
     }
 }

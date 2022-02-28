@@ -8,7 +8,8 @@ public class TikaraQues : MonoBehaviour
 {
     public static TikaraQues instance;
     private int locationOfTikaraAnswer;
-    public GameObject[] TikaraAnsButtons;
+    public Button[] TikaraAnsButtons;
+    [SerializeField] private GameObject enemies;
     [HideInInspector] public string TikaraAnswer;
     public string tagOfButton;
     public Text TikaraText;
@@ -21,6 +22,9 @@ public class TikaraQues : MonoBehaviour
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> romeSlice = new List<string>();
     public bool isFontTall;
+    public int TiQuesCount;//出題数をカウントする
+    public Text TiQuesText;
+    public Text TiQuesCountText;
 
     public enum TikaraType
     {
@@ -69,7 +73,7 @@ public class TikaraQues : MonoBehaviour
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
        isFontTall = GameManager.instance.isGfontsize;
-       
+       TiQuesCount = 0;
     }
     // Update is called once per frame
     void Update()
@@ -151,6 +155,11 @@ public class TikaraQues : MonoBehaviour
     }
     //ToLower() 小文字での表示
         public void  TKantan(){
+        TiQuesCount++;
+        TiQuesCountText.text = TiQuesCount.ToString();
+        TikaraAnsButtons[0].enabled = true;
+        TikaraAnsButtons[1].enabled = true;
+        TikaraAnsButtons[2].enabled = true;
         int n = Random.Range(0,tateNumber);
         //正解のstring
         TikaraAnswer = TSTable[n,2];
@@ -159,6 +168,7 @@ public class TikaraQues : MonoBehaviour
         //漢字、ふりがな表示
         furiganaText.text = TSTable[n,0];
         //n++;
+
         locationOfTikaraAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
         if(isFontTall==true){
