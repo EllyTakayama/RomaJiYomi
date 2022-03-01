@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
    public int AcorrectCount;//基本Sceneあのスコア保存
    public int AtotalCount;//累計の正解数
    public int HcorrectCount;//基本Sceneあのスコア保存
+   public bool isTiWord;//TikaraSceneの解答分岐のbool
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
 
     private void Awake()
@@ -50,6 +51,8 @@ public class GameManager : MonoBehaviour
          isGfontsize = ES3.Load<bool>("isGfontsize",true);
          Debug.Log("クリックisGfontSize"+isGfontsize);
     }
+
+    
     //KihonSceneあ行の正解数保存
     public void SaveACount(){
         //isGfontsize = SettingManager.instance.isfontSize;

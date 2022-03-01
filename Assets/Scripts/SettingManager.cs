@@ -29,11 +29,6 @@ public class SettingManager : MonoBehaviour
         Debug.Log("スタートロード");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void FontSelectToggle(){
         if(tallToggle.isOn == true){
             //大文字選択ならisfontSizeはtrue

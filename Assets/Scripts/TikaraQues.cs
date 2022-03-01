@@ -25,6 +25,7 @@ public class TikaraQues : MonoBehaviour
     public int TiQuesCount;//出題数をカウントする
     public Text TiQuesText;
     public Text TiQuesCountText;
+    public bool isWord;//単語で解答するならtrue 1文字ずつ解凍するならfalse
 
     public enum TikaraType
     {
