@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//2月5日更新
+//3月2日更新
 
 public class GameManager : MonoBehaviour
 {
    public static GameManager instance;
-   public bool isGfontsize;
+   public bool isGfontsize;//Setting画面での大文字小文字のbool
    public bool isGKunrei;
-   public bool isGfontSize;
+   //public bool isGfontSize;
+   public bool isSEOn;//SEオンオフ
+   public bool isBgmOn;//BGMオンオフ
    public int AcorrectCount;//基本Sceneあのスコア保存
    public int AtotalCount;//累計の正解数
    public int HcorrectCount;//基本Sceneあのスコア保存
@@ -32,14 +34,13 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+       //LoadGfontsize();
+       //LoadGKunrei();
+       //LoadGse();
+       //LoadGbgm();
+       //Debug.Log("start");
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void SaveGfontsize(){
         //isGfontsize = SettingManager.instance.isfontSize;
         ES3.Save<bool>("isGfontsize",isGfontsize );
@@ -51,12 +52,47 @@ public class GameManager : MonoBehaviour
          isGfontsize = ES3.Load<bool>("isGfontsize",true);
          Debug.Log("クリックisGfontSize"+isGfontsize);
     }
+    public void SaveGKunrei(){
+        //isGfontsize = SettingManager.instance.isfontSize;
+        ES3.Save<bool>("isGKunrei",isGKunrei);
+        Debug.Log("クリックisGKunrei"+isGKunrei);
+    }
+    public void LoadGKunrei(){
+         if(ES3.KeyExists("isGKunrei"))
+         isGKunrei = ES3.Load<bool>("isGKunrei",true);
+         Debug.Log("クリックisGKunrei"+isGKunrei);
+    }
+
+
+    public void SaveGse(){
+        ES3.Save<bool>("isSEOn",isSEOn);
+        Debug.Log("クリックisSEOn"+isSEOn);
+    }
+
+    public void LoadGse(){
+         //if(ES3.KeyExists("isSEOn"))
+         isSEOn = ES3.Load<bool>("isSEOn",true);
+         Debug.Log("クリックisSEOn"+isSEOn);
+    }
+
+public void SaveGbgm(){
+        ES3.Save<bool>("isBgmOn",isBgmOn);
+        Debug.Log("クリックisBgmOn"+isBgmOn);
+    }
+
+    public void LoadGbgm(){
+         //if(ES3.KeyExists("isBgmOn"))
+         isBgmOn = ES3.Load<bool>("isBgmOn",true);
+         Debug.Log("クリックisBgmOn"+isBgmOn);
+    }
+
+    
 
     
     //KihonSceneあ行の正解数保存
     public void SaveACount(){
         //isGfontsize = SettingManager.instance.isfontSize;
-        ES3.Save<int>("Acorrect",AcorrectCount,"AcCount.es3");
+        ES3.Save<int>("Acorrect",AcorrectCount);
         Debug.Log("クリックAcorrect"+AcorrectCount);
     }
     public void LoadACount(){

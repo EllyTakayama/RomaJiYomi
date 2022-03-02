@@ -9,34 +9,33 @@ public class TiToggleManager : MonoBehaviour
     public Toggle Toggle1;//単語単位での解答true
     public Toggle Toggle2;//ひらがな1文字ずつでの解答true
     public bool isTango;//boolで切り替えし、TikaraQuesのブールに代入
+    public bool isKotoba;//boolで切り替えし、TikaraQuesのブールに代入
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start(){
         TiTogLoad();
-        
+        //Debug.Log("単語isTango"+Toggle1.isOn);
+        //Debug.Log("1文字isTango"+Toggle2.isOn);
     }
     public void TiSelectToggle(){
         if(Toggle1.isOn == true){
             //単語単位での選択
             isTango = true;
-            TikaraQues.instance.isWord = isTango;
-            ES3.Save<bool>("isTango",isTango,"isTango.es3");
+            ES3.Save<bool>("isTango",isTango);
+            //Debug.Log("クリック単語isTango"+isTango);
+            Debug.Log("単語isTango"+Toggle1.isOn);
+            Debug.Log("1文字isTango"+Toggle2.isOn);
         }
         else{
-            //Toggle2 1文字ずつ入力
-            isTango = false;
-            TikaraQues.instance.isWord = isTango;
-            ES3.Save<bool>("isTango", isTango,"isTango.es3");
-            
+            ES3.Save<bool>("isTango",Toggle1.isOn);
+             Debug.Log("単語isTango"+Toggle1.isOn);
+             Debug.Log("1文字isTango"+Toggle2.isOn);
         }
-        Debug.Log("クリックisTango"+isTango);
+        
     }
     public void TiTogLoad(){
-        isTango = ES3.Load<bool>("isTango", isTango);
-        TikaraQues.instance.isWord = isTango;
-        Debug.Log("クリックisTango"+isTango);
-        if(isTango ==true){
+        isTango = ES3.Load<bool>("isTango",true);
+        if(isTango==true){
             Toggle1.isOn = true;
             Toggle2.isOn = false;
         }
@@ -44,8 +43,9 @@ public class TiToggleManager : MonoBehaviour
             Toggle1.isOn = false;
             Toggle2.isOn = true;
         }
-        Debug.Log("単語Toggle"+Toggle1.isOn);
-        Debug.Log("1文字Toggle"+Toggle2.isOn);
+        
+        Debug.Log("ロード単語Toggle"+Toggle1.isOn);
+        Debug.Log("ロード文字Toggle"+Toggle2.isOn);
     }
 
 
