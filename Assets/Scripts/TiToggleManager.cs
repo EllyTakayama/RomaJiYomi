@@ -21,20 +21,21 @@ public class TiToggleManager : MonoBehaviour
         if(Toggle1.isOn == true){
             //単語単位での選択
             isTango = true;
-            ES3.Save<bool>("isTango",isTango);
+            ES3.Save<bool>("isTango",isTango,"isTango.es3");
             //Debug.Log("クリック単語isTango"+isTango);
             Debug.Log("単語isTango"+Toggle1.isOn);
             Debug.Log("1文字isTango"+Toggle2.isOn);
         }
         else{
-            ES3.Save<bool>("isTango",Toggle1.isOn);
+            isTango = false;
+            ES3.Save<bool>("isTango",isTango,"isTango.es3");
              Debug.Log("単語isTango"+Toggle1.isOn);
              Debug.Log("1文字isTango"+Toggle2.isOn);
         }
         
     }
     public void TiTogLoad(){
-        isTango = ES3.Load<bool>("isTango",true);
+        isTango = ES3.Load<bool>("isTango","isTango.es3",true);
         if(isTango==true){
             Toggle1.isOn = true;
             Toggle2.isOn = false;
