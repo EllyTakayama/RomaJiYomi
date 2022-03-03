@@ -3489,6 +3489,8 @@ GameObject:
   m_Component:
   - component: {fileID: 839093095}
   - component: {fileID: 839093094}
+  - component: {fileID: 839093096}
+  - component: {fileID: 839093097}
   m_Layer: 0
   m_Name: TQuesManager
   m_TagString: Untagged
@@ -3545,13 +3547,67 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 839093093}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 2.2526474, y: 0.16144373, z: 90}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &839093096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839093093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b654930337684a86b37c53508b56955, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  kanjiText: {fileID: 1755296223}
+  qText: {fileID: 516508683}
+  aText: {fileID: 470526970}
+  TiButtons:
+  - {fileID: 1125537436}
+  - {fileID: 2103837783}
+  - {fileID: 1458405577}
+  - {fileID: 1126072316}
+  - {fileID: 1719353871}
+  - {fileID: 1631928164}
+  Shutudai2Panel: {fileID: 1714495023}
+  TicurrentMode: 0
+  isKantan: 0
+  isTallFont: 0
+  answerMoji: 
+  QuestionAnswer: 
+  k: 3
+  answerNum: 0
+  ButtonNum: 
+  textcolor: 
+  pattern: "\u0100|\u012A|\u016A|\u0112|\u014C|\u0101|\u012B|\u016B|\u0113|\u014D"
+  Tiromelines: []
+  qCount: 0
+  Tyfood: {fileID: 4900000, guid: 85d62fd4aac00492fac96276a89df354, type: 3}
+  Tyseikatu: {fileID: 4900000, guid: 4ab965fcd497f4539bcb4da4a418cca2, type: 3}
+  Tydoubutu: {fileID: 4900000, guid: 47fdc9f65bdc84269b67bf24c77118c8, type: 3}
+  Tytabemono: {fileID: 4900000, guid: 694fc399ff1194e6dbe889898c49be49, type: 3}
+  _qNum: 0
+  _aNum: 0
+  _mojiNum: 0
+--- !u!114 &839093097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839093093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a641a7307d6048e18a0e21f5cf32dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &844255096
 GameObject:
   m_ObjectHideFlags: 0
@@ -8719,56 +8775,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1875845311}
-  - component: {fileID: 1875845310}
   m_Layer: 0
   m_Name: TiQuesManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1875845310
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1875845309}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b654930337684a86b37c53508b56955, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  kanjiText: {fileID: 1755296223}
-  qText: {fileID: 516508683}
-  aText: {fileID: 470526970}
-  TiButtons:
-  - {fileID: 1125537436}
-  - {fileID: 2103837783}
-  - {fileID: 1458405577}
-  - {fileID: 1126072316}
-  - {fileID: 1719353871}
-  - {fileID: 1631928164}
-  Shutudai2Panel: {fileID: 1714495023}
-  TicurrentMode: 0
-  isKantan: 0
-  isTallFont: 0
-  answerMoji: 
-  QuestionAnswer: 
-  k: 3
-  answerNum: 0
-  ButtonNum: 
-  textcolor: 
-  pattern: "\u0100|\u012A|\u016A|\u0112|\u014C|\u0101|\u012B|\u016B|\u0113|\u014D"
-  Tiromelines: []
-  qCount: 0
-  Tyfood: {fileID: 4900000, guid: 85d62fd4aac00492fac96276a89df354, type: 3}
-  Tyseikatu: {fileID: 4900000, guid: 4ab965fcd497f4539bcb4da4a418cca2, type: 3}
-  Tydoubutu: {fileID: 4900000, guid: 47fdc9f65bdc84269b67bf24c77118c8, type: 3}
-  Tytabemono: {fileID: 4900000, guid: 694fc399ff1194e6dbe889898c49be49, type: 3}
-  _qNum: 0
-  _aNum: 0
-  _mojiNum: 0
+  m_IsActive: 0
 --- !u!4 &1875845311
 Transform:
   m_ObjectHideFlags: 0

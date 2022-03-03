@@ -29,8 +29,8 @@ public class TiTypingManager : MonoBehaviour
     //テキストデータを格納
     public string[,] TiTable;
     public string[,] TikaraTempt;
-    private int tateNumber; // 行 縦
-    private int yokoNumber; // 列　横
+    private int TitateNumber; // 行 縦
+    private int TiyokoNumber; // 列　横
     public string[] Tiromelines;//テキストアセット取得に使う
     public int qCount;//出題のインデックス数を取得して管理
 
@@ -117,7 +117,7 @@ public void TyKantan(string buttonname){
        _mojiNum=0;
        //ShuffleB();
         //TyShutudai.Clear();
-        _qNum = UnityEngine.Random.Range(0,tateNumber);//2次元配列の行の選択
+        _qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
         //_qNum = 11;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
@@ -128,7 +128,7 @@ public void TyKantan(string buttonname){
         aText.text = "";
         
         int j =3;
-        for(int i =0;i<yokoNumber-3;i++){
+        for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
                  j++;}
         QuestionAnswer = TiTable[_qNum,k];
@@ -142,7 +142,7 @@ public void TyKantan(string buttonname){
         aText.text = "";
         
         int j =3;
-        for(int i =0;i<yokoNumber-3;i++){
+        for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j].ToLower();
                  j++;}
         QuestionAnswer = TiTable[_qNum,k].ToLower();
@@ -244,13 +244,13 @@ public void TyKantan(string buttonname){
         }
         //textAsset の取得　改行で分ける
         // 行数と列数の取得
-        yokoNumber = Tiromelines[0].Split(',').Length;
-        tateNumber = Tiromelines.Length;//問題数
+        TiyokoNumber = Tiromelines[0].Split(',').Length;
+        TitateNumber = Tiromelines.Length;//問題数
         //textAssetを二次元配列に代入
-        TiTable = new string[tateNumber,yokoNumber];
-        for (int i =0;i < tateNumber; i++){
+        TiTable = new string[TitateNumber,TiyokoNumber];
+        for (int i =0;i < TitateNumber; i++){
             string[] tempt = Tiromelines[i].Split(new[]{','});
-            for(int j = 0; j < yokoNumber; j++)
+            for(int j = 0; j < TiyokoNumber; j++)
             {
                 TiTable[i, j] = tempt[j];
             }
@@ -259,9 +259,9 @@ public void TyKantan(string buttonname){
     //Debugで二次元入れるの中身を確認したいとき用のメソッド
     void DebugTable()
     {
-        for (int i = 0; i < tateNumber; i++)
+        for (int i = 0; i < TitateNumber; i++)
         {
-            for (int j = 0; j < yokoNumber; j++)
+            for (int j = 0; j < TiyokoNumber; j++)
             {
                Debug.Log(i.ToString()+","+j.ToString()+TiTable[i, j]);
             }
@@ -289,7 +289,4 @@ public void TyKantan(string buttonname){
                 Debug.Log("k"+ButtonNum[j]);
             }
         }
-    
-
-
 }
