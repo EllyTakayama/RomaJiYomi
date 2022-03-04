@@ -36,6 +36,21 @@ public class HiraDictionary : MonoBehaviour
         {"ヴぁ",107},{"ヴぃ",108},{"ヴ",107},{"ヴぇ",108},{"ヴぉ",109},
        
     };
+    // 訓令→ヘボン式へ変換
+    public Dictionary<string,string> dicHebon = new Dictionary<string,string>()
+    {
+        //大文字
+        {"SI","SHI"}, {"TI","CHI"},{"TU","TSU"}, {"HU","FU"},
+        {"ZI","JI"}, {"ZYA","JA"}, {"ZYU","JU"},{"ZYO","JO"}, 
+        {"SYA","SHA"},{"SYU","SHU"}, {"SYO","SHO"},
+        {"TYA","CHA"}, {"TYU","CHU"},{"TYO","CHO"},
+
+        //小文字
+        {"si","shi"}, {"ti","chi"},{"tu","tsu"}, {"hu","fu"},
+        {"zi","ji"},{"zya","ja"}, {"zyu","ju"}, {"zyo","jo"}, 
+        {"sya","sha"},{"syu","shu"}, {"syo","sho"},
+        {"tya","cha"}, {"tyu","chu"},{"tyo","cho"},
+    };
     //大文字
     public Dictionary<string, string> dicT = new Dictionary<string, string>() {
         {"あ", "A"},{"い", "I"},{"う", "U"},{"え", "E"},{"お", "O"},

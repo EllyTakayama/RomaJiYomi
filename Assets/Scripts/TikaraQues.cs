@@ -18,16 +18,16 @@ public class TikaraQues : MonoBehaviour
     public int TikaraCount;
     public int TcurrentMode;
     public GameObject ShutudaiPanel;
-    //public GameObject Shutudai2Panel;
+    public GameObject Shutudai2Panel;
     public Toggle toggle1;//簡単・難しい分岐
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> yomiageSlice = new List<string>();
     public bool isFontTall;
+    public bool isTiKunrei;//trueなら訓令式　falseならヘボン
     public int TiQuesCount;//出題数をカウントする
     public Text TiQuesText;
     public Text TiQuesCountText;
     public bool isWord;//単語で解答するならtrue 1文字ずつ解凍するならfalse
-    
 
     public enum TikaraType
     {
@@ -72,14 +72,13 @@ public class TikaraQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       //cd = GetComponent<DictionaryChange>();
+       
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
        isFontTall = GameManager.instance.isGfontsize;
        TiQuesCount = 0;
        cd = GetComponent<HiraDictionary>();
-       AnswerSlice("にわとり");
-       StartCoroutine(ShutudaiSE());
+       
     }
     // Update is called once per frame
     void Update()
@@ -93,6 +92,20 @@ public class TikaraQues : MonoBehaviour
         switch (buttonname)
             {
                 case "Button1":
+                if(isWord==true){
+                   TcurrentMode = 1;
+                   SetList();
+                   Debug.Log("1");
+                   //DebugTable();
+                   ShutudaiPanel.SetActive(true);
+                   TKantan(); 
+                }else{
+                    Shutudai2Panel.SetActive(true);
+                    TiTypingManager.instance.TicurrentMode =1;
+                    TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.TiKantan();
+                   
+                }
                 TcurrentMode = 1;
                 SetList();
                 Debug.Log("1");
@@ -160,25 +173,7 @@ public class TikaraQues : MonoBehaviour
        
     }
     private HiraDictionary cd;
-    private List<int> yomiageSE = new List<int>();//読み上げ用の数字を格納する
-    private List<string> yomiage = new List<string>();//読み上げ用の数字を格納する
-
-    void AnswerSlice(string moji){
-        yomiageSE.Clear();
-        for(int i =0; i< moji.Length;i++){
-            int a = cd.dic[moji[i].ToString()];
-            yomiageSE.Add(a);
-        }
-        for(int i = 0; i<yomiageSE.Count; i++){
-            Debug.Log(i.ToString()+yomiageSE[i]);
-        }
-    }
-    IEnumerator ShutudaiSE(){
-        for(int i = 0;i<yomiageSE.Count;i++){
-        SoundManager.instance.PlaySE(yomiageSE[i]); 
-        yield return new WaitForSeconds(0.2f);
-        }
-    }
+    
 
 
     //ToLower() 小文字での表示

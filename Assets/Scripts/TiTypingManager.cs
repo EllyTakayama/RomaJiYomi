@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 public class TiTypingManager : MonoBehaviour
 {
+     public static TiTypingManager instance;
     [SerializeField]Text kanjiText;//出題の漢字表記用テキスト
     [SerializeField]Text qText;//出題内容
     [SerializeField]Text aText;//解答内容を代入
@@ -15,6 +17,7 @@ public class TiTypingManager : MonoBehaviour
     public int TicurrentMode;
     public bool isKantan;//かんたんかButton6こまで難しい問題Button9こ
     public bool isTallFont;//大文字か小文字かを取得
+     public bool isTyKunrei;//trueなら訓令式　falseならヘボン
     //public List<string> TyShutudai = new List<string>();
     public string answerMoji;//Buttonのテキストを一時的に取得する
     public string QuestionAnswer;//正解の文字取得
@@ -24,6 +27,7 @@ public class TiTypingManager : MonoBehaviour
     private int n;//シャッフル用の変数
     public string textcolor;
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
+    public string Hebonpattern = "chi|tsu|CHI|TSU";
 
 
     //テキストデータを格納
@@ -49,6 +53,20 @@ public class TiTypingManager : MonoBehaviour
     //正解したQuesTextを赤く表示するために設定
     public int _mojiNum;
 
+    // Start is called before the first frame update
+     void Awake()
+    {
+       MakeInstance();
+    }
+
+     void MakeInstance()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+    }
+
 // Start is called before the first frame update
   void Start(){ 
       ShuffleB();
@@ -57,11 +75,55 @@ public class TiTypingManager : MonoBehaviour
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
        isTallFont = GameManager.instance.isGfontsize;
+       isTyKunrei = false;
        Debug.Log("startfont"+isTallFont);
+       cd = GetComponent<HiraDictionary>();
         //Output();
         //SetListTi();
-        //DebugTable();
-        
+        //TiDebugTable();
+        //cd = GetComponent<DictionaryChange>();
+        //AnswerSlice("はくさい");
+       //StartCoroutine(ShutudaiSE());
+       //ChangeKtoH(kunrei);
+       Hebon(kunrei);
+    }
+    private HiraDictionary cd;
+    private List<int> yomiageSE = new List<int>();//読み上げ用の数字を格納する
+    private List<string> answerSlice = new List<string>();//読み上げ用の文字を格納する
+    private List<string> ChangeHebon = new List<string>();//読み上げ用の文字を格納する
+    string kunrei = "MO";
+
+//訓令式ローマ字がいるか確認する
+void Hebon(string kunrei){
+    if(cd.dicHebon.ContainsKey(kunrei)){
+        Debug.Log("key");
+    }
+    else{
+         Debug.Log("not key");
+    }
+}
+//訓令式ローマ字からヘボン式に変更する
+void ChangeKtoH(string moji){
+            Debug.Log("keyは存在します");
+            string answer = cd.dicHebon[moji];
+            print(answer);
+        }
+
+  void AnswerSlice(string moji){
+        yomiageSE.Clear();
+        for(int i =0; i< moji.Length;i++){
+            int a = cd.dic[moji[i].ToString()];
+            yomiageSE.Add(a);
+        }
+        for(int i = 0; i<yomiageSE.Count; i++){
+            Debug.Log(i.ToString()+","+yomiageSE[i]);
+        }
+    }
+    IEnumerator ShutudaiSE(){
+        for(int i = 0;i<yomiageSE.Count;i++){
+        SoundManager.instance.PlaySE(yomiageSE[i]); 
+        yield return new WaitForSeconds(0.2f);
+        }
     }
     
 
@@ -73,7 +135,7 @@ public void TyKantan(string buttonname){
                 TicurrentMode = 1;
                 SetListTi();
                 Debug.Log("1");
-                DebugTable();
+                TiDebugTable();
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
@@ -81,7 +143,7 @@ public void TyKantan(string buttonname){
                 TicurrentMode = 2;
                 SetListTi();
                 Debug.Log("2");
-                DebugTable();
+                TiDebugTable();
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
@@ -89,7 +151,7 @@ public void TyKantan(string buttonname){
                 TicurrentMode = 3;
                 SetListTi();
                 Debug.Log("3");
-                DebugTable();
+                TiDebugTable();
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
@@ -97,7 +159,7 @@ public void TyKantan(string buttonname){
                 TicurrentMode = 4;
                 SetListTi();
                 Debug.Log("4");
-                DebugTable();
+                TiDebugTable();
                 Shutudai2Panel.SetActive(true);
                 TiKantan();
                     break;
@@ -117,8 +179,8 @@ public void TyKantan(string buttonname){
        _mojiNum=0;
        //ShuffleB();
         //TyShutudai.Clear();
-        _qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        //_qNum = 11;//Debug用
+        //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
+        _qNum = 10;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
         if(isTallFont==true){
@@ -130,8 +192,30 @@ public void TyKantan(string buttonname){
         int j =3;
         for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
+                 if(isTyKunrei == false){
+                     string a = TiTable[_qNum,j];
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text=a;
+                   Debug.Log("key");
+                }
+                else{
+                Debug.Log("not key");
+                }
+                 }
                  j++;}
-        QuestionAnswer = TiTable[_qNum,k];
+                 QuestionAnswer = TiTable[_qNum,k];
+                 if(isTyKunrei == false){
+                     string a = QuestionAnswer;
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        QuestionAnswer = a;
+                   Debug.Log("outputkey"+QuestionAnswer);
+                }
+                else{
+                Debug.Log("not key");}
+                }
+        
         //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
         }
@@ -163,6 +247,7 @@ public void TyKantan(string buttonname){
         Debug.Log("seikai"+answerMoji);
         Debug.Log("k"+k);
         Debug.Log("aNum"+_aNum);
+        Debug.Log("QuestionAnswer"+QuestionAnswer);
         if(QuestionAnswer == answerMoji){
             Correct();
         }
@@ -182,9 +267,12 @@ public void TyKantan(string buttonname){
             if(Regex.IsMatch(QuestionAnswer, pattern)){
                 _mojiNum += QuestionAnswer.Length;
                 }
+            else if(Regex.IsMatch(QuestionAnswer, Hebonpattern)){
+                _mojiNum += QuestionAnswer.Length-2;}
             else{
                 _mojiNum += QuestionAnswer.Length-1;
                 }
+           
         }
         Debug.Log("moji"+_mojiNum);
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
@@ -199,6 +287,16 @@ public void TyKantan(string buttonname){
         k++;
         if(isTallFont==true){
             QuestionAnswer = TiTable[_qNum,k];
+            if(isTyKunrei == false){
+                     string a = QuestionAnswer;
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        QuestionAnswer = a;
+                   Debug.Log("key"+QuestionAnswer);
+                }
+                else{
+                Debug.Log("not key");}
+                }
             }
         else{
              QuestionAnswer = TiTable[_qNum,k].ToLower();
@@ -227,7 +325,7 @@ public void TyKantan(string buttonname){
     }
    
 
-    void SetListTi(){
+    public void SetListTi(){
         //押したButtonに応じて分岐 TicurrentMode
         
             if(TicurrentMode ==1){
@@ -257,7 +355,7 @@ public void TyKantan(string buttonname){
         }
     }
     //Debugで二次元入れるの中身を確認したいとき用のメソッド
-    void DebugTable()
+    void TiDebugTable()
     {
         for (int i = 0; i < TitateNumber; i++)
         {

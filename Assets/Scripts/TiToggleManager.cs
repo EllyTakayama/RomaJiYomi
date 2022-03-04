@@ -21,6 +21,7 @@ public class TiToggleManager : MonoBehaviour
         if(Toggle1.isOn == true){
             //単語単位での選択
             isTango = true;
+            TikaraQues.instance.isWord = true;
             ES3.Save<bool>("isTango",isTango,"isTango.es3");
             //Debug.Log("クリック単語isTango"+isTango);
             Debug.Log("単語isTango"+Toggle1.isOn);
@@ -28,6 +29,7 @@ public class TiToggleManager : MonoBehaviour
         }
         else{
             isTango = false;
+            TikaraQues.instance.isWord = true;
             ES3.Save<bool>("isTango",isTango,"isTango.es3");
              Debug.Log("単語isTango"+Toggle1.isOn);
              Debug.Log("1文字isTango"+Toggle2.isOn);
