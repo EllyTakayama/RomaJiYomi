@@ -28,6 +28,7 @@ public class TiTypingManager : MonoBehaviour
     public string textcolor;
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
     public string Hebonpattern = "chi|tsu|CHI|TSU";
+     public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
 
 
     //テキストデータを格納
@@ -180,7 +181,7 @@ public void TyKantan(string buttonname){
        //ShuffleB();
         //TyShutudai.Clear();
         //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        _qNum = 10;//Debug用
+        _qNum = 18;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
         if(isTallFont==true){
@@ -228,8 +229,31 @@ public void TyKantan(string buttonname){
         int j =3;
         for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j].ToLower();
+                 if(isTyKunrei == false){
+                     string b = TiTable[_qNum,j].ToLower();
+                    if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text=b;
+                   Debug.Log("key");
+                }
+                else{
+                Debug.Log("not key");
+                }
+                 }
                  j++;}
         QuestionAnswer = TiTable[_qNum,k].ToLower();
+        Debug.Log("qestionanswer"+QuestionAnswer);
+        if(isTyKunrei == false){
+                     string a = QuestionAnswer;
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        QuestionAnswer = a;
+                        Debug.Log("a"+a);
+                   Debug.Log("outputkey"+QuestionAnswer);
+                }
+                else{
+                Debug.Log("not key");}
+                }
         //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
 
@@ -269,6 +293,8 @@ public void TyKantan(string buttonname){
                 }
             else if(Regex.IsMatch(QuestionAnswer, Hebonpattern)){
                 _mojiNum += QuestionAnswer.Length-2;}
+            else if(Regex.IsMatch(QuestionAnswer, Hebonpattern2)){
+                _mojiNum += QuestionAnswer.Length;}
             else{
                 _mojiNum += QuestionAnswer.Length-1;
                 }
@@ -300,9 +326,18 @@ public void TyKantan(string buttonname){
             }
         else{
              QuestionAnswer = TiTable[_qNum,k].ToLower();
+             if(isTyKunrei == false){
+                     string a = QuestionAnswer;
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        QuestionAnswer = a;
+                        Debug.Log("a"+a);
+                   Debug.Log("outputkey"+QuestionAnswer);
+                }
+                else{
+                Debug.Log("not key");}
+                }
             }
-       
-        
         aText.text += answerMoji;
         Debug.Log("correct");
         Debug.Log("aNum"+_aNum);
