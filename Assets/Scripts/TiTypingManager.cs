@@ -27,7 +27,7 @@ public class TiTypingManager : MonoBehaviour
     private int n;//シャッフル用の変数
     public string textcolor;
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
-    public string Hebonpattern = "chi|tsu|CHI|TSU";
+    public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
      public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
 
 
@@ -180,8 +180,8 @@ public void TyKantan(string buttonname){
        _mojiNum=0;
        //ShuffleB();
         //TyShutudai.Clear();
-        //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        _qNum = 18;//Debug用
+        _qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
+        //_qNum = 18;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
         if(isTallFont==true){
@@ -259,8 +259,6 @@ public void TyKantan(string buttonname){
 
         }
     }
-
-
    /* public void TiCheckAnswer(int num){
        if(TiButtons[num].GetComponentInChildren<Text>().text) 
     }*/
@@ -301,8 +299,11 @@ public void TyKantan(string buttonname){
            
         }
         Debug.Log("moji"+_mojiNum);
+        aText.text += answerMoji;
+        Debug.Log(answerMoji);
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         answerNum++;
+
         if(answerNum>=_aNum){
             StartCoroutine(TiChangeQues());
             Debug.Log("output");
@@ -335,15 +336,16 @@ public void TyKantan(string buttonname){
                    Debug.Log("outputkey"+QuestionAnswer);
                 }
                 else{
-                Debug.Log("not key");}
+                    Debug.Log("not key");
                 }
             }
-        aText.text += answerMoji;
+        }
+       
+        
         Debug.Log("correct");
         Debug.Log("aNum"+_aNum);
         Debug.Log("k"+k);
         Debug.Log("answerNum"+answerNum);
-        
     }
     //間違えた時の関数
     void Miss(){

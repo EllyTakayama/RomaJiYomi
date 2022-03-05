@@ -106,37 +106,60 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TiKantan();
                    
                 }
+                /*
                 TcurrentMode = 1;
                 SetList();
                 Debug.Log("1");
                 DebugTable();
                 ShutudaiPanel.SetActive(true);
-                TKantan();
+                TKantan();*/
                     break;
                 case "Button2":
-                TcurrentMode = 2;
-                SetList();
-                Debug.Log("2");
-                DebugTable();
-                ShutudaiPanel.SetActive(true);
-                TKantan();
+                if(isWord==true){
+                   TcurrentMode = 2;
+                   SetList();
+                   Debug.Log("2");
+                   //DebugTable();
+                   ShutudaiPanel.SetActive(true);
+                   TKantan(); 
+                }else{
+                    Shutudai2Panel.SetActive(true);
+                    TiTypingManager.instance.TicurrentMode =2;
+                    TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.TiKantan();
+                    }
                     break;
-                case "Button3":
-                TcurrentMode = 3;
-                SetList();
-                Debug.Log("3");
-                DebugTable();
-                ShutudaiPanel.SetActive(true);
-                TKantan();
-                    break;
-                case "Button4":
-                TcurrentMode = 4;
-                SetList();
-                Debug.Log("4");
-                DebugTable();
-                ShutudaiPanel.SetActive(true);
 
-                TKantan();
+                case "Button3":
+                if(isWord==true){
+                   TcurrentMode = 3;
+                   SetList();
+                   Debug.Log("3");
+                   //DebugTable();
+                   ShutudaiPanel.SetActive(true);
+                   TKantan(); 
+                }else{
+                    Shutudai2Panel.SetActive(true);
+                    TiTypingManager.instance.TicurrentMode =3;
+                    TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.TiKantan();
+                    }
+                    break;
+
+                case "Button4":
+                if(isWord==true){
+                   TcurrentMode = 3;
+                   SetList();
+                   Debug.Log("3");
+                   //DebugTable();
+                   ShutudaiPanel.SetActive(true);
+                   TKantan(); 
+                }else{
+                    Shutudai2Panel.SetActive(true);
+                    TiTypingManager.instance.TicurrentMode =3;
+                    TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.TiKantan();
+                    }
                     break;
            }
           
