@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-//using System;
+using System;
 
 public class TikaraQues : MonoBehaviour
 {
@@ -54,6 +54,9 @@ public class TikaraQues : MonoBehaviour
     private int yokoNumber; // 列　横
     public string[] Tromelines;//テキストアセット取得に使う
     //private DictionaryChange cd;
+    private List<string> shutudaiSlice = new List<string>();//読み上げ用の文字を格納する
+    private HiraDictionary cd1;
+    
 
     // Start is called before the first frame update
      void Awake()
@@ -72,13 +75,14 @@ public class TikaraQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
        isFontTall = GameManager.instance.isGfontsize;
        TiQuesCount = 0;
-       cd = GetComponent<HiraDictionary>();
-       
+       cd1 = GetComponent<HiraDictionary>();
+        Hebon(kunrei);
+        ShutudaiSlice(hoka);
+        isWord = true;
     }
     // Update is called once per frame
     void Update()
@@ -148,15 +152,15 @@ public class TikaraQues : MonoBehaviour
 
                 case "Button4":
                 if(isWord==true){
-                   TcurrentMode = 3;
+                   TcurrentMode = 4;
                    SetList();
-                   Debug.Log("3");
+                   Debug.Log("4");
                    //DebugTable();
                    ShutudaiPanel.SetActive(true);
                    TKantan(); 
                 }else{
                     Shutudai2Panel.SetActive(true);
-                    TiTypingManager.instance.TicurrentMode =3;
+                    TiTypingManager.instance.TicurrentMode =4;
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.TiKantan();
                     }
@@ -195,9 +199,37 @@ public class TikaraQues : MonoBehaviour
             c = renshuuNum[n+2];*/
        
     }
-    private HiraDictionary cd;
-    
+     string kunrei = "MO";
+     string hoka = "SHOUGUN";
 
+void ShutudaiSlice(string moji){
+        if(cd1.dicT.ContainsKey(moji)){
+        Debug.Log("key");
+    }
+    else{
+         Debug.Log("not key");
+    }
+        Debug.Log("a"+a);
+        
+    }
+
+//訓令式ローマ字がいるか確認する
+void Hebon(string kunrei){
+    if(cd1.dicHebon.ContainsKey(kunrei)){
+        Debug.Log("key");
+    }
+    else{
+         Debug.Log("not key");
+    }
+}
+//訓令式ローマ字からヘボン式に変更する
+void ChangeKtoH(string moji){
+            Debug.Log("keyは存在します");
+            string answer = cd1.dicHebon[moji];
+            print(answer);
+        }
+
+    
 
     //ToLower() 小文字での表示
         public void  TKantan(){
@@ -206,7 +238,7 @@ public class TikaraQues : MonoBehaviour
         TikaraAnsButtons[0].enabled = true;
         TikaraAnsButtons[1].enabled = true;
         TikaraAnsButtons[2].enabled = true;
-        int n = Random.Range(0,tateNumber);
+        int n = UnityEngine.Random.Range(0,tateNumber);
         //正解のstring
         TikaraAnswer = TSTable[n,2];
         //出題テキスト

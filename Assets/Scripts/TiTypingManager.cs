@@ -340,8 +340,6 @@ public void TyKantan(string buttonname){
                 }
             }
         }
-       
-        
         Debug.Log("correct");
         Debug.Log("aNum"+_aNum);
         Debug.Log("k"+k);

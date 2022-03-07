@@ -29,7 +29,7 @@ public class TiToggleManager : MonoBehaviour
         }
         else{
             isTango = false;
-            TikaraQues.instance.isWord = true;
+            TikaraQues.instance.isWord = false;
             ES3.Save<bool>("isTango",isTango,"isTango.es3");
              Debug.Log("単語isTango"+Toggle1.isOn);
              Debug.Log("1文字isTango"+Toggle2.isOn);
