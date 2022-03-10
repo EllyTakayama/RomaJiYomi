@@ -9,7 +9,7 @@ public class TiToggleManager : MonoBehaviour
     public Toggle Toggle1;//単語単位での解答true
     public Toggle Toggle2;//ひらがな1文字ずつでの解答true
     public bool isTango;//boolで切り替えし、TikaraQuesのブールに代入
-    public bool isKotoba;//boolで切り替えし、TikaraQuesのブールに代入
+    public bool isHiragana;//boolで切り替えし、TikaraQuesのブールに代入
 
     // Start is called before the first frame update
     void Start(){

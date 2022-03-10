@@ -28,7 +28,8 @@ public class TiTypingManager : MonoBehaviour
     public string textcolor;
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
     public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
-     public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
+    public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
+    
 
 
     //テキストデータを格納

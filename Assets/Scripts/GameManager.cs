@@ -11,9 +11,11 @@ public class GameManager : MonoBehaviour
    //public bool isGfontSize;
    public bool isSEOn;//SEオンオフ
    public bool isBgmOn;//BGMオンオフ
-   public int AcorrectCount;//基本Sceneあのスコア保存
-   public int AtotalCount;//累計の正解数
-   public int HcorrectCount;//基本Sceneあのスコア保存
+   public int AcorrectCount;//kihonSceneのスコア保存
+   public int TiTangoCount;//TikaraSceneの単語ごと解答のスコア保存
+   public int TyHiraganaCount;//TikaraSceneの1文字ずつ解答のスコア保存
+   public int RcorrectCount;//RenshuuSceneあのスコア保存
+   public int HcorrectCount;//RenshuuSceneあのスコア保存
    public bool isTiWord;//TikaraSceneの解答分岐のbool
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
 
@@ -86,18 +88,26 @@ public void SaveGbgm(){
          Debug.Log("クリックisBgmOn"+isBgmOn);
     }
 
-    
-
-    
     //KihonSceneあ行の正解数保存
     public void SaveACount(){
         //isGfontsize = SettingManager.instance.isfontSize;
-        ES3.Save<int>("Acorrect",AcorrectCount);
+        ES3.Save<int>("Acorrect",AcorrectCount,"AcorrectCount.es3");
         Debug.Log("クリックAcorrect"+AcorrectCount);
     }
     public void LoadACount(){
-        AcorrectCount = ES3.Load<int>("Acorrect",0);
+        AcorrectCount = ES3.Load<int>("Acorrect","AcorrectCount.es3",0);
         Debug.Log("クリックAcorrect"+AcorrectCount);
+    }
+    //TikaraSceneTangoの累計正解数保存
+    public void SaveTiCount(){
+        //isGfontsize = SettingManager.instance.isfontSize;
+        ES3.Save<int>("TiTangoCount",TiTangoCount,"TiTangoCount.es3");
+        Debug.Log("クリックTiTangoCount"+TiTangoCount);
+    }
+
+    public void LoadTiCount(){
+        TiTangoCount = ES3.Load<int>("TiTangoCount","TiTangoCount.es3",0);
+        Debug.Log("クリックTiTangoCount"+TiTangoCount);
     }
 
 }

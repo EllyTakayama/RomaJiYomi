@@ -83,6 +83,7 @@ public class TikaraQues : MonoBehaviour
         Hebon(kunrei);
         ShutudaiSlice(hoka);
         isWord = true;
+        isTiKunrei=false;
     }
     // Update is called once per frame
     void Update()
@@ -229,8 +230,6 @@ void ChangeKtoH(string moji){
             print(answer);
         }
 
-    
-
     //ToLower() 小文字での表示
         public void  TKantan(){
         TiQuesCount++;
@@ -240,7 +239,13 @@ void ChangeKtoH(string moji){
         TikaraAnsButtons[2].enabled = true;
         int n = UnityEngine.Random.Range(0,tateNumber);
         //正解のstring
-        TikaraAnswer = TSTable[n,2];
+        if(isTiKunrei==true){
+            TikaraAnswer = TSTable[n,2];
+            }
+        else{
+            TikaraAnswer = TSTable[n,6];
+        }
+        
         //出題テキスト
         TikaraText.text = TSTable[n,1];
         //漢字、ふりがな表示

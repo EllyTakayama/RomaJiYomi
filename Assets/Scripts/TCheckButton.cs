@@ -9,10 +9,7 @@ public class TCheckButton : MonoBehaviour
     [SerializeField] private GameObject pekeImage;
     //[SerializeField] private GameObject enemyMaker;
     public GameObject enemyDamageCall;
-
-    
     //[SerializeField] private Image enemyImage;
-   
     // Start is called before the first frame update
     void Start()
     {
