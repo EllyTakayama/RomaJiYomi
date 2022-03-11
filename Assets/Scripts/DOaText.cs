@@ -49,8 +49,8 @@ public class DOaText : MonoBehaviour
 
 
     public void Atext(){
-        aText.DOText("\nローマ字は\nアルファベットの組み合わせで表現します。"
-        +"\nまず、基本のあ行を覚えましょう。"
+        aText.DOText("\nローマ字は\nアルファベットで表現します。"
+        +"\n基本のあ行を覚えましょう。"
         , 3f)
         .OnComplete(MoveButtons);
         Invoke("LateSE",0.0f);
