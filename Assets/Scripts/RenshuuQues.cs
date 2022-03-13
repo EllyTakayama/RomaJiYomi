@@ -23,6 +23,7 @@ public class RenshuuQues : MonoBehaviour
     public int RenshuuCount;
     public GameObject RenshuuPanel;
     public bool isRTall;//大文字か小文字かのbool
+    private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     public enum RenshuuType
     {
         RenRomaji50,
@@ -229,8 +230,11 @@ public class RenshuuQues : MonoBehaviour
     void Start()
     {
         GameManager.instance.LoadGfontsize();
-        isRTall = GameManager.instance.isGfontsize;
+        //isRTall = GameManager.instance.isGfontsize;
         Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
+        GameManager.instance.LoadGKunrei();
+        Debug.Log("isGfontSize"+GameManager.instance.isGKunrei);
+        rq = GetComponent<HiraDictionary>();
         renshuuNum = new List<int>(ToggleRenshuu.instance.shutsudaiNum);
         for(int i =0; i< renshuuNum.Count; i++){
             Debug.Log("r"+renshuuNum[i]);}
@@ -300,18 +304,52 @@ public class RenshuuQues : MonoBehaviour
         }
 
         RenQuesText.text = hiraganaR50[b];
-        if(isRTall == true){
-           renshuuAnswer1 = RomaJiR50[b];
-           Reselect1 = RomaJiR50[a];
-           Reselect2 = RomaJiR50[c];
+            if(GameManager.instance.isGfontsize == true){
+                renshuuAnswer1 = RomaJiR50[b];
+                Reselect1 = RomaJiR50[a];
+                Reselect2 = RomaJiR50[c];
+                if(GameManager.instance.isGKunrei == false){
+                    string b = renshuuAnswer1;
+                    string a = Reselect1;
+                    string c = Reselect2;
+                    if(rq.dicHebon.ContainsKey(b)){
+                        b = rq.dicHebon[b];
+                        renshuuAnswer1 = b;
+                    }
+                    if(rq.dicHebon.ContainsKey(a)){
+                        a = rq.dicHebon[a];
+                        Reselect1 = a;
+                    }
+                    if(rq.dicHebon.ContainsKey(c)){
+                        c = rq.dicHebon[c];
+                        Reselect2 = c;
+                    }
+                }
+            }
+            else{
+                renshuuAnswer1 = romajiR50[b]; 
+                Reselect1 = romajiR50[a]; 
+                Reselect2 = romajiR50[c]; 
+                 if(GameManager.instance.isGKunrei == false){
+                    string b = renshuuAnswer1;
+                    string a = Reselect1;
+                    string c = Reselect2;
+                    if(rq.dicHebon.ContainsKey(b)){
+                        b = rq.dicHebon[b];
+                        renshuuAnswer1 = b;
+                    }
+                    if(rq.dicHebon.ContainsKey(a)){
+                        a = rq.dicHebon[a];
+                        Reselect1 = a;
+                    }
+                    if(rq.dicHebon.ContainsKey(c)){
+                        c = rq.dicHebon[c];
+                        Reselect2 = c;
+                    }
+                }
         }
-        else{
-           renshuuAnswer1 = romajiR50[b]; 
-           Reselect1 = romajiR50[a]; 
-           Reselect2 = romajiR50[c]; 
-          
-        }
-         Debug.Log("isRall"+isRTall);
+        
+         Debug.Log("GameManager.instance.isGfontsize"+GameManager.instance.isGfontsize);
         //Debug.Log("b"+b);
         StartCoroutine(PlayRenHiragana());
         

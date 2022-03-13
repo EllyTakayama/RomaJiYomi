@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Tenmetu : MonoBehaviour
 {
-    public float speed = 1.0f;
+    public float speed = 1.5f;
 
     //private
     private Text text;

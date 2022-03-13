@@ -16,7 +16,7 @@ public class TiTypingManager : MonoBehaviour
     public GameObject Shutudai2Panel;
     public int TicurrentMode;
     public bool isKantan;//かんたんかButton6こまで難しい問題Button9こ
-    public bool isTallFont;//大文字か小文字かを取得
+    //public bool isTallFont;//大文字か小文字かを取得
      public bool isTyKunrei;//trueなら訓令式　falseならヘボン
     //public List<string> TyShutudai = new List<string>();
     public string answerMoji;//Buttonのテキストを一時的に取得する
@@ -76,9 +76,11 @@ public class TiTypingManager : MonoBehaviour
        //cd = GetComponent<DictionaryChange>();
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
-       isTallFont = GameManager.instance.isGfontsize;
-       isTyKunrei = false;
-       Debug.Log("startfont"+isTallFont);
+       GameManager.instance.LoadGKunrei();
+       //isTallFont = GameManager.instance.isGfontsize;
+       //isTyKunrei = false;
+       Debug.Log("startfont"+GameManager.instance.isGfontsize);
+       Debug.Log("startKunrei"+GameManager.instance.isGKunrei);
        cd = GetComponent<HiraDictionary>();
         //Output();
         //SetListTi();
@@ -185,7 +187,7 @@ public void TyKantan(string buttonname){
         //_qNum = 18;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
-        if(isTallFont==true){
+        if(GameManager.instance.isGfontsize==true){
             kanjiText.text = TiTable[_qNum,0];
         qText.text = TiTable[_qNum,1];
         textcolor = TiTable[_qNum,1];
@@ -194,7 +196,7 @@ public void TyKantan(string buttonname){
         int j =3;
         for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
-                 if(isTyKunrei == false){
+                 if(GameManager.instance.isGKunrei == false){
                      string a = TiTable[_qNum,j];
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
@@ -207,7 +209,7 @@ public void TyKantan(string buttonname){
                  }
                  j++;}
                  QuestionAnswer = TiTable[_qNum,k];
-                 if(isTyKunrei == false){
+                 if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
@@ -230,7 +232,7 @@ public void TyKantan(string buttonname){
         int j =3;
         for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j].ToLower();
-                 if(isTyKunrei == false){
+                 if(GameManager.instance.isGKunrei == false){
                      string b = TiTable[_qNum,j].ToLower();
                     if(cd.dicHebon.ContainsKey(b)){
                         b = cd.dicHebon[b];
@@ -244,7 +246,7 @@ public void TyKantan(string buttonname){
                  j++;}
         QuestionAnswer = TiTable[_qNum,k].ToLower();
         Debug.Log("qestionanswer"+QuestionAnswer);
-        if(isTyKunrei == false){
+        if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
@@ -313,9 +315,9 @@ public void TyKantan(string buttonname){
         
         //_aNum++;
         k++;
-        if(isTallFont==true){
+        if(GameManager.instance.isGfontsize==true){
             QuestionAnswer = TiTable[_qNum,k];
-            if(isTyKunrei == false){
+            if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
@@ -328,7 +330,7 @@ public void TyKantan(string buttonname){
             }
         else{
              QuestionAnswer = TiTable[_qNum,k].ToLower();
-             if(isTyKunrei == false){
+             if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
