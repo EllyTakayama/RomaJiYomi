@@ -77,13 +77,14 @@ public class TikaraQues : MonoBehaviour
     {
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
+       GameManager.instance.LoadGKunrei();
        isFontTall = GameManager.instance.isGfontsize;
        TiQuesCount = 0;
        cd1 = GetComponent<HiraDictionary>();
-        Hebon(kunrei);
-        ShutudaiSlice(hoka);
-        isWord = true;
-        isTiKunrei=false;
+        //Hebon(kunrei);
+        //ShutudaiSlice(hoka);
+        //isWord = true;
+        //isTiKunrei=false;
     }
     // Update is called once per frame
     void Update()
@@ -108,17 +109,11 @@ public class TikaraQues : MonoBehaviour
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode =1;
                     TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.ShuffleQuesNum();
                     TiTypingManager.instance.TiKantan();
-                   
                 }
-                /*
-                TcurrentMode = 1;
-                SetList();
-                Debug.Log("1");
-                DebugTable();
-                ShutudaiPanel.SetActive(true);
-                TKantan();*/
                     break;
+
                 case "Button2":
                 if(isWord==true){
                    TcurrentMode = 2;
@@ -131,6 +126,7 @@ public class TikaraQues : MonoBehaviour
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode =2;
                     TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.ShuffleQuesNum();
                     TiTypingManager.instance.TiKantan();
                     }
                     break;
@@ -147,6 +143,7 @@ public class TikaraQues : MonoBehaviour
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode =3;
                     TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.ShuffleQuesNum();
                     TiTypingManager.instance.TiKantan();
                     }
                     break;
@@ -163,6 +160,7 @@ public class TikaraQues : MonoBehaviour
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode =4;
                     TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.ShuffleQuesNum();
                     TiTypingManager.instance.TiKantan();
                     }
                     break;

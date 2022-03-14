@@ -41,10 +41,12 @@ public class TiToggleManager : MonoBehaviour
         if(isTango==true){
             Toggle1.isOn = true;
             Toggle2.isOn = false;
-        }
+            TikaraQues.instance.isWord = true;
+            }
         else{
             Toggle1.isOn = false;
             Toggle2.isOn = true;
+             TikaraQues.instance.isWord = false;
         }
         
         Debug.Log("ロード単語Toggle"+Toggle1.isOn);

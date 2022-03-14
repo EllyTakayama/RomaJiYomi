@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+//3月15日更新
 
 public class TiTypingManager : MonoBehaviour
 {
@@ -24,6 +25,7 @@ public class TiTypingManager : MonoBehaviour
     public int k=3;//配列でanswerを移動させるため
     public int answerNum=0;//answerを移動させるため
     public List<int> ButtonNum = new List<int>();//Buttonをシャッフルさせるため
+    public List<int> QuesNum = new List<int>();//出題をシャッフルさせるため
     private int n;//シャッフル用の変数
     public string textcolor;
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
@@ -85,17 +87,27 @@ public class TiTypingManager : MonoBehaviour
         //Output();
         //SetListTi();
         //TiDebugTable();
-        //cd = GetComponent<DictionaryChange>();
         //AnswerSlice("はくさい");
        //StartCoroutine(ShutudaiSE());
        //ChangeKtoH(kunrei);
-       Hebon(kunrei);
+       //Hebon(kunrei);
+       //Kakunin(kunrei);
     }
     private HiraDictionary cd;
     private List<int> yomiageSE = new List<int>();//読み上げ用の数字を格納する
     private List<string> answerSlice = new List<string>();//読み上げ用の文字を格納する
     private List<string> ChangeHebon = new List<string>();//読み上げ用の文字を格納する
-    string kunrei = "MO";
+    string kunrei = "SHI";
+
+    void Kakunin(string a){
+        Debug.Log("a"+a.Length);
+        if(Regex.IsMatch(a, Hebonpattern)){
+               Debug.Log("a+"+kunrei);
+               }
+        else if(a.Contains("shi")||a.Contains("SHI")){
+        Debug.Log("atta+"+kunrei);
+    }
+    }
 
 //訓令式ローマ字がいるか確認する
 void Hebon(string kunrei){
@@ -172,7 +184,7 @@ public void TyKantan(string buttonname){
 
     public void  TiKantan(){
         Output();
-        Debug.Log("osita");
+        //Debug.Log("osita");
     }
     
    //出題する
@@ -181,10 +193,8 @@ public void TyKantan(string buttonname){
        answerNum=0;
        k=3;
        _mojiNum=0;
-       //ShuffleB();
-        //TyShutudai.Clear();
-        _qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        //_qNum = 18;//Debug用
+        //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
+        _qNum = 14;//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
         if(GameManager.instance.isGfontsize==true){
@@ -284,18 +294,23 @@ public void TyKantan(string buttonname){
 
     //正解した時の関数
     void Correct(){
+        Debug.Log("mojisuu"+QuestionAnswer.Length);
 
         if(QuestionAnswer.Length==1){
             _mojiNum += QuestionAnswer.Length;
         }
         else{
+            Debug.Log("mojisuu"+(QuestionAnswer.Length-2));
             if(Regex.IsMatch(QuestionAnswer, pattern)){
                 _mojiNum += QuestionAnswer.Length;
                 }
             else if(Regex.IsMatch(QuestionAnswer, Hebonpattern)){
                 _mojiNum += QuestionAnswer.Length-2;}
+            else if(QuestionAnswer.Contains("shi")||QuestionAnswer.Contains("SHI")){
+                _mojiNum += QuestionAnswer.Length-2;}
             else if(Regex.IsMatch(QuestionAnswer, Hebonpattern2)){
                 _mojiNum += QuestionAnswer.Length;}
+    
             else{
                 _mojiNum += QuestionAnswer.Length-1;
                 }
@@ -392,6 +407,30 @@ public void TyKantan(string buttonname){
             }
         }
     }
+    //出題をシャッフルする
+    public void ShuffleQuesNum(){
+        QuesNum.Clear();
+        for(int i =0;i < TitateNumber; i++){
+            QuesNum.Add(i);
+        }
+            int m = QuesNum.Count;
+        // nが1より小さくなるまで繰り返す
+    while (m > 1)
+    {
+        m--;
+        // nは 0 ～ n+1 の間のランダムな値
+        int k = UnityEngine.Random.Range(0, m + 1);
+ 
+        // k番目のカードをtempに代入
+        int temp = QuesNum[k];
+        QuesNum[k] = QuesNum[m];
+        QuesNum[m] = temp;
+        }
+            for(int j=0;j<QuesNum.Count;j++){
+                Debug.Log("Q+"+QuesNum[j]);
+            }
+        }
+
     //Debugで二次元入れるの中身を確認したいとき用のメソッド
     void TiDebugTable()
     {

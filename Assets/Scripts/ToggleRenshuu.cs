@@ -128,8 +128,7 @@ public class ToggleRenshuu : MonoBehaviour
             //for(int j =0; j<shutsudaiNum.Count; j++){
               //  Debug.Log(shutsudaiNum[j]);
             //}
-             Debug.Log("a"+toggle[0].isOn);
-             }
+             Debug.Log("a"+toggle[0].isOn);}
        
         //1 か行　5-9    
         if(toggle[1].isOn == true){
@@ -140,8 +139,7 @@ public class ToggleRenshuu : MonoBehaviour
             for(int j =0; j<shutsudaiNum.Count; j++){
                 Debug.Log(shutsudaiNum[j]);
             }*/
-            Debug.Log("ka"+toggle[1].isOn);
-            }
+            Debug.Log("ka"+toggle[1].isOn);}
         
         //2 さ行　10-14
         if(toggle[2].isOn == true){
@@ -150,8 +148,7 @@ public class ToggleRenshuu : MonoBehaviour
             }
             //for(int j =0; j<shutsudaiNum.Count; j++){
               //  Debug.Log(shutsudaiNum[j]);}
-            Debug.Log("sa"+toggle[2].isOn);
-            }
+            Debug.Log("sa"+toggle[2].isOn);}
        
             //3 た行　15-19    
         if(toggle[3].isOn == true){

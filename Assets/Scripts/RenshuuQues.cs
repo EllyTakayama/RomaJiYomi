@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 //練習問題画面の出題メソッド
-//1月31日更新
+//3月14日更新
 
 public class RenshuuQues : MonoBehaviour
 {
@@ -352,8 +352,6 @@ public class RenshuuQues : MonoBehaviour
          Debug.Log("GameManager.instance.isGfontsize"+GameManager.instance.isGfontsize);
         //Debug.Log("b"+b);
         StartCoroutine(PlayRenHiragana());
-        
-
         n++;
         locationOfRenshuuAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
