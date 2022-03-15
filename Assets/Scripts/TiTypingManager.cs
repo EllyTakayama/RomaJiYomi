@@ -31,8 +31,7 @@ public class TiTypingManager : MonoBehaviour
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
     public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
     public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
-    
-
+    public int TyQuesCount;//出題数をカウントする
 
     //テキストデータを格納
     public string[,] TiTable;
@@ -84,6 +83,7 @@ public class TiTypingManager : MonoBehaviour
        Debug.Log("startfont"+GameManager.instance.isGfontsize);
        Debug.Log("startKunrei"+GameManager.instance.isGKunrei);
        cd = GetComponent<HiraDictionary>();
+       TyQuesCount =0;
         //Output();
         //SetListTi();
         //TiDebugTable();
@@ -190,11 +190,14 @@ public void TyKantan(string buttonname){
    //出題する
     void Output(){
        ShuffleB();
+       TyQuesCount++;
+       Debug.Log("問題"+TyQuesCount);
        answerNum=0;
        k=3;
        _mojiNum=0;
         //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        _qNum = 14;//Debug用
+        //_qNum =13;
+        _qNum = QuesNum[n];//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
         if(GameManager.instance.isGfontsize==true){
@@ -269,7 +272,10 @@ public void TyKantan(string buttonname){
                 }
         //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
-
+        n++;
+        if(n > QuesNum.Count-1){
+            n=0;
+        }
         }
     }
    /* public void TiCheckAnswer(int num){
@@ -429,6 +435,7 @@ public void TyKantan(string buttonname){
             for(int j=0;j<QuesNum.Count;j++){
                 Debug.Log("Q+"+QuesNum[j]);
             }
+            Debug.Log("問題数＋"+QuesNum.Count);
         }
 
     //Debugで二次元入れるの中身を確認したいとき用のメソッド
