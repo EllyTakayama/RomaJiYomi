@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//2秒ごとに点滅
 
-public class Tenmetu : MonoBehaviour
+public class Tenmetu2 : MonoBehaviour
 {
-    public float speed = 1.5f;
+    public float speed = 2.0f;
 
     //private
     private Text text;

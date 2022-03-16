@@ -258,22 +258,7 @@ public class ToggleRenshuu : MonoBehaviour
             }
             Debug.Log("ba"+toggle[13].isOn);
             } 
-            
-            Debug.Log("要素数"+shutsudaiNum.Count);
-            for(int j =0; j<shutsudaiNum.Count; j++){
-                Debug.Log(shutsudaiNum[j]);
-                }
-
-            if(shutsudaiNum.Count ==0){
-                SpawnSetPanel();
-                Debug.Log("Tkara");
-                return;
-            }
-            ShuffleM();
-            ShutudaiPanel.SetActive(true);
-    }
-        //その他の音の代入
-        public void SelectToggle1(){
+        
         //14 kya行71-73
         if(toggle[14].isOn == true){
             for(int i=71; i<74; i++){
@@ -409,14 +394,24 @@ public class ToggleRenshuu : MonoBehaviour
              for(int j =0; j<shutsudaiNum.Count; j++){
                 Debug.Log(shutsudaiNum[j]);}
 
+
+
+            
+            //Debugで出題文字を確認
+            Debug.Log("要素数"+shutsudaiNum.Count);
+            for(int j =0; j<shutsudaiNum.Count; j++){
+                Debug.Log(shutsudaiNum[j]);
+                }
+
             if(shutsudaiNum.Count ==0){
                 SpawnSetPanel();
-                Debug.Log("T1kara");
+                Debug.Log("Tkara");
                 return;
             }
             ShuffleM();
             ShutudaiPanel.SetActive(true);
     }
+        
         void ShuffleM(){
             int n = shutsudaiNum.Count;
         // nが1より小さくなるまで繰り返す
