@@ -73,7 +73,6 @@ public class TiTypingManager : MonoBehaviour
 // Start is called before the first frame update
   void Start(){ 
       ShuffleB();
-      Debug.Log("start");
        //cd = GetComponent<DictionaryChange>();
        //ShutudaiPanel.SetActive(false);
        GameManager.instance.LoadGfontsize();
@@ -276,6 +275,7 @@ public void TyKantan(string buttonname){
         if(n > QuesNum.Count-1){
             n=0;
         }
+        Debug.Log("n+"+n);
         }
     }
    /* public void TiCheckAnswer(int num){

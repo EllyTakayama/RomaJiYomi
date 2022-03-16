@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
+//3月16に日更新
 
 public class TikaraQues : MonoBehaviour
 {
@@ -22,12 +23,14 @@ public class TikaraQues : MonoBehaviour
     public Toggle toggle1;//簡単・難しい分岐
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> yomiageSlice = new List<string>();
+     private int t;//シャッフル用の変数
     public bool isFontTall;
     public bool isTiKunrei;//trueなら訓令式　falseならヘボン
     public int TiQuesCount;//出題数をカウントする
     public Text TiQuesText;
     public Text TiQuesCountText;
     public bool isWord;//単語で解答するならtrue 1文字ずつ解凍するならfalse
+    public List<int> TikaQuesNum = new List<int>();//出題をシャッフルさせるため
 
     public enum TikaraType
     {
@@ -101,6 +104,7 @@ public class TikaraQues : MonoBehaviour
                 if(isWord==true){
                    TcurrentMode = 1;
                    SetList();
+                   ShuffleTikaQuesNum();
                    Debug.Log("1");
                    //DebugTable();
                    ShutudaiPanel.SetActive(true);
@@ -118,6 +122,7 @@ public class TikaraQues : MonoBehaviour
                 if(isWord==true){
                    TcurrentMode = 2;
                    SetList();
+                   ShuffleTikaQuesNum();
                    Debug.Log("2");
                    //DebugTable();
                    ShutudaiPanel.SetActive(true);
@@ -135,6 +140,7 @@ public class TikaraQues : MonoBehaviour
                 if(isWord==true){
                    TcurrentMode = 3;
                    SetList();
+                   ShuffleTikaQuesNum();
                    Debug.Log("3");
                    //DebugTable();
                    ShutudaiPanel.SetActive(true);
@@ -152,6 +158,7 @@ public class TikaraQues : MonoBehaviour
                 if(isWord==true){
                    TcurrentMode = 4;
                    SetList();
+                   ShuffleTikaQuesNum();
                    Debug.Log("4");
                    //DebugTable();
                    ShutudaiPanel.SetActive(true);
@@ -231,11 +238,13 @@ void ChangeKtoH(string moji){
     //ToLower() 小文字での表示
         public void  TKantan(){
         TiQuesCount++;
+        Debug.Log("問題数"+TiQuesCount);
         TiQuesCountText.text = TiQuesCount.ToString();
         TikaraAnsButtons[0].enabled = true;
         TikaraAnsButtons[1].enabled = true;
         TikaraAnsButtons[2].enabled = true;
-        int n = UnityEngine.Random.Range(0,tateNumber);
+        int n = TikaQuesNum[t];//出題される問題
+        Debug.Log("n+"+n);
         //正解のstring
         if(isTiKunrei==true){
             TikaraAnswer = TSTable[n,2];
@@ -295,8 +304,14 @@ void ChangeKtoH(string moji){
         }
 
         }
-        
+        t++;
+        if(t > TikaQuesNum.Count-1){
+            t=0;
+             Debug.Log("リセット+"+t);
+        }
+       
     }
+  
 
     
     void SetList(){
@@ -327,6 +342,33 @@ void ChangeKtoH(string moji){
             }
         }
     }
+    //出題をシャッフルする
+    public void ShuffleTikaQuesNum(){
+        TikaQuesNum.Clear();
+        for(int i =0;i < tateNumber; i++){
+            TikaQuesNum.Add(i);
+        }
+            int m = TikaQuesNum.Count;
+        // nが1より小さくなるまで繰り返す
+    while (m > 1)
+    {
+        m--;
+        // nは 0 ～ n+1 の間のランダムな値
+        int k = UnityEngine.Random.Range(0, m + 1);
+ 
+        // k番目のカードをtempに代入
+        int temp = TikaQuesNum[k];
+        TikaQuesNum[k] = TikaQuesNum[m];
+        TikaQuesNum[m] = temp;
+        }
+            for(int j=0;j<TikaQuesNum.Count;j++){
+                Debug.Log("Q+"+TikaQuesNum[j]);
+            }
+            Debug.Log("問題数＋"+TikaQuesNum.Count);
+        }
+ 
+
+
     //Debugで二次元入れるの中身を確認したいとき用のメソッド
     void DebugTable()
     {

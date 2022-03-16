@@ -437,6 +437,7 @@ public class ToggleRenshuu : MonoBehaviour
         }
         
     public void OnRenTog(){
+        shutsudaiNum.Clear();
         if(toggle50.isOn == true){
             //50音
             isHiragana = true;
