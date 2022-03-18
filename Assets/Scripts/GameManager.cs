@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//3月2日更新
+//3月19日更新
 
 public class GameManager : MonoBehaviour
 {
@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
    //public bool isGfontSize;
    public bool isSEOn;//SEオンオフ
    public bool isBgmOn;//BGMオンオフ
-   public int AcorrectCount;//kihonSceneのスコア保存
+   public int AcorrectCount;//kihonSceneのあ行スコア保存
+   public int HcorrectCount;//kihonSceneのほかの行のスコア保存
    public int TiTangoCount;//TikaraSceneの単語ごと解答のスコア保存
    public int TyHiraganaCount;//TikaraSceneの1文字ずつ解答のスコア保存
    public int RcorrectCount;//RenshuuSceneあのスコア保存
-   public int HcorrectCount;//RenshuuSceneあのスコア保存
    public bool isTiWord;//TikaraSceneの解答分岐のbool
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
 

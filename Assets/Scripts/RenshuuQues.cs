@@ -20,8 +20,12 @@ public class RenshuuQues : MonoBehaviour
     public Button[] RenAnsButton;
     public string tagOfButton;
     public Text RenQuesText;
-    public int RenshuuCount;
+    public Text RenCountText;//左　出題数を表示
+    public Text RenMondaiText;//右　問題数を表示
+    public int RenshuuCount;//出題数をカウントする変数
+    public string RenMondaisuu;//問題数の設定
     public GameObject RenshuuPanel;
+    [SerializeField] private GameObject RegradePanel;
     public bool isRTall;//大文字か小文字かのbool
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     public enum RenshuuType
@@ -229,6 +233,9 @@ public class RenshuuQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //出題数ようのデバック記述
+        RenMondaisuu = "5";
+        GameManager.instance.RcorrectCount = 0;
         GameManager.instance.LoadGfontsize();
         //isRTall = GameManager.instance.isGfontsize;
         Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
@@ -262,10 +269,14 @@ public class RenshuuQues : MonoBehaviour
     }
     
     public void RenRomaji50(){
-        /*if(renshuuNum.Count == 0){
-            Debug.Log("kara");
+        RenshuuCount++;
+       if(RenshuuCount > int.Parse(RenMondaisuu)){
+            RegradePanel.SetActive(true);
+            //RegradePanel.GetComponent<DOaPanel>().APanel();
+            Debug.Log("Regradepanel");
             return;
-        }*/
+        }
+
         RenAnsButton[0].enabled = true;
         RenAnsButton[1].enabled = true;
         RenAnsButton[2].enabled = true;
@@ -274,7 +285,8 @@ public class RenshuuQues : MonoBehaviour
             n = 0;
             RenshuuCount=0;
         }
-        RenshuuCount++;
+        
+        RenCountText.text = RenshuuCount.ToString();
         Debug.Log("RenshuuCount"+RenshuuCount);
         b = renshuuNum[n];
         //3

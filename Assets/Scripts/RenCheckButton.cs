@@ -7,7 +7,7 @@ using System;
 
 public class RenCheckButton : MonoBehaviour
 {
-    public bool isPressed;//ボタンが押されると時間の測定を開始
+    //public bool isPressed;//ボタンが押されると時間の測定を開始
     //float time=0.0f;
     [SerializeField] private GameObject maruImage;  
     [SerializeField] private GameObject batsuImage;
@@ -31,7 +31,8 @@ public class RenCheckButton : MonoBehaviour
         Debug.Log("gameObject.tag"+gameObject.tag);
          if (gameObject.CompareTag( RenshuuQues.instance.tagOfButton))
         {
-            isPressed = true;
+            //isPressed = true;
+            GameManager.instance.RcorrectCount++;
             maruImage.SetActive(true);
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");
@@ -39,7 +40,7 @@ public class RenCheckButton : MonoBehaviour
         }
         else{
             Debug.Log("間違い");
-            isPressed = true;
+            //isPressed = true;
             pekeImage.SetActive(true);
             batsuImage.SetActive(true);
             SoundManager.instance.PlaySousaSE(3);
