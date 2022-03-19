@@ -23,7 +23,7 @@ public class RenshuuQues : MonoBehaviour
     public Text RenCountText;//左　出題数を表示
     public Text RenMondaiText;//右　問題数を表示
     public int RenshuuCount;//出題数をカウントする変数
-    public string RenMondaisuu;//問題数の設定
+    public int RenMondaisuu;//問題数の設定
     public GameObject RenshuuPanel;
     [SerializeField] private GameObject RegradePanel;
     public bool isRTall;//大文字か小文字かのbool
@@ -234,7 +234,7 @@ public class RenshuuQues : MonoBehaviour
     void Start()
     {
         //出題数ようのデバック記述
-        RenMondaisuu = "5";
+        RenMondaisuu = 5;
         GameManager.instance.RcorrectCount = 0;
         GameManager.instance.LoadGfontsize();
         //isRTall = GameManager.instance.isGfontsize;
@@ -269,10 +269,12 @@ public class RenshuuQues : MonoBehaviour
     }
     
     public void RenRomaji50(){
+        string Mondai = RenMondaisuu.ToString();
+        RenMondaiText.text = $"／{Mondai}問";
         RenshuuCount++;
-       if(RenshuuCount > int.Parse(RenMondaisuu)){
+       if(RenshuuCount > RenMondaisuu){
             RegradePanel.SetActive(true);
-            //RegradePanel.GetComponent<DOaPanel>().APanel();
+            RegradePanel.GetComponent<DoRegrade>().RgradePanel();
             Debug.Log("Regradepanel");
             return;
         }

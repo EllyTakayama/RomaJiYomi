@@ -21,6 +21,7 @@ public class RenCheckButton : MonoBehaviour
         maruImage.SetActive(false);
         batsuImage.SetActive(false); 
         pekeImage.SetActive(false);
+        GameManager.instance.RcorrectCount = 0;
     }
 
     public void CheckAnswer(){
