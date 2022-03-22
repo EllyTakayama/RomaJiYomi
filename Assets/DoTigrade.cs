@@ -3,19 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-//3月18日更新
+//3月22日更新
 
-public class DoRegrade : MonoBehaviour
+public class DoTigrade : MonoBehaviour
 {
-    [SerializeField] private GameObject RegradePanel;
+    [SerializeField] private GameObject TigradePanel;
     [SerializeField] private Text yattaneText;
     [SerializeField] private Text coinText;
     [SerializeField] private GameObject coinImage;
     [SerializeField] private GameObject flashImage;
     [SerializeField] private GameObject retryButton;
     [SerializeField] private GameObject renTopButton;
-    public string RhiraganaCorrect;
-    public string Rcoin;
+    public string TihiraganaCorrect;
+     public string Tikaracoin;
+    public string Tycoin;
+    public string Ticoin;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +33,15 @@ public class DoRegrade : MonoBehaviour
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
-        RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
-        Rcoin = GameManager.instance.RCoin.ToString();
+        if(TikaraQues.instance.isWord ==true){
+            TihiraganaCorrect = GameManager.instance.TiTangoCount.ToString();
+            Tikaracoin = GameManager.instance.TiCoin.ToString();
+        }else{
+            TihiraganaCorrect = GameManager.instance.TyHiraganaCount.ToString();
+            Tikaracoin = GameManager.instance.TyCoin.ToString();
+            }
+        
+       
     
         StartCoroutine(ReGradePanel());
     }
@@ -50,7 +59,7 @@ public class DoRegrade : MonoBehaviour
     }
     
     public void YattaneText(){
-        yattaneText.DOText("\n"+RhiraganaCorrect+"問正解！"
+        yattaneText.DOText("\n"+TihiraganaCorrect+"問正解！"
         , 0.5f)
         .OnComplete(CoinText);
         print("yattaeText");
@@ -59,11 +68,11 @@ public class DoRegrade : MonoBehaviour
 
     public void CoinText(){
         coinText.DOText("\nコインを"
-        +Rcoin+"枚ゲット！"
+        +Tikaracoin+"枚ゲット！"
         , 0.6f)
         .OnComplete(Coinhoka);
         print("coinText");
-        print("正解数"+Rcoin);
+        print("正解数"+TihiraganaCorrect);
     }
 
 

@@ -24,6 +24,7 @@ public class RenshuuQues : MonoBehaviour
     public Text RenMondaiText;//右　問題数を表示
     public int RenshuuCount;//出題数をカウントする変数
     public int RenMondaisuu;//問題数の設定
+    public int RenSeikai;//coin枚数を計算するために変数
     public GameObject RenshuuPanel;
     [SerializeField] private GameObject RegradePanel;
     public bool isRTall;//大文字か小文字かのbool
@@ -117,7 +118,7 @@ public class RenshuuQues : MonoBehaviour
          //38-42
         "ra","ri","ru","re","ro",
         //43-45
-        "wa","wo","'n",
+        "wa","wo","n",
 
         //46-50
         "ga","gi","gu","ge","go",
@@ -176,7 +177,7 @@ public class RenshuuQues : MonoBehaviour
         //38-42
         "RA","RI","RU","RE","RO",
         //43-45
-         "WA","WO","NN",
+         "WA","WO","N",
 
         //46-50
         "GA","GI","GU","GE","GO",
@@ -235,6 +236,7 @@ public class RenshuuQues : MonoBehaviour
     {
         //出題数ようのデバック記述
         RenMondaisuu = 5;
+        RenSeikai = 0;
         GameManager.instance.RcorrectCount = 0;
         GameManager.instance.LoadGfontsize();
         //isRTall = GameManager.instance.isGfontsize;
@@ -270,12 +272,18 @@ public class RenshuuQues : MonoBehaviour
     
     public void RenRomaji50(){
         string Mondai = RenMondaisuu.ToString();
-        RenMondaiText.text = $"／{Mondai}問";
+        RenMondaiText.text = "／"+Mondai+"問";
         RenshuuCount++;
        if(RenshuuCount > RenMondaisuu){
-            RegradePanel.SetActive(true);
-            RegradePanel.GetComponent<DoRegrade>().RgradePanel();
-            Debug.Log("Regradepanel");
+           RenSeikai = GameManager.instance.RcorrectCount;
+           GameManager.instance.LoadCoinGoukei();
+           GameManager.instance.RCoin = RenSeikai*1;
+           GameManager.instance.totalCoin += GameManager.instance.RCoin;
+           GameManager.instance.SaveCoinGoukei();
+           RegradePanel.SetActive(true);
+           RegradePanel.GetComponent<DoRegrade>().RgradePanel();
+           Debug.Log("GameManager.totalCoin"+GameManager.instance.totalCoin);
+           Debug.Log("GameManager.renshuuCoin"+GameManager.instance.RCoin);
             return;
         }
 
@@ -406,7 +414,5 @@ public class RenshuuQues : MonoBehaviour
         yield return new WaitForSeconds(0.6f);
         SoundManager.instance.PlaySEDore();//どれ
     }
-
-
 
 }

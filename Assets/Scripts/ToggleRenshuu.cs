@@ -17,6 +17,7 @@ public class ToggleRenshuu : MonoBehaviour
     public int s;
     public GameObject ShutudaiPanel;
     [SerializeField] private GameObject RenshuuPanel;
+    //[SerializeField] private GameObject reSettingPanel;
     [SerializeField] private GameObject SetsuImage;
     [SerializeField] private GameObject[] SetPanels;
     //プレハブの生成のため
@@ -76,7 +77,7 @@ public class ToggleRenshuu : MonoBehaviour
         //38-42
         "RA","RI","RU","RE","RO",
         //43-45
-         "WA","WO","NN",
+         "WA","WO","N",
 
         //46-50
         "GA","GI","GU","GE","GO",

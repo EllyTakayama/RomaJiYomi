@@ -11,12 +11,21 @@ public class GameManager : MonoBehaviour
    //public bool isGfontSize;
    public bool isSEOn;//SEオンオフ
    public bool isBgmOn;//BGMオンオフ
-   public int AcorrectCount;//kihonSceneのあ行スコア保存
-   public int HcorrectCount;//kihonSceneのほかの行のスコア保存
-   public int TiTangoCount;//TikaraSceneの単語ごと解答のスコア保存
-   public int TyHiraganaCount;//TikaraSceneの1文字ずつ解答のスコア保存
-   public int RcorrectCount;//RenshuuSceneあのスコア保存
+   public int AcorrectCount;//kihonSceneのあ行スコア
+   public int HcorrectCount;//kihonSceneのほかの行のスコア
+   public int TiTangoCount;//TikaraSceneの単語ごと解答のスコア
+   public int TyHiraganaCount;//TikaraSceneの1文字ずつ解答のスコア
+   public int RcorrectCount;//RenshuuSceneスコア
+   public int AcorrectTotal;//kihonSceneのあ行スコア保存
+   public int HcorrectTotal;//kihonSceneのほかの行のスコア保存
+   public int TiTangoTotal;//TikaraSceneの単語ごと解答のスコア保存
+   public int TyHiraganaTotal;//TikaraSceneの1文字ずつ解答のスコア保存
+   public int RcorrectTotal;//RenshuuSceneスコア保存
    public bool isTiWord;//TikaraSceneの解答分岐のbool
+   public int RCoin;//RenshuuSceneの正解数に応じたコイン枚数
+   public int TiCoin;//TikaraSceneの単語問題の正解数に応じたコイン枚数
+   public int TyCoin;//TikaraSceneの1文字問題の正解数に応じたコイン枚数
+   public int totalCoin;//各Sceneのコイン枚数はこちらに追加していく
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
 
     private void Awake()
@@ -42,6 +51,17 @@ public class GameManager : MonoBehaviour
        //LoadGbgm();
        //Debug.Log("start");
     }
+    public void SaveCoinGoukei(){
+        //isGfontsize = SettingManager.instance.isfontSize;
+        ES3.Save<int>("totalCoin",totalCoin,"totalCoin.es3" );
+        Debug.Log("セーブtotalCoin"+totalCoin);
+    }
+
+    public void LoadCoinGoukei(){
+         //if(ES3.KeyExists("isfontSize"))
+         totalCoin = ES3.Load<int>("totalCoin","totalCoin.es3",0);
+         Debug.Log("ロードtotalCoin"+totalCoin);
+    }
     
     public void SaveGfontsize(){
         //isGfontsize = SettingManager.instance.isfontSize;
@@ -60,7 +80,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("クリックisGKunrei"+isGKunrei);
     }
     public void LoadGKunrei(){
-         if(ES3.KeyExists("isGKunrei"))
+         //if(ES3.KeyExists("isGKunrei"))
          isGKunrei = ES3.Load<bool>("isGKunrei","isGKunrei.es3",true);
          Debug.Log("クリックisGKunrei"+isGKunrei);
     }
