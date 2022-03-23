@@ -32,6 +32,9 @@ public class TiTypingManager : MonoBehaviour
     public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
     public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
     public int TyQuesCount;//出題数をカウントする
+    public Text TyQuesText;//出題の進行数表示
+    public Text TyQuesCountText;//問題数を表示
+    public int TyMondaisuu;//単語解答の問題数の設定
 
     //テキストデータを格納
     public string[,] TiTable;

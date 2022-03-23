@@ -16,8 +16,6 @@ public class SettingManager : MonoBehaviour
     public Toggle seToggle;//SEオンオフ
     public bool canAnswer;//Buttonの不具合を解消するため連続してボタンを押せなないよう制御
 
-    public bool isfontSize = true;// true なら大文字
-    public bool isKunrei = true;// true なら訓令式書式
     public bool TestfontSize;//テスト用データ
 
     void Start()
@@ -32,47 +30,36 @@ public class SettingManager : MonoBehaviour
 
     public void FontSelectToggle(){
         if(tallToggle.isOn == true){
-            //大文字選択ならisfontSizeはtrue
-            //isfontSize = true;
+            //大文字選択
             GameManager.instance.isGfontsize=true;
-            //ES3.Save<bool>("isfontSize", isfontSize);
+            
             GameManager.instance.SaveGfontsize();
-            Debug.Log("クリックisfontSize"+isfontSize);
-             Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
+            Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
         }
         else{
             //小文字が選択されているなら
-            isfontSize = false;
             GameManager.instance.isGfontsize= false;
-            //ES3.Save<bool>("isfontSize", isfontSize);
             GameManager.instance.SaveGfontsize();
-             Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
+           
         }
-        Debug.Log("クリックisfontSize"+isfontSize);
+
         Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
     }
 
     public void FontTogLoad(){
-        //ES3.Load<bool>("isfontSize", isfontSize);
+       
         GameManager.instance.LoadGfontsize();
         Debug.Log("1GameMfontSize"+GameManager.instance.isGfontsize);
-         //isfontSize = ES3.Load<bool>("isfontSize", isfontSize);
          if(GameManager.instance.isGfontsize == true){
-             isfontSize = true;
-             }
-             else{
-                  isfontSize = false;}
-         //GameManager.instance.isGfontsize = isfontSize;
-          Debug.Log("2GameMfontSize"+GameManager.instance.isGfontsize);
-         Debug.Log("isfontSize"+isfontSize);
-        if(isfontSize ==true){
-            tallToggle.isOn = true;
+             tallToggle.isOn = true;
             smallToggle.isOn = false;
-        }
-        else{
+            }
+             else
+             {
             tallToggle.isOn = false;
             smallToggle.isOn = true;
-        }
+                  }
+       
         Debug.Log("ロードtallToggle"+tallToggle.isOn);
         Debug.Log("ロードsmallToggle"+smallToggle.isOn);
         Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
@@ -81,30 +68,24 @@ public class SettingManager : MonoBehaviour
     public void ShosikiSelectToggle(){
         if(kunreiToggle.isOn == true){
             //訓令選択はtrue
-                //isKunrei = true;
                 GameManager.instance.isGKunrei = true;
                 GameManager.instance.SaveGKunrei();
-            //ES3.Save<bool>("isKunrei",isKunrei);
-            //Debug.Log("クリックisKunrei"+isKunrei);
+           
         }
         else{
             //ヘボン式が選択されているならfalse
             GameManager.instance.isGKunrei = false;
             GameManager.instance.SaveGKunrei();
-            //ES3.Save<bool>("isKunrei",isKunrei);
+           
           
         }
-          Debug.Log("クリックisKunrei"+isKunrei);
+          Debug.Log("クリックisGKunrei"+GameManager.instance.isGKunrei);
     }
 
     public void ShosikiTogLoad(){
-        //if(ES3.KeyExists("isKunrei"))
-        //isKunrei = ES3.Load<bool>("isKunrei",true);
         GameManager.instance.LoadGKunrei();
         Debug.Log("GameKunrei"+GameManager.instance.isGKunrei);
-        isKunrei = GameManager.instance.isGKunrei;
-        Debug.Log("ロードisKunrei"+isKunrei);
-        if(isKunrei ==true){
+        if(GameManager.instance.isGKunrei ==true){
             kunreiToggle.isOn = true;
             hebonToggle.isOn = false;
             

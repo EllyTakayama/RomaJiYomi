@@ -23,12 +23,13 @@ public class TikaraQues : MonoBehaviour
     public Toggle toggle1;//簡単・難しい分岐
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> yomiageSlice = new List<string>();
-     private int t;//シャッフル用の変数
-    public bool isFontTall;
-    public bool isTiKunrei;//trueなら訓令式　falseならヘボン
+    private int t;//シャッフル用の変数
+    
     public int TiQuesCount;//出題数をカウントする
-    public Text TiQuesText;
-    public Text TiQuesCountText;
+    public Text TiQuesText;//出題の進行数表示
+    public Text TiQuesCountText;//問題数を表示
+    public int TiMondaisuu;//単語解答の問題数の設定
+    public int TiSeikai;//coin枚数を計算するために変数
     public bool isWord;//単語で解答するならtrue 1文字ずつ解凍するならfalse
     public List<int> TikaQuesNum = new List<int>();//出題をシャッフルさせるため
 
@@ -78,16 +79,16 @@ public class TikaraQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       //ShutudaiPanel.SetActive(false);
+      
        GameManager.instance.LoadGfontsize();
        GameManager.instance.LoadGKunrei();
-       isFontTall = GameManager.instance.isGfontsize;
+       //出題数デバッグ用
+       TiMondaisuu = 5;
        TiQuesCount = 0;
        cd1 = GetComponent<HiraDictionary>();
         //Hebon(kunrei);
         //ShutudaiSlice(hoka);
         //isWord = true;
-        //isTiKunrei=false;
     }
     // Update is called once per frame
     void Update()
@@ -173,36 +174,7 @@ public class TikaraQues : MonoBehaviour
                     break;
            }
           
-        /*
-        if(n+1 > TikaraTempt[0].Length){
-            Debug.Log("5問目");
-            n = 0;
-            }
-            RenshuuCount++;
-            //Debug.Log("RenshuuCount"+RenshuuCount);
-            b = renshuuNum[n];
-            //4 
-           if(n >2){
-            a = renshuuNum[n-1];
-            c = renshuuNum[n-2];
-            }
-            else if(n <3) {
-            a = renshuuNum[n+1];
-            c = renshuuNum[n+2];.Count){
-            Debug.Log("5問目");
-            n = 0;
-            }
-            RenshuuCount++;
-            Debug.Log("RenshuuCount"+RenshuuCount);
-            b = renshuuNum[n];
-            //4 
-           if(n >2){
-            a = renshuuNum[n-1];
-            c = renshuuNum[n-2];
-            }
-            else if(n <3) {
-            a = renshuuNum[n+1];
-            c = renshuuNum[n+2];*/
+        
        
     }
      string kunrei = "MO";
@@ -238,6 +210,19 @@ void ChangeKtoH(string moji){
     //ToLower() 小文字での表示
         public void  TKantan(){
         TiQuesCount++;
+        /*
+        if(TiQuesCoun > TiMondaisuu){
+           TiSeikai = GameManager.instance.TiTangoCount;
+           GameManager.instance.LoadCoinGoukei();
+           GameManager.instance.TiCoin = TiSeikai*1;
+           GameManager.instance.totalCoin += GameManager.instance.TiCoin;
+           GameManager.instance.SaveCoinGoukei();
+           TigradePanel.SetActive(true);
+           TigradePanel.GetComponent<DoTigrade>().TgradePanel();
+           Debug.Log("GameManager.totalCoin"+GameManager.instance.totalCoin);
+           Debug.Log("GameManager.renshuuCoin"+GameManager.instance.RCoin);
+            return;
+        }*/
         Debug.Log("問題数"+TiQuesCount);
         TiQuesCountText.text = TiQuesCount.ToString();
         TikaraAnsButtons[0].enabled = true;
@@ -246,7 +231,7 @@ void ChangeKtoH(string moji){
         int n = TikaQuesNum[t];//出題される問題
         Debug.Log("n+"+n);
         //正解のstring
-        if(isTiKunrei==true){
+        if(GameManager.instance.isGKunrei==true){
             TikaraAnswer = TSTable[n,2];
             }
         else{
@@ -261,7 +246,7 @@ void ChangeKtoH(string moji){
 
         locationOfTikaraAnswer = UnityEngine.Random.Range(0,3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
-        if(isFontTall==true){
+        if(GameManager.instance.isGfontsize==true){
         if(locationOfTikaraAnswer == 0)
        {
         TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer; 

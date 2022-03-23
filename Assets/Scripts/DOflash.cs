@@ -13,6 +13,7 @@ public class DOflash : MonoBehaviour
         transform.DOLocalRotate(new Vector3(0, 0, 720f), 1.8f,
         RotateMode.FastBeyond360)
         .SetDelay(0.2f);  
+        Debug.Log("flash");
     }
 
 }
