@@ -26,6 +26,7 @@ public class TCheckButton : MonoBehaviour
         Debug.Log("gameObject.tag"+gameObject.tag);
          if (gameObject.CompareTag( TikaraQues.instance.tagOfButton))
         {
+            GameManager.instance.TiTangoCount++;
             maruImage.SetActive(true);
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");

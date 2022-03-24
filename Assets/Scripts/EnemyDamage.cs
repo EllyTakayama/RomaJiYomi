@@ -11,9 +11,7 @@ public class EnemyDamage : MonoBehaviour
     void Start()
     {
       //DamageCall();
-      //transform.DOShakePosition(1f, 20f, 15, 1, false, true);
-      //Debug.Log("shake");
-        
+      
     }
 
     public void DamageCall(){

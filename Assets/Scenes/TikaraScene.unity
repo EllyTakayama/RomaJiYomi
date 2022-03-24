@@ -3850,7 +3850,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &655396039
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4493,7 +4493,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1\u6587\u5B57\nTOP"
+  m_Text: "\u3053\u3068\u3070\n\u30AF\u30A4\u30BA"
 --- !u!222 &764899726
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4571,8 +4571,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 220, y: -100}
-  m_SizeDelta: {x: 250, y: 100}
+  m_AnchoredPosition: {x: 230, y: -100}
+  m_SizeDelta: {x: 195, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &802115030
 MonoBehaviour:
@@ -4924,6 +4924,7 @@ MonoBehaviour:
   - {fileID: 1799906054}
   enemies: {fileID: 0}
   TikaraAnswer: 
+  pipoEnemy: {fileID: 1338413865}
   tagOfButton: 
   TikaraText: {fileID: 251857949}
   furiganaText: {fileID: 48797124}
@@ -4931,6 +4932,7 @@ MonoBehaviour:
   TcurrentMode: 0
   ShutudaiPanel: {fileID: 1978125762}
   Shutudai2Panel: {fileID: 1714495023}
+  TigradePanel: {fileID: 1349976771}
   toggle1: {fileID: 925790010}
   Select: 1
   TiQuesCount: 0
@@ -4988,6 +4990,7 @@ MonoBehaviour:
   - {fileID: 1719353871}
   - {fileID: 1631928164}
   Shutudai2Panel: {fileID: 1714495023}
+  TigradePanel: {fileID: 1349976771}
   TicurrentMode: 0
   isKantan: 0
   isTyKunrei: 0
@@ -5002,9 +5005,10 @@ MonoBehaviour:
   Hebonpattern: chi|tsu|CHI|TSU
   Hebonpattern2: ja|ju|jo|JA|JU|JO
   TyQuesCount: 0
-  TyQuesText: {fileID: 0}
-  TyQuesCountText: {fileID: 0}
+  TyQuesText: {fileID: 802115030}
+  TyQuesCountText: {fileID: 2032968098}
   TyMondaisuu: 0
+  TySeikai: 0
   Tiromelines: []
   qCount: 0
   Tyfood: {fileID: 4900000, guid: 85d62fd4aac00492fac96276a89df354, type: 3}
@@ -5278,12 +5282,12 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 906521186}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349976772}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -6726,7 +6730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3072\u3089\u304C\u306A\u30AF\u30A4\u30BA"
+  m_Text: "\u3053\u3068\u3070\u30AF\u30A4\u30BA"
 --- !u!222 &1094463082
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -7837,7 +7841,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1349976772}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -7923,7 +7927,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 100, y: -1000}
-  m_SizeDelta: {x: 180, y: 100}
+  m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1299169477
 MonoBehaviour:
@@ -7969,9 +7973,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 915733296}
         m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: RenshuuSceneMove
+        m_MethodName: TikaraSceneMove
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8329,8 +8333,8 @@ RectTransform:
   - {fileID: 119917862}
   - {fileID: 655396039}
   - {fileID: 1094463080}
-  - {fileID: 1271923906}
   - {fileID: 906521187}
+  - {fileID: 1271923906}
   - {fileID: 484070951}
   - {fileID: 125802317}
   - {fileID: 1823434422}
@@ -8355,9 +8359,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 1349976771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cab2792c45cdc4932bf0e8f2dcaa875f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0e1b9c887a7d34d528d4f428800e08ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TigradePanel: {fileID: 1349976771}
+  yattaneText: {fileID: 1271923907}
+  coinText: {fileID: 906521188}
+  coinImage: {fileID: 151544478}
+  flashImage: {fileID: 655396038}
+  retryButton: {fileID: 1973894193}
+  renTopButton: {fileID: 1299169475}
+  TihiraganaCorrect: 
+  Tikaracoin: 
 --- !u!114 &1349976774
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12570,9 +12583,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: RenshuuQues, Assembly-CSharp
-        m_MethodName: Renshuu
+      - m_Target: {fileID: 1349976773}
+        m_TargetAssemblyTypeName: DoTigrade, Assembly-CSharp
+        m_MethodName: RetryButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

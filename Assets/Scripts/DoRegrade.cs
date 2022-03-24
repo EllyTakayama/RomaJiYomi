@@ -31,6 +31,7 @@ public class DoRegrade : MonoBehaviour
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
+    
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
     

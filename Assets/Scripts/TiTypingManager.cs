@@ -15,6 +15,7 @@ public class TiTypingManager : MonoBehaviour
     [SerializeField]Text aText;//解答内容を代入
     public Button[] TiButtons;//正誤判定Button
     public GameObject Shutudai2Panel;
+    public GameObject TigradePanel;
     public int TicurrentMode;
     public bool isKantan;//かんたんかButton6こまで難しい問題Button9こ
     //public bool isTallFont;//大文字か小文字かを取得
@@ -35,6 +36,7 @@ public class TiTypingManager : MonoBehaviour
     public Text TyQuesText;//出題の進行数表示
     public Text TyQuesCountText;//問題数を表示
     public int TyMondaisuu;//単語解答の問題数の設定
+    public int TySeikai;//coin枚数を計算するために変数
 
     //テキストデータを格納
     public string[,] TiTable;
@@ -85,7 +87,11 @@ public class TiTypingManager : MonoBehaviour
        Debug.Log("startfont"+GameManager.instance.isGfontsize);
        Debug.Log("startKunrei"+GameManager.instance.isGKunrei);
        cd = GetComponent<HiraDictionary>();
+
+       //デバック用出題数
+       TyMondaisuu = 5;
        TyQuesCount =0;
+       GameManager.instance.TyHiraganaCount=0;
         //Output();
         //SetListTi();
         //TiDebugTable();
@@ -193,6 +199,21 @@ public void TyKantan(string buttonname){
     void Output(){
        ShuffleB();
        TyQuesCount++;
+       TyQuesCountText.text = TyQuesCount.ToString();
+       if (TyQuesCount > TyMondaisuu)
+        {
+            TySeikai = GameManager.instance.TyHiraganaCount;
+            GameManager.instance.LoadCoinGoukei();
+            GameManager.instance.TyCoin = TySeikai * 1;
+            GameManager.instance.totalCoin += GameManager.instance.TyCoin;
+            GameManager.instance.SaveCoinGoukei();
+            //pipoEnemy.SetActive(false);
+            TigradePanel.SetActive(true);
+            TigradePanel.GetComponent<DoTigrade>().TgradePanel();
+            Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
+            Debug.Log("GameManager" + GameManager.instance.TyCoin);
+            return;
+        }
        Debug.Log("問題"+TyQuesCount);
        answerNum=0;
        k=3;
@@ -330,8 +351,11 @@ public void TyKantan(string buttonname){
         Debug.Log(answerMoji);
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         answerNum++;
+        
 
         if(answerNum>=_aNum){
+            GameManager.instance.TyHiraganaCount++;
+            Debug.Log("seikai"+GameManager.instance.TyHiraganaCount);
             StartCoroutine(TiChangeQues());
             Debug.Log("output");
             return;
@@ -377,6 +401,7 @@ public void TyKantan(string buttonname){
         Debug.Log("miss");
     }
     IEnumerator TiChangeQues(){
+        
         for(int i=0;i<TiButtons.Length;i++){
         TiButtons[i].enabled =false;
     }
