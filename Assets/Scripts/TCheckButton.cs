@@ -7,6 +7,8 @@ public class TCheckButton : MonoBehaviour
 {
     [SerializeField] private GameObject maruImage;
     [SerializeField] private GameObject pekeImage;
+    [SerializeField] private GameObject maruSprite;
+    [SerializeField] private GameObject pekeSprite;
     //[SerializeField] private GameObject enemyMaker;
     public GameObject enemyDamageCall;
     //[SerializeField] private Image enemyImage;
@@ -15,6 +17,8 @@ public class TCheckButton : MonoBehaviour
     {
         maruImage.SetActive(false);
         pekeImage.SetActive(false);
+        maruSprite.SetActive(false);
+        pekeSprite.SetActive(false);
     }
 
     
@@ -27,14 +31,16 @@ public class TCheckButton : MonoBehaviour
          if (gameObject.CompareTag( TikaraQues.instance.tagOfButton))
         {
             GameManager.instance.TiTangoCount++;
-            maruImage.SetActive(true);
+            //maruImage.SetActive(true);
+            maruSprite.SetActive(true);
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");
             enemyDamageCall.GetComponent<EnemyDamage>().DamageCall();
             StartCoroutine(TiMaruButton());
         }
         else{
-             pekeImage.SetActive(true);
+            //pekeImage.SetActive(true);
+            pekeSprite.SetActive(true);
             SoundManager.instance.PlaySousaSE(3);
             Debug.Log("間違い");
              StartCoroutine(TiBatsuButton());
@@ -44,7 +50,8 @@ public class TCheckButton : MonoBehaviour
     IEnumerator TiMaruButton()
     {  
         yield return new WaitForSeconds(0.4f);
-            maruImage.SetActive(false);
+            //maruImage.SetActive(false);
+            maruSprite.SetActive(false);
             Debug.Log("maru");
       TikaraQues.instance.TKantan();
     }
@@ -52,7 +59,8 @@ public class TCheckButton : MonoBehaviour
     {   
         yield return new WaitForSeconds(0.4f);
         SoundManager.instance.PlaySousaSE(1);
-        pekeImage.SetActive(false);
+        //pekeImage.SetActive(false);
+        pekeSprite.SetActive(false);
         yield return new WaitForSeconds(0.1f);
         TikaraQues.instance.TKantan();
     }
