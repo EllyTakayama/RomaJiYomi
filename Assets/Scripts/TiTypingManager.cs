@@ -14,13 +14,11 @@ public class TiTypingManager : MonoBehaviour
     [SerializeField]Text qText;//出題内容
     [SerializeField]Text aText;//解答内容を代入
     public Button[] TiButtons;//正誤判定Button
+    [SerializeField] private GameObject maruSprite;
+    [SerializeField] private GameObject pekeSprite;
     public GameObject Shutudai2Panel;
     public GameObject TigradePanel;
     public int TicurrentMode;
-    public bool isKantan;//かんたんかButton6こまで難しい問題Button9こ
-    //public bool isTallFont;//大文字か小文字かを取得
-     public bool isTyKunrei;//trueなら訓令式　falseならヘボン
-    //public List<string> TyShutudai = new List<string>();
     public string answerMoji;//Buttonのテキストを一時的に取得する
     public string QuestionAnswer;//正解の文字取得
     public int k=3;//配列でanswerを移動させるため
@@ -78,12 +76,10 @@ public class TiTypingManager : MonoBehaviour
 // Start is called before the first frame update
   void Start(){ 
       ShuffleB();
-       //cd = GetComponent<DictionaryChange>();
-       //ShutudaiPanel.SetActive(false);
+       
        GameManager.instance.LoadGfontsize();
        GameManager.instance.LoadGKunrei();
-       //isTallFont = GameManager.instance.isGfontsize;
-       //isTyKunrei = false;
+       
        Debug.Log("startfont"+GameManager.instance.isGfontsize);
        Debug.Log("startKunrei"+GameManager.instance.isGKunrei);
        cd = GetComponent<HiraDictionary>();

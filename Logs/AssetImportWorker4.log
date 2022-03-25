@@ -22,101 +22,101 @@ AssetImportWorker4
 -logFile
 Logs/AssetImportWorker4.log
 -srvPort
-49427
+49365
 Successfully changed project path to: /Users/takayamarie/RomaJiYomi
 /Users/takayamarie/RomaJiYomi
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 222.50 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 697.05 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.22f1 (e1a7f79fd887)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path /Users/takayamarie/RomaJiYomi/Assets
 GfxDevice: creating device client; threaded=0
-2022-03-25 05:59:10.657 Unity[2467:24223] Color LCD preferred device: Intel(R) Iris(TM) Graphics 6100 (low power)
-2022-03-25 05:59:10.657 Unity[2467:24223] Metal devices available: 1
-2022-03-25 05:59:10.657 Unity[2467:24223] 0: Intel(R) Iris(TM) Graphics 6100 (low power)
-2022-03-25 05:59:10.659 Unity[2467:24223] Using device Intel(R) Iris(TM) Graphics 6100 (low power)
+2022-03-26 05:53:53.111 Unity[3029:36867] Color LCD preferred device: Intel(R) Iris(TM) Graphics 6100 (low power)
+2022-03-26 05:53:53.111 Unity[3029:36867] Metal devices available: 1
+2022-03-26 05:53:53.111 Unity[3029:36867] 0: Intel(R) Iris(TM) Graphics 6100 (low power)
+2022-03-26 05:53:53.112 Unity[3029:36867] Using device Intel(R) Iris(TM) Graphics 6100 (low power)
 Initializing Metal device caps: Intel(R) Iris(TM) Graphics 6100
 Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56467
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56029
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.001502 seconds.
+Registered in 0.001047 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 126.91 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 119.44 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  4.684 seconds
+- Completed reload, in  7.288 seconds
 Domain Reload Profiling:
-	ReloadAssembly (4684ms)
-		BeginReloadAssembly (70ms)
+	ReloadAssembly (7289ms)
+		BeginReloadAssembly (94ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (727ms)
-			LoadAssemblies (71ms)
+		EndReloadAssembly (1117ms)
+			LoadAssemblies (94ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (240ms)
+			SetupTypeCache (331ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (48ms)
-			SetupLoadedEditorAssemblies (325ms)
+			RebuildScriptCaches (73ms)
+			SetupLoadedEditorAssemblies (550ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (127ms)
-				BeforeProcessingInitializeOnLoad (13ms)
-				ProcessInitializeOnLoadAttributes (136ms)
-				ProcessInitializeOnLoadMethodAttributes (45ms)
+				RefreshPlugins (120ms)
+				BeforeProcessingInitializeOnLoad (12ms)
+				ProcessInitializeOnLoadAttributes (332ms)
+				ProcessInitializeOnLoadMethodAttributes (80ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.016046 seconds.
+Registered in 0.019030 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 132.84 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 115.95 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 WARNING: RGBA Compressed PVRTC 4BPP UNorm format is not supported, decompressing texture
 Mono: successfully reloaded assembly
-- Completed reload, in  4.050 seconds
+- Completed reload, in  1.940 seconds
 Domain Reload Profiling:
-	ReloadAssembly (4052ms)
-		BeginReloadAssembly (212ms)
+	ReloadAssembly (1942ms)
+		BeginReloadAssembly (216ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (6ms)
+			DisableScriptedObjects (7ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (32ms)
-		EndReloadAssembly (3753ms)
-			LoadAssemblies (2134ms)
+			CreateAndSetChildDomain (29ms)
+		EndReloadAssembly (1629ms)
+			LoadAssemblies (249ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (629ms)
+			SetupTypeCache (530ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (97ms)
-			SetupLoadedEditorAssemblies (725ms)
+			RebuildScriptCaches (92ms)
+			SetupLoadedEditorAssemblies (598ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (7ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (133ms)
-				BeforeProcessingInitializeOnLoad (106ms)
-				ProcessInitializeOnLoadAttributes (393ms)
-				ProcessInitializeOnLoadMethodAttributes (85ms)
-				AfterProcessingInitializeOnLoad (2ms)
+				RefreshPlugins (116ms)
+				BeforeProcessingInitializeOnLoad (99ms)
+				ProcessInitializeOnLoadAttributes (353ms)
+				ProcessInitializeOnLoadMethodAttributes (25ms)
+				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (10ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
 Platform modules already initialized, skipping
-Validating Project structure ... 0.224715 seconds.
+Validating Project structure ... 0.067791 seconds.
 Shader import version has changed; will reimport all shaders...
-Upgrading shader files ...0.516982 seconds.
+Upgrading shader files ...0.110807 seconds.
 Application.AssetDatabase Initial Script Refresh Start
 RefreshInfo: InitialScriptRefreshV2(NoUpdateAssetOptions) scanfilter:  ... 1 filters
 RefreshProfiler: Total: 0.000ms
@@ -127,20 +127,20 @@ RefreshInfo: StopAssetImportingV2(ForceSynchronousImport) scanfilter:
 RefreshProfiler: Total: 0.000ms
 WARNING: RGBA Compressed PVRTC 4BPP UNorm format is not supported, decompressing texture
 Launching external process: /Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.08 seconds
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
 Initializing Unity extensions:
-2022-03-25 05:59:28.020 Unity[2467:24223] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003bcf020 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
-2022-03-25 05:59:28.026 Unity[2467:24223] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003ba4a80 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-03-26 05:54:08.559 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f741c0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-03-26 05:54:08.566 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f1bbf0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 ========================================================================
 Worker process is ready to serve import requests
-Refreshing native plugins compatible for Editor in 1.17 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.39 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2787 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 2788 Unused Serialized files (Serialized files now loaded: 0)
 System memory in use before: 247.1 MB.
 System memory in use after: 245.1 MB.
 
-Unloading 259 unused Assets to reduce memory usage. Loaded Objects now: 3258.
-Total: 5.776851 ms (FindLiveObjects: 0.356567 ms CreateObjectMapping: 0.162740 ms MarkObjects: 4.250440 ms  DeleteObjects: 1.005364 ms)
+Unloading 260 unused Assets to reduce memory usage. Loaded Objects now: 3259.
+Total: 5.360542 ms (FindLiveObjects: 0.461403 ms CreateObjectMapping: 0.261733 ms MarkObjects: 3.687236 ms  DeleteObjects: 0.948766 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -154,293 +154,66 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  path: Assets/Sprites/enemy/pipo-enemy039.png
-  artifactKey: Guid(f893ca4ea4e7f49318476b923cf9895e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy039.png using Guid(f893ca4ea4e7f49318476b923cf9895e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ac1347a66fd8cfd73b244c9722503bac') in 1.829269 seconds 
-  Import took 1.836235 seconds .
+  path: Assets/Scripts/TyEnemyDamage.cs
+  artifactKey: Guid(c49399d38068644eba4e4e61ab1d6d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TyEnemyDamage.cs using Guid(c49399d38068644eba4e4e61ab1d6d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '344f467b12cdaea6ae621c2928d06c4a') in 0.652328 seconds 
+  Import took 0.659770 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.004862 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy047a.png
-  artifactKey: Guid(7d5ba75cff1fe44119581104ae8fdd71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy047a.png using Guid(7d5ba75cff1fe44119581104ae8fdd71) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4835896259326d16b0d59b2c48b26b36') in 0.040775 seconds 
-  Import took 0.050881 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000323 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy032.png
-  artifactKey: Guid(fd06155559b2b4847b7006e8ba0833ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy032.png using Guid(fd06155559b2b4847b7006e8ba0833ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4a6627cab27bfb8f833dcee7d9e03a8d') in 0.045370 seconds 
-  Import took 0.052271 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000464 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy024.png
-  artifactKey: Guid(fdd76e176cc1a4fa0b8bf90adfd618db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy024.png using Guid(fdd76e176cc1a4fa0b8bf90adfd618db) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb43c54929beb1f44c94fd2e4faabbd6') in 0.029541 seconds 
-  Import took 0.037951 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000698 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy043.png
-  artifactKey: Guid(5f7a8d3537ff74c11a802f41448ec389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy043.png using Guid(5f7a8d3537ff74c11a802f41448ec389) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dd4e9ffb6c97c77f79fc911a774095f') in 0.082317 seconds 
-  Import took 0.091203 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000373 seconds.
-  path: Assets/Sprites/enemy/pipo-boss002.png
-  artifactKey: Guid(e0845b45e3bc040ed9ab355a083ea09f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-boss002.png using Guid(e0845b45e3bc040ed9ab355a083ea09f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '840549a958177015c4f5a3b5c6d138b0') in 0.063941 seconds 
-  Import took 0.072635 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000339 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy036a.png
-  artifactKey: Guid(f7b2b6ab15d1d4272a74f873c8cf9cc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy036a.png using Guid(f7b2b6ab15d1d4272a74f873c8cf9cc8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '850b927a52c88668ce36a45097edd95b') in 0.061190 seconds 
-  Import took 0.069558 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000415 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy048a.png
-  artifactKey: Guid(702bb8a3930024f22a1e8c8f5f3f68f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy048a.png using Guid(702bb8a3930024f22a1e8c8f5f3f68f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3526c067980ff7bb436d84444c1d38fe') in 0.049941 seconds 
-  Import took 0.059741 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000416 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy028.png
-  artifactKey: Guid(2576b7b8f1b284ea2b6644d119286ee8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy028.png using Guid(2576b7b8f1b284ea2b6644d119286ee8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'eb555ea0e7871f7a55d03966c71d740e') in 0.062212 seconds 
-  Import took 0.071258 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000331 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy023b.png
-  artifactKey: Guid(844c17bd32c0149f09595eb0b5f0e0a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy023b.png using Guid(844c17bd32c0149f09595eb0b5f0e0a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a72c69b0f606b995beaeafc1167f239a') in 0.052596 seconds 
-  Import took 0.060675 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000319 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy008b.png
-  artifactKey: Guid(48c83c7d9a1f24c17a51a2bbf8d76a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy008b.png using Guid(48c83c7d9a1f24c17a51a2bbf8d76a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8dbbca9a71f90725c17254b25ae46d12') in 0.048637 seconds 
-  Import took 0.058428 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000434 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy027.png
-  artifactKey: Guid(3c110e09fec1a4e5c9f7e58f585f44a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy027.png using Guid(3c110e09fec1a4e5c9f7e58f585f44a3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '576b31070803df0536225272cb9933b7') in 0.045809 seconds 
-  Import took 0.058740 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000377 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy015a_pa.png
-  artifactKey: Guid(ba190d303dbc14a6b8b4febfba7b5d92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy015a_pa.png using Guid(ba190d303dbc14a6b8b4febfba7b5d92) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '6abfdee347c39ab5e2038da0fced9939') in 0.046656 seconds 
-  Import took 0.059187 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001031 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy022a.png
-  artifactKey: Guid(a98938f68cd664a4b91bb3ab60b7e9ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy022a.png using Guid(a98938f68cd664a4b91bb3ab60b7e9ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fad6c6b73010b5c5d5ec1bfaaa8fc898') in 0.051503 seconds 
-  Import took 0.060017 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000332 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy030.png
-  artifactKey: Guid(1204825bcd77b491cace07fb64c35ca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy030.png using Guid(1204825bcd77b491cace07fb64c35ca1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4dcc27048bcf0c280f0ef1ff1efe65a8') in 0.061234 seconds 
-  Import took 0.070445 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000461 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy046a.png
-  artifactKey: Guid(a627ffa5eecae4eea96cb8b9112e74ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy046a.png using Guid(a627ffa5eecae4eea96cb8b9112e74ae) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3e81d7c50c604d0c76b17923c0a1c287') in 0.053572 seconds 
-  Import took 0.069506 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001452 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy016.png
-  artifactKey: Guid(0b4cd9dcecce449a8a5e40666dc3955b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy016.png using Guid(0b4cd9dcecce449a8a5e40666dc3955b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30cfa1ac18117ed0225653f8bba14750') in 0.070162 seconds 
-  Import took 0.082165 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000721 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy021.png
-  artifactKey: Guid(d174f34b6dd7c460c83b8ac2264f5a60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy021.png using Guid(d174f34b6dd7c460c83b8ac2264f5a60) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '60e48c45fa3b62f842ef74b90f35440e') in 0.062981 seconds 
-  Import took 0.077529 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000427 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy040a.png
-  artifactKey: Guid(9e532cf6b13164271978e33814e79f23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy040a.png using Guid(9e532cf6b13164271978e33814e79f23) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5fa0912102ddf9df5caf58fd110f245d') in 0.050706 seconds 
-  Import took 0.062766 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000805 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy038.png
-  artifactKey: Guid(25e48a5bac9454c34b1fe832b887019d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy038.png using Guid(25e48a5bac9454c34b1fe832b887019d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d943d0d5af99dc6de25d1237eac1d41') in 0.048070 seconds 
-  Import took 0.056998 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000356 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy042.png
-  artifactKey: Guid(d544152df4e21443c96901f2beba0977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy042.png using Guid(d544152df4e21443c96901f2beba0977) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d4ee37ee4c0f4141ff870ab3850251c') in 0.053962 seconds 
-  Import took 0.063536 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 452.860940 seconds.
-  path: Assets/Scripts/TikaraQues.cs
-  artifactKey: Guid(a33814a2898674e818c63f40302189d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/TikaraQues.cs using Guid(a33814a2898674e818c63f40302189d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2131e76d0d3d929d27362c057bd4fbc0') in 0.533463 seconds 
-  Import took 0.539529 seconds .
+  Time since last request: 132.028315 seconds.
+  path: Assets/Scripts/TyEnemyDamage.cs
+  artifactKey: Guid(c49399d38068644eba4e4e61ab1d6d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TyEnemyDamage.cs using Guid(c49399d38068644eba4e4e61ab1d6d50) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9e1fa27cdb8eed440fe85f4779fae6d8') in 0.010064 seconds 
+  Import took 0.030239 seconds .
 
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.015178 seconds.
+Registered in 0.011186 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.22 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.36 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-2022-03-25 06:10:15.049 Unity[2467:24223] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003bd3020 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-03-26 05:56:52.187 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f6e7d0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 Mono: successfully reloaded assembly
-- Completed reload, in  1.978 seconds
+- Completed reload, in  1.734 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1979ms)
-		BeginReloadAssembly (187ms)
+	ReloadAssembly (1735ms)
+		BeginReloadAssembly (164ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (11ms)
+			DisableScriptedObjects (9ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (80ms)
-		EndReloadAssembly (1702ms)
-			LoadAssemblies (180ms)
+			CreateAndSetChildDomain (67ms)
+		EndReloadAssembly (1488ms)
+			LoadAssemblies (166ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (537ms)
+			SetupTypeCache (501ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (78ms)
-			SetupLoadedEditorAssemblies (697ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (533ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (7ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (278ms)
-				ProcessInitializeOnLoadAttributes (393ms)
-				ProcessInitializeOnLoadMethodAttributes (17ms)
-				AfterProcessingInitializeOnLoad (1ms)
-				EditorAssembliesLoaded (0ms)
-			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (14ms)
-Platform modules already initialized, skipping
-Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.25 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2721 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 242.8 MB.
-System memory in use after: 243.1 MB.
-
-Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 3279.
-Total: 4.978954 ms (FindLiveObjects: 0.505602 ms CreateObjectMapping: 0.321377 ms MarkObjects: 4.121185 ms  DeleteObjects: 0.029570 ms)
-
-AssetImportParameters requested are different than current active one (requested -> active):
-  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
-  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
-  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
-  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
-  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
-  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
-  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
-  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
-  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
-========================================================================
-Received Import Request.
-  Time since last request: 191.659884 seconds.
-  path: Assets/Scripts/TCheckButton.cs
-  artifactKey: Guid(5ab8b34c8d56f42af9cf856421fc2b99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/TCheckButton.cs using Guid(5ab8b34c8d56f42af9cf856421fc2b99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '149e95176d7d9c42d63b505db4000042') in 0.006686 seconds 
-  Import took 0.013458 seconds .
-
-========================================================================
-Received Prepare
-Registering precompiled user dll's ...
-Registered in 0.013993 seconds.
-Begin MonoManager ReloadAssembly
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.49 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-2022-03-25 06:14:37.479 Unity[2467:24223] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003bc7950 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
-Mono: successfully reloaded assembly
-- Completed reload, in  1.880 seconds
-Domain Reload Profiling:
-	ReloadAssembly (1881ms)
-		BeginReloadAssembly (198ms)
-			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (8ms)
-			BackupInstance (0ms)
-			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (75ms)
-		EndReloadAssembly (1589ms)
-			LoadAssemblies (158ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (528ms)
-			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (73ms)
-			SetupLoadedEditorAssemblies (612ms)
-				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (25ms)
-				SetLoadedEditorAssemblies (2ms)
-				RefreshPlugins (2ms)
-				BeforeProcessingInitializeOnLoad (202ms)
-				ProcessInitializeOnLoadAttributes (364ms)
+				BeforeProcessingInitializeOnLoad (192ms)
+				ProcessInitializeOnLoadAttributes (314ms)
 				ProcessInitializeOnLoadMethodAttributes (16ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (23ms)
+			AwakeInstancesAfterBackupRestoration (12ms)
 Platform modules already initialized, skipping
 Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.39 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.35 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2721 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 243.9 MB.
-System memory in use after: 244.1 MB.
+Unloading 2722 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 238.7 MB.
+System memory in use after: 238.9 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 3292.
-Total: 4.781013 ms (FindLiveObjects: 0.430129 ms CreateObjectMapping: 0.239658 ms MarkObjects: 4.082619 ms  DeleteObjects: 0.027240 ms)
+Unloading 28 unused Assets to reduce memory usage. Loaded Objects now: 3273.
+Total: 4.825702 ms (FindLiveObjects: 0.412421 ms CreateObjectMapping: 0.239685 ms MarkObjects: 4.140910 ms  DeleteObjects: 0.031386 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -456,50 +229,50 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.019288 seconds.
+Registered in 0.031528 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.08 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.34 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-2022-03-25 06:16:15.875 Unity[2467:24223] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003bec8c0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-03-26 06:04:54.391 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f74f50 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 Mono: successfully reloaded assembly
-- Completed reload, in  1.641 seconds
+- Completed reload, in  2.301 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1642ms)
-		BeginReloadAssembly (150ms)
+	ReloadAssembly (2302ms)
+		BeginReloadAssembly (218ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (8ms)
+			DisableScriptedObjects (10ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (62ms)
-		EndReloadAssembly (1412ms)
-			LoadAssemblies (171ms)
-			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (474ms)
+			CreateAndSetChildDomain (87ms)
+		EndReloadAssembly (1910ms)
+			LoadAssemblies (331ms)
+			RebuildTransferFunctionScriptingTraits (1ms)
+			SetupTypeCache (658ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (72ms)
-			SetupLoadedEditorAssemblies (491ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (515ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (7ms)
 				SetLoadedEditorAssemblies (1ms)
 				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (161ms)
-				ProcessInitializeOnLoadAttributes (303ms)
-				ProcessInitializeOnLoadMethodAttributes (18ms)
+				BeforeProcessingInitializeOnLoad (171ms)
+				ProcessInitializeOnLoadAttributes (315ms)
+				ProcessInitializeOnLoadMethodAttributes (19ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (21ms)
 Platform modules already initialized, skipping
 Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.21 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.40 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2721 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 244.1 MB.
-System memory in use after: 244.3 MB.
+Unloading 2762 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 243.2 MB.
+System memory in use after: 242.3 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 3305.
-Total: 4.908022 ms (FindLiveObjects: 0.488905 ms CreateObjectMapping: 0.238239 ms MarkObjects: 4.142938 ms  DeleteObjects: 0.035508 ms)
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 3318.
+Total: 5.601966 ms (FindLiveObjects: 0.423850 ms CreateObjectMapping: 0.264510 ms MarkObjects: 4.016283 ms  DeleteObjects: 0.896156 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -515,50 +288,50 @@ AssetImportParameters requested are different than current active one (requested
 ========================================================================
 Received Prepare
 Registering precompiled user dll's ...
-Registered in 0.011191 seconds.
+Registered in 0.024880 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 1.34 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.87 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-2022-03-25 06:17:25.479 Unity[2467:24223] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003bed030 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-03-26 06:11:46.526 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f4e3e0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
 Mono: successfully reloaded assembly
-- Completed reload, in  1.684 seconds
+- Completed reload, in  2.353 seconds
 Domain Reload Profiling:
-	ReloadAssembly (1685ms)
-		BeginReloadAssembly (165ms)
+	ReloadAssembly (2354ms)
+		BeginReloadAssembly (212ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (8ms)
+			DisableScriptedObjects (11ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
-			CreateAndSetChildDomain (64ms)
-		EndReloadAssembly (1410ms)
-			LoadAssemblies (151ms)
+			CreateAndSetChildDomain (94ms)
+		EndReloadAssembly (2043ms)
+			LoadAssemblies (274ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (494ms)
+			SetupTypeCache (660ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (74ms)
-			SetupLoadedEditorAssemblies (496ms)
+			RebuildScriptCaches (110ms)
+			SetupLoadedEditorAssemblies (723ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (6ms)
+				InitializePlatformSupportModulesInManaged (10ms)
 				SetLoadedEditorAssemblies (1ms)
-				RefreshPlugins (1ms)
-				BeforeProcessingInitializeOnLoad (163ms)
-				ProcessInitializeOnLoadAttributes (308ms)
-				ProcessInitializeOnLoadMethodAttributes (16ms)
+				RefreshPlugins (2ms)
+				BeforeProcessingInitializeOnLoad (226ms)
+				ProcessInitializeOnLoadAttributes (460ms)
+				ProcessInitializeOnLoadMethodAttributes (23ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (22ms)
+			AwakeInstancesAfterBackupRestoration (31ms)
 Platform modules already initialized, skipping
 Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
-Refreshing native plugins compatible for Editor in 1.19 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 1.38 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 2721 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 244.3 MB.
-System memory in use after: 244.6 MB.
+Unloading 2762 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 244.2 MB.
+System memory in use after: 243.3 MB.
 
-Unloading 27 unused Assets to reduce memory usage. Loaded Objects now: 3318.
-Total: 4.907015 ms (FindLiveObjects: 0.432612 ms CreateObjectMapping: 0.237085 ms MarkObjects: 4.210724 ms  DeleteObjects: 0.025466 ms)
+Unloading 35 unused Assets to reduce memory usage. Loaded Objects now: 3331.
+Total: 6.211483 ms (FindLiveObjects: 0.427978 ms CreateObjectMapping: 0.246623 ms MarkObjects: 4.493195 ms  DeleteObjects: 1.042432 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -573,382 +346,194 @@ AssetImportParameters requested are different than current active one (requested
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
 ========================================================================
 Received Import Request.
-  Time since last request: 1228.410654 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy013a.png
-  artifactKey: Guid(134e714af91d3469bac391e6296ef38e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy013a.png using Guid(134e714af91d3469bac391e6296ef38e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5050fdf48d69fa89037d52dbc063f50') in 0.138105 seconds 
-  Import took 0.150845 seconds .
+  Time since last request: 1672.800103 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Big Impact HDR.prefab
+  artifactKey: Guid(7a1f5c2344e7b8046b22ca0e8ffce4c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Big Impact HDR.prefab using Guid(7a1f5c2344e7b8046b22ca0e8ffce4c1) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '05bfc8fad6063158ba895bb7c86c5f3d') in 2.625660 seconds 
+  Import took 2.635856 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 1.723433 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy006.png
-  artifactKey: Guid(2ecabc7c4907248dc824345ad1b91ef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy006.png using Guid(2ecabc7c4907248dc824345ad1b91ef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fa1485bf53c8f767aa63b5afd70f1a89') in 0.026747 seconds 
-  Import took 0.039158 seconds .
+  Time since last request: 0.004140 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Sparks Impact.prefab
+  artifactKey: Guid(6dc4191059d6c3a4a820270672bbf567) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Sparks Impact.prefab using Guid(6dc4191059d6c3a4a820270672bbf567) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '5548fda474b7f9880b248fb11722cc9a') in 0.175666 seconds 
+  Import took 0.184439 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.001421 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy007.png
-  artifactKey: Guid(88cfc444aedcb4218a032ad0dff4cdc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy007.png using Guid(88cfc444aedcb4218a032ad0dff4cdc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8ff8291bad510332fc8a085789acf80e') in 0.041829 seconds 
-  Import took 0.055248 seconds .
+  Time since last request: 0.000405 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Contrast.prefab
+  artifactKey: Guid(d1eb5368e6bef184681cd4db6cf466fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Contrast.prefab using Guid(d1eb5368e6bef184681cd4db6cf466fe) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '5d90c65bde1d1a29275d5d4a493ca3e5') in 0.293884 seconds 
+  Import took 0.306224 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000410 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy010a.png
-  artifactKey: Guid(880fdce2902af454ab034897b1a62b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy010a.png using Guid(880fdce2902af454ab034897b1a62b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c60da1cc0165fa1edccbf0d6c56033dd') in 0.050355 seconds 
-  Import took 0.063409 seconds .
+  Time since last request: 0.000418 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Slash (Blue).prefab
+  artifactKey: Guid(18d69cc11ae74294aac3f0c1b92d192d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Slash (Blue).prefab using Guid(18d69cc11ae74294aac3f0c1b92d192d) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '8e2b5da637b6417640289c0a8661e963') in 0.300638 seconds 
+  Import took 0.311600 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 29.417982 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy017.png
-  artifactKey: Guid(0832091dd48ac41418220c6d8f172248) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy017.png using Guid(0832091dd48ac41418220c6d8f172248) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2561766334ef51e01d0d7934e94c0073') in 0.032516 seconds 
-  Import took 0.047172 seconds .
+  Time since last request: 0.000373 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit C 3D.prefab
+  artifactKey: Guid(3c6022ac1a1cc7b438777188ae54da0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit C 3D.prefab using Guid(3c6022ac1a1cc7b438777188ae54da0e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '552d738b48ce0286561a0fd187182dfc') in 0.038764 seconds 
+  Import took 0.048323 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 12.315833 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy020.png
-  artifactKey: Guid(49178d1d1b8ed4d8aa083425d88cae7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy020.png using Guid(49178d1d1b8ed4d8aa083425d88cae7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7ff4ba27f78f7a8d0b1045e8dbec9587') in 0.038259 seconds 
-  Import took 0.054954 seconds .
+  Time since last request: 0.000676 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit B 3D (Blue).prefab
+  artifactKey: Guid(dd1b345f20b13e24b9f184d4917ad726) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit B 3D (Blue).prefab using Guid(dd1b345f20b13e24b9f184d4917ad726) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: 'ee827bae03e5113a0972ce8829b2366a') in 0.043032 seconds 
+  Import took 0.057704 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 16.469254 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy026.png
-  artifactKey: Guid(ec5c9e53be39a4b9da28a5e52e645e45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy026.png using Guid(ec5c9e53be39a4b9da28a5e52e645e45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c302eecaf40a66aa2d9c110d45c793f5') in 0.033651 seconds 
-  Import took 0.045390 seconds .
+  Time since last request: 0.000379 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab
+  artifactKey: Guid(6398d43fe79ea0140913dc5530c646af) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Impact Glowing HDR (Blue).prefab using Guid(6398d43fe79ea0140913dc5530c646af) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '1cd378f20c38ba49f940f608cb4bbee1') in 0.056660 seconds 
+  Import took 0.064299 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 26.402717 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy033a.png
-  artifactKey: Guid(539bac6105770437bb667d268462d04a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy033a.png using Guid(539bac6105770437bb667d268462d04a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '393494079af15c0b15f68448e30410a9') in 0.029602 seconds 
-  Import took 0.040283 seconds .
+  Time since last request: 0.000480 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit B (Blue).prefab
+  artifactKey: Guid(af0ef20d9a41ee7479f76ea5c49918cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit B (Blue).prefab using Guid(af0ef20d9a41ee7479f76ea5c49918cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '6c910a6f4c79e3a2d399e5a8b6a6c861') in 0.056410 seconds 
+  Import took 0.067097 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 82.401448 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy006.png
-  artifactKey: Guid(2ecabc7c4907248dc824345ad1b91ef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy006.png using Guid(2ecabc7c4907248dc824345ad1b91ef5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c31e4506fbc882b1c1eadeec5ba2726f') in 0.023876 seconds 
-  Import took 0.052689 seconds .
+  Time since last request: 0.000380 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit C.prefab
+  artifactKey: Guid(da0de216ad60c5d46a6b049d61961615) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit C.prefab using Guid(da0de216ad60c5d46a6b049d61961615) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '171e0ec8e641c5d7336fab50ff5062de') in 0.047560 seconds 
+  Import took 0.057177 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.043146 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy007.png
-  artifactKey: Guid(88cfc444aedcb4218a032ad0dff4cdc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy007.png using Guid(88cfc444aedcb4218a032ad0dff4cdc1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd41988c9e7b0d447539d79c11ff240a1') in 0.038573 seconds 
-  Import took 0.047571 seconds .
+  Time since last request: 0.000421 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab
+  artifactKey: Guid(265d3a5ba69981a4698ceabcedf368b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit D 3D (Yellow).prefab using Guid(265d3a5ba69981a4698ceabcedf368b0) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '11a4e78a776b945d9a8f292c8204a16a') in 0.071504 seconds 
+  Import took 0.084357 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000341 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy013a.png
-  artifactKey: Guid(134e714af91d3469bac391e6296ef38e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy013a.png using Guid(134e714af91d3469bac391e6296ef38e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b13ca7d60df155bac995a26209a2627c') in 0.044811 seconds 
-  Import took 0.054665 seconds .
+  Time since last request: 0.000444 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit Sparks HDR.prefab
+  artifactKey: Guid(62334a566bbfe3945bc7bd0c02ca1c9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit Sparks HDR.prefab using Guid(62334a566bbfe3945bc7bd0c02ca1c9e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '08924bd3c700f6b3b4e6a46a68ec0590') in 0.132207 seconds 
+  Import took 0.140930 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000417 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy020.png
-  artifactKey: Guid(49178d1d1b8ed4d8aa083425d88cae7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy020.png using Guid(49178d1d1b8ed4d8aa083425d88cae7a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b33b90f9bc55f5fc3e62ebc7e7268124') in 0.044621 seconds 
-  Import took 0.052784 seconds .
+  Time since last request: 0.000408 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab
+  artifactKey: Guid(5c755f9bc5253ea418e919994537dcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Impacts/CFXR Hit A (Red).prefab using Guid(5c755f9bc5253ea418e919994537dcc7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '5e6ec53483e19b1198130edce79b7f3c') in 0.050388 seconds 
+  Import took 0.058758 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000438 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy033a.png
-  artifactKey: Guid(539bac6105770437bb667d268462d04a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy033a.png using Guid(539bac6105770437bb667d268462d04a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '67980972d127aa8f2b1cbacff7fae521') in 0.061944 seconds 
-  Import took 0.072242 seconds .
+  Time since last request: 58.617592 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch triangle add.mat
+  artifactKey: Guid(ef871ae36c32a564cbe3c39713e711f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch triangle add.mat using Guid(ef871ae36c32a564cbe3c39713e711f5) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: 'e4198b8dba6d1a581580434653591a88') in 0.873531 seconds 
+  Import took 0.884757 seconds .
 
 ========================================================================
 Received Import Request.
-  Time since last request: 0.000398 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy017.png
-  artifactKey: Guid(0832091dd48ac41418220c6d8f172248) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy017.png using Guid(0832091dd48ac41418220c6d8f172248) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f107396600b2fc3f75898089dafbbb98') in 0.031046 seconds 
-  Import took 0.051430 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000328 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy010a.png
-  artifactKey: Guid(880fdce2902af454ab034897b1a62b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy010a.png using Guid(880fdce2902af454ab034897b1a62b6a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3586bf1b32ed90051b1c791b15ae900d') in 0.084817 seconds 
-  Import took 0.095534 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000317 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy026.png
-  artifactKey: Guid(ec5c9e53be39a4b9da28a5e52e645e45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy026.png using Guid(ec5c9e53be39a4b9da28a5e52e645e45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c63fa90a535bd9263a8c813604e07451') in 0.044796 seconds 
-  Import took 0.050706 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 27.916538 seconds.
-  path: Assets/Sprites/enemy/pipo-enemy008b.png
-  artifactKey: Guid(48c83c7d9a1f24c17a51a2bbf8d76a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Sprites/enemy/pipo-enemy008b.png using Guid(48c83c7d9a1f24c17a51a2bbf8d76a3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1d6a7ad85b7f8fe05bd7a7a0f953fc44') in 0.054293 seconds 
-  Import took 0.065660 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 133.298331 seconds.
-  path: Assets/Scenes/RenshuuScene.unity
-  artifactKey: Guid(e7c3d4b5feed14d39824cd6a8e90d14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/RenshuuScene.unity using Guid(e7c3d4b5feed14d39824cd6a8e90d14a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '41ccf6775866f4a61a14fd3bf75c7e13') in 0.002933 seconds 
-  Import took 0.012141 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 45.605258 seconds.
-  path: Assets/Scenes/TikaraScene.unity
-  artifactKey: Guid(b47ff60850e124b2982ce5df80519e45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scenes/TikaraScene.unity using Guid(b47ff60850e124b2982ce5df80519e45) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4414011ffd1e9c99ce41298e019cc6c0') in 0.003954 seconds 
-  Import took 0.010045 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 393.404049 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_talk_1.png
-  artifactKey: Guid(abc226b6aa0304e6297466875f922736) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_talk_1.png using Guid(abc226b6aa0304e6297466875f922736) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3cfd9b1c5757c6f28f42cc3c8948a7ec') in 0.069851 seconds 
-  Import took 0.080720 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000337 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_print.png
-  artifactKey: Guid(2ea25b99e8c214157b593bbd4b2f23c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_print.png using Guid(2ea25b99e8c214157b593bbd4b2f23c7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5aaaf6e9e9c263b39b6f4558c9a19172') in 0.090579 seconds 
-  Import took 0.100632 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000415 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_location_2.png
-  artifactKey: Guid(cc530089d5aff4714b6874da65572a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_location_2.png using Guid(cc530089d5aff4714b6874da65572a38) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8bc41905ac616d3e17c2e7f9cf1fbfdc') in 0.093102 seconds 
-  Import took 0.103466 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000766 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_ticket.png
-  artifactKey: Guid(aadb378eb170848099a6f461e21b88ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_ticket.png using Guid(aadb378eb170848099a6f461e21b88ad) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '844cdc3421ba02fbb8eb8fa2da625243') in 0.078033 seconds 
-  Import took 0.085816 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000324 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_target_1.png
-  artifactKey: Guid(8207cd31602db48f8a4c1467e5d96efe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_target_1.png using Guid(8207cd31602db48f8a4c1467e5d96efe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a455215b3d4307ad3aeb85f03979c665') in 0.093344 seconds 
-  Import took 0.104845 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.005494 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_redo.png
-  artifactKey: Guid(b2efe729e008e468c8932714ade2ec35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_redo.png using Guid(b2efe729e008e468c8932714ade2ec35) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09bd3a5a0ba3a4b24b364b8e8b91c415') in 0.207791 seconds 
-  Import took 0.222152 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000746 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_time_1.png
-  artifactKey: Guid(6b07cf91152af40299274b9f287c3a04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_time_1.png using Guid(6b07cf91152af40299274b9f287c3a04) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '34d48c16117cd41915824836484fae83') in 0.101567 seconds 
-  Import took 0.120330 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000777 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_mail.png
-  artifactKey: Guid(d1021d40c060d4efdac596b6e0101d02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_mail.png using Guid(d1021d40c060d4efdac596b6e0101d02) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69bb56096c058238f5fb0067c3c8dc4d') in 0.104689 seconds 
-  Import took 0.119797 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001522 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_lock_2.png
-  artifactKey: Guid(63ca7ad2e7db9478dba27c56af41ebc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_lock_2.png using Guid(63ca7ad2e7db9478dba27c56af41ebc4) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3d5e0967aa6f58157e4580642c44aeb4') in 0.059849 seconds 
-  Import took 0.081252 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000630 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_qrcode.png
-  artifactKey: Guid(312689820ecc54c5bbbdd90aee55a207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_qrcode.png using Guid(312689820ecc54c5bbbdd90aee55a207) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '332369734e8c9b891e7a288125acc22b') in 0.067557 seconds 
-  Import took 0.077399 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000352 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_think.png
-  artifactKey: Guid(dbec3d18dbb54480d95a6b3dcff02433) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_think.png using Guid(dbec3d18dbb54480d95a6b3dcff02433) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9d11a72d09b9a421b27c25fc26fcf2a1') in 0.076778 seconds 
-  Import took 0.089110 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000372 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_profile.png
-  artifactKey: Guid(f219794a1b2804ab5ab5871f8e296498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_profile.png using Guid(f219794a1b2804ab5ab5871f8e296498) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '10d2ce0e47e0e8076efa3801291702b0') in 0.073062 seconds 
-  Import took 0.085901 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000407 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_lucky.png
-  artifactKey: Guid(166231bd9cc3547cdbb05acb1fbe35a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_lucky.png using Guid(166231bd9cc3547cdbb05acb1fbe35a2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4721e7db31541856f4c6e30e4cd0acef') in 0.067243 seconds 
-  Import took 0.079605 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000461 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_magicball.png
-  artifactKey: Guid(ed0a40157ac374ef199be8849686e0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_magicball.png using Guid(ed0a40157ac374ef199be8849686e0f1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '4bebf35b035daa60f3a49a63b316c55e') in 0.086948 seconds 
-  Import took 0.098313 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000377 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_talk_2.png
-  artifactKey: Guid(d898700248d9146bc8d94b5c43b1a933) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_talk_2.png using Guid(d898700248d9146bc8d94b5c43b1a933) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'a5ec9a7324fd2ae166a6eee553f3be09') in 0.054518 seconds 
-  Import took 0.071851 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001586 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_thunder.png
-  artifactKey: Guid(204d7ad4f3fb64ff3935f708af3d9054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_thunder.png using Guid(204d7ad4f3fb64ff3935f708af3d9054) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e1f3b6ec461270f875f28988d75075a4') in 0.068593 seconds 
-  Import took 0.077991 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000391 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_magnetic.png
-  artifactKey: Guid(eb9e1a1775fb94ee9927b36cca4e3690) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_magnetic.png using Guid(eb9e1a1775fb94ee9927b36cca4e3690) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '526bbb58c5fbf8ab1f0ceab6836a87f1') in 0.093767 seconds 
-  Import took 0.103642 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000745 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_time_2.png
-  artifactKey: Guid(6400e950160bd405cba4b7fc96a2829a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_time_2.png using Guid(6400e950160bd405cba4b7fc96a2829a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '885ae9377848795b43dcd0ddd5482084') in 0.099934 seconds 
-  Import took 0.112066 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000568 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_ranking.png
-  artifactKey: Guid(db8eba1a4c86e4713b37c3e7af68ea85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_ranking.png using Guid(db8eba1a4c86e4713b37c3e7af68ea85) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f767dcd381eeffd8b9bc898597d0e38c') in 0.076783 seconds 
-  Import took 0.086615 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.001130 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_lock_1.png
-  artifactKey: Guid(fae210d81b63148ea847e602a002e97e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_lock_1.png using Guid(fae210d81b63148ea847e602a002e97e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5408492b7cb08703a8d0164aca0fd8be') in 0.061490 seconds 
-  Import took 0.072015 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000361 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_magic.png
-  artifactKey: Guid(e04a9708d575241cf9b8b42bdf0c5b08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_magic.png using Guid(e04a9708d575241cf9b8b42bdf0c5b08) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0e9acf2e8c31e8df8b905e64ceb6ebc2') in 0.060170 seconds 
-  Import took 0.074010 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000334 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_quit.png
-  artifactKey: Guid(a742a53debc7246acb7622f81b4fe1a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_quit.png using Guid(a742a53debc7246acb7622f81b4fe1a6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ea9122defee591fbfc5de3c2038acf31') in 0.063299 seconds 
-  Import took 0.074393 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000429 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_mail_read.png
-  artifactKey: Guid(514530e910fc74965912f4d0af024486) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_mail_read.png using Guid(514530e910fc74965912f4d0af024486) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '63fc2fe7c572c3a61535fba76a5c6a1c') in 0.073035 seconds 
-  Import took 0.083686 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000474 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_quiver.png
-  artifactKey: Guid(8f25639ca87074ca58261e940ce64a3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_quiver.png using Guid(8f25639ca87074ca58261e940ce64a3a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ee0d345d8038faa8beebb3e708815afc') in 0.072363 seconds 
-  Import took 0.083603 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000360 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_target_2.png
-  artifactKey: Guid(79a7bd59d147d4c72a808b17a5b0f148) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_target_2.png using Guid(79a7bd59d147d4c72a808b17a5b0f148) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'c9118aa70d64f855d8869dc42af62108') in 0.066785 seconds 
-  Import took 0.076628 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000274 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_question.png
-  artifactKey: Guid(7589e807c2c5f4d14ba0bc2c5b87f50a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_question.png using Guid(7589e807c2c5f4d14ba0bc2c5b87f50a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '26e5f58e798339fa10f45b33cfe60817') in 0.060989 seconds 
-  Import took 0.070460 seconds .
-
-========================================================================
-Received Import Request.
-  Time since last request: 0.000358 seconds.
-  path: Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_puzzle.png
-  artifactKey: Guid(ac8739f467e0245a19612e0967d2bee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/GUI PRO Kit - Fantasy RPG/ResourcesData/Sprites/Component/Icon_PictoIcons_(Original)/btn_icon_puzzle.png using Guid(ac8739f467e0245a19612e0967d2bee1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '1e2b0f99f1d0aa4ab1f88fe54a11d953') in 0.031193 seconds 
-  Import took 0.048720 seconds .
+  Time since last request: 100.490999 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch triangle to diamond add.mat
+  artifactKey: Guid(6736a9c9adab91a48960113bc5758c7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr stretch triangle to diamond add.mat using Guid(6736a9c9adab91a48960113bc5758c7b) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '1492d1ba19565b2e2de316d790a67ece') in 0.058288 seconds 
+  Import took 0.068834 seconds .
 
 ========================================================================
 Received Prepare
-Refreshing native plugins compatible for Editor in 57.86 ms, found 3 plugins.
+Registering precompiled user dll's ...
+Registered in 0.015263 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 1.37 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 25 Unused Serialized files (Serialized files now loaded: 0)
-System memory in use before: 195.8 MB.
-System memory in use after: 196.0 MB.
+2022-03-26 06:30:31.811 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f73800 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+Mono: successfully reloaded assembly
+- Completed reload, in  1.905 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1906ms)
+		BeginReloadAssembly (187ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (8ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (73ms)
+		EndReloadAssembly (1635ms)
+			LoadAssemblies (210ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (596ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (90ms)
+			SetupLoadedEditorAssemblies (538ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (180ms)
+				ProcessInitializeOnLoadAttributes (329ms)
+				ProcessInitializeOnLoadMethodAttributes (19ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (22ms)
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 1.46 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2762 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 253.9 MB.
+System memory in use after: 253.6 MB.
 
-Unloading 25 unused Assets to reduce memory usage. Loaded Objects now: 3367.
-Total: 6.105333 ms (FindLiveObjects: 0.436048 ms CreateObjectMapping: 0.248500 ms MarkObjects: 5.396157 ms  DeleteObjects: 0.023776 ms)
+Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 3386.
+Total: 5.782938 ms (FindLiveObjects: 0.448950 ms CreateObjectMapping: 0.249739 ms MarkObjects: 4.558645 ms  DeleteObjects: 0.524315 ms)
 
 AssetImportParameters requested are different than current active one (requested -> active):
   custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
@@ -958,5 +543,365 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
   custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 612.990606 seconds.
+  path: Assets/GUI PRO Kit - Fantasy RPG/Prefabs/Prefabs_Component_Label
+  artifactKey: Guid(c23d3a36278b54765ad2bafae84f9163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GUI PRO Kit - Fantasy RPG/Prefabs/Prefabs_Component_Label using Guid(c23d3a36278b54765ad2bafae84f9163) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ba3707420bb58bcce2f0077214136074') in 0.010340 seconds 
+  Import took 0.027350 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 70.097078 seconds.
+  path: Assets/Prefabs/HitBBlue.prefab
+  artifactKey: Guid(5cf771e4baedf4b05aff7b14a7f7dcdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/HitBBlue.prefab using Guid(5cf771e4baedf4b05aff7b14a7f7dcdb) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '4e7e651f7a71ae70f9393a980de10259') in 0.216488 seconds 
+  Import took 0.230817 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 83.796080 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr proc glow soft invert ab.mat
+  artifactKey: Guid(b8ec7a237c4ca3645bc1bac3fa060a69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr proc glow soft invert ab.mat using Guid(b8ec7a237c4ca3645bc1bac3fa060a69) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '539978d40520ea9224f3098526c17ac7') in 0.138190 seconds 
+  Import took 0.149551 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 25.296610 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Electric/CFXR Electrified 3.prefab
+  artifactKey: Guid(effb650189dc5714e9e9801b1cfb3991) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Prefabs/Electric/CFXR Electrified 3.prefab using Guid(effb650189dc5714e9e9801b1cfb3991) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '4e0667d029ffe7f94d97119950ea1c77') in 0.034866 seconds 
+  Import took 0.042861 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.004892 seconds.
+  path: Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric small anim 4x2 hdr.mat
+  artifactKey: Guid(b41c12b9e8d21c442affcda9d5c050f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX Remaster/CFXR Assets/Graphics/cfxr electric small anim 4x2 hdr.mat using Guid(b41c12b9e8d21c442affcda9d5c050f7) Importer(815301076,1909f56bfc062723c751e8b465ee728b) WARNING: R Compressed EAC UNorm format is not supported, decompressing texture
+ -> (artifact id: '0c1b45c9bb251fcb3aa28b580aa48ba9') in 0.071471 seconds 
+  Import took 0.096099 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.024885 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 1.37 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+2022-03-26 06:41:08.744 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f53410 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+Mono: successfully reloaded assembly
+- Completed reload, in  2.229 seconds
+Domain Reload Profiling:
+	ReloadAssembly (2230ms)
+		BeginReloadAssembly (205ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (87ms)
+		EndReloadAssembly (1898ms)
+			LoadAssemblies (242ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (578ms)
+			ReleaseScriptCaches (2ms)
+			RebuildScriptCaches (91ms)
+			SetupLoadedEditorAssemblies (682ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (185ms)
+				ProcessInitializeOnLoadAttributes (463ms)
+				ProcessInitializeOnLoadMethodAttributes (24ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (28ms)
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 1.80 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2759 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 254.3 MB.
+System memory in use after: 254.0 MB.
+
+Unloading 32 unused Assets to reduce memory usage. Loaded Objects now: 3400.
+Total: 5.702300 ms (FindLiveObjects: 0.450009 ms CreateObjectMapping: 0.250110 ms MarkObjects: 4.492061 ms  DeleteObjects: 0.508236 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.010612 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 1.37 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+2022-03-26 06:42:54.617 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f4dd50 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+Mono: successfully reloaded assembly
+- Completed reload, in  1.705 seconds
+Domain Reload Profiling:
+	ReloadAssembly (1706ms)
+		BeginReloadAssembly (164ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (9ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (0ms)
+			CreateAndSetChildDomain (73ms)
+		EndReloadAssembly (1461ms)
+			LoadAssemblies (135ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (492ms)
+			ReleaseScriptCaches (1ms)
+			RebuildScriptCaches (74ms)
+			SetupLoadedEditorAssemblies (504ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (6ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (1ms)
+				BeforeProcessingInitializeOnLoad (165ms)
+				ProcessInitializeOnLoadAttributes (315ms)
+				ProcessInitializeOnLoadMethodAttributes (15ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (23ms)
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 2.02 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2762 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 255.1 MB.
+System memory in use after: 254.8 MB.
+
+Unloading 34 unused Assets to reduce memory usage. Loaded Objects now: 3415.
+Total: 5.433381 ms (FindLiveObjects: 0.355698 ms CreateObjectMapping: 0.167001 ms MarkObjects: 4.411614 ms  DeleteObjects: 0.497490 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 255.450158 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CartoonFX Free.txt
+  artifactKey: Guid(527aaa921d8e3794ca7096e0b98a041a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CartoonFX Free.txt using Guid(527aaa921d8e3794ca7096e0b98a041a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '76ff1391e462bc53d82b3b9590664d42') in 3.971285 seconds 
+  Import took 3.982089 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 19.099591 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX2 Prefabs
+  artifactKey: Guid(84d86077ce20b3d408f08f7cc5cfb4ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX2 Prefabs using Guid(84d86077ce20b3d408f08f7cc5cfb4ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '310ae612b2b970b17351af07b5c30386') in 0.003209 seconds 
+  Import took 0.020911 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.000829 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Debris Hits
+  artifactKey: Guid(7e71da46ca428824c9e9e4598154d6d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Debris Hits using Guid(7e71da46ca428824c9e9e4598154d6d3) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9af0559157578a18168584e5075ce3e0') in 0.002550 seconds 
+  Import took 0.009966 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.372851 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Blood
+  artifactKey: Guid(9ef0e39c32aae7b4480fbdb6d2efb0a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Blood using Guid(9ef0e39c32aae7b4480fbdb6d2efb0a1) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b716cd9a62f3eead4c1088a8c42aaec1') in 0.007801 seconds 
+  Import took 0.021727 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.862250 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Electric
+  artifactKey: Guid(c21f3643835b3b34e897f4b378531f37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Electric using Guid(c21f3643835b3b34e897f4b378531f37) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '66b2c2e9555017cfe9109a65809d2580') in 0.008446 seconds 
+  Import took 0.021067 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.979135 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Explosions
+  artifactKey: Guid(efc53651f7e42d84d86caee3be88073e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Explosions using Guid(efc53651f7e42d84d86caee3be88073e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '01cab9e6dff9cabd45f204af9265c3ff') in 0.002731 seconds 
+  Import took 0.009746 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.722030 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Misc
+  artifactKey: Guid(86fef6e72f4589f428dccc24bd05cf0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX2 Prefabs/Misc using Guid(86fef6e72f4589f428dccc24bd05cf0b) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'adaefb2126325f0291931dd50b267afc') in 0.002500 seconds 
+  Import took 0.009871 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.791501 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs
+  artifactKey: Guid(1a4ce55e5c136214387f9cd6fc355972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs using Guid(1a4ce55e5c136214387f9cd6fc355972) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f428a3bfad5a2fa54582b5db1ac4c20f') in 0.002300 seconds 
+  Import took 0.010265 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.770784 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Light
+  artifactKey: Guid(76b51dd73e9260249a086d34433e2daf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Light using Guid(76b51dd73e9260249a086d34433e2daf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3f23f1103ff8af2fb246e04f667367c6') in 0.003663 seconds 
+  Import took 0.012981 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.514005 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Fire
+  artifactKey: Guid(24d421782bd1bf84297d95935a0f0ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Fire using Guid(24d421782bd1bf84297d95935a0f0ca0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5a7ef08e8b94c41d9f5bd881521a012f') in 0.013554 seconds 
+  Import took 0.026379 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.521131 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Electric
+  artifactKey: Guid(d0d632426825e6c46979ffe225141d6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Electric using Guid(d0d632426825e6c46979ffe225141d6c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09db15c0a84a06212bfb7c945eef57eb') in 0.007185 seconds 
+  Import took 0.019571 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.505517 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Magic
+  artifactKey: Guid(d37d3fb266898614eab0e28dacada18c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Magic using Guid(d37d3fb266898614eab0e28dacada18c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '42bd890c720fafdc712de9eaab5b4275') in 0.010788 seconds 
+  Import took 0.019867 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.139907 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Magic/CFX4 Disruptive Force.prefab
+  artifactKey: Guid(db50ab1c866680e4bb870bf5eb72dd3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Magic/CFX4 Disruptive Force.prefab using Guid(db50ab1c866680e4bb870bf5eb72dd3d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '9c089941bfbe7693dd72d2d79ea909d9') in 0.288387 seconds 
+  Import took 0.304871 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.002835 seconds.
+  path: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Misc/CFX4_Anim_WiggleLine Add.mat
+  artifactKey: Guid(399e2b3ed7a51a34aa2171ddcc535cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX (legacy)/Materials/Misc/CFX4_Anim_WiggleLine Add.mat using Guid(399e2b3ed7a51a34aa2171ddcc535cb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e9d7161716a6baeb0694f337fe34225') in 0.132540 seconds 
+  Import took 0.142400 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.058551 seconds.
+  path: Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Magic/CFX4 Magic Hit.prefab
+  artifactKey: Guid(b395d5d6eb4b4b846acc021ee036b744) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX/CFX4 Prefabs/Magic/CFX4 Magic Hit.prefab using Guid(b395d5d6eb4b4b846acc021ee036b744) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'dc2c527307ca457aabb64a3b30d2f4ea') in 0.147331 seconds 
+  Import took 0.162226 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.013528 seconds.
+  path: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Light/CFX4_AuraBubble ADD.mat
+  artifactKey: Guid(b701c416ffd5db94eab6dbfe25b8247e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX (legacy)/Materials/Light/CFX4_AuraBubble ADD.mat using Guid(b701c416ffd5db94eab6dbfe25b8247e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '05e4e56ea78339333d0113e82631500d') in 0.047313 seconds 
+  Import took 0.066157 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.042794 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 2.39 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+2022-03-26 06:54:41.741 Unity[3029:36867] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003f69ea0 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+Mono: successfully reloaded assembly
+- Completed reload, in  4.868 seconds
+Domain Reload Profiling:
+	ReloadAssembly (4873ms)
+		BeginReloadAssembly (618ms)
+			ExecutionOrderSort (0ms)
+			DisableScriptedObjects (42ms)
+			BackupInstance (0ms)
+			ReleaseScriptingObjects (1ms)
+			CreateAndSetChildDomain (302ms)
+		EndReloadAssembly (4074ms)
+			LoadAssemblies (775ms)
+			RebuildTransferFunctionScriptingTraits (0ms)
+			SetupTypeCache (1414ms)
+			ReleaseScriptCaches (3ms)
+			RebuildScriptCaches (206ms)
+			SetupLoadedEditorAssemblies (1241ms)
+				LogAssemblyErrors (0ms)
+				InitializePlatformSupportModulesInManaged (14ms)
+				SetLoadedEditorAssemblies (1ms)
+				RefreshPlugins (3ms)
+				BeforeProcessingInitializeOnLoad (392ms)
+				ProcessInitializeOnLoadAttributes (796ms)
+				ProcessInitializeOnLoadMethodAttributes (34ms)
+				AfterProcessingInitializeOnLoad (1ms)
+				EditorAssembliesLoaded (0ms)
+			ExecutionOrderSort2 (0ms)
+			AwakeInstancesAfterBackupRestoration (46ms)
+Platform modules already initialized, skipping
+Switching build target platform(2) subTarget(0) extendedPlatform(0) -> platform(9) subTarget(16777218) extendedPlatform(0)
+Refreshing native plugins compatible for Editor in 2.40 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2762 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 259.6 MB.
+System memory in use after: 259.3 MB.
+
+Unloading 34 unused Assets to reduce memory usage. Loaded Objects now: 3431.
+Total: 8.062574 ms (FindLiveObjects: 0.453846 ms CreateObjectMapping: 0.163212 ms MarkObjects: 6.909062 ms  DeleteObjects: 0.534865 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:graphics/normal-map-encoding: 01000000000000000000000000000000 -> 02000000000000000000000000000000
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 1385.287555 seconds.
+  path: Assets/JMO Assets/Cartoon FX (legacy)/Materials/Stretched/CFX2_Faded Ray.mat
+  artifactKey: Guid(628acb7f048d3594fa40568f2a69c3e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/JMO Assets/Cartoon FX (legacy)/Materials/Stretched/CFX2_Faded Ray.mat using Guid(628acb7f048d3594fa40568f2a69c3e2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '68a34577aa2a8cf177bdcf97d763f8f3') in 0.289490 seconds 
+  Import took 0.317345 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

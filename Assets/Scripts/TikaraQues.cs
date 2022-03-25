@@ -20,6 +20,7 @@ public class TikaraQues : MonoBehaviour
     public Text furiganaText;
     public int TikaraCount;
     public int TcurrentMode;
+    public GameObject TikaraPanel;
     public GameObject ShutudaiPanel;
     public GameObject Shutudai2Panel;
     public GameObject TigradePanel;
@@ -194,8 +195,8 @@ public class TikaraQues : MonoBehaviour
 
 
     }
-    string kunrei = "MO";
-    string hoka = "SHOUGUN";
+    //string kunrei = "MO";
+    //string hoka = "SHOUGUN";
 
     void ShutudaiSlice(string moji)
     {
@@ -407,5 +408,14 @@ public class TikaraQues : MonoBehaviour
                 Debug.Log(i.ToString() + "," + j.ToString() + TSTable[i, j]);
             }
         }
+    }
+    public void TiSettingPanel(){
+        if(TikaraPanel.activeSelf ==true){
+            TikaraPanel.SetActive(false);
+            }
+        else{
+            TikaraPanel.SetActive(true);
+        }
+        
     }
 }
