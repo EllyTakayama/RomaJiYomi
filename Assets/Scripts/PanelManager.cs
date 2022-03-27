@@ -44,12 +44,6 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TikaraScene");
     }
-    public void TiTypeSceneMove(){
-        SoundManager.instance.StopSE();
-        DOTween.KillAll();
-        SoundManager.instance.PlaySousaSE(2);
-        SceneManager.LoadScene("TiTypeScene");
-    }
 
     public void SettingSceneMove(){
         SoundManager.instance.StopSE();

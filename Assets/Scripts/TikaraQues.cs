@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
-//3月16に日更新
+//3月23に日更新
 
 public class TikaraQues : MonoBehaviour
 {

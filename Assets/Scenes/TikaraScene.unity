@@ -1819,7 +1819,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 195966344}
         m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
         m_MethodName: OnClickSEToggle
         m_Mode: 1
@@ -2278,7 +2278,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 195966344}
         m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
         m_MethodName: ShosikiSelectToggle
         m_Mode: 1
@@ -3111,7 +3111,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 195966344}
         m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
         m_MethodName: ShosikiSelectToggle
         m_Mode: 1
@@ -5215,6 +5215,7 @@ MonoBehaviour:
   - {fileID: 1631928164}
   maruSprite: {fileID: 1819490873}
   pekeSprite: {fileID: 2087345903}
+  TipipoEnemy: {fileID: 1475343137}
   Shutudai2Panel: {fileID: 1714495023}
   TigradePanel: {fileID: 1349976771}
   TicurrentMode: 0
@@ -9276,11 +9277,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4733340085621846, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
       propertyPath: m_LocalScale.x
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4733340085621846, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
       propertyPath: m_LocalScale.y
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4733340085621846, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9332,7 +9333,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 199136700032306822, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
       propertyPath: m_SortingOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199136700032306822, guid: b395d5d6eb4b4b846acc021ee036b744, type: 3}
       propertyPath: m_Materials.Array.size
@@ -9584,7 +9585,7 @@ Transform:
   m_LocalScale: {x: 60, y: 60, z: 0}
   m_Children: []
   m_Father: {fileID: 1714495024}
-  m_RootOrder: 10
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1475343139
 SpriteRenderer:
@@ -11658,7 +11659,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 195966344}
         m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
         m_MethodName: OnClickBGMToggle
         m_Mode: 1
@@ -11710,8 +11711,8 @@ RectTransform:
   - {fileID: 1126072315}
   - {fileID: 1719353870}
   - {fileID: 1631928163}
-  - {fileID: 1475343138}
   - {fileID: 4899906890797689970}
+  - {fileID: 1475343138}
   - {fileID: 1615911664}
   - {fileID: 980807516}
   - {fileID: 706079763}
@@ -13803,7 +13804,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 195966344}
           m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
           m_MethodName: FontSelectToggle
           m_Mode: 1
@@ -14011,7 +14012,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 195966344}
           m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
           m_MethodName: FontSelectToggle
           m_Mode: 1
@@ -15072,6 +15073,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1714495024}
     m_Modifications:
+    - target: {fileID: 1683312700415031938, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031938, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: ShapeModule.m_Scale.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031938, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: ShapeModule.m_Scale.z
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031938, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031939, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_Name
       value: HitBBlue
@@ -15082,7 +15099,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalPosition.x
@@ -15094,7 +15123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.0004593
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -15102,15 +15131,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -15123,6 +15152,10 @@ PrefabInstance:
     - target: {fileID: 1683312700415031996, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683312700415031997, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7862768892183544712, guid: 5cf771e4baedf4b05aff7b14a7f7dcdb, type: 3}
       propertyPath: m_Intensity

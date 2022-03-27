@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-//3月15日更新
+//3月25日更新ランダムな出題に一時変更したバージョン
 
 public class TiTypingManager : MonoBehaviour
 {
@@ -16,6 +16,7 @@ public class TiTypingManager : MonoBehaviour
     public Button[] TiButtons;//正誤判定Button
     [SerializeField] private GameObject maruSprite;
     [SerializeField] private GameObject pekeSprite;
+    [SerializeField] private GameObject TipipoEnemy;
     public GameObject Shutudai2Panel;
     public GameObject TigradePanel;
     public int TicurrentMode;
@@ -25,7 +26,7 @@ public class TiTypingManager : MonoBehaviour
     public int answerNum=0;//answerを移動させるため
     public List<int> ButtonNum = new List<int>();//Buttonをシャッフルさせるため
     public List<int> QuesNum = new List<int>();//出題をシャッフルさせるため
-    private int n;//シャッフル用の変数
+    public int q;//出題のシャッフル用の変数
     public string textcolor;
     public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
     public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
@@ -76,7 +77,7 @@ public class TiTypingManager : MonoBehaviour
 // Start is called before the first frame update
   void Start(){ 
       ShuffleB();
-       
+       TipipoEnemy.SetActive(true);
        GameManager.instance.LoadGfontsize();
        GameManager.instance.LoadGKunrei();
        
@@ -88,6 +89,7 @@ public class TiTypingManager : MonoBehaviour
        TyMondaisuu = 5;
        TyQuesCount =0;
        GameManager.instance.TyHiraganaCount=0;
+       q = 0;
         //Output();
         //SetListTi();
         //TiDebugTable();
@@ -194,6 +196,7 @@ public void TyKantan(string buttonname){
    //出題する
     void Output(){
        ShuffleB();
+       TipipoEnemy.SetActive(true);
        TyQuesCount++;
        TyQuesCountText.text = TyQuesCount.ToString();
        if (TyQuesCount > TyMondaisuu)
@@ -203,7 +206,7 @@ public void TyKantan(string buttonname){
             GameManager.instance.TyCoin = TySeikai * 1;
             GameManager.instance.totalCoin += GameManager.instance.TyCoin;
             GameManager.instance.SaveCoinGoukei();
-            //pipoEnemy.SetActive(false);
+            TipipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();
             Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
@@ -216,7 +219,7 @@ public void TyKantan(string buttonname){
        _mojiNum=0;
         //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
         //_qNum =13;
-        _qNum = QuesNum[n];//Debug用
+        _qNum = QuesNum[q];//Debug用
         _aNum = int.Parse(TiTable[_qNum,2]);
 
         if(GameManager.instance.isGfontsize==true){
@@ -291,11 +294,11 @@ public void TyKantan(string buttonname){
                 }
         //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
-        n++;
-        if(n > QuesNum.Count-1){
-            n=0;
+        q++;
+        if(q > QuesNum.Count-1){
+            q=0;
         }
-        Debug.Log("n+"+n);
+        Debug.Log("q+"+q);
         }
     }
    /* public void TiCheckAnswer(int num){
@@ -347,8 +350,6 @@ public void TyKantan(string buttonname){
         Debug.Log(answerMoji);
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         answerNum++;
-        
-
         if(answerNum>=_aNum){
             GameManager.instance.TyHiraganaCount++;
             Debug.Log("seikai"+GameManager.instance.TyHiraganaCount);
@@ -496,3 +497,4 @@ public void TyKantan(string buttonname){
             }
         }
 }
+
