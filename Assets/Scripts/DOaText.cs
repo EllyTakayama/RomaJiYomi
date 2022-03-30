@@ -49,9 +49,9 @@ public class DOaText : MonoBehaviour
 
 
     public void Atext(){
-        aText.DOText("\nローマ字は\nアルファベットで表現します。"
-        +"\n基本のあ行を覚えましょう。"
-        , 3f)
+        aText.DOText("\nあ行のアルファベットを"
+        +"\n覚えましょう。"
+        , 2f)
         .OnComplete(MoveButtons);
         Invoke("LateSE",0.0f);
         print("aText");
@@ -109,7 +109,7 @@ public class DOaText : MonoBehaviour
         bButton[2].enabled = true;
         bButton[3].enabled = true;
         yield return new WaitForSeconds(0.2f);
-        AnsImage.GetComponentInChildren<Text>().text = "ボタンを押すとふうせんが出るよ";
+        AnsImage.GetComponentInChildren<Text>().text = "ひらがなバルーンをつくろう";
     }
 
     
