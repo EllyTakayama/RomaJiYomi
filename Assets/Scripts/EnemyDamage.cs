@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+//3月29日更新
 
 public class EnemyDamage : MonoBehaviour
 {
@@ -14,13 +15,19 @@ public class EnemyDamage : MonoBehaviour
       
     }
 
+    public void EnemyShake(){
+       //時間、強さ、回数、手ぶれ値、スナップフラグ、dフェードアウト
+      transform.DOShakePosition(1.0f, 10f, 3, 1, false, true);
+    }
+
+
     public void DamageCall(){
         StartCoroutine(EnemyD());
     }
     
     public IEnumerator EnemyD(){
       //時間、強さ、回数、手ぶれ値、スナップフラグ、dフェードアウト
-    transform.DOShakePosition(1.2f, 20f, 15, 1, false, true);
+    transform.DOShakePosition(0.7f, 20f, 10, 1, false, true);
 
         //無敵時間中の点滅
   for (int i = 0; i < 3; i++)
@@ -33,7 +40,5 @@ public class EnemyDamage : MonoBehaviour
   }
 
     }
-    
 
-   
 }

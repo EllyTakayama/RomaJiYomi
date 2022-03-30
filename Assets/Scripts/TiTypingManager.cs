@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-//3月25日更新ランダムな出題に一時変更したバージョン
+//3月29日更新　実機で挙動しないバグを修正
 
 public class TiTypingManager : MonoBehaviour
 {
@@ -17,6 +17,9 @@ public class TiTypingManager : MonoBehaviour
     [SerializeField] private GameObject maruSprite;
     [SerializeField] private GameObject pekeSprite;
     [SerializeField] private GameObject TipipoEnemy;
+    [SerializeField] private GameObject TQuesManager;
+    [SerializeField] private GameObject TyPipoEffect;
+    [SerializeField] GameObject MagicHitEffect;
     public GameObject Shutudai2Panel;
     public GameObject TigradePanel;
     public int TicurrentMode;
@@ -93,11 +96,8 @@ public class TiTypingManager : MonoBehaviour
         //Output();
         //SetListTi();
         //TiDebugTable();
-        //AnswerSlice("はくさい");
        //StartCoroutine(ShutudaiSE());
-       //ChangeKtoH(kunrei);
-       //Hebon(kunrei);
-       //Kakunin(kunrei);
+    
     }
     private HiraDictionary cd;
     private List<int> yomiageSE = new List<int>();//読み上げ用の数字を格納する
@@ -148,57 +148,19 @@ void ChangeKtoH(string moji){
         }
     }
     
-
-public void TyKantan(string buttonname){
-        
-        switch (buttonname)
-            {
-                case "Button1":
-                TicurrentMode = 1;
-                SetListTi();
-                Debug.Log("1");
-                TiDebugTable();
-                Shutudai2Panel.SetActive(true);
-                TiKantan();
-                    break;
-                case "Button2":
-                TicurrentMode = 2;
-                SetListTi();
-                Debug.Log("2");
-                TiDebugTable();
-                Shutudai2Panel.SetActive(true);
-                TiKantan();
-                    break;
-                case "Button3":
-                TicurrentMode = 3;
-                SetListTi();
-                Debug.Log("3");
-                TiDebugTable();
-                Shutudai2Panel.SetActive(true);
-                TiKantan();
-                    break;
-                case "Button4":
-                TicurrentMode = 4;
-                SetListTi();
-                Debug.Log("4");
-                TiDebugTable();
-                Shutudai2Panel.SetActive(true);
-                TiKantan();
-                    break;
-           }
-    }
-
-    public void  TiKantan(){
-        Output();
-        //Debug.Log("osita");
-    }
-    
-   //出題する
-    void Output(){
+   //出題する　
+   //Buttonを押された時にTikaraQues.csからテキストを2次元配列に代入するSetList、出題のOutputが呼び出されます
+   //2次元配列から_qNumで出題の行を取得
+   //2次元配列の行（要素数は9）例　0：ネズミ,1：ねずみ,2：3,3：NE,4：ZU,5：MI,6：TO,7：ME,8：NO
+   //0：表示　1：正解　2：正解数（これを超えたら新しい問題が出題されます
+   //3から正解です。変数Kに代入し、正解するごとに関数Correctで1ずつ移動させます他は選択肢です
+   //正解ごとにCorrectで行の要素を移動させ出題内容の規定数正解したらOutputで新しく出題する
+    public void Output(){
        ShuffleB();
        TipipoEnemy.SetActive(true);
        TyQuesCount++;
        TyQuesCountText.text = TyQuesCount.ToString();
+       //出題数のカウントがMondaisuuを超えたらGradePanelが出てくる
        if (TyQuesCount > TyMondaisuu)
         {
             TySeikai = GameManager.instance.TyHiraganaCount;
@@ -214,23 +176,29 @@ public void TyKantan(string buttonname){
             return;
         }
        Debug.Log("問題"+TyQuesCount);
-       answerNum=0;
-       k=3;
-       _mojiNum=0;
+       answerNum=0;//正解数をカウントする変数
+       k=3;//正解文字は2次元配列から取得　正解はインデックス3からスタート
+       _mojiNum=0;//色を変える文字数の管理
         //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
         //_qNum =13;
-        _qNum = QuesNum[q];//Debug用
+        _qNum = QuesNum[q];//テキストアセットの縦の要素数から出題のインデックス用List QuesNumを作成 = QuesNum[q];
         _aNum = int.Parse(TiTable[_qNum,2]);
 
+        Debug.Log("前QuesNum[q]"+QuesNum[q]);
+                 Debug.Log("前_qNum"+_qNum);
+
+        //大文字の時の分岐         
         if(GameManager.instance.isGfontsize==true){
-            kanjiText.text = TiTable[_qNum,0];
+        kanjiText.text = TiTable[_qNum,0];
         qText.text = TiTable[_qNum,1];
         textcolor = TiTable[_qNum,1];
         aText.text = "";
-        
         int j =3;
         for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
+                 Debug.Log("QuesNum[q]"+QuesNum[q]);
+                 Debug.Log("_qNum"+_qNum);
+                 //大文字かつヘボン式の場合はButtonのテキストを差し替える
                  if(GameManager.instance.isGKunrei == false){
                      string a = TiTable[_qNum,j];
                     if(cd.dicHebon.ContainsKey(a)){
@@ -238,72 +206,61 @@ public void TyKantan(string buttonname){
                         TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text=a;
                    Debug.Log("key");
                 }
-                else{
-                Debug.Log("not key");
-                }
                  }
                  j++;}
                  QuestionAnswer = TiTable[_qNum,k];
-                 if(GameManager.instance.isGKunrei == false){
+                 //大文字かつヘボン式の場合は正解を差し替える
+                if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
                         QuestionAnswer = a;
                    Debug.Log("outputkey"+QuestionAnswer);
                 }
-                else{
-                Debug.Log("not key");}
-                }
-        
-        //Debug.Log("_aNum"+_aNum);
-        Debug.Log("qNum"+_qNum);
+                Debug.Log("qNum"+_qNum);}
         }
+        //小文字の場合の分岐
         else{
             kanjiText.text = TiTable[_qNum,0].ToLower();
-        qText.text = TiTable[_qNum,1].ToLower();
-        textcolor = TiTable[_qNum,1].ToLower();
-        aText.text = "";
-        
-        int j =3;
-        for(int i =0;i<TiyokoNumber-3;i++){
+            qText.text = TiTable[_qNum,1].ToLower();
+            textcolor = TiTable[_qNum,1].ToLower();
+            aText.text = "";
+            Debug.Log("QuesNum[q]"+QuesNum[q]);
+                 Debug.Log("_qNum"+_qNum);
+            int j =3;
+            for(int i =0;i<TiyokoNumber-3;i++){
                  TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j].ToLower();
+                 //小文字かつヘボン式の場合はButtonのテキストを差し替える
                  if(GameManager.instance.isGKunrei == false){
                      string b = TiTable[_qNum,j].ToLower();
                     if(cd.dicHebon.ContainsKey(b)){
                         b = cd.dicHebon[b];
                         TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text=b;
-                   Debug.Log("key");
-                }
-                else{
-                Debug.Log("not key");
                 }
                  }
                  j++;}
-        QuestionAnswer = TiTable[_qNum,k].ToLower();
-        Debug.Log("qestionanswer"+QuestionAnswer);
-        if(GameManager.instance.isGKunrei == false){
+            QuestionAnswer = TiTable[_qNum,k].ToLower();Debug.Log("qestionanswer"+QuestionAnswer);
+                //小文字かつヘボン式の場合は正解のテキストを差し替える
+                if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
                         QuestionAnswer = a;
                         Debug.Log("a"+a);
-                   Debug.Log("outputkey"+QuestionAnswer);
+                        }
                 }
-                else{
-                Debug.Log("not key");}
-                }
-        //Debug.Log("_aNum"+_aNum);
         Debug.Log("qNum"+_qNum);
-        q++;
+        //qNumに代入するQuesNum[q]のインデックスｑを＋＋して次回出題時に問題が変更される様にする
+        
+        //もしインデックスがQuewNumの要素数を上回る倍はインデックス用変数ｑを0にする
         if(q > QuesNum.Count-1){
             q=0;
         }
-        Debug.Log("q+"+q);
         }
+        q++;
+        Debug.Log("q+"+q);
     }
-   /* public void TiCheckAnswer(int num){
-       if(TiButtons[num].GetComponentInChildren<Text>().text) 
-    }*/
+   
 
 
     public void PressButton(int Bnum){
@@ -321,10 +278,10 @@ public void TyKantan(string buttonname){
         
     }
 
-    //正解した時の関数
+    //正解した時の関数　
     void Correct(){
         Debug.Log("mojisuu"+QuestionAnswer.Length);
-
+        //正解した場合の文字の色を変えるための分岐
         if(QuestionAnswer.Length==1){
             _mojiNum += QuestionAnswer.Length;
         }
@@ -343,23 +300,29 @@ public void TyKantan(string buttonname){
             else{
                 _mojiNum += QuestionAnswer.Length-1;
                 }
-           
         }
         Debug.Log("moji"+_mojiNum);
+        //正解をa.Textに表示
         aText.text += answerMoji;
         Debug.Log(answerMoji);
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
+        //answerNumで正解をカウント
         answerNum++;
+        TyPipoEffect = Instantiate(MagicHitEffect);
+        //問題の正解カウントが設定された正解数を超えたらTiChangeQuesで新たな出題がされる
         if(answerNum>=_aNum){
             GameManager.instance.TyHiraganaCount++;
             Debug.Log("seikai"+GameManager.instance.TyHiraganaCount);
+            TipipoEnemy.GetComponent<EnemyDamage>().DamageCall();
             StartCoroutine(TiChangeQues());
             Debug.Log("output");
             return;
         }
-        
+        TipipoEnemy.GetComponent<EnemyDamage>().EnemyShake();
         //_aNum++;
+        //正解を二次元配列から取得する関数ｋを1つずらす
         k++;
+        //大文字かつ、ヘボン式の場合正解を差し替える
         if(GameManager.instance.isGfontsize==true){
             QuestionAnswer = TiTable[_qNum,k];
             if(GameManager.instance.isGKunrei == false){
@@ -367,12 +330,10 @@ public void TyKantan(string buttonname){
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
                         QuestionAnswer = a;
-                   Debug.Log("key"+QuestionAnswer);
-                }
-                else{
-                Debug.Log("not key");}
+                        }
                 }
             }
+        //小文字かつ、ヘボン式の場合正解を差し替える
         else{
              QuestionAnswer = TiTable[_qNum,k].ToLower();
              if(GameManager.instance.isGKunrei == false){
@@ -381,10 +342,6 @@ public void TyKantan(string buttonname){
                         a = cd.dicHebon[a];
                         QuestionAnswer = a;
                         Debug.Log("a"+a);
-                   Debug.Log("outputkey"+QuestionAnswer);
-                }
-                else{
-                    Debug.Log("not key");
                 }
             }
         }
@@ -402,12 +359,12 @@ public void TyKantan(string buttonname){
         for(int i=0;i<TiButtons.Length;i++){
         TiButtons[i].enabled =false;
     }
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.8f);
         Output();
+        TQuesManager.GetComponent<TspriteChange>().TySChange();
         for(int i=0;i<TiButtons.Length;i++){
         TiButtons[i].enabled =true;}
     }
-   
 
     public void SetListTi(){
         //押したButtonに応じて分岐 TicurrentMode

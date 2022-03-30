@@ -5,18 +5,15 @@ using UnityEngine.UI;//12月14日　Tikara正誤判定用
 
 public class TCheckButton : MonoBehaviour
 {
-    [SerializeField] private GameObject maruImage;
-    [SerializeField] private GameObject pekeImage;
     [SerializeField] private GameObject maruSprite;
     [SerializeField] private GameObject pekeSprite;
+    [SerializeField] private GameObject TQuesManager;
     //[SerializeField] private GameObject enemyMaker;
     public GameObject enemyDamageCall;
     //[SerializeField] private Image enemyImage;
     // Start is called before the first frame update
     void Start()
     {
-        maruImage.SetActive(false);
-        pekeImage.SetActive(false);
         maruSprite.SetActive(false);
         pekeSprite.SetActive(false);
     }
@@ -31,7 +28,6 @@ public class TCheckButton : MonoBehaviour
          if (gameObject.CompareTag( TikaraQues.instance.tagOfButton))
         {
             GameManager.instance.TiTangoCount++;
-            //maruImage.SetActive(true);
             maruSprite.SetActive(true);
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");
@@ -39,13 +35,13 @@ public class TCheckButton : MonoBehaviour
             StartCoroutine(TiMaruButton());
         }
         else{
-            //pekeImage.SetActive(true);
+           
             pekeSprite.SetActive(true);
             SoundManager.instance.PlaySousaSE(3);
             Debug.Log("間違い");
-             StartCoroutine(TiBatsuButton());
+            StartCoroutine(TiBatsuButton());
         }
-       //TikaraQues.instance.TKantan();
+      
     }
     IEnumerator TiMaruButton()
     {  

@@ -11,10 +11,8 @@ public class TikaraQues : MonoBehaviour
     public static TikaraQues instance;
     private int locationOfTikaraAnswer;
     public Button[] TikaraAnsButtons;
-    [SerializeField] private GameObject enemies;
     [HideInInspector] public string TikaraAnswer;
     public GameObject pipoEnemy;
-
     public string tagOfButton;
     public Text TikaraText;
     public Text furiganaText;
@@ -124,7 +122,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 1;
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.TiKantan();
+                    TiTypingManager.instance.Output();
                 }
                 break;
 
@@ -145,7 +143,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 2;
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.TiKantan();
+                    TiTypingManager.instance.Output();
                 }
                 break;
 
@@ -166,7 +164,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 3;
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.TiKantan();
+                    TiTypingManager.instance.Output();
                 }
                 break;
 
@@ -187,7 +185,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 4;
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.TiKantan();
+                    TiTypingManager.instance.Output();
                 }
                 break;
         }

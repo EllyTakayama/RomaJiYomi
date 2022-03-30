@@ -103,7 +103,7 @@ public class DoTigrade : MonoBehaviour
             TikaraQues.instance.TKantan();
             }
         else{
-            TiTypingManager.instance.TiKantan();
+            TiTypingManager.instance.Output();
         }
     }
 }
