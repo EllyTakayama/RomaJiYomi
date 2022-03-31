@@ -97,7 +97,27 @@ public class RouletteController : MonoBehaviour
          hiraganaImage.gameObject.SetActive (true);
         GameManager.instance.RoulletteNum.Clear();
    
-        if(result == "k"||result =="K"){
+        if(result == "a"||result =="A"){
+            gyou = "あ";
+            int j = 0;
+              RCNum.Clear();
+            for(int i = 0; i<hiraganaButtons.Length; i++){
+                RCNum.Add(j);
+                if(isRCTall== true){
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+
+                }else{
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
+                }
+                    Debug.Log("i"+i);
+                    Debug.Log("j"+j);
+                    Debug.Log("j"+romajiRC50[j]);
+                    Debug.Log("j"+RCNum[i]);
+                    j++;
+                }
+          
+        }
+        else if(result == "k"||result =="K"){
             gyou = "か";
             int j = 5;
               RCNum.Clear();
@@ -116,7 +136,8 @@ public class RouletteController : MonoBehaviour
                     j++;
                 }
           
-        }else if(result == "s"||result =="S"){
+        }
+        else if(result == "s"||result =="S"){
             gyou = "さ";
             RCNum.Clear();
             int j = 10;

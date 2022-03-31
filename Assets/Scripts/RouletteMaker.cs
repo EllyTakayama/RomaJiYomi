@@ -11,30 +11,31 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private Image rouletteImage;
     [SerializeField] private RouletteController rController;
     [SerializeField] private Button[] hiraganaButtons;
-    [SerializeField] private string[] sHiragana = new string[]{"k","s","t","n","h","m","y","r","w"};
-    [SerializeField] private string[] tHiragana = new string[]{"K","S","T","N","H","M","Y","R","W"} ;
+    [SerializeField] private string[] sHiragana = new string[]{"a","k","s","t","n","h","m","y","r","w"};
+    [SerializeField] private string[] tHiragana = new string[]{"A","K","S","T","N","H","M","Y","R","W"} ;
     [SerializeField] private string[] sHiragana5 = new string[]{"g","z","d","b","p","v"};
     [SerializeField] private string[] tHiragana5 = new string[]{"G","Z","D","B","P","V"} ;
     [SerializeField] private string[] sHiragana51 = new string[]{"ky\nsh","ty\nny","hy\nmy","ry\ngy","jy\ndy","by\npy"};
     [SerializeField] private string[] tHiragana51 = new string[]{"KY\nSH","TY\nNY","HY\nMY","RY\nGY","JY\nDY","BY\nPY"} ;
-    public bool isRouletteTall;//大文字かどうか
+
     public int RcurrentMode;//currentModeをルーレットの設定に反映
     
     void Start () {
         GameManager.instance.LoadGfontsize();
         RcurrentMode = QuesManager.instance.currentMode;
-        isRouletteTall = GameManager.instance.isGfontsize;
-        Debug.Log("大文字"+isRouletteTall);
+        Debug.Log("大文字"+GameManager.instance.isGfontsize);
         Debug.Log("mode"+RcurrentMode);
             choices.Clear();
         if(RcurrentMode == 4){
-            if(isRouletteTall == true){
+            if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(tHiragana);
+                 Debug.Log(tHiragana.Length);
             }else{
                 choices.AddRange(sHiragana);
+                 Debug.Log(tHiragana.Length);
             }
         }else if(RcurrentMode == 5) {
-            if(isRouletteTall == true){
+            if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(sHiragana5);
             }else{
                 choices.AddRange(sHiragana5);
@@ -70,18 +71,17 @@ public class RouletteMaker : MonoBehaviour
 
         GameManager.instance.LoadGfontsize();
         RcurrentMode = QuesManager.instance.currentMode;
-        isRouletteTall = GameManager.instance.isGfontsize;
-        Debug.Log("大文字"+isRouletteTall);
+        Debug.Log("大文字"+GameManager.instance.isGfontsize);
         Debug.Log("mode"+RcurrentMode);
             choices.Clear();
         if(RcurrentMode == 4){
-            if(isRouletteTall == true){
+            if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(tHiragana);
             }else{
                 choices.AddRange(sHiragana);
             }
         }else if(RcurrentMode == 5) {
-            if(isRouletteTall == true){
+            if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(sHiragana5);
             }else{
                 choices.AddRange(sHiragana5);
