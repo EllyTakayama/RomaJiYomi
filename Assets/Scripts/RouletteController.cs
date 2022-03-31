@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;//2月8日更新
+using UnityEngine.SceneManagement;//3月31日更新
 
 public class RouletteController : MonoBehaviour
 {

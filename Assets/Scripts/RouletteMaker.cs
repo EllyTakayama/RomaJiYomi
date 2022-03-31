@@ -7,8 +7,9 @@ public class RouletteMaker : MonoBehaviour
 {
     [SerializeField] private Transform imageParentTransform;
     public List<string> choices = new List<string>();
-    [SerializeField] private List<Color> rouletteColors;
+    //[SerializeField] private List<Color> rouletteColors;
     [SerializeField] private Image rouletteImage;
+    [SerializeField] private Image rouletteImage1;
     [SerializeField] private RouletteController rController;
     [SerializeField] private Button[] hiraganaButtons;
     [SerializeField] private string[] sHiragana = new string[]{"a","k","s","t","n","h","m","y","r","w"};
@@ -57,7 +58,7 @@ public class RouletteMaker : MonoBehaviour
         float rotatePerRoulette = 360 / (float) (choices.Count);
         for (int i = 0; i < choices.Count; i++) {
             var obj = Instantiate (rouletteImage, imageParentTransform);
-            obj.color = rouletteColors[(choices.Count - 1 - i)];
+            //obj.color = rouletteColors[(choices.Count - 1 - i)];
             obj.fillAmount = ratePerRoulette * (choices.Count - i);
             obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
             obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
@@ -97,11 +98,22 @@ public class RouletteMaker : MonoBehaviour
         float ratePerRoulette = 1 / (float) choices.Count;
         float rotatePerRoulette = 360 / (float) (choices.Count);
         for (int i = 0; i < choices.Count; i++) {
-            var obj = Instantiate (rouletteImage, imageParentTransform);
-            obj.color = rouletteColors[(choices.Count - 1 - i)];
-            obj.fillAmount = ratePerRoulette * (choices.Count - i);
-            obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
-            obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+            if(RcurrentMode == 4){
+                 var obj = Instantiate (rouletteImage, imageParentTransform);
+                 //obj.color = rouletteColors[(choices.Count - 1 - i)];
+                obj.fillAmount = ratePerRoulette * (choices.Count - i);
+                obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
+                obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+                 }
+            else{
+                var obj = Instantiate (rouletteImage1, imageParentTransform);
+                //obj.color = rouletteColors[(choices.Count - 1 - i)];
+                obj.fillAmount = ratePerRoulette * (choices.Count - i);
+                obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
+                obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+            }
+           
+            
         }
         rController.SetRoulette();
         rController.rMaker = this;
