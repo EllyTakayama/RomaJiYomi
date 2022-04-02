@@ -42,7 +42,6 @@ public class QuesManager : MonoBehaviour
     int[] ary3 = new int[]{0,1,2};
     int[] ary6 = new int[]{0,1,2,3,4,5};
     int[] moji50 = new int[46];
-    public bool isTall;//大文字か小文字か選択
     public bool isGomoji= true;
     [SerializeField] private Dropdown dropdown;//k-w行
     [SerializeField] private Dropdown dropdown2;//g-pya行
@@ -258,10 +257,10 @@ public class QuesManager : MonoBehaviour
         QuesCount = 0;
         QuesCount1 = 0;
         GameManager.instance.LoadGfontsize();
-        isTall = GameManager.instance.isGfontsize;
+        GameManager.instance.LoadGKunrei();
         //Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
         //デフォルトだとfalse
-        //Debug.Log("GameManagerisTall"+isTall);
+        //Debug.Log("GameManagerisGfontsize"+GameManager.instance.isGfontsize);
     }
 
     public void CurrentMode(){
@@ -362,17 +361,17 @@ public class QuesManager : MonoBehaviour
             c = ary[n+2];
         }
         //SettingPanelの大文字選択はtrue
-        if(isTall == true){
+        if(GameManager.instance.isGfontsize == true){
            answer = RomaJi50[b];
            select1 = RomaJi50[a];
            select2 = RomaJi50[c];
-           //Debug.Log("isTall"+isTall);
+          
         }
         else{
            answer = romaji50[b]; 
            select1 = romaji50[a]; 
            select2 = romaji50[c]; 
-           //Debug.Log("isTall"+isTall);
+          
         }
         QuesText.text = hiragana50[b];
         StartCoroutine(PlayHiragana());
@@ -658,17 +657,17 @@ public class QuesManager : MonoBehaviour
         f = c;
        
         QuesText4.text = hiragana50[d];
-         if(isTall == true){
+         if(GameManager.instance.isGfontsize == true){
            answer4 = RomaJi50[d];
            select3 = RomaJi50[e];
            select4 = RomaJi50[f];
-           Debug.Log("isTall"+isTall);
+           Debug.Log("isTall"+GameManager.instance.isGfontsize);
         }
         else{
            answer4 = romaji50[d]; 
            select3 = romaji50[e]; 
            select4 = romaji50[f]; 
-           Debug.Log("isTall"+isTall);
+           Debug.Log("isTall"+GameManager.instance.isGfontsize);
         }
 
         //Debug.Log("QuesCount"+QuesCount);

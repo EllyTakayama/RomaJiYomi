@@ -8,6 +8,7 @@ public class BDest : MonoBehaviour
     public bool isAHigh;
     public Image[] bPrefabs;//あ行はabImage
     public Image[] bPrefabs1;
+    private int b;
     public List<int> HRoulletteNum = new List<int>();//ルーレットの風船の変数の保持
     string[] Agyou = new string[]{
          "A",
@@ -31,15 +32,17 @@ public class BDest : MonoBehaviour
       //isAHigh = GameManager.instance.isGfontsize;
 
         //3秒後に削除
+        b = 0;
         Destroy(gameObject, 4.0f);
         //print("baloon");
     }
     
     public void BonClick(int num){
+        //あ行の分岐
         if(QuesManager.instance.currentMode ==2){
             SoundManager.instance.PlaySE(num);
+        //あ行で大文字だった場合の分岐
          if (GameManager.instance.isGfontsize == true){
-            int b = 0;
             if(b == 0){
                  bPrefabs[num].GetComponentInChildren<Text>().text = Agyou[num];
                  b++;
@@ -57,22 +60,52 @@ public class BDest : MonoBehaviour
          
     }
     public void ABClick(int num){
+         //あ行の分岐
         if(QuesManager.instance.currentMode ==2){
             SoundManager.instance.PlaySE(num);
-         if (GameManager.instance.isGfontsize == true){
-            bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
-            }
-        else{
-             bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
+            //あ行で大文字だった場合の分岐
+            if (GameManager.instance.isGfontsize == true){
+                if(b == 0){
+                     bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
+                     b++;}
+                else if(b > 0){
+                    bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
+                    b = 0;
+                    }
+                }
+             //あ行で小文字だった場合の分岐
+            else{
+                if(b==0){
+                     bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
+                     b++;}
+                else if(b >0){
+                    bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
+                    b = 0;
+                }    
              }
+             //ルーレットシーンのバルーンで文字を取得する時の分岐
         }
         else if(QuesManager.instance.currentMode ==4){
             HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
            SoundManager.instance.PlaySE(HRoulletteNum[num]);
-            bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
+           if(b == 0){
+               bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
+               b++;}
+            else if(b>0){
+                if(GameManager.instance.isGfontsize==true){
+                bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
+                b=0;}
+                else{
+                    bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
+                    b=0;
+                }
+            }
+            
             Debug.Log("hiragana");
-             }
+            }
     }
+        
+
 
     
     string[] hiragana50 = new string[]{
@@ -133,5 +166,63 @@ public class BDest : MonoBehaviour
         //104-106
         "ぴゃ","ぴゅ","ぴょ"};
 
+    string[] RomaJi50 = new string[]{
+         //0-4
+        "A","I","U","E","O",
+        //5-9
+        "KA","KI","KU","KE","KO",
+        //10-14
+        "SA","SI","SU","SE","SO",
+        //15-19
+        "TA","TI","TU","TE","TO",
+        //20-24
+        "NA","NI","NU","NE","NO",
+        //25-29
+        "HA","HI","HU","HE","HO",
+        //30-34
+        "MA","MI","MU","ME","MO",
+         //35-37
+        "YA","YU","YO",
+        //38-42
+        "RA","RI","RU","RE","RO",
+        //43-45
+         "WA","WO","NN",
+
+        //46-50
+        "GA","GI","GU","GE","GO",
+       //51-55
+        "ZA","ZI","ZU","ZE","ZO",
+        //56-60
+        "DA","DI","DU","DE","DO",
+        //61-65
+        "BA","BI","BU","BE","BO",
+         //66-70
+        "PA","PI","PU","PE","PO",
+
+        //71-73
+        "KYA","KYU","KYO",
+        //74-76
+        "SHA","SHU","SHO",
+        //77-79
+        "TYA","TYU","TYO",
+        //80-82
+        "NYA","NYU","NYO",
+        //83-85
+        "HYA","HYU","HYO",
+        //86-88
+        "MYA","MYU","MYO",
+        //89-91
+        "RYA","RYU","RYO",
+        //92-94
+        "GYA","GYU","GYO",
+        //95-97
+        "JYA","JYU","JYO",
+        //98-100
+        "DYA","DYU","DYO",
+        //101-103
+        "BYA","BYU","BYO",
+        //104-106
+        "PYA","PYU","PYO"
+        };
 
 }
