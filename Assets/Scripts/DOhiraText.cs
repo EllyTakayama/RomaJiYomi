@@ -9,14 +9,14 @@ using TMPro;
 public class DOhiraText : MonoBehaviour
 {
     public Text hiraganaText; 
-    public bool isHTall;
+    //public bool isHTall;
     public Toggle hPanelToggle;
     public GameObject hyouImage;
     
     
     public void HiraganaText(){
-        isHTall = GameManager.instance.isGfontsize;
-        if( isHTall ==true){
+        //isHTall = GameManager.instance.isGfontsize;
+        if(GameManager.instance.isGfontsize ==true){
             hiraganaText.DOText("ローマ字はアルファベットの子音と母音（あ行）で表現します。", 3f)
             .OnComplete(HiraganaHyo);
         }

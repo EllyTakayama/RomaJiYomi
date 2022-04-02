@@ -103,7 +103,7 @@ public class DOaText : MonoBehaviour
         bButton[1].enabled = false;
         bButton[2].enabled = false;
         bButton[3].enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         bButton[0].enabled = true;
         bButton[1].enabled = true;
         bButton[2].enabled = true;

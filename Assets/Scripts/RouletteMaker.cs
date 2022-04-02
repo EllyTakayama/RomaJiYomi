@@ -19,15 +19,16 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private string[] sHiragana51 = new string[]{"ky\nsh","ty\nny","hy\nmy","ry\ngy","jy\ndy","by\npy"};
     [SerializeField] private string[] tHiragana51 = new string[]{"KY\nSH","TY\nNY","HY\nMY","RY\nGY","JY\nDY","BY\nPY"} ;
 
-    public int RcurrentMode;//currentModeをルーレットの設定に反映
+    //public int RcurrentMode;//currentModeをルーレットの設定に反映
     
-    void Start () {
+    void Start() {
+        /*
         GameManager.instance.LoadGfontsize();
         RcurrentMode = QuesManager.instance.currentMode;
         Debug.Log("大文字"+GameManager.instance.isGfontsize);
-        Debug.Log("mode"+RcurrentMode);
+        Debug.Log("mode"+QuesManager.instance.currentMode);
             choices.Clear();
-        if(RcurrentMode == 4){
+        if(QuesManager.instance.currentMode == 4){
             if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(tHiragana);
                  Debug.Log(tHiragana.Length);
@@ -35,7 +36,7 @@ public class RouletteMaker : MonoBehaviour
                 choices.AddRange(sHiragana);
                  Debug.Log(tHiragana.Length);
             }
-        }else if(RcurrentMode == 5) {
+        }else if(QuesManager.instance.currentMode == 5) {
             if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(sHiragana5);
             }else{
@@ -66,22 +67,22 @@ public class RouletteMaker : MonoBehaviour
         rController.SetRoulette();
         rController.rMaker = this;
         rController.rotatePerRoulette = rotatePerRoulette;
-        rController.roulette = imageParentTransform.gameObject;
+        rController.roulette = imageParentTransform.gameObject;*/
     }
     public void RMaker(){
 
         GameManager.instance.LoadGfontsize();
-        RcurrentMode = QuesManager.instance.currentMode;
+        //RcurrentMode = QuesManager.instance.currentMode;
         Debug.Log("大文字"+GameManager.instance.isGfontsize);
-        Debug.Log("mode"+RcurrentMode);
+        Debug.Log("mode"+QuesManager.instance.currentMode);
             choices.Clear();
-        if(RcurrentMode == 4){
+        if(QuesManager.instance.currentMode == 4){
             if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(tHiragana);
             }else{
                 choices.AddRange(sHiragana);
             }
-        }else if(RcurrentMode == 5) {
+        }else if(QuesManager.instance.currentMode == 5) {
             if(GameManager.instance.isGfontsize == true){
                  choices.AddRange(sHiragana5);
             }else{
@@ -98,7 +99,7 @@ public class RouletteMaker : MonoBehaviour
         float ratePerRoulette = 1 / (float) choices.Count;
         float rotatePerRoulette = 360 / (float) (choices.Count);
         for (int i = 0; i < choices.Count; i++) {
-            if(RcurrentMode == 4){
+            if(QuesManager.instance.currentMode == 4){
                  var obj = Instantiate (rouletteImage, imageParentTransform);
                  //obj.color = rouletteColors[(choices.Count - 1 - i)];
                 obj.fillAmount = ratePerRoulette * (choices.Count - i);

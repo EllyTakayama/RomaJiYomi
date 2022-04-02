@@ -28,26 +28,50 @@ public class BDest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-      isAHigh = GameManager.instance.isGfontsize;
+      //isAHigh = GameManager.instance.isGfontsize;
 
         //3秒後に削除
         Destroy(gameObject, 4.0f);
         //print("baloon");
     }
+    
     public void BonClick(int num){
-         SoundManager.instance.PlaySE(num);
-        
-        if (isAHigh == true){
-            bPrefabs[num].GetComponentInChildren<Text>().text = Agyou[num];
+        if(QuesManager.instance.currentMode ==2){
+            SoundManager.instance.PlaySE(num);
+         if (GameManager.instance.isGfontsize == true){
+            int b = 0;
+            if(b == 0){
+                 bPrefabs[num].GetComponentInChildren<Text>().text = Agyou[num];
+                 b++;
+                 }
+            else if(b >0){
+                bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
+                b = 0;
+            }
+           
             }
         else{
-             bPrefabs[num].GetComponentInChildren<Text>().text = aGyou[num];}
+             bPrefabs[num].GetComponentInChildren<Text>().text = aGyou[num];
+             }
+        }
+         
     }
     public void ABClick(int num){
-        HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
-         SoundManager.instance.PlaySE(HRoulletteNum[num]);
+        if(QuesManager.instance.currentMode ==2){
+            SoundManager.instance.PlaySE(num);
+         if (GameManager.instance.isGfontsize == true){
+            bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
+            }
+        else{
+             bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
+             }
+        }
+        else if(QuesManager.instance.currentMode ==4){
+            HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
+           SoundManager.instance.PlaySE(HRoulletteNum[num]);
             bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
             Debug.Log("hiragana");
+             }
     }
 
     
