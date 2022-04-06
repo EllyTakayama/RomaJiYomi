@@ -22,8 +22,8 @@ public class RouletteController : MonoBehaviour
     [SerializeField] private Button stopButton;
     //[SerializeField] private Button retryButton;
     [SerializeField] private Button[] hiraganaButtons;
-    [SerializeField] private string[] sRCHiragana = new string[]{"k","s","t","n","h","m","y","r","w"};
-    [SerializeField] private string[] tRCHiragana = new string[]{"K","S","T","N","H","M","Y","R","W"} ;
+    [SerializeField] private string[] sRCHiragana = new string[]{"a","k","s","t","n","h","m","y","r","w"};
+    [SerializeField] private string[] tRCHiragana = new string[]{"A","K","S","T","N","H","M","Y","R","W"} ;
     public bool isRCTall;//RouletteControllerで大文字かどうか//trueなら大文字
     [SerializeField] private GameObject Ballon1Image;
     [SerializeField] private GameObject hButtonPanel;
@@ -31,6 +31,11 @@ public class RouletteController : MonoBehaviour
     [SerializeField] private GameObject hBallonImage;
     [SerializeField] private GameObject hiraganaImage;
     public List<int> RCNum = new List<int>();
+
+    void Start(){
+        Debug.Log("vo"+romajiRC50[111]);
+        Debug.Log("romajiRC50"+romajiRC50.Length);
+    }
 
     public void SetRoulette () {
         isPlaying = false;
@@ -103,7 +108,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                 RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
 
                 }else{
@@ -123,7 +128,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                 RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
 
                 }else{
@@ -143,7 +148,7 @@ public class RouletteController : MonoBehaviour
             int j = 10;
             for(int i = 0; i<hiraganaButtons.Length; i++){
                   RCNum.Add(j);
-               if(isRCTall== true){
+               if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -159,7 +164,7 @@ public class RouletteController : MonoBehaviour
             RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                     RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -175,7 +180,7 @@ public class RouletteController : MonoBehaviour
              RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -191,7 +196,7 @@ public class RouletteController : MonoBehaviour
              RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -207,7 +212,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                   RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -227,7 +232,7 @@ public class RouletteController : MonoBehaviour
             RCNum.Clear();
             int[]array = {35,0,36,0,37};
             RCNum.AddRange(array);  
-            if(isRCTall== true){
+            if(GameManager.instance.isGfontsize== true){
                hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[35];
                hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[36];
                hiraganaButtons[4].GetComponentInChildren<Text>().text = RomaJiRC50[37];
@@ -242,7 +247,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -260,7 +265,7 @@ public class RouletteController : MonoBehaviour
             RCNum.AddRange(array);  
             hiraganaButtons[1].gameObject.SetActive(false);
             hiraganaButtons[3].gameObject.SetActive(false);
-            if(isRCTall== true){
+            if(GameManager.instance.isGfontsize== true){
                 hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[43];
                 hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[44];
                 hiraganaButtons[4].GetComponentInChildren<Text>().text = RomaJiRC50[45];
@@ -276,7 +281,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -293,7 +298,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -310,7 +315,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -327,7 +332,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -344,7 +349,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -361,7 +366,7 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
@@ -378,15 +383,21 @@ public class RouletteController : MonoBehaviour
               RCNum.Clear();
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
-                if(isRCTall== true){
+                if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                    if(j == RomaJiRC50.Length-1){
+                        return;
+                    }
+                        j++;
                 }else{
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
+                     Debug.Log("j"+romajiRC50[j]);
+                     if(j == romajiRC50.Length-1){
+                        return;
+                    }
+                     j++;
                 }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
+
                }
             }
         hiraganaImage.gameObject.SetActive (true);  
@@ -412,14 +423,14 @@ public class RouletteController : MonoBehaviour
         new Vector3 (Random.Range(-300f,100f), Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
             transform.rotation);//生成時の向き
         hBallonImage.transform.SetParent(hButtonPanel.transform,false);  
-        if(isRCTall== true){
+        if(GameManager.instance.isGfontsize== true){
             hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
             }else{
                 hBallonImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[n]];
                 }
     }
     IEnumerator RCButton(int bnum)
-    {   if(isRCTall== true){
+    {   if(GameManager.instance.isGfontsize== true){
                     hiraganaImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[bnum]]+" は "+hiragana50[RCNum[bnum]];
                 }else{
                     hiraganaImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[bnum]]+" は "+hiragana50[RCNum[bnum]];
