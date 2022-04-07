@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;//3月31日更新
+using UnityEngine.SceneManagement;//4月5日更新
 
 public class RouletteController : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class RouletteController : MonoBehaviour
     private int frameCount;
     private bool isPlaying;
     private bool isStop;
+    private bool isGomoji;//5文字の行ならtrue 3文字ならfalse
+    private int j;//List代入用数値
     [SerializeField] private Text resultText;
     [SerializeField] private Button startButton;
     [SerializeField] private Button stopButton;
@@ -67,7 +69,7 @@ public class RouletteController : MonoBehaviour
     }
 
     private void StartOnClick () {
-        resultText.text = "ルーレットをストップ\nしてローマ字をゲット！";
+        resultText.text = "ルーレットで\nローマ字をゲット！";
         rouletteSpeed = Random.Range (30f, 50f);
         hiraganaImage.gameObject.SetActive (false);  
         startButton.gameObject.SetActive (false);
@@ -99,308 +101,230 @@ public class RouletteController : MonoBehaviour
          for (int i=0; i<hiraganaButtons.Length; i++){
                  hiraganaButtons[i].gameObject.SetActive(true);
                  }
-         hiraganaImage.gameObject.SetActive (true);
+        hiraganaImage.gameObject.SetActive (true);
         GameManager.instance.RoulletteNum.Clear();
-   
-        if(result == "a"||result =="A"){
+         RCNum.Clear();
+         if(result == "a"||result =="A"){
+            isGomoji = true;
             gyou = "あ";
-            int j = 0;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+j);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-                    j++;
-                }
-          
+            j = 0;
         }
         else if(result == "k"||result =="K"){
             gyou = "か";
-            int j = 5;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+j);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-                    j++;
-                }
-          
+            j = 5;
+            isGomoji = true;
         }
         else if(result == "s"||result =="S"){
             gyou = "さ";
-            RCNum.Clear();
-            int j = 10;
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                  RCNum.Add(j);
-               if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                  j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-            }
+            isGomoji = true;
+            j = 10;
         }else if(result == "t"||result =="T"){
             gyou = "た";
-            int j = 15;
-            RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                    RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                 Debug.Log("j"+RCNum[i]);
-            }
+            isGomoji = true;
+            j = 15;
         }else if(result == "n"||result =="N"){
             gyou = "な";
-            int j = 20;
-             RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                Debug.Log("j"+RCNum[i]);
-            }
+            j = 20;
+            isGomoji = true;
         }else if(result == "h"||result =="H"){
             gyou = "は";
-            int j =25;
-             RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                Debug.Log("j"+RCNum[i]);
-            }
+            j =25;
+            isGomoji = true;
         }else if(result == "m"||result =="M"){
             gyou = "ま";
-            int j = 30;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                  RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-                
-            }
+            j = 30;
+            isGomoji = true;
         }else if(result == "y"||result =="Y"){
             gyou = "や";
-            RCNum.Clear();
-
-            hiraganaButtons[1].gameObject.SetActive(false);
-            hiraganaButtons[3].gameObject.SetActive(false);
-            RCNum.Clear();
+            isGomoji = false;
+            j = 35;
             int[]array = {35,0,36,0,37};
             RCNum.AddRange(array);  
-            if(GameManager.instance.isGfontsize== true){
-               hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[35];
-               hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[36];
-               hiraganaButtons[4].GetComponentInChildren<Text>().text = RomaJiRC50[37];
-            }else{
-                hiraganaButtons[0].GetComponentInChildren<Text>().text = romajiRC50[35];
-                hiraganaButtons[2].GetComponentInChildren<Text>().text = romajiRC50[36];
-                hiraganaButtons[4].GetComponentInChildren<Text>().text = romajiRC50[37];
-            }
+            
         }else if(result == "r"||result =="R"){
             gyou = "ら";
-            int j = 38;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               
-            }
+            j = 38;
+            isGomoji = true;
+
             }else if(result == "w"||result =="W"){
                 gyou = "わ";
+            isGomoji = false;
+            j = 43;
             int[]array = {43,0,44,0,45};
-            RCNum.Clear();
             RCNum.AddRange(array);  
-            hiraganaButtons[1].gameObject.SetActive(false);
-            hiraganaButtons[3].gameObject.SetActive(false);
-            if(GameManager.instance.isGfontsize== true){
-                hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[43];
-                hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[44];
-                hiraganaButtons[4].GetComponentInChildren<Text>().text = RomaJiRC50[45];
-            }else{
-                hiraganaButtons[0].GetComponentInChildren<Text>().text = romajiRC50[43];
-                hiraganaButtons[2].GetComponentInChildren<Text>().text = romajiRC50[44];
-                hiraganaButtons[4].GetComponentInChildren<Text>().text = romajiRC50[45];
-            }
+            
             }
             else if(result == "g"||result =="G"){
             gyou = "が";
-            int j = 46;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               }
+            isGomoji = true;
+            j = 46;
             }
             else if(result == "z"||result =="Z"){
             gyou = "ざ";
-            int j = 51;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               }
+            j = 51;
+            isGomoji = true;
             }
             else if(result == "z"||result =="Z"){
             gyou = "ざ";
-            int j = 51;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               }
+            j = 51;
+            isGomoji = true;
             }
             else if(result == "d"||result =="D"){
             gyou = "だ";
-            int j = 56;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               }
+            j = 56;
+            isGomoji = true; 
             }
             else if(result == "b"||result =="B"){
             gyou = "ば";
-            int j = 61;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               }
+            j = 61;
+            isGomoji = true;
+           
             }
             else if(result == "p"||result =="P"){
-            gyou = "ば";
-            int j = 66;
-              RCNum.Clear();
-            for(int i = 0; i<hiraganaButtons.Length; i++){
-                 RCNum.Add(j);
-                if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                }
-                       j++;
-                    Debug.Log("i"+i);
-                    Debug.Log("j"+romajiRC50[j]);
-                    Debug.Log("j"+RCNum[i]);
-               }
+            gyou = "ぱ";
+            j = 66;
+            isGomoji = true;
             }
             else if(result == "v"||result =="V"){
             gyou = "ヴァ";
-            int j = 107;
-              RCNum.Clear();
+            j = 107;
+            isGomoji = true;
+            }
+            else if(result == "ky"||result =="KY"){
+                gyou = "きゃ";
+            j = 71;
+            int[]array = {71,0,72,0,73};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "sy"||result =="SY"){
+                gyou = "しゃ";
+            j = 74;
+            int[]array = {74,0,75,0,76};
+            isGomoji = false;
+            RCNum.AddRange(array); 
+            }
+            else if(result == "ty"||result =="TY"){
+                gyou = "ちゃ";
+            j = 77;
+            int[]array = {77,0,78,0,79};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "ny"||result =="NY"){
+                gyou = "にゃ";
+            j = 80;
+            int[]array = {80,0,81,0,82};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "hy"||result =="HY"){
+                gyou = "ひゃ";
+            j = 83;
+            int[]array = {83,0,84,0,85};
+            isGomoji = false;
+            RCNum.AddRange(array); 
+            }
+            else if(result == "my"||result =="MY"){
+                gyou = "みゃ";
+            j = 86;
+            int[]array = {86,0,87,0,88};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "ry"||result =="RY"){
+                gyou = "りゃ";
+            j = 89;
+            int[]array = {89,0,90,0,91};
+           isGomoji = false;
+            RCNum.AddRange(array);  
+            
+            }
+            else if(result == "gy"||result =="GY"){
+                gyou = "ぎゃ";
+            j = 92;
+            int[]array = {92,0,93,0,94};
+            isGomoji = false;
+            RCNum.AddRange(array); 
+            }
+            
+            else if(result == "jy"||result =="JY"){
+                gyou = "じゃ";
+            j = 95;
+            int[]array = {95,0,96,0,97};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "dy"||result =="DY"){
+                gyou = "ぢゃ";
+            j = 98;
+            int[]array = {98,0,99,0,100};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            
+            }
+            else if(result == "by"||result =="BY"){
+                gyou = "びゃ";
+            j = 101;
+            int[]array = {101,0,102,0,103};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "py"||result =="PY"){
+                gyou = "ぴゃ";
+            j = 104;
+            int[]array = {104,0,105,0,106};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            hiraganaButtons[1].gameObject.SetActive(false);
+            hiraganaButtons[3].gameObject.SetActive(false);
+            if(GameManager.instance.isGfontsize== true){
+                hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[104];
+                hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[105];
+                hiraganaButtons[4].GetComponentInChildren<Text>().text = RomaJiRC50[106];
+            }else{
+                hiraganaButtons[0].GetComponentInChildren<Text>().text = romajiRC50[104];
+                hiraganaButtons[2].GetComponentInChildren<Text>().text = romajiRC50[105];
+                hiraganaButtons[4].GetComponentInChildren<Text>().text = romajiRC50[106];
+            }
+            }
+        if(isGomoji == true){//5文字の場合の分岐
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
+                //5文字で大文字の場合の分岐
                 if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                    if(j == RomaJiRC50.Length-1){
-                        return;
+                    Debug.Log("jNum"+j);
+                    j++;
+                    
+                }else{//5文字で小文字の場合の分岐
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
+                     Debug.Log("j"+romajiRC50[j].ToLower());
+                     Debug.Log("jNum"+j);
+                    j++;
                     }
-                        j++;
-                }else{
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = romajiRC50[j];
-                     Debug.Log("j"+romajiRC50[j]);
-                     if(j == romajiRC50.Length-1){
-                        return;
-                    }
-                     j++;
                 }
-
-               }
-            }
+        }else{//3文字の場合の分岐 isGomoji=false
+            for(int i = 0; i<hiraganaButtons.Length; i=i+2){
+                 RCNum.Add(j);
+                 hiraganaButtons[1].gameObject.SetActive(false);
+                 hiraganaButtons[3].gameObject.SetActive(false);
+                //3文字で大文字の場合の分岐
+                if(GameManager.instance.isGfontsize== true){
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                        j++;
+                }else{//3文字で小文字の場合の分岐
+                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
+                     Debug.Log("j"+romajiRC50[j].ToLower());
+                     j++;
+                     }
+                }
+        }
+        
         hiraganaImage.gameObject.SetActive (true);  
+        for(int i = 0 ;i<RCNum.Count;i++){
+            Debug.Log("i"+i+","+RCNum[i]);
+        }
         GameManager.instance.RoulletteNum = new List<int>(RCNum);
         resultText.text = result+"  ("+gyou+"行)" + "\nが選ばれた！";
         SetRoulette();
@@ -441,7 +365,7 @@ public class RouletteController : MonoBehaviour
         hiraganaButtons[2].enabled = false;
         hiraganaButtons[3].enabled = false;
         hiraganaButtons[4].enabled = false;
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.6f);
         hiraganaButtons[0].enabled = true;
         hiraganaButtons[1].enabled = true;
         hiraganaButtons[2].enabled = true;

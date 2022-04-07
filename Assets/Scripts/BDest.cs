@@ -85,7 +85,7 @@ public class BDest : MonoBehaviour
              }
              //ルーレットシーンのバルーンで文字を取得する時の分岐
         }
-        else if(QuesManager.instance.currentMode ==4){
+        else{
             HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
            SoundManager.instance.PlaySE(HRoulletteNum[num]);
            if(b == 0){
@@ -164,7 +164,9 @@ public class BDest : MonoBehaviour
         //101-103
         "びゃ","びゅ","びょ",
         //104-106
-        "ぴゃ","ぴゅ","ぴょ"};
+        "ぴゃ","ぴゅ","ぴょ",
+       //107-111
+        "ヴァ","ヴィ","ヴ","ヴェ","ヴォ" };
 
     string[] RomaJi50 = new string[]{
          //0-4
@@ -222,7 +224,9 @@ public class BDest : MonoBehaviour
         //101-103
         "BYA","BYU","BYO",
         //104-106
-        "PYA","PYU","PYO"
+        "PYA","PYU","PYO",
+        //107-111
+        "VA","VI","VU","VE","VO"
         };
 
 }
