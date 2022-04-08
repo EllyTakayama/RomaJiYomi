@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;//ローマ字読みの基本画面の出題メソッド
-//1月27日更新
+//4月8日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -17,6 +17,8 @@ public class QuesManager : MonoBehaviour
      [HideInInspector] public string select4;//選択肢
     [SerializeField] private GameObject AgradePanel;
     [SerializeField] private GameObject HiraGradePanel;
+    [SerializeField] private GameObject Hdropdown;
+    [SerializeField] private GameObject Hdropdown2;
     private int locationOfAnswer;
     //public GameObject[] AnsButtons;
     public Button[] AnsButton;
@@ -413,9 +415,28 @@ public class QuesManager : MonoBehaviour
         }
         
     }
+        public void SelectHoka(){
+            Hdropdown2.SetActive(true);
+            //hokaImage.SetActive(true);
+            Hdropdown.SetActive(false);
+            //hiraganaImage.SetActive(false);
+            OnRomajiHoka();
+            Romaji50();
+            }
+
+        public void Hiragana50Selet(){
+            Hdropdown2.SetActive(false);
+            //hokaImage.SetActive(true);
+            Hdropdown.SetActive(true);
+            //hiraganaImage.SetActive(false);
+            OnRomaji();
+            Romaji50();
+        }
+
         public void OnRomajiHoka(){
          //その他の音のindexの取得
          //46-50が行
+         kihonNum.Clear();
          if(dropdown2.value == 0){
               for(int i=46; i<51; i++){
                 kihonNum.Add(i);
@@ -633,11 +654,11 @@ public class QuesManager : MonoBehaviour
             c = kihonNum[n+2];
             }
             else if(n==1){
-            a = kihonNum[n-1];
-            c = kihonNum[n+1];
+            a = kihonNum[n+1];
+            c = kihonNum[n+2];
             }
             else if(n==2){
-            a = kihonNum[n-2];
+            a = kihonNum[n+1];
             c = kihonNum[n-1];
             }
         }else{

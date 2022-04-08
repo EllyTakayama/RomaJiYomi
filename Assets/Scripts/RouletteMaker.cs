@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 public class RouletteMaker : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private string[] HebonHiragana51 = new string[]{"KY","SH","CH","NY","HY","MY","RY","GY","J","DY","BY","PY"} ;
     [SerializeField] private Toggle[] RouletteToggle;
     public Image obj;
+    public List<GameObject> prefabs = new List<GameObject>();//削除するルーレットクローンを代入するための配列
     private int RTnum;//Rouletteを作成するためのToggleで操作する変数
 
     //public int RcurrentMode;//currentModeをルーレットの設定に反映
@@ -94,12 +96,13 @@ public class RouletteMaker : MonoBehaviour
     public void RchoiceToggle(){
         if(RouletteToggle[0].isOn ==true){
             RTnum = 1;
-            Roulette.GetComponentInChildren<Rdestroy>().RoletteDestroy();
+            List<Image> fprefabs = new List<Image>(Roulette.GetComponentsInChildren<Image>());
+            Debug.Log("kazu"+fprefabs.Count);
             RMaker(); 
         }
         else if(RouletteToggle[1].isOn ==true){
             RTnum = 2;
-            Roulette.GetComponentInChildren<Rdestroy>().RoletteDestroy();
+            
             RMaker();
         }
         else if(RouletteToggle[2].isOn ==true){

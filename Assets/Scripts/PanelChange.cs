@@ -60,12 +60,6 @@ public class PanelChange : MonoBehaviour
     public void SelectRomaji50(){
         ShowPanel(Panel.Panel4);
          QuesManager.instance.currentMode = 4;
-         Dropdown2.SetActive(false);
-         hokaImage.SetActive(false);
-         Dropdown.SetActive(true);
-         hiraganaImage.SetActive(true);
-         Debug.Log(QuesManager.instance.currentMode);
-         QuesManager.instance.OnRomaji();
          QuesManager.instance.CurrentMode();
          SoundManager.instance.PlaySousaSE(2);
          RouletteM.GetComponent<RouletteMaker>().RMaker();
@@ -73,17 +67,10 @@ public class PanelChange : MonoBehaviour
     }
     //その他音を覚えようボタン
     public void SelectRomajiHoka(){
-        ShowPanel(Panel.Panel4);
+        ShowPanel(Panel.Panel5);
          QuesManager.instance.currentMode = 5;
-         Dropdown2.SetActive(true);
-         hokaImage.SetActive(true);
-         Dropdown.SetActive(false);
-         hiraganaImage.SetActive(false);
-         Debug.Log(QuesManager.instance.currentMode);
-         QuesManager.instance.OnRomajiHoka();
          QuesManager.instance.CurrentMode();
          SoundManager.instance.PlaySousaSE(2);
-         RouletteM.GetComponent<RouletteMaker>().RMaker();
          //QuesManager.instance.RomajiQues();
         
     }
@@ -133,9 +120,10 @@ public class PanelChange : MonoBehaviour
 
             case Panel.Panel5:
                 transform.localPosition = new Vector2(-2000, 1500);
-                LeftButton.SetActive(true);
+                LeftButton.SetActive(false);
                 RightButton.SetActive(false);
-                QuesManager.instance.RomajiQues();
+                QuesManager.instance.Hiragana50Selet();
+                //QuesManager.instance.RomajiQues();
                 //RightButton.SetActive(true);
                 break;
 
