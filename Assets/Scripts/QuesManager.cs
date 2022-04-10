@@ -421,6 +421,7 @@ public class QuesManager : MonoBehaviour
             Hdropdown.SetActive(false);
             //hiraganaImage.SetActive(false);
             OnRomajiHoka();
+            QuesCount1 = 0;
             Romaji50();
             }
 
@@ -430,7 +431,9 @@ public class QuesManager : MonoBehaviour
             Hdropdown.SetActive(true);
             //hiraganaImage.SetActive(false);
             OnRomaji();
+            QuesCount1 = 0;
             Romaji50();
+           
         }
 
         public void OnRomajiHoka(){
