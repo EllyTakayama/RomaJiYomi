@@ -12686,6 +12686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageParentTransform: {fileID: 2014235471}
   Roulette: {fileID: 2014235470}
+  RDestroy: {fileID: 0}
   choices:
   - A
   - K
@@ -17493,7 +17494,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -120, y: -150}
+  m_AnchoredPosition: {x: -115, y: -150}
   m_SizeDelta: {x: 50, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1617872527
@@ -21741,7 +21742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -120, y: -350}
+  m_AnchoredPosition: {x: -115, y: -350}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2031533959
@@ -21829,6 +21830,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2038083226}
   - component: {fileID: 2038083227}
+  - component: {fileID: 2038083228}
   m_Layer: 5
   m_Name: RouletteController
   m_TagString: Untagged
@@ -21900,7 +21902,6 @@ MonoBehaviour:
   - Y
   - R
   - W
-  isRCTall: 0
   Ballon1Image: {fileID: 2091119936}
   hButtonPanel: {fileID: 1290949689}
   rcBallons:
@@ -21912,6 +21913,18 @@ MonoBehaviour:
   hBallonImage: {fileID: 0}
   hiraganaImage: {fileID: 1698385369}
   RCNum: 
+--- !u!114 &2038083228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038083225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a641a7307d6048e18a0e21f5cf32dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2038573640
 GameObject:
   m_ObjectHideFlags: 0

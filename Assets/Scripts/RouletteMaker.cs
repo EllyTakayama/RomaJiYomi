@@ -23,7 +23,7 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private string[] tKHiragana51 = new string[]{"KY","SY","TY","NY","HY","MY","RY","GY","JY","DY","BY","PY"} ;
     [SerializeField] private string[] HebonHiragana51 = new string[]{"KY","SH","CH","NY","HY","MY","RY","GY","J","DY","BY","PY"} ;
     [SerializeField] private Toggle[] RouletteToggle;
-    public Image obj;
+    //public Image obj;
     public List<GameObject> prefabs = new List<GameObject>();//削除するルーレットクローンを代入するための配列
     private int RTnum;//Rouletteを作成するためのToggleで操作する変数
 
@@ -112,8 +112,7 @@ public class RouletteMaker : MonoBehaviour
             {
                 tmpArray[i].RoletteDestroy();
             }
-           Debug.Log("tmpArra2"+tmpArray);
-            
+            Debug.Log("tmpArra2"+tmpArray);
             RMaker();
         }
         else if(RouletteToggle[2].isOn ==true){

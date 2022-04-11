@@ -10,6 +10,7 @@ public class BDest : MonoBehaviour
     public Image[] bPrefabs1;
     private int b;
     public List<int> HRoulletteNum = new List<int>();//ルーレットの風船の変数の保持
+    private HiraDictionary cd;
     string[] Agyou = new string[]{
          "A",
          "I",
@@ -29,6 +30,7 @@ public class BDest : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        cd = GetComponent<HiraDictionary>();
       //isAHigh = GameManager.instance.isGfontsize;
 
         //3秒後に削除
@@ -93,10 +95,28 @@ public class BDest : MonoBehaviour
                b++;}
             else if(b>0){
                 if(GameManager.instance.isGfontsize==true){
-                bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
+                //大文字でヘボン式の分岐
+                if(GameManager.instance.isGKunrei == false){
+                    string c = RomaJi50[HRoulletteNum[num]];
+                    if(cd.dicHebon.ContainsKey(c)){
+                        c = cd.dicHebon[c];
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                    }else{//大文字で訓令式の分岐
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
+                        }
                 b=0;}
-                else{
-                    bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
+                else{//小文字の場合の分岐
+                    //小文字でヘボン式の場合の分岐
+                    if(GameManager.instance.isGKunrei == false){
+                    string c = RomaJi50[HRoulletteNum[num]].ToLower();
+                    if(cd.dicHebon.ContainsKey(c)){
+                        c = cd.dicHebon[c];
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                    }else{//小文字で訓令式の分岐
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
+                        }
                     b=0;
                 }
             }

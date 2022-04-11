@@ -26,24 +26,26 @@ public class RouletteController : MonoBehaviour
     [SerializeField] private Button[] hiraganaButtons;
     [SerializeField] private string[] sRCHiragana = new string[]{"a","k","s","t","n","h","m","y","r","w"};
     [SerializeField] private string[] tRCHiragana = new string[]{"A","K","S","T","N","H","M","Y","R","W"} ;
-    public bool isRCTall;//RouletteControllerで大文字かどうか//trueなら大文字
     [SerializeField] private GameObject Ballon1Image;
     [SerializeField] private GameObject hButtonPanel;
     [SerializeField] private GameObject[] rcBallons;
     [SerializeField] private GameObject hBallonImage;
     [SerializeField] private GameObject hiraganaImage;
     public List<int> RCNum = new List<int>();
+    private HiraDictionary cd;
 
     void Start(){
-        Debug.Log("vo"+romajiRC50[111]);
-        Debug.Log("romajiRC50"+romajiRC50.Length);
-    }
+        //Debug.Log("vo"+romajiRC50[111]);
+        //Debug.Log("romajiRC50"+romajiRC50.Length);
+        GameManager.instance.LoadGfontsize();
+        GameManager.instance.LoadGKunrei();
+        cd = GetComponent<HiraDictionary>();
+        }
 
     public void SetRoulette () {
         isPlaying = false;
         isStop = false;
-        GameManager.instance.LoadGfontsize();
-        isRCTall = GameManager.instance.isGfontsize;
+        
         startButton.gameObject.SetActive (true);
         stopButton.gameObject.SetActive (false);
         //hiraganaImage.gameObject.SetActive (false);
@@ -294,16 +296,32 @@ public class RouletteController : MonoBehaviour
                 //5文字で大文字の場合の分岐
                 if(GameManager.instance.isGfontsize== true){
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                    if(GameManager.instance.isGKunrei == false){
+                     string b = RomaJiRC50[j];
+                    if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
+                        }
                     Debug.Log("jNum"+j);
-                    j++;
-                    
+                    }
+                    //j++;
                 }else{//5文字で小文字の場合の分岐
                     hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
                      Debug.Log("j"+romajiRC50[j].ToLower());
                      Debug.Log("jNum"+j);
+                     if(GameManager.instance.isGKunrei == false){
+                     string b = RomaJiRC50[j].ToLower();
+                    if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
+                        }
+                    Debug.Log("jNum"+j);
+                    }
+                    //j++;
+                    }
                     j++;
                     }
-                }
+                    
         }else{//3文字の場合の分岐 isGomoji=false
             for(int i = 0; i<hiraganaButtons.Length; i=i+2){
                  RCNum.Add(j);
@@ -344,7 +362,7 @@ public class RouletteController : MonoBehaviour
     //Panel4で平仮名をSpawnさせる
     public void SpawnB1(int n){
         hBallonImage = Instantiate(rcBallons[n],
-        new Vector3 (Random.Range(-300f,100f), Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
+        new Vector3 (Random.Range(-250f,100f), Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
             transform.rotation);//生成時の向き
         hBallonImage.transform.SetParent(hButtonPanel.transform,false);  
         if(GameManager.instance.isGfontsize== true){
