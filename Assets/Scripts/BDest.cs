@@ -31,7 +31,7 @@ public class BDest : MonoBehaviour
     void Start()
     {
         cd = GetComponent<HiraDictionary>();
-      //isAHigh = GameManager.instance.isGfontsize;
+      
 
         //3秒後に削除
         b = 0;
@@ -87,8 +87,8 @@ public class BDest : MonoBehaviour
              }
              //ルーレットシーンのバルーンで文字を取得する時の分岐
         }
-        else{
-            HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
+        else{//currentModeが2じゃなかった場合
+         HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
            SoundManager.instance.PlaySE(HRoulletteNum[num]);
            if(b == 0){
                bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
@@ -98,9 +98,13 @@ public class BDest : MonoBehaviour
                 //大文字でヘボン式の分岐
                 if(GameManager.instance.isGKunrei == false){
                     string c = RomaJi50[HRoulletteNum[num]];
+                    Debug.Log("c"+c);
                     if(cd.dicHebon.ContainsKey(c)){
                         c = cd.dicHebon[c];
                         bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                        else{
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
                         }
                     }else{//大文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
@@ -113,6 +117,9 @@ public class BDest : MonoBehaviour
                     if(cd.dicHebon.ContainsKey(c)){
                         c = cd.dicHebon[c];
                         bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                        else{
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
                         }
                     }else{//小文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
