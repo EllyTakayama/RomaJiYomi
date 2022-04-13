@@ -34,6 +34,7 @@ public class RouletteMaker : MonoBehaviour
     }
 
     public void RMaker(){
+        imageParentTransform.eulerAngles = new Vector3(0, 0, 0);
         GameManager.instance.LoadGfontsize();
         Debug.Log("大文字"+GameManager.instance.isGfontsize);
             choices.Clear();
@@ -64,28 +65,45 @@ public class RouletteMaker : MonoBehaviour
         for (int i=0;i< choices.Count; i++){
           Debug.Log("choices"+choices[i]);}
         float ratePerRoulette = 1 / (float) choices.Count;
+        Debug.Log("ratePerRoulette"+ratePerRoulette);
         float rotatePerRoulette = 360 / (float) (choices.Count);
+        Debug.Log("rotatePerRoulette"+rotatePerRoulette);
         for (int i = 0; i < choices.Count; i++) {
             if(RTnum == 1){
                 var obj = Instantiate (rouletteImage, imageParentTransform);
                  //obj.color = rouletteColors[(choices.Count - 1 - i)];
                 obj.fillAmount = ratePerRoulette * (choices.Count - i);
+                Debug.Log("比率:ratePerRoulette1,"+ratePerRoulette);
+                Debug.Log("角度:rotatePerRoulette1,"+rotatePerRoulette);
+                Debug.Log("textの要素数:choices1,"+choices.Count);
                 obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
                 obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+                Debug.Log("child:rotation1,"+obj.transform.GetChild (0).transform.rotation);
+                Debug.Log("text1,"+obj.GetComponentInChildren<Text> ().text);
                  }
             else if(RTnum ==2){
                 var obj = Instantiate (rouletteImage, imageParentTransform);
                 //obj.color = rouletteColors[(choices.Count - 1 - i)];
                 obj.fillAmount = ratePerRoulette * (choices.Count - i);
+                Debug.Log("比率:ratePerRoulette2,"+ratePerRoulette);
+                Debug.Log("角度:rotatePerRoulette2,"+rotatePerRoulette);
+                Debug.Log("textの要素数:choices2,"+choices.Count);
                 obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
                 obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+                Debug.Log("child:rotation2,"+obj.transform.GetChild (0).transform.rotation);
+                Debug.Log("text2,"+obj.GetComponentInChildren<Text> ().text);
             }
             else {
                 var obj = Instantiate (rouletteImage1, imageParentTransform);
                 //obj.color = rouletteColors[(choices.Count - 1 - i)];
                 obj.fillAmount = ratePerRoulette * (choices.Count - i);
+                Debug.Log("比率:ratePerRoulette3,"+ratePerRoulette);
+                Debug.Log("角度:rotatePerRoulette3,"+rotatePerRoulette);
+                Debug.Log("textの要素数:choices3,"+choices.Count);
                 obj.GetComponentInChildren<Text> ().text = choices[(choices.Count - 1 - i)];
                 obj.transform.GetChild (0).transform.rotation = Quaternion.Euler (0, 0, ((rotatePerRoulette / 2) + rotatePerRoulette * i));
+                Debug.Log("child:rotation3,"+obj.transform.GetChild (0).transform.rotation);
+                Debug.Log("text3,"+obj.GetComponentInChildren<Text> ().text);
             }
         }
         rController.SetRoulette();

@@ -29,9 +29,13 @@ public class GachaManager : MonoBehaviour
 	public GameObject openBallImage;//ガチャの開くBall Imageオブジェクト
 	public GameObject pOpenBallImage;//ガチャの開く前BallImageオブジェクト
 	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト
+	public Text coinText;//所持するcoinの枚数を表示する
 
 	void Start(){
 		getNekoPanel.SetActive(false);
+		GameManager.instance.LoadCoinGoukei();
+		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
+		coinText.text = GameManager.instance.totalCoin.ToString();
 		/*
 		names = GachaObject.GetComponent<GachaItem>().GachaChara;
 		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;
