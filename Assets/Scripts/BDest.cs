@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class BDest : MonoBehaviour
 {
     public bool isAHigh;
-    public Image[] bPrefabs;//あ行はabImage
+    //public Image[] bPrefabs;//あ行はabImage
     public Image[] bPrefabs1;
     private int b;
     public List<int> HRoulletteNum = new List<int>();//ルーレットの風船の変数の保持
@@ -46,7 +46,7 @@ public class BDest : MonoBehaviour
         //あ行で大文字だった場合の分岐
          if (GameManager.instance.isGfontsize == true){
             if(b == 0){
-                 bPrefabs[num].GetComponentInChildren<Text>().text = Agyou[num];
+                 bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
                  b++;
                  }
             else if(b >0){
@@ -56,7 +56,7 @@ public class BDest : MonoBehaviour
            
             }
         else{
-             bPrefabs[num].GetComponentInChildren<Text>().text = aGyou[num];
+             bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
              }
         }
          

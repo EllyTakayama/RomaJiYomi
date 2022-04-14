@@ -26,10 +26,12 @@ public class DoTigrade : MonoBehaviour
         renTopButton.SetActive(false);
     }
     public void TgradePanel(){
-       
+        retryButton.SetActive(false);
+        renTopButton.SetActive(false);
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
+        flashImage.SetActive(false);
         
         if(TikaraQues.instance.isWord == true){
             TihiraganaCorrect = GameManager.instance.TiTangoCount.ToString();
@@ -100,10 +102,19 @@ public class DoTigrade : MonoBehaviour
     }
     public void RetryButton(){
         if(TikaraQues.instance.isWord == true){
+            GameManager.instance.TiTangoCount=0;
+            TikaraQues.instance.TiQuesCount = 0; 
+            GameManager.instance.TiCoin = 0;
             TikaraQues.instance.TKantan();
+           
             }
         else{
+            GameManager.instance.TyHiraganaCount=0;
+            TiTypingManager.instance.TyQuesCount = 0; 
+            GameManager.instance.TyCoin = 0;
             TiTypingManager.instance.Output();
+            
         }
     }
 }
+

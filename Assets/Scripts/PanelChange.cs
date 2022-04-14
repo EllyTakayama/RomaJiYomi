@@ -114,7 +114,7 @@ public class PanelChange : MonoBehaviour
                 transform.localPosition = new Vector2(-1000, 1500);
                 //kihonButton.SetActive(true);
                 LeftButton.SetActive(false);
-                RightButton.SetActive(true);
+                RightButton.SetActive(false);
                 
                 break;
 
