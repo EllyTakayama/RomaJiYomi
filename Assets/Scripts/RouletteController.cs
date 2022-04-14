@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;//4月5日更新
+using UnityEngine.SceneManagement;//4月14日更新
 
 public class RouletteController : MonoBehaviour
 {
@@ -206,7 +206,21 @@ public class RouletteController : MonoBehaviour
             isGomoji = false;
             RCNum.AddRange(array); 
             }
+            else if(result == "sh"||result =="SH"){
+                gyou = "しゃ";
+            j = 74;
+            int[]array = {74,0,75,0,76};
+            isGomoji = false;
+            RCNum.AddRange(array); 
+            }
             else if(result == "ty"||result =="TY"){
+                gyou = "ちゃ";
+            j = 77;
+            int[]array = {77,0,78,0,79};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "ch"||result =="CH"){
                 gyou = "ちゃ";
             j = 77;
             int[]array = {77,0,78,0,79};
@@ -249,8 +263,14 @@ public class RouletteController : MonoBehaviour
             isGomoji = false;
             RCNum.AddRange(array); 
             }
-            
             else if(result == "jy"||result =="JY"){
+                gyou = "じゃ";
+            j = 95;
+            int[]array = {95,0,96,0,97};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
+            else if(result == "j"||result =="J"){
                 gyou = "じゃ";
             j = 95;
             int[]array = {95,0,96,0,97};
@@ -278,68 +298,95 @@ public class RouletteController : MonoBehaviour
             int[]array = {104,0,105,0,106};
             isGomoji = false;
             RCNum.AddRange(array);  
-            hiraganaButtons[1].gameObject.SetActive(false);
-            hiraganaButtons[3].gameObject.SetActive(false);
-            if(GameManager.instance.isGfontsize== true){
-                hiraganaButtons[0].GetComponentInChildren<Text>().text = RomaJiRC50[104];
-                hiraganaButtons[2].GetComponentInChildren<Text>().text = RomaJiRC50[105];
-                hiraganaButtons[4].GetComponentInChildren<Text>().text = RomaJiRC50[106];
-            }else{
-                hiraganaButtons[0].GetComponentInChildren<Text>().text = romajiRC50[104];
-                hiraganaButtons[2].GetComponentInChildren<Text>().text = romajiRC50[105];
-                hiraganaButtons[4].GetComponentInChildren<Text>().text = romajiRC50[106];
-            }
+            
             }
         if(isGomoji == true){//5文字の場合の分岐
+           
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
                 //5文字で大文字の場合の分岐
                 if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                    //5文字で大文字、ヘボン式の場合の分岐
                     if(GameManager.instance.isGKunrei == false){
-                     string b = RomaJiRC50[j];
-                    if(cd.dicHebon.ContainsKey(b)){
+                         string b = RomaJiRC50[j];
+                        if(cd.dicHebon.ContainsKey(b)){
                         b = cd.dicHebon[b];
                         hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
                         }
-                    Debug.Log("jNum"+j);
-                    }
-                    //j++;
-                }else{//5文字で小文字の場合の分岐
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
-                     Debug.Log("j"+romajiRC50[j].ToLower());
-                     Debug.Log("jNum"+j);
-                     if(GameManager.instance.isGKunrei == false){
-                     string b = RomaJiRC50[j].ToLower();
-                    if(cd.dicHebon.ContainsKey(b)){
+                        else{
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                            }
+                        } //5文字で大文字、ヘボン式の場合の分岐オワリ
+                    //5文字大文字訓令式の分岐
+                    else{
+                        hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                             Debug.Log("jNum"+j);
+                        }//5文字大文字訓令式の分岐
+                } //5文字で大文字の場合の分岐オワリ
+                else{//5文字で小文字の場合の分岐
+                    //5文字で小文字、ヘボン式の場合の分岐
+                    if(GameManager.instance.isGKunrei == false){
+                         string b = RomaJiRC50[j].ToLower();
+                        if(cd.dicHebon.ContainsKey(b)){
                         b = cd.dicHebon[b];
                         hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
                         }
-                    Debug.Log("jNum"+j);
-                    }
-                    //j++;
-                    }
-                    j++;
-                    }
-                    
-        }else{//3文字の場合の分岐 isGomoji=false
+                        else{//ヘボン式だけど辞書にない場合の分岐
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
+                            }
+                        } //5文字で小文字、ヘボン式の場合の分岐オワリ
+                        else{//5文字で小文字、訓令式の場合の分岐
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
+                        }//5文字で小文字、訓令式の場合の分岐オワリ
+                        
+                        }//5文字で小文字の場合の分岐オワリ
+                      j++;
+            }//for Lengthまで
+        }//5文字の場合の分岐
+        else{//3文字の場合の大分岐 isGomoji=false
+              RCNum.Add(j);
+              hiraganaButtons[1].gameObject.SetActive(false);
+              hiraganaButtons[3].gameObject.SetActive(false);
             for(int i = 0; i<hiraganaButtons.Length; i=i+2){
-                 RCNum.Add(j);
-                 hiraganaButtons[1].gameObject.SetActive(false);
-                 hiraganaButtons[3].gameObject.SetActive(false);
                 //3文字で大文字の場合の分岐
                 if(GameManager.instance.isGfontsize== true){
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
-                        j++;
-                }else{//3文字で小文字の場合の分岐
-                    hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
-                     Debug.Log("j"+romajiRC50[j].ToLower());
-                     j++;
-                     }
-                }
-        }
-        
-        hiraganaImage.gameObject.SetActive (true);  
+                    //3文字で大文字、ヘボン式の場合の分岐
+                    if(GameManager.instance.isGKunrei == false){
+                        string b = RomaJiRC50[j];
+                        if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
+                        }
+                        else{
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                            }
+                        } //3文字で大文字、ヘボン式の場合の分岐オワリ
+                        else{//3文字で大文字、訓令式の場合の分岐
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                            }//3文字で大文字、訓令式の場合の分岐オワリ
+                }//3文字で大文字の場合の分岐オワリ
+                    else//3文字で小文字文字の場合の分岐
+                    {//3文字で小文字、ヘボン式の場合の分岐
+                        if(GameManager.instance.isGKunrei == false){
+                        string b = RomaJiRC50[j];
+                        if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
+                        }
+                        else{
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                            }
+                        } //3文字で小文字、ヘボン式の場合の分岐オワリ
+                        else{
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
+                        }
+                        
+                    }//3文字で小文字文字の場合の分岐
+                j++;
+                }//329forオワリ
+        }//3文字の場合の大分岐オワリ
+       
+         hiraganaImage.gameObject.SetActive (true);  
         for(int i = 0 ;i<RCNum.Count;i++){
             Debug.Log("i"+i+","+RCNum[i]);
         }
@@ -348,6 +395,7 @@ public class RouletteController : MonoBehaviour
         SetRoulette();
         
     }
+
     public void OnRCclick(int Bnum){
                StopCoroutine(RCButton(Bnum));
                StartCoroutine(RCButton(Bnum));

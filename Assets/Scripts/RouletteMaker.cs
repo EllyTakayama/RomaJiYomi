@@ -22,6 +22,7 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private string[] sKHiragana51 = new string[]{"ky","sy","ty","ny","hy","my","ry","gy","jy","dy","by","py"} ;
     [SerializeField] private string[] tKHiragana51 = new string[]{"KY","SY","TY","NY","HY","MY","RY","GY","JY","DY","BY","PY"} ;
     [SerializeField] private string[] HebonHiragana51 = new string[]{"KY","SH","CH","NY","HY","MY","RY","GY","J","DY","BY","PY"} ;
+    [SerializeField] private string[] sHebonHiragana51 = new string[]{"ky","sh","ch","ny","hy","my","ry","gy","j","dy","by","py"} ;
     [SerializeField] private Toggle[] RouletteToggle;
     //public Image obj;
     public List<GameObject> prefabs = new List<GameObject>();//削除するルーレットクローンを代入するための配列
@@ -53,10 +54,21 @@ public class RouletteMaker : MonoBehaviour
 
         }else if(RTnum == 3) {
             if(GameManager.instance.isGfontsize == true){
-                 choices.AddRange(tKHiragana51);
+                if(GameManager.instance.isGKunrei == false){
+                     choices.AddRange(HebonHiragana51);
+                     }
+                else{
+                     choices.AddRange(tKHiragana51);
+                     }
+                
             }else{
-                choices.AddRange(sKHiragana51);
-            }
+                if(GameManager.instance.isGKunrei == false){
+                     choices.AddRange(sHebonHiragana51);
+                     }
+            else{
+                     choices.AddRange(sKHiragana51);
+                }
+               }
 
         }
         for (int i=0; i<hiraganaButtons.Length; i++){

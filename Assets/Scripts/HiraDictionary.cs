@@ -52,12 +52,14 @@ public class HiraDictionary : MonoBehaviour
         {"ZI","JI"}, {"ZYA","JA"}, {"ZYU","JU"},{"ZYO","JO"}, 
         {"SYA","SHA"},{"SYU","SHU"}, {"SYO","SHO"},
         {"TYA","CHA"}, {"TYU","CHU"},{"TYO","CHO"},
+        {"JYA","JA"},{"JYU","JU"}, {"JYO","JO"},
 
         //小文字
         {"si","shi"}, {"ti","chi"},{"tu","tsu"}, {"hu","fu"},
         {"zi","ji"},{"zya","ja"}, {"zyu","ju"}, {"zyo","jo"}, 
         {"sya","sha"},{"syu","shu"}, {"syo","sho"},
         {"tya","cha"}, {"tyu","chu"},{"tyo","cho"},
+        {"jya","ja"}, {"jyu","ju"},{"jyo","jo"},
     };
     //大文字
     public Dictionary<string, string> dicT = new Dictionary<string, string>() {
