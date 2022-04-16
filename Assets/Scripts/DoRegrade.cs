@@ -75,6 +75,7 @@ public class DoRegrade : MonoBehaviour
     {   yield return new WaitForSeconds(0.2f);
         coinImage.SetActive(true);
         flashImage.SetActive(true);
+        flashImage.GetComponent<DOflash>().Flash18();
         yield return new WaitForSeconds(1.2f);
         flashImage.SetActive(false);
 

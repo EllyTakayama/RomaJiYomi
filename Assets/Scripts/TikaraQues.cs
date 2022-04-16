@@ -13,6 +13,7 @@ public class TikaraQues : MonoBehaviour
     public Button[] TikaraAnsButtons;
     [HideInInspector] public string TikaraAnswer;
     public GameObject pipoEnemy;
+    [SerializeField] private GameObject TiQuesManager;
     public string tagOfButton;
     public Text TikaraText;
     public Text furiganaText;
@@ -89,6 +90,7 @@ public class TikaraQues : MonoBehaviour
         TiQuesCount = 0;
         GameManager.instance.TiTangoCount=0;
         cd1 = GetComponent<HiraDictionary>();
+        TiQuesManager.GetComponent<TspriteChange>().TiSChange();
         //Hebon(kunrei);
         //ShutudaiSlice(hoka);
         //isWord = true;
@@ -98,6 +100,9 @@ public class TikaraQues : MonoBehaviour
     {
         tagOfButton = locationOfTikaraAnswer.ToString();
 
+    }
+    public void TiSprite(){
+        TiQuesManager.GetComponent<TspriteChange>().TiSChange();
     }
 
     public void Kantan(string buttonname)

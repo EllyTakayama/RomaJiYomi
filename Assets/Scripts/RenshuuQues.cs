@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 //練習問題画面の出題メソッド
-//3月14日更新
+//4月16日更新バグ修正
 
 public class RenshuuQues : MonoBehaviour
 {
@@ -247,6 +247,7 @@ public class RenshuuQues : MonoBehaviour
         renshuuNum = new List<int>(ToggleRenshuu.instance.shutsudaiNum);
         for(int i =0; i< renshuuNum.Count; i++){
             Debug.Log("r"+renshuuNum[i]);}
+        RenshuuCount=0;
         Renshuu();
 
     }
@@ -293,7 +294,6 @@ public class RenshuuQues : MonoBehaviour
        if(n+1 > renshuuNum.Count){
             Debug.Log("リセット");
             n = 0;
-            RenshuuCount=0;
         }
         
         RenCountText.text = RenshuuCount.ToString();

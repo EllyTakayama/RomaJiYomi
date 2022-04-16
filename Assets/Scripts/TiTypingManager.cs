@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-//3月29日更新　実機で挙動しないバグを修正
+//4月16日更新　実機で挙動しないバグを修正
 
 public class TiTypingManager : MonoBehaviour
 {

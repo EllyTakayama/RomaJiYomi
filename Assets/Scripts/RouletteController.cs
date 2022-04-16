@@ -414,10 +414,39 @@ public class RouletteController : MonoBehaviour
             transform.rotation);//生成時の向き
         hBallonImage.transform.SetParent(hButtonPanel.transform,false);  
         if(GameManager.instance.isGfontsize== true){
-            hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
-            }else{
+            //大文字の場合の分岐
+            if(GameManager.instance.isGKunrei == false){
+                        string b = RomaJiRC50[RCNum[n]];
+                        if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        hBallonImage.GetComponentInChildren<Text>().text = b;
+                        }
+                        else{
+                            hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
+                            }
+                        } //5文字で大文字、
+            else{
+                hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
+                }
+            
+            }//大文字の場合の分岐オワリ
+        else//小文字の場合の分岐
+            {
+                //小文字の場合の分岐
+            if(GameManager.instance.isGKunrei == false){
+                        string b = romajiRC50[RCNum[n]];
+                        if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        hBallonImage.GetComponentInChildren<Text>().text = b;
+                        }
+                        else{
+                            hBallonImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[n]];
+                            }
+                        } //5文字で大文字、
+            else{
                 hBallonImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[n]];
                 }
+        }//小文字の場合の分岐おわり
     }
     IEnumerator RCButton(int bnum)
     {   if(GameManager.instance.isGfontsize== true){

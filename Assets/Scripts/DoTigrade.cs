@@ -82,6 +82,7 @@ public class DoTigrade : MonoBehaviour
     {   yield return new WaitForSeconds(0.2f);
         coinImage.SetActive(true);
         flashImage.SetActive(true);
+        flashImage.GetComponent<DOflash>().Flash18();
         yield return new WaitForSeconds(1.2f);
         flashImage.SetActive(false);
         if(TikaraQues.instance.isWord == true){
@@ -105,6 +106,7 @@ public class DoTigrade : MonoBehaviour
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 
             GameManager.instance.TiCoin = 0;
+            TikaraQues.instance.TiSprite();
             TikaraQues.instance.TKantan();
            
             }
