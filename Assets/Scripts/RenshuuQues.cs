@@ -12,7 +12,7 @@ public class RenshuuQues : MonoBehaviour
     public static RenshuuQues instance;
     public string renshuuAnswer1;
     [HideInInspector] public string Reselect1;//選択肢
-     [HideInInspector] public string Reselect2;//選択肢
+    [HideInInspector] public string Reselect2;//選択肢
     //[HideInInspector] public string renshuuAnswer2;
     public RenshuuType renshuuType;
     private int locationOfRenshuuAnswer;
@@ -330,6 +330,7 @@ public class RenshuuQues : MonoBehaviour
                 renshuuAnswer1 = RomaJiR50[b];
                 Reselect1 = RomaJiR50[a];
                 Reselect2 = RomaJiR50[c];
+                //大文字でヘボンの分岐
                 if(GameManager.instance.isGKunrei == false){
                     string b = renshuuAnswer1;
                     string a = Reselect1;
@@ -346,12 +347,13 @@ public class RenshuuQues : MonoBehaviour
                         c = rq.dicHebon[c];
                         Reselect2 = c;
                     }
-                }
+                }//大文字でヘボンの分岐オワリ
             }
-            else{
+            else{//小文字の分岐
                 renshuuAnswer1 = romajiR50[b]; 
                 Reselect1 = romajiR50[a]; 
-                Reselect2 = romajiR50[c]; 
+                Reselect2 = romajiR50[c];
+                //小文字でヘボンの分岐 
                  if(GameManager.instance.isGKunrei == false){
                     string b = renshuuAnswer1;
                     string a = Reselect1;
@@ -368,7 +370,7 @@ public class RenshuuQues : MonoBehaviour
                         c = rq.dicHebon[c];
                         Reselect2 = c;
                     }
-                }
+                }//小文字でヘボンの分岐おわり
         }
         
          Debug.Log("GameManager.instance.isGfontsize"+GameManager.instance.isGfontsize);

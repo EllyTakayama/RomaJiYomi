@@ -19,6 +19,7 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject HiraGradePanel;
     [SerializeField] private GameObject Hdropdown;
     [SerializeField] private GameObject Hdropdown2;
+    private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     private int locationOfAnswer;
     //public GameObject[] AnsButtons;
     public Button[] AnsButton;
@@ -260,6 +261,7 @@ public class QuesManager : MonoBehaviour
         QuesCount1 = 0;
         GameManager.instance.LoadGfontsize();
         GameManager.instance.LoadGKunrei();
+        rq = GetComponent<HiraDictionary>();
         //Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
         //デフォルトだとfalse
         //Debug.Log("GameManagerisGfontsize"+GameManager.instance.isGfontsize);
@@ -681,29 +683,37 @@ public class QuesManager : MonoBehaviour
         f = c;
        
         QuesText4.text = hiragana50[d];
-         if(GameManager.instance.isGfontsize == true){
+        if(GameManager.instance.isGfontsize == true){
            answer4 = RomaJi50[d];
            select3 = RomaJi50[e];
            select4 = RomaJi50[f];
-           Debug.Log("isTall"+GameManager.instance.isGfontsize);
+          
         }
         else{
            answer4 = romaji50[d]; 
            select3 = romaji50[e]; 
            select4 = romaji50[f]; 
-           Debug.Log("isTall"+GameManager.instance.isGfontsize);
+          
         }
+        //ヘボンの分岐
+        if(GameManager.instance.isGKunrei == false){
+                    string b = answer4;
+                    string a = select3;
+                    string c = select4;
+            if(rq.dicHebon.ContainsKey(b)){
+                        b = rq.dicHebon[b];
+                        answer4 = b;
+                    }
+            if(rq.dicHebon.ContainsKey(a)){
+                        a = rq.dicHebon[a];
+                        select3 = a;
+                    }
+            if(rq.dicHebon.ContainsKey(c)){
+                        c = rq.dicHebon[c];
+                        select4 = c;
+                    }
+        }//ヘボンの分岐オワリ
 
-        //Debug.Log("QuesCount"+QuesCount);
-       
-        /*Debug.Log("n"+n);
-        Debug.Log("N"+ary[n]);
-        Debug.Log("b"+b);
-        Debug.Log("c"+c);
-        Debug.Log("a"+a); 
-        Debug.Log("d"+d);
-        Debug.Log("e"+e);*/
-       
         //配列の要素5で割り振り
         //d が答え、e fが選択肢として出題される
         
@@ -733,7 +743,7 @@ public class QuesManager : MonoBehaviour
         AnsButton[4].GetComponentInChildren<Text>().text = select3;
         AnsButton[3].GetComponentInChildren<Text>().text = select4;
         }
-           }
+    }
 
     public void Stop46Yomiage(){
          StopCoroutine(Play46Hiragana());

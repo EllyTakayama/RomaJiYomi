@@ -27,10 +27,12 @@ public class DoRegrade : MonoBehaviour
         renTopButton.SetActive(false);
     }
     public void RgradePanel(){
-       
+        retryButton.SetActive(false);
+        renTopButton.SetActive(false);
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
+
     
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
