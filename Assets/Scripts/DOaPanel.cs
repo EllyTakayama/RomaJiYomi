@@ -13,6 +13,10 @@ public class DOaPanel : MonoBehaviour
     [SerializeField] private GameObject stampImage;
     [SerializeField] private GameObject nekoStaImage;
     [SerializeField] private GameObject LeftButton;
+     [SerializeField] private GameObject AretryButton;
+    [SerializeField] private GameObject AsonotaButton;
+    [SerializeField] private GameObject retryButton;
+    [SerializeField] private GameObject sonotaButton;
     public string AhiraganaCorrect;
     [SerializeField] private GameObject hiraGradePanel;
     [SerializeField] private Text yatta2Text;
@@ -33,6 +37,10 @@ public class DOaPanel : MonoBehaviour
         stamp1Image.SetActive(false);
         neko1StaImage.SetActive(false);
         LeftButton.SetActive(false);
+        retryButton.SetActive(false);
+        sonotaButton.SetActive(false);
+        AretryButton.SetActive(false);
+        AsonotaButton.SetActive(false);
         AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
         HhiraganaCorrect = GameManager.instance.HcorrectCount.ToString();
         //Debug.Log("A"+AhiraganaCorrect);
@@ -43,6 +51,8 @@ public class DOaPanel : MonoBehaviour
         stampImage.SetActive(false);
         nekoStaImage.SetActive(false);
         LeftButton.SetActive(false);
+        AretryButton.SetActive(false);
+        AsonotaButton.SetActive(false);
         AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
         
         StartCoroutine(AgyouPanel());
@@ -82,6 +92,8 @@ public class DOaPanel : MonoBehaviour
         stampImage.SetActive(false);
         nekoStaImage.SetActive(true);
         GameManager.instance.AcorrectCount=0;
+        AretryButton.SetActive(true);
+        AsonotaButton.SetActive(true);
 
     }
 
@@ -92,6 +104,8 @@ public class DOaPanel : MonoBehaviour
         stamp1Image.SetActive(false);
         neko1StaImage.SetActive(false);
         LeftButton.SetActive(false);
+        retryButton.SetActive(false);
+        sonotaButton.SetActive(false);
 
         StartCoroutine(HiraganaPanel());
     }
@@ -126,6 +140,8 @@ public class DOaPanel : MonoBehaviour
         stamp1Image.SetActive(false);
         neko1StaImage.SetActive(true);
         GameManager.instance.HcorrectCount=0;
+        retryButton.SetActive(true);
+        sonotaButton.SetActive(true);
 
     }
 

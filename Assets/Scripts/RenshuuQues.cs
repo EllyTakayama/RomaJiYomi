@@ -27,7 +27,6 @@ public class RenshuuQues : MonoBehaviour
     public int RenSeikai;//coin枚数を計算するために変数
     public GameObject RenshuuPanel;
     [SerializeField] private GameObject RegradePanel;
-    public bool isRTall;//大文字か小文字かのbool
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     public enum RenshuuType
     {
@@ -239,7 +238,6 @@ public class RenshuuQues : MonoBehaviour
         RenSeikai = 0;
         GameManager.instance.RcorrectCount = 0;
         GameManager.instance.LoadGfontsize();
-        //isRTall = GameManager.instance.isGfontsize;
         Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
         GameManager.instance.LoadGKunrei();
         Debug.Log("isGfontSize"+GameManager.instance.isGKunrei);

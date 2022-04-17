@@ -19,6 +19,7 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject HiraGradePanel;
     [SerializeField] private GameObject Hdropdown;
     [SerializeField] private GameObject Hdropdown2;
+
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     private int locationOfAnswer;
     //public GameObject[] AnsButtons;
@@ -28,6 +29,7 @@ public class QuesManager : MonoBehaviour
     public Text QuesText4;
     public Text QuesCountText;
     public Text QuesCountText4;
+    public Text CountText4;//1行クイズ問題数表示用
     public int currentMode;
     public GameObject PanelParent;
     private int n;
@@ -39,13 +41,15 @@ public class QuesManager : MonoBehaviour
     public int f;
     public int QuesCount;//あ行用
     public int QuesCount1;//ひらがな50、他用
+    public int qMondai;//基本か他かで出題数を変更する
     public bool isKihon;
     public List<int> kihonNum = new List<int>();
     int[] ary = new int[]{0,1,2,3,4};
     int[] ary3 = new int[]{0,1,2};
     int[] ary6 = new int[]{0,1,2,3,4,5};
     int[] moji50 = new int[46];
-    public bool isGomoji= true;
+    public bool isGomoji= true;//ルーレットのButtonへの割り付けの時のbool
+    public bool isHira = true;//DropdownとDropdown1切り替え用bool
     [SerializeField] private Dropdown dropdown;//k-w行
     [SerializeField] private Dropdown dropdown2;//g-pya行
     public enum KihonType
@@ -136,7 +140,7 @@ public class QuesManager : MonoBehaviour
          //38-42
         "ra","ri","ru","re","ro",
         //43-45
-        "wa","wo","'n",
+        "wa","wo","n",
 
         //46-50
         "ga","gi","gu","ge","go",
@@ -193,7 +197,7 @@ public class QuesManager : MonoBehaviour
         //38-42
         "RA","RI","RU","RE","RO",
         //43-45
-         "WA","WO","NN",
+         "WA","WO","N",
 
         //46-50
         "GA","GI","GU","GE","GO",
@@ -422,27 +426,33 @@ public class QuesManager : MonoBehaviour
             //hokaImage.SetActive(true);
             Hdropdown.SetActive(false);
             //hiraganaImage.SetActive(false);
-            OnRomajiHoka();
             QuesCount1 = 0;
+            OnRomajiHoka();
             Romaji50();
+    
             }
 
         public void Hiragana50Selet(){
             Hdropdown2.SetActive(false);
             //hokaImage.SetActive(true);
             Hdropdown.SetActive(true);
+            QuesCount1 = 0;
             //hiraganaImage.SetActive(false);
             OnRomaji();
-            QuesCount1 = 0;
             Romaji50();
            
         }
 
         public void OnRomajiHoka(){
-         //その他の音のindexの取得
+             //その他の音のindexの取得
          //46-50が行
+         
+         //CountText4.text = "/ 6問";
+         //qMondai = 6;//6問出題する
+         QuesCount1 = 0;
          kihonNum.Clear();
          if(dropdown2.value == 0){
+             isHira = true;//基本の50音でないということ
               for(int i=46; i<51; i++){
                 kihonNum.Add(i);
             }
@@ -452,6 +462,7 @@ public class QuesManager : MonoBehaviour
             }
         //51-55ざ
         else if(dropdown2.value == 1){
+            isHira = true;//基本の50音でないということ
             kihonNum.Clear();
             for(int i=51; i<56; i++){
                 kihonNum.Add(i);
@@ -463,6 +474,7 @@ public class QuesManager : MonoBehaviour
         }
          //56-60
         else if(dropdown2.value == 2){
+            isHira = true;//基本の50音でないということ
             kihonNum.Clear();
             for(int i=56; i<61; i++){
                 kihonNum.Add(i);
@@ -472,6 +484,7 @@ public class QuesManager : MonoBehaviour
              Debug.Log("だ");
              //61-65
         }else if(dropdown2.value == 3){
+            isHira = true;//基本の50音でないということ
             kihonNum.Clear();
             for(int i=61; i<66; i++){
                 kihonNum.Add(i);
@@ -482,6 +495,7 @@ public class QuesManager : MonoBehaviour
               //66-70
         }else if(dropdown2.value == 4){
             kihonNum.Clear();
+            isHira = true;//基本の50音でないということ
             for(int i=66; i<71; i++){
                 kihonNum.Add(i);
             }
@@ -491,6 +505,7 @@ public class QuesManager : MonoBehaviour
                //71-76
         }else if(dropdown2.value == 5){
             kihonNum.Clear();
+            isHira = false;//基本の50音でないということ
             for(int i=71; i<77; i++){
                 kihonNum.Add(i);
             }
@@ -500,6 +515,7 @@ public class QuesManager : MonoBehaviour
                //77-82
         }else if(dropdown2.value == 6){
             kihonNum.Clear();
+            isHira = false;//基本の50音でないということ
             for(int i=77; i<83; i++){
                 kihonNum.Add(i);
             }
@@ -509,6 +525,7 @@ public class QuesManager : MonoBehaviour
               //83-88
         }else if(dropdown2.value == 7){
             kihonNum.Clear();
+            isHira = false;//基本の50音でないということ
             for(int i=83; i<89; i++){
                 kihonNum.Add(i);
             }
@@ -518,6 +535,7 @@ public class QuesManager : MonoBehaviour
               //89-94
          }else if(dropdown2.value == 8){
              kihonNum.Clear();
+            isHira = false;//基本の50音でないということ
             for(int i=89; i<95; i++){
                 kihonNum.Add(i);
             }
@@ -527,6 +545,7 @@ public class QuesManager : MonoBehaviour
                //95-100
                }else if(dropdown2.value == 9){
              kihonNum.Clear();
+              isHira = false;//基本の50音でないということ
             for(int i=95; i<101; i++){
                 kihonNum.Add(i);
             }
@@ -535,7 +554,8 @@ public class QuesManager : MonoBehaviour
               Debug.Log("じゃ、ぢゃ");
               //101-106
          }else if(dropdown2.value == 10){
-             kihonNum.Clear();
+              isHira = false;//基本の50音でないということ
+              kihonNum.Clear();
             for(int i=101; i<107; i++){
                 kihonNum.Add(i);
             }
@@ -544,9 +564,23 @@ public class QuesManager : MonoBehaviour
                Debug.Log("びゃ、ぴゃ");
                }
             //ShuffleM();
+            if(isHira ==true){
+                CountText4.text = "/ 5問";
+                qMondai = 5;//5問出題する
+            }
+            else{
+                CountText4.text = "/ 6問";
+                qMondai = 6;//5問出題する
+            }
         }
 
         public void OnRomaji(){
+            QuesCount1 = 0;
+            isHira = true;//基本の50音でないということ
+            CountText4.text = "/ 5問";
+            qMondai = 5;//5問出題する
+            QuesCount1 = 0;
+            kihonNum.Clear();
             //4-9 ka
         if(dropdown.value == 0){
             kihonNum.Clear();
@@ -610,8 +644,8 @@ public class QuesManager : MonoBehaviour
             for(int i=35; i<38; i++){
                 kihonNum.Add(i);
             }
-            //for(int i =0;i<kihonNum.Count;i++){
-              //     Debug.Log(kihonNum[i]);}
+            for(int i =0;i<kihonNum.Count;i++){
+                   Debug.Log(kihonNum[i]);}
               Debug.Log("YA");
               //38-42
         }else if(dropdown.value == 7){
@@ -628,8 +662,8 @@ public class QuesManager : MonoBehaviour
             for(int i=43; i<46; i++){
                 kihonNum.Add(i);
             }
-            //for(int i =0;i<kihonNum.Count;i++){
-              //     Debug.Log(kihonNum[i]);}
+            for(int i =0;i<kihonNum.Count;i++){
+                Debug.Log(kihonNum[i]);}
                Debug.Log("WA");
                };
                //ShuffleM();
@@ -637,9 +671,11 @@ public class QuesManager : MonoBehaviour
 
 
     public void Romaji50(){
+        Debug.Log("kihonNum.Count"+kihonNum.Count);
         QuesCount1++;
         QuesCountText4.text = QuesCount1.ToString();
-        if(QuesCount1 >5){
+        Debug.Log("n"+n);
+        if(QuesCount1 >qMondai){
             HiraGradePanel.SetActive(true);
             HiraGradePanel.GetComponent<DOaPanel>().HiraPanel();
             Debug.Log("hirapanel");
@@ -648,6 +684,7 @@ public class QuesManager : MonoBehaviour
         AnsButton[3].enabled = true;
         AnsButton[4].enabled = true;
         AnsButton[5].enabled = true;
+        
         if(n+1 > kihonNum.Count){
             Debug.Log("5問目");
             n = 0;
@@ -660,10 +697,10 @@ public class QuesManager : MonoBehaviour
             }
             else if(n==1){
             a = kihonNum[n+1];
-            c = kihonNum[n+2];
+            c = kihonNum[n-1];
             }
             else if(n==2){
-            a = kihonNum[n+1];
+            a = kihonNum[n-2];
             c = kihonNum[n-1];
             }
         }else{
@@ -720,6 +757,13 @@ public class QuesManager : MonoBehaviour
         StartCoroutine(Play46Hiragana());
         Debug.Log("d"+d);
         Debug.Log(RomaJi50[d]);
+       
+        /*if(kihonNum.Count ==3){
+           if(n+1 >= kihonNum.Count)
+            n = 0;
+        }else{
+            n++;
+        }*/
         n++;
         
          locationOfAnswer = UnityEngine.Random.Range(3,6);

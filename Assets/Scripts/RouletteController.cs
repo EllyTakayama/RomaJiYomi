@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;//4月14日更新
+using UnityEngine.SceneManagement;//4月17日更新
 
 public class RouletteController : MonoBehaviour
 {
@@ -368,13 +368,13 @@ public class RouletteController : MonoBehaviour
                     else//3文字で小文字文字の場合の分岐
                     {//3文字で小文字、ヘボン式の場合の分岐
                         if(GameManager.instance.isGKunrei == false){
-                        string b = RomaJiRC50[j];
+                        string b = RomaJiRC50[j].ToLower();
                         if(cd.dicHebon.ContainsKey(b)){
                         b = cd.dicHebon[b];
                         hiraganaButtons[i].GetComponentInChildren<Text>().text = b;
                         }
                         else{
-                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j];
+                            hiraganaButtons[i].GetComponentInChildren<Text>().text = RomaJiRC50[j].ToLower();
                             }
                         } //3文字で小文字、ヘボン式の場合の分岐オワリ
                         else{
