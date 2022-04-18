@@ -14,7 +14,7 @@ public class DOaText : MonoBehaviour
     [SerializeField] private GameObject[] Ballons;
     [SerializeField] private GameObject BallonImage;
      public int bnum;
-     public bool isATall;
+     
      public Image AnsImage;
      //大文字
     string[] Agyou = new string[]{
@@ -58,8 +58,8 @@ public class DOaText : MonoBehaviour
     }
     
     public void MoveButtons(){
-        isATall = GameManager.instance.isGfontsize;
-        if(isATall ==true){
+       
+        if(GameManager.instance.isGfontsize ==true){
              for(int i =0;i<bButton.Length;i++){
                  bButton[i].GetComponentInChildren<TextMeshProUGUI>().text = Agyou[i];
              }
@@ -94,7 +94,7 @@ public class DOaText : MonoBehaviour
     }
     IEnumerator AButton(int bnum)
     {
-        if(isATall ==true){
+        if(GameManager.instance.isGfontsize ==true){
         AnsImage.GetComponentInChildren<Text>().text = Awa[bnum];}
         else{
             AnsImage.GetComponentInChildren<Text>().text = aWa[bnum];

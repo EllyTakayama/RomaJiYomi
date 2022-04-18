@@ -69,9 +69,11 @@ public class BDest : MonoBehaviour
             if (GameManager.instance.isGfontsize == true){
                 if(b == 0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
+                     Debug.Log("大文字あb"+b);
                      b++;}
                 else if(b > 0){
                     bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
+                     Debug.Log("大文字あb"+b);
                     b = 0;
                     }
                 }
@@ -79,9 +81,11 @@ public class BDest : MonoBehaviour
             else{
                 if(b==0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
+                      Debug.Log("子文字あb"+b);
                      b++;}
                 else if(b >0){
                     bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
+                     Debug.Log("子文字あb"+b);
                     b = 0;
                 }    
              }
@@ -90,10 +94,11 @@ public class BDest : MonoBehaviour
         else{//currentModeが2じゃなかった場合
          HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
            SoundManager.instance.PlaySE(HRoulletteNum[num]);
-           if(b == 0){
+           if(b > 0){
                bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
-               b++;}
-            else if(b>0){
+                Debug.Log("大文字ひらがなb"+b);
+               b=0;}
+            else if(b==0){
                 if(GameManager.instance.isGfontsize==true){
                 //大文字でヘボン式の分岐
                 if(GameManager.instance.isGKunrei == false){
@@ -109,7 +114,8 @@ public class BDest : MonoBehaviour
                     }else{//大文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
                         }
-                b=0;}
+                Debug.Log("大文字ひらがなb"+b);
+                b++;}
                 else{//小文字の場合の分岐
                     //小文字でヘボン式の場合の分岐
                     if(GameManager.instance.isGKunrei == false){
@@ -124,7 +130,8 @@ public class BDest : MonoBehaviour
                     }else{//小文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
                         }
-                    b=0;
+                    Debug.Log("小文字ひらがなb"+b);
+                    b++;
                 }
             }
             

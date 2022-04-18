@@ -10484,7 +10484,7 @@ GameObject:
   - component: {fileID: 934037783}
   - component: {fileID: 934037782}
   m_Layer: 5
-  m_Name: sonotaButton
+  m_Name: sonotaButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14275,7 +14275,7 @@ GameObject:
   - component: {fileID: 1288610793}
   - component: {fileID: 1288610792}
   m_Layer: 5
-  m_Name: retryButton
+  m_Name: retryButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17021,6 +17021,10 @@ MonoBehaviour:
   stampImage: {fileID: 422427965}
   nekoStaImage: {fileID: 1287407340}
   LeftButton: {fileID: 996734090}
+  AretryButton: {fileID: 1500606900}
+  AsonotaButton: {fileID: 845437823}
+  retryButton: {fileID: 1288610790}
+  sonotaButton: {fileID: 934037780}
   AhiraganaCorrect: 
   hiraGradePanel: {fileID: 1512750301}
   yatta2Text: {fileID: 112501035}
@@ -18038,7 +18042,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1628243393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18125,6 +18129,10 @@ MonoBehaviour:
   stampImage: {fileID: 422427965}
   nekoStaImage: {fileID: 1287407340}
   LeftButton: {fileID: 996734090}
+  AretryButton: {fileID: 1500606900}
+  AsonotaButton: {fileID: 845437823}
+  retryButton: {fileID: 1288610790}
+  sonotaButton: {fileID: 934037780}
   AhiraganaCorrect: 
   hiraGradePanel: {fileID: 1512750301}
   yatta2Text: {fileID: 112501035}
@@ -22918,6 +22926,7 @@ MonoBehaviour:
   QuesText4: {fileID: 682801334}
   QuesCountText: {fileID: 1946515065}
   QuesCountText4: {fileID: 1036023654}
+  CountText4: {fileID: 1743261699}
   currentMode: 0
   PanelParent: {fileID: 292542543}
   a: 0
@@ -22928,9 +22937,11 @@ MonoBehaviour:
   f: 0
   QuesCount: 0
   QuesCount1: 0
+  qMondai: 0
   isKihon: 0
   kihonNum: 
   isGomoji: 1
+  isHira: 1
   dropdown: {fileID: 1936263446}
   dropdown2: {fileID: 64029006}
 --- !u!4 &2099242489
@@ -22965,6 +22976,10 @@ MonoBehaviour:
   stampImage: {fileID: 422427965}
   nekoStaImage: {fileID: 1287407340}
   LeftButton: {fileID: 996734090}
+  AretryButton: {fileID: 1500606900}
+  AsonotaButton: {fileID: 845437823}
+  retryButton: {fileID: 1288610790}
+  sonotaButton: {fileID: 934037780}
   AhiraganaCorrect: 
   hiraGradePanel: {fileID: 1512750301}
   yatta2Text: {fileID: 112501035}
@@ -23507,7 +23522,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 36
+    m_FontSize: 35
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

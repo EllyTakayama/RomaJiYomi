@@ -413,40 +413,7 @@ public class RouletteController : MonoBehaviour
         new Vector3 (Random.Range(-250f,100f), Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
             transform.rotation);//生成時の向き
         hBallonImage.transform.SetParent(hButtonPanel.transform,false);  
-        if(GameManager.instance.isGfontsize== true){
-            //大文字の場合の分岐
-            if(GameManager.instance.isGKunrei == false){
-                        string b = RomaJiRC50[RCNum[n]];
-                        if(cd.dicHebon.ContainsKey(b)){
-                        b = cd.dicHebon[b];
-                        hBallonImage.GetComponentInChildren<Text>().text = b;
-                        }
-                        else{
-                            hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
-                            }
-                        } //5文字で大文字、
-            else{
-                hBallonImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[n]];
-                }
-            
-            }//大文字の場合の分岐オワリ
-        else//小文字の場合の分岐
-            {
-                //小文字の場合の分岐
-            if(GameManager.instance.isGKunrei == false){
-                        string b = romajiRC50[RCNum[n]];
-                        if(cd.dicHebon.ContainsKey(b)){
-                        b = cd.dicHebon[b];
-                        hBallonImage.GetComponentInChildren<Text>().text = b;
-                        }
-                        else{
-                            hBallonImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[n]];
-                            }
-                        } //5文字で大文字、
-            else{
-                hBallonImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[n]];
-                }
-        }//小文字の場合の分岐おわり
+        hBallonImage.GetComponentInChildren<Text>().text = hiragana50[RCNum[n]];
     }
     IEnumerator RCButton(int bnum)
     {   if(GameManager.instance.isGfontsize== true){
