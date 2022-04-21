@@ -26,6 +26,8 @@ public class GachaManager : MonoBehaviour
 	public int NameNum;//名前の個数を取得する
 	public GameObject getNekoPanel;
 	public Text nameText;//ガチャの結果表示
+	public Image nekoImage;
+	public Sprite[] nekoSprites;
 	public GameObject openBallImage;//ガチャの開くBall Imageオブジェクト
 	public GameObject pOpenBallImage;//ガチャの開く前BallImageオブジェクト
 	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト

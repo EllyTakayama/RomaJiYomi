@@ -44,11 +44,11 @@ public class SoundManager : MonoBehaviour
             case "KihonScene":
                 audioSourceBGM.clip = audioClipsBGM[1];
                 break;
-            case "TikaraScene":
+            case "RenshuuScene":
                 audioSourceBGM.clip = audioClipsBGM[2];
                 break;
-            case "SettingScene":
-                audioSourceBGM.clip = audioClipsBGM[0];
+            case "TikaraScene":
+                audioSourceBGM.clip = audioClipsBGM[3];
                 break;
             
         }

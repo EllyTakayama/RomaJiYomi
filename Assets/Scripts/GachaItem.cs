@@ -14,6 +14,7 @@ public class GachaItem : MonoBehaviour
     public string[] GachaChara;//textアセットからキャラ名の代入
     public string[] setumeiText;//textアセットからキャラ説明テキストの代入
     public int[] charaKakuritu;//各キャラの確率を取得
+    public Sprite[] ItemNeko;//各キャラのスプライト画像
 
 
      //テキストデータを読み込む
