@@ -19,15 +19,19 @@ public class GachaManager : MonoBehaviour
 	// 抽選回数
 	int rollNum = 100;
 	public GameObject GachaObject;
+	public GameObject GachaObject1;
     public List<int> ControlNum = new List<int>();//各要素の基準のインデックスを管理
     public List<string> nameChara = new List<string>();//名前の管理
 	public string[] names;
 	public string[] setumeis;
+	public int[] kakuritu;
 	public int NameNum;//名前の個数を取得する
 	public GameObject getNekoPanel;
 	public Text nameText;//ガチャの結果表示
-	public Image nekoImage;
+	public GameObject nekoImage;
+	public Image nekochanImage;//Sprite差し替えよう
 	public Sprite[] nekoSprites;
+	public int nekoNum;
 	public GameObject openBallImage;//ガチャの開くBall Imageオブジェクト
 	public GameObject pOpenBallImage;//ガチャの開く前BallImageオブジェクト
 	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト
@@ -67,11 +71,10 @@ public class GachaManager : MonoBehaviour
         int itemId = Choose();
 
 		// アイテムIDに応じたメッセージ出力
-		
-			string itemName = itemInfo[itemId];
-			Debug.Log(itemName + " を入手した!");
-
-		
+		  nekoNum = itemId;
+		  string itemName = itemInfo[itemId];
+			nameText.text = itemName + "\n をゲット!";
+			Debug.Log(itemName + " をゲット!");
 
         // Debugで確率を確認したい時のスクリプトここから確認用
 		/*for (int i = 0 ; i < rollNum; i++){
@@ -86,7 +89,7 @@ public class GachaManager : MonoBehaviour
 			string itemName = itemInfo[pair.Key];
 			Debug.Log(itemName + " は " + pair.Value + " 回でした。");
 		}*/
-		DebugNames();
+		//DebugNames();
 		StartCoroutine(ItemGet());
 	}
 	IEnumerator ItemGet(){
@@ -97,6 +100,8 @@ public class GachaManager : MonoBehaviour
 		pOpenBallImage.SetActive(true);
 		yield return new WaitForSeconds(0.5f);
 		pOpenBallImage.SetActive(false);
+		nekoImage.SetActive(true);
+		nekochanImage.sprite = GetComponent<GachaItem>().ItemNeko[nekoNum];
 		flashImage.SetActive(true);
 
 		//nameText.text = itemName + "\nをゲットした"
@@ -109,10 +114,11 @@ public class GachaManager : MonoBehaviour
 		for(int i =0;i<names.Length;i++){
 			itemInfo.Add(i, names[i]);
 		}
+		kakuritu = GachaObject.GetComponent<GachaItem>().charaKakuritu;
 		itemDropDict = new Dictionary<int, float>();
-		itemDropDict.Add(0, 20.0f);
-		itemDropDict.Add(1, 20.0f);
-		itemDropDict.Add(2, 20.0f);
+		for(int i =0;i<kakuritu.Length;i++){
+			itemDropDict.Add(i, kakuritu[i]);
+		}
         
         //Debugで確率の設定による実行結果を見たいときは以下ののスクリプト
         itemResultDict = new Dictionary<int, int>();
