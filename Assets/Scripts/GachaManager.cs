@@ -20,7 +20,9 @@ public class GachaManager : MonoBehaviour
 	int rollNum = 100;
 	public GameObject GachaObject;
 	public GameObject GachaObject1;
-    public List<int> ControlNum = new List<int>();//各要素の基準のインデックスを管理
+	public GameObject GachaMana;
+	public GameObject closeButton;
+    public List<int> GachaNum = new List<int>();//各要素の基準のインデックスを管理
     public List<string> nameChara = new List<string>();//名前の管理
 	public string[] names;
 	public string[] setumeis;
@@ -36,12 +38,24 @@ public class GachaManager : MonoBehaviour
 	public GameObject pOpenBallImage;//ガチャの開く前BallImageオブジェクト
 	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト
 	public Text coinText;//所持するcoinの枚数を表示する
-
+	//Gachaのセーブは他のSceneに影響ないはずなのでガチャないでセーブロードする
+	
 	void Start(){
 		getNekoPanel.SetActive(false);
 		GameManager.instance.LoadCoinGoukei();
+		GachaMana.GetComponent<GachaItem>().SetGachaText();
 		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
 		coinText.text = GameManager.instance.totalCoin.ToString();
+		int a = GetComponent<GachaItem>().GachaChara.Length;
+		for(int i = 0 ; i < a ;i++){
+			GachaNum.Add(0);
+		}
+		for(int i = 0 ; i < a ;i++){
+			Debug.Log(GachaNum[i]);
+		}
+		Debug.Log(GachaNum.Count);
+		
+		
 		/*
 		names = GachaObject.GetComponent<GachaItem>().GachaChara;
 		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;
@@ -73,8 +87,15 @@ public class GachaManager : MonoBehaviour
 		// アイテムIDに応じたメッセージ出力
 		  nekoNum = itemId;
 		  string itemName = itemInfo[itemId];
-			nameText.text = itemName + "\n をゲット!";
+			//nameText.text = itemName + "\n をゲット!";
 			Debug.Log(itemName + " をゲット!");
+			Debug.Log("nekoNum"+nekoNum);
+		
+		
+		int ringiNum = GachaNum[nekoNum];
+		ringiNum++;
+		GachaNum.Insert(nekoNum,ringiNum);
+		Debug.Log(GachaNum[nekoNum]);
 
         // Debugで確率を確認したい時のスクリプトここから確認用
 		/*for (int i = 0 ; i < rollNum; i++){
@@ -95,14 +116,19 @@ public class GachaManager : MonoBehaviour
 	IEnumerator ItemGet(){
         yield return new WaitForSeconds(1.0f);
 		getNekoPanel.SetActive(true);
-		yield return new WaitForSeconds(0.5f);
+		nameText.text = "なにがでるかな？?";
+		openBallImage.SetActive(true);
+		nekoImage.SetActive(false);
+		yield return new WaitForSeconds(0.7f);
 		openBallImage.SetActive(false);
 		pOpenBallImage.SetActive(true);
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.6f);
 		pOpenBallImage.SetActive(false);
+		nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nekoImage.SetActive(true);
 		nekochanImage.sprite = GetComponent<GachaItem>().ItemNeko[nekoNum];
 		flashImage.SetActive(true);
+		closeButton.SetActive(true);
 
 		//nameText.text = itemName + "\nをゲットした"
 
