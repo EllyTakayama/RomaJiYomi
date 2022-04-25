@@ -9,17 +9,7 @@ using DG.Tweening;//DoTweenを使用する記述
 public class PanelManager : MonoBehaviour
 {
     public GameObject Panel0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
     public void TopSceneMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();

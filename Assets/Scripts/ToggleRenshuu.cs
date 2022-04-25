@@ -342,14 +342,14 @@ public class ToggleRenshuu : MonoBehaviour
             Debug.Log("gya"+toggle[21].isOn);
             }
         
-        //22 jya行　95-97
+        //22 zya行　95-97
         if(toggle[22].isOn == true){
             for(int i=95; i<98; i++){
                 shutsudaiNum.Add(i);
             }
             //for(int j =0; j<shutsudaiNum.Count; j++){
               //  Debug.Log(shutsudaiNum[j]);
-            Debug.Log("jya"+toggle[22].isOn);}
+            Debug.Log("zya"+toggle[22].isOn);}
             
         //23 dya行　98-100
         if(toggle[23].isOn == true){

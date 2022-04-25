@@ -263,6 +263,13 @@ public class RouletteController : MonoBehaviour
             isGomoji = false;
             RCNum.AddRange(array); 
             }
+            else if(result == "zy"||result =="ZY"){
+                gyou = "じゃ";
+            j = 95;
+            int[]array = {95,0,96,0,97};
+            isGomoji = false;
+            RCNum.AddRange(array);  
+            }
             else if(result == "jy"||result =="JY"){
                 gyou = "じゃ";
             j = 95;
@@ -487,7 +494,7 @@ public class RouletteController : MonoBehaviour
         //92-94
         "gya","gyu","gyo",
         //95-97
-        "jya","jyu","jyo",
+        "zya","zyu","zyo",
         //98-100
         "dya","dyu","dyo",
         //101-103
@@ -547,7 +554,7 @@ public class RouletteController : MonoBehaviour
         //92-94
         "GYA","GYU","GYO",
         //95-97
-        "JYA","JYU","JYO",
+        "ZYA","ZYU","ZYO",
         //98-100
         "DYA","DYU","DYO",
         //101-103

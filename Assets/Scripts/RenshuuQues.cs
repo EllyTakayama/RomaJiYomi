@@ -147,7 +147,7 @@ public class RenshuuQues : MonoBehaviour
         //92-94
         "gya","gyu","gyo",
         //95-97
-        "jya","jyu","jyo",
+        "zya","zyu","zyo",
         //98-100
         "dya","dyu","dyo",
         //101-103
@@ -206,7 +206,7 @@ public class RenshuuQues : MonoBehaviour
         //92-94
         "GYA","GYU","GYO",
         //95-97
-        "JYA","JYU","JYO",
+        "ZYA","ZYU","ZYO",
         //98-100
         "DYA","DYU","DYO",
         //101-103

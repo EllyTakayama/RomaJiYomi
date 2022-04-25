@@ -59,7 +59,7 @@ public class HiraDictionary : MonoBehaviour
         {"zi","ji"},{"zya","ja"}, {"zyu","ju"}, {"zyo","jo"}, 
         {"sya","sha"},{"syu","shu"}, {"syo","sho"},
         {"tya","cha"}, {"tyu","chu"},{"tyo","cho"},
-        {"jya","ja"}, {"jyu","ju"},{"jyo","jo"},
+
     };
     //大文字
     public Dictionary<string, string> dicT = new Dictionary<string, string>() {
@@ -81,7 +81,7 @@ public class HiraDictionary : MonoBehaviour
         
         {"KYA","KYA"},{"KYU","KYU"},{"KYO","KYO"},
         {"SYA","SHA"},{"SYU","SHU"},{"SYO","SHO"},
-        {"TYA","CHAA"},{"TYU","CHU"},{"TYO","CHO"},
+        {"TYA","CHA"},{"TYU","CHU"},{"TYO","CHO"},
         {"NYA","NYA"},{"NYU","NYU"},{"NYO","NYO"},
         {"HYA","HYA"},{"HYU","HYU"},{"HYO","HYO"},
         {"MYA","MYA"},{"MYU","MYU"},{"MYO","MYO"},

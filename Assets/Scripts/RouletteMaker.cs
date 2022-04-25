@@ -19,8 +19,8 @@ public class RouletteMaker : MonoBehaviour
     [SerializeField] private string[] tHiragana = new string[]{"A","K","S","T","N","H","M","Y","R","W"} ;
     [SerializeField] private string[] sHiragana5 = new string[]{"g","z","d","b","p","v","k","s","t","h"};
     [SerializeField] private string[] tHiragana5 = new string[]{"G","Z","D","B","P","V","K","S","T","H"} ;
-    [SerializeField] private string[] sKHiragana51 = new string[]{"ky","sy","ty","ny","hy","my","ry","gy","jy","dy","by","py"} ;
-    [SerializeField] private string[] tKHiragana51 = new string[]{"KY","SY","TY","NY","HY","MY","RY","GY","JY","DY","BY","PY"} ;
+    [SerializeField] private string[] sKHiragana51 = new string[]{"ky","sy","ty","ny","hy","my","ry","gy","zy","dy","by","py"} ;
+    [SerializeField] private string[] tKHiragana51 = new string[]{"KY","SY","TY","NY","HY","MY","RY","GY","ZY","DY","BY","PY"} ;
     [SerializeField] private string[] HebonHiragana51 = new string[]{"KY","SH","CH","NY","HY","MY","RY","GY","J","DY","BY","PY"} ;
     [SerializeField] private string[] sHebonHiragana51 = new string[]{"ky","sh","ch","ny","hy","my","ry","gy","j","dy","by","py"} ;
     [SerializeField] private Toggle[] RouletteToggle;

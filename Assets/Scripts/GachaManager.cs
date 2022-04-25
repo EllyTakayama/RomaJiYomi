@@ -23,6 +23,7 @@ public class GachaManager : MonoBehaviour
 	public GameObject GachaMana;
 	public GameObject closeButton;
     public List<int> GachaNum = new List<int>();//各要素の基準のインデックスを管理
+	public List<int> DeNum = new List<int>();//各要素のデフォルト用List
     public List<string> nameChara = new List<string>();//名前の管理
 	public string[] names;
 	public string[] setumeis;
@@ -48,18 +49,22 @@ public class GachaManager : MonoBehaviour
 		coinText.text = GameManager.instance.totalCoin.ToString();
 		int a = GetComponent<GachaItem>().GachaChara.Length;
 		for(int i = 0 ; i < a ;i++){
-			GachaNum.Add(0);
+			DeNum.Add(0);
 		}
 		for(int i = 0 ; i < a ;i++){
-			Debug.Log(GachaNum[i]);
+			Debug.Log(DeNum[i]);
 		}
+		Debug.Log(DeNum.Count);
+		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
 		Debug.Log(GachaNum.Count);
-		
+
+		InitializeDicts();
 		
 		/*
 		names = GachaObject.GetComponent<GachaItem>().GachaChara;
 		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;
 		DebugNames();
+		
 		GetDropItem();*/
 	}
 	void DebugNames()
@@ -79,7 +84,7 @@ public class GachaManager : MonoBehaviour
 
 	public void GetDropItem(){
 		// 各種辞書の初期化
-		InitializeDicts();
+		//InitializeDicts();
         
         //* ドロップアイテムの抽選の時
         int itemId = Choose();
@@ -95,7 +100,9 @@ public class GachaManager : MonoBehaviour
 		int ringiNum = GachaNum[nekoNum];
 		ringiNum++;
 		GachaNum.Insert(nekoNum,ringiNum);
+		ES3.Save("GachaNum",GachaNum,"GachaNum.es3" );
 		Debug.Log(GachaNum[nekoNum]);
+
 
         // Debugで確率を確認したい時のスクリプトここから確認用
 		/*for (int i = 0 ; i < rollNum; i++){

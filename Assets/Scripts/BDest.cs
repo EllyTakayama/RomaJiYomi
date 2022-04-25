@@ -252,7 +252,7 @@ public class BDest : MonoBehaviour
         //92-94
         "GYA","GYU","GYO",
         //95-97
-        "JYA","JYU","JYO",
+        "ZYA","ZYU","ZYO",
         //98-100
         "DYA","DYU","DYO",
         //101-103
