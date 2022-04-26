@@ -280,6 +280,9 @@ void ChangeKtoH(string moji){
 
     //正解した時の関数　
     void Correct(){
+        int se = cd.dicTi[answerMoji];
+        SoundManager.instance.PlaySE(se);
+
         Debug.Log("mojisuu"+QuestionAnswer.Length);
         //正解した場合の文字の色を変えるための分岐
         if(QuestionAnswer.Length==1){
@@ -352,6 +355,7 @@ void ChangeKtoH(string moji){
     }
     //間違えた時の関数
     void Miss(){
+        SoundManager.instance.PlaySousaSE(3);
         Debug.Log("miss");
     }
     IEnumerator TiChangeQues(){

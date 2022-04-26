@@ -480,7 +480,7 @@ public class RouletteController : MonoBehaviour
         //71-73
         "kya","kyu","kyo",
         //74-76
-        "sha","shu","sho",
+        "sya","syu","syo",
         //77-79
         "tya","tyu","tyo",
         //80-82
@@ -540,7 +540,7 @@ public class RouletteController : MonoBehaviour
         //71-73
         "KYA","KYU","KYO",
         //74-76
-        "SHA","SHU","SHO",
+        "SYA","SYU","SYO",
         //77-79
         "TYA","TYU","TYO",
         //80-82

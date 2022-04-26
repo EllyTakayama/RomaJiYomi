@@ -35,6 +35,8 @@ public class GachaManager : MonoBehaviour
 	public Image nekochanImage;//Sprite差し替えよう
 	public Sprite[] nekoSprites;
 	public int nekoNum;
+	public GameObject[] neko;//ガチャのアイテム表示
+	public GameObject[] balls;//ガチャのカプセル表示
 	public GameObject openBallImage;//ガチャの開くBall Imageオブジェクト
 	public GameObject pOpenBallImage;//ガチャの開く前BallImageオブジェクト
 	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト
@@ -57,6 +59,8 @@ public class GachaManager : MonoBehaviour
 		Debug.Log(DeNum.Count);
 		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
 		Debug.Log(GachaNum.Count);
+		
+		SetChara();
 
 		InitializeDicts();
 		
@@ -99,10 +103,11 @@ public class GachaManager : MonoBehaviour
 		
 		int ringiNum = GachaNum[nekoNum];
 		ringiNum++;
-		GachaNum.Insert(nekoNum,ringiNum);
+		GachaNum[nekoNum] = ringiNum;
+		Debug.Log(GachaNum[nekoNum]);
+		SetChara();
 		ES3.Save("GachaNum",GachaNum,"GachaNum.es3" );
 		Debug.Log(GachaNum[nekoNum]);
-
 
         // Debugで確率を確認したい時のスクリプトここから確認用
 		/*for (int i = 0 ; i < rollNum; i++){
@@ -120,6 +125,16 @@ public class GachaManager : MonoBehaviour
 		//DebugNames();
 		StartCoroutine(ItemGet());
 	}
+	public void SetChara(){
+		for(int i = 0; i< GachaNum.Count; i++){
+			int  a = GachaNum[i];
+			if(a >0){
+				neko[i].SetActive(true);
+				balls[i].SetActive(false);
+			}
+		}
+	}
+
 	IEnumerator ItemGet(){
         yield return new WaitForSeconds(1.0f);
 		getNekoPanel.SetActive(true);
@@ -180,6 +195,19 @@ public class GachaManager : MonoBehaviour
 		}
 		return 0;
 	}
+
+/*0ゆうしゃネコ
+1おさかなくわえたネコ,2ふくめんネコ,3ねこかぶりネコ,4たまごかぶりネコ
+5カボチャかぶりネコ,6ガクランネコ,7スイカかぶりネコ,8まほうつかいネコ
+9メイドネコ　なつ,10ダイビングねこ,11ゆうれいネコ,12メイドネコ　ふゆ
+13ギャングネコ,14セーラーふくネコ,15てんしネコ,16にんぎょネコ
+17まおうネコ,18ねこかん　かつお,19ねこかん　しらす
+20ねこかん　サーモン,21キャットフードまぐろ,22キャットフードチキン
+23キャットフードかつお,24ねずみのおもちゃ,25ねこのぬいぐるみ
+26さかなのおもちゃ,27ラグビーボールおもちゃ,28テニスボールおもちゃ
+29かわいいくびわ,30ブラシ,31ねこシャンプー
+32ねこトリートメント,33みみベッド,34リボンクッション
+35キャットタワー*/
 
 }
 
