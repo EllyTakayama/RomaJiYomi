@@ -13,8 +13,10 @@ public class ToggleRenshuu : MonoBehaviour
     public Toggle toggle50;//基本の50音・濁音のPanel選択
     public Toggle toggleHoka;//拗音などその他の平仮名のPanel選択
     public Toggle[] toggle;
+    public Toggle[] ReMondaiToggle;//問題数を選択するToggle
     public List<int> shutsudaiNum = new List<int>();
     public int s;
+    public int toggleMondai;//トグルでの問題数保存
     public GameObject ShutudaiPanel;
     [SerializeField] private GameObject RenshuuPanel;
     //[SerializeField] private GameObject reSettingPanel;
@@ -56,7 +58,8 @@ public class ToggleRenshuu : MonoBehaviour
         "ば","び","ぶ","べ","ぼ",
         //66-70
         "ぱ","ぴ","ぷ","ぺ","ぽ"
-　　　　　　};
+        };
+
     string[] RomaJiR50 = new string[]{
          //0-4
         "A","I","U","E","O",
@@ -111,6 +114,8 @@ public class ToggleRenshuu : MonoBehaviour
         Debug.Log("スタートtoggle50f"+toggle50.isOn);
         Debug.Log("スタートtoggleHoka"+toggleHoka.isOn);
         shutsudaiNum.Clear();
+        MondaiLoad();
+        Debug.Log("toggleMondai"+toggleMondai);
     }
     public void SpawnSetPanel(){
         SetsuImage = Instantiate(SetPanels[0],
@@ -410,7 +415,62 @@ public class ToggleRenshuu : MonoBehaviour
                 return;
             }
             ShuffleM();
+            RenMondai();
             ShutudaiPanel.SetActive(true);
+
+    }
+    void RenMondai(){
+        if(ReMondaiToggle[0].isOn == true){
+            toggleMondai = 10;
+            ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+        else if(ReMondaiToggle[1].isOn == true){
+            toggleMondai = 15;
+            ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+        else if(ReMondaiToggle[2].isOn == true){
+            toggleMondai = 20;
+             ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+        else if(ReMondaiToggle[3].isOn == true){
+            toggleMondai = shutsudaiNum.Count;
+            ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+    }
+
+    public void ClickTMondai(){
+        if(ReMondaiToggle[0].isOn == true){
+            toggleMondai = 10;
+            ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+        else if(ReMondaiToggle[1].isOn == true){
+            toggleMondai = 15;
+            ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+        else if(ReMondaiToggle[2].isOn == true){
+            toggleMondai = 20;
+             ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+        else if(ReMondaiToggle[3].isOn == true){
+            toggleMondai = 30;//ダミーとして仮に30を代入するが実際の問題数はListの要素数
+            ES3.Save("toggleMondai",toggleMondai,"toggleMondai.es3");
+        }
+    }
+
+    public void MondaiLoad(){
+        toggleMondai = ES3.Load("toggleMondai","toggleMondai.es3",10);
+        if(toggleMondai == 10){
+            ReMondaiToggle[0].isOn = true;
+            }
+        else if(toggleMondai==15){
+            ReMondaiToggle[1].isOn = true;
+        }
+        else if(toggleMondai==20){
+            ReMondaiToggle[2].isOn = true;
+        }
+        else{
+            ReMondaiToggle[3].isOn = true;
+        }
     }
         
         void ShuffleM(){

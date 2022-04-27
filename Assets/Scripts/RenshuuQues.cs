@@ -234,7 +234,9 @@ public class RenshuuQues : MonoBehaviour
     void Start()
     {
         //出題数ようのデバック記述
-        RenMondaisuu = 5;
+        //RenMondaisuu = 5;
+        RenMondaisuu = ToggleRenshuu.instance.toggleMondai;
+        Debug.Log("RenMondaisuu"+RenMondaisuu);
         RenSeikai = 0;
         GameManager.instance.RcorrectCount = 0;
         GameManager.instance.LoadGfontsize();
