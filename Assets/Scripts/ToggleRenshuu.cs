@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System;
 
 //練習問題の基本画面の出題メソッド
-//12月28日更新
+//4月27日更新
 
 public class ToggleRenshuu : MonoBehaviour
 {

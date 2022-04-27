@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
-//3月23に日更新
+//4月28に日更新
 
 public class TikaraQues : MonoBehaviour
 {
@@ -34,6 +34,8 @@ public class TikaraQues : MonoBehaviour
     public int TiMondaisuu;//単語解答の問題数の設定
     public int TiSeikai;//coin枚数を計算するために変数
     public bool isWord;//単語で解答するならtrue 1文字ずつ解凍するならfalse
+    public Toggle[] TiMondaiToggle;//問題数を選択するToggle
+    public int TiMondai;//トグルでの問題数保存
     public List<int> TikaQuesNum = new List<int>();//出題をシャッフルさせるため
 
     public enum TikaraType
@@ -86,11 +88,13 @@ public class TikaraQues : MonoBehaviour
         GameManager.instance.LoadGfontsize();
         GameManager.instance.LoadGKunrei();
         //出題数デバッグ用
-        TiMondaisuu = 5;
+        //TiMondaisuu = 5;
         TiQuesCount = 0;
         GameManager.instance.TiTangoCount=0;
         cd1 = GetComponent<HiraDictionary>();
         TiQuesManager.GetComponent<TspriteChange>().TiSChange();
+        TiMondaiLoad();
+        Debug.Log("TiMondai"+TiMondai);
         //Hebon(kunrei);
         //ShutudaiSlice(hoka);
         //isWord = true;
@@ -240,6 +244,8 @@ public class TikaraQues : MonoBehaviour
     {
         pipoEnemy.SetActive(true);
         TiQuesCount++;
+        string Mondai = TiMondaisuu.ToString();
+        TiQuesText.text = "／"+Mondai+"問";
 
         if (TiQuesCount > TiMondaisuu)
         {
@@ -371,6 +377,47 @@ public class TikaraQues : MonoBehaviour
             }
         }
     }
+     //出題数の設定
+    public void ClickTiMondai(){
+        if(TiMondaiToggle[0].isOn == true){
+            TiMondai = 10;
+            Debug.Log("TiMondai"+TiMondai);
+            ES3.Save("TiMondai",TiMondai,"TiMondai.es3");
+        }
+        else if(TiMondaiToggle[1].isOn == true){
+            TiMondai = 15;
+            Debug.Log("TiMondai"+TiMondai);
+            ES3.Save("TiMondai",TiMondai,"TiMondai.es3");
+        }
+        else if(TiMondaiToggle[2].isOn == true){
+            TiMondai = 20;
+            Debug.Log("TiMondai"+TiMondai);
+             ES3.Save("TiMondai",TiMondai,"TiMondai.es3");
+        }
+        
+    }
+    public void TiMondaiLoad(){
+        TiMondai = ES3.Load("TiMondai","TiMondai.es3",10);
+        if(TiMondai == 10){
+            TiMondaiToggle[0].isOn = true;
+            TiMondaisuu = 10;
+            TiTypingManager.instance.TyMondaisuu = 10;
+            Debug.Log("TiMondai"+TiMondai);
+            }
+        else if(TiMondai==15){
+            TiMondaiToggle[1].isOn = true;
+            TiMondaisuu = 15;
+            TiTypingManager.instance.TyMondaisuu = 15;
+            Debug.Log("TiMondai"+TiMondai);
+        }
+        else if(TiMondai==20){
+            TiMondaisuu = 20;
+            TiTypingManager.instance.TyMondaisuu = 20;
+            TiMondaiToggle[2].isOn = true;
+            Debug.Log("TiMondai"+TiMondai);
+        }
+    }
+
     //出題をシャッフルする
     public void ShuffleTikaQuesNum()
     {

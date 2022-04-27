@@ -89,10 +89,12 @@ public class TiTypingManager : MonoBehaviour
        cd = GetComponent<HiraDictionary>();
 
        //デバック用出題数
-       TyMondaisuu = 5;
+       //TyMondaisuu = 5;
        TyQuesCount =0;
        GameManager.instance.TyHiraganaCount=0;
        q = 0;
+       TikaraQues.instance.TiMondaiLoad();
+       Debug.Log("TyMondaisuu"+TyMondaisuu);
         //Output();
         //SetListTi();
         //TiDebugTable();
@@ -160,6 +162,8 @@ void ChangeKtoH(string moji){
        TipipoEnemy.SetActive(true);
        TyQuesCount++;
        TyQuesCountText.text = TyQuesCount.ToString();
+       string Mondai = TyMondaisuu.ToString();
+       TyQuesText.text = "／"+Mondai+"問";
        //出題数のカウントがMondaisuuを超えたらGradePanelが出てくる
        if (TyQuesCount > TyMondaisuu)
         {
