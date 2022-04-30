@@ -37,6 +37,7 @@ public class TikaraQues : MonoBehaviour
     public Toggle[] TiMondaiToggle;//問題数を選択するToggle
     public int TiMondai;//トグルでの問題数保存
     public List<int> TikaQuesNum = new List<int>();//出題をシャッフルさせるため
+    public GameObject PanelParent;//画面遷移の親
 
     public enum TikaraType
     {
@@ -185,13 +186,37 @@ public class TikaraQues : MonoBehaviour
                     ShuffleTikaQuesNum();
                     Debug.Log("4");
                     //DebugTable();
+                   
                     ShutudaiPanel.SetActive(true);
                     TKantan();
                 }
                 else
                 {
+
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode = 4;
+                    TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.ShuffleQuesNum();
+                    TiTypingManager.instance.Output();
+                }
+                break;
+
+                case "Button5":
+                if (isWord == true)
+                {
+                    TcurrentMode = 1;
+                    SetList();
+                    ShuffleTikaQuesNum();
+                    Debug.Log("1");
+                    //DebugTable();
+                    ShutudaiPanel.SetActive(true);
+                    TKantan();
+
+                }
+                else
+                {
+                    Shutudai2Panel.SetActive(true);
+                    TiTypingManager.instance.TicurrentMode = 1;
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
                     TiTypingManager.instance.Output();
