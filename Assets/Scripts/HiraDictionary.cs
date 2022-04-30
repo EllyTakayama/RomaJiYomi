@@ -87,8 +87,13 @@ public class HiraDictionary : MonoBehaviour
         {"bya",101},{"byu",102},{"byo",103},
         {"pya",104},{"pyu",105},{"pyo",106},
         {"va",107},{"vi",108},{"vu",107},{"ve",108},{"vo",109},
+        //ヘボン長音
         {"rā",38},{"rī",39},{"rū",40},{"rē",41},{"rō",42},
-        {"bā",61},
+        {"bā",61},{"chā",77},{"tyā",77},
+
+        //訓令長音
+        {"râ",38},{"rî",39},{"rû",40},{"rê",41},{"rô",42},
+        {"bâ",61},{"châ",77},{"tyâ",77},
         
        
         {"sha",74},{"shu",75}, {"sho",76},{"ssyo",76},
@@ -136,10 +141,14 @@ public class HiraDictionary : MonoBehaviour
         {"BYA",101},{"BYU",102},{"BYO",103},
         {"PYA",104},{"PYU",105},{"PYO",106},
         {"VA",107},{"VI",108},{"VU",107},{"VE",108},{"VO",109},
+        //ヘボン長音
         {"RĀ",38},{"RĪ",39},{"RŪ",40},{"RĒ",41},{"RŌ",42},
-        {"BĀ",61},
+        {"BĀ",61},{"CHĀ",77},{"TYĀ",77},
          
-       
+         //訓令長音
+        {"RÂ",38},{"RÎ",39},{"RÛ",40},{"RÊ",41},{"RÔ",42},
+        {"BÂ",61},{"CHÂ",77},{"TYÂ",77},
+
         {"SHA",74},{"SHU",75}, {"SHO",76},
         {"CHA",77}, {"CHU",78},{"CHO",79},
 
@@ -154,13 +163,22 @@ public class HiraDictionary : MonoBehaviour
         {"ZI","JI"}, {"ZYA","JA"}, {"ZYU","JU"},{"ZYO","JO"}, 
         {"SYA","SHA"},{"SYU","SHU"}, {"SYO","SHO"},
         {"TYA","CHA"}, {"TYU","CHU"},{"TYO","CHO"},
-        {"JYA","JA"},{"JYU","JU"}, {"JYO","JO"},
+        {"JYA","JA"},{"JYU","JU"}, {"JYO","JO"},{"TYĀ","CHĀ"},
+       
+        //訓令長音
+        {"RÂ","RĀ"},{"RÎ","RĪ"},{"RÛ","RŪ"},{"RÊ","RĒ"},{"RÔ","RŌ"},
+        {"BÂ","BĀ"},{"CHÂ","CHĀ"},
 
         //小文字
         {"si","shi"}, {"ti","chi"},{"tu","tsu"}, {"hu","fu"},
         {"zi","ji"},{"zya","ja"}, {"zyu","ju"}, {"zyo","jo"}, 
         {"sya","sha"},{"syu","shu"}, {"syo","sho"},
         {"tya","cha"}, {"tyu","chu"},{"tyo","cho"},
+        {"tyā","chā"},
+
+        //訓令長音
+        {"râ","rā"},{"rî","rī"},{"rû","rū"},{"rê","rē"},{"rô","rō"},
+        {"bâ","bā"},{"châ","chā"},{"tyâ","chā"},
 
     };
     //大文字
@@ -191,7 +209,7 @@ public class HiraDictionary : MonoBehaviour
         {"GYA","GYA"},{"GYU","GYU"},{"GYO","GYO"},
         {"ZYA","JA"},{"ZYU","JU"},{"ZYO","JO"},
         {"DYA","DYA"},{"DYU","DYU"},{"DYO","DYO"},
-        {"BYA","BYA"},{"BYU","BYU"},{"BYOょ","BYO"},
+        {"BYA","BYA"},{"BYU","BYU"},{"BYO","BYO"},
         {"PYA","PYA"},{"PYU","PYU"},{"PYO","PYO"},
         {"VA","VA"},{"VI","VI"},{"VU","VU"},{"VE","VE"},{"VO","VO"},
 

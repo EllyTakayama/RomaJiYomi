@@ -244,10 +244,11 @@ public class TikaraQues : MonoBehaviour
     {
         pipoEnemy.SetActive(true);
         TiQuesCount++;
-        string Mondai = TiMondaisuu.ToString();
+        string Mondai = TiMondai.ToString();
+        Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
 
-        if (TiQuesCount > TiMondaisuu)
+        if (TiQuesCount > TiMondai)
         {
             TiSeikai = GameManager.instance.TiTangoCount;
             GameManager.instance.LoadCoinGoukei();
@@ -381,17 +382,17 @@ public class TikaraQues : MonoBehaviour
     public void ClickTiMondai(){
         if(TiMondaiToggle[0].isOn == true){
             TiMondai = 10;
-            Debug.Log("TiMondai"+TiMondai);
+            Debug.Log("TiMondai10,"+TiMondai);
             ES3.Save("TiMondai",TiMondai,"TiMondai.es3");
         }
         else if(TiMondaiToggle[1].isOn == true){
             TiMondai = 15;
-            Debug.Log("TiMondai"+TiMondai);
+            Debug.Log("TiMondai15,"+TiMondai);
             ES3.Save("TiMondai",TiMondai,"TiMondai.es3");
         }
         else if(TiMondaiToggle[2].isOn == true){
             TiMondai = 20;
-            Debug.Log("TiMondai"+TiMondai);
+            Debug.Log("TiMondai20,"+TiMondai);
              ES3.Save("TiMondai",TiMondai,"TiMondai.es3");
         }
         
@@ -400,19 +401,13 @@ public class TikaraQues : MonoBehaviour
         TiMondai = ES3.Load("TiMondai","TiMondai.es3",10);
         if(TiMondai == 10){
             TiMondaiToggle[0].isOn = true;
-            TiMondaisuu = 10;
-            TiTypingManager.instance.TyMondaisuu = 10;
             Debug.Log("TiMondai"+TiMondai);
             }
         else if(TiMondai==15){
             TiMondaiToggle[1].isOn = true;
-            TiMondaisuu = 15;
-            TiTypingManager.instance.TyMondaisuu = 15;
             Debug.Log("TiMondai"+TiMondai);
         }
         else if(TiMondai==20){
-            TiMondaisuu = 20;
-            TiTypingManager.instance.TyMondaisuu = 20;
             TiMondaiToggle[2].isOn = true;
             Debug.Log("TiMondai"+TiMondai);
         }

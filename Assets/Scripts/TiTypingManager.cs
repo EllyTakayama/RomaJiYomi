@@ -31,13 +31,13 @@ public class TiTypingManager : MonoBehaviour
     public List<int> QuesNum = new List<int>();//出題をシャッフルさせるため
     public int q;//出題のシャッフル用の変数
     public string textcolor;
-    public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
+    public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō|Â|Ê|Î|Ô|Û|â|ê|î|ô|û";
     public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
     public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
     public int TyQuesCount;//出題数をカウントする
     public Text TyQuesText;//出題の進行数表示
     public Text TyQuesCountText;//問題数を表示
-    public int TyMondaisuu;//単語解答の問題数の設定
+    //単語解答の問題数の設定 TikaraQues.instane.TiMondai;
     public int TySeikai;//coin枚数を計算するために変数
 
     //テキストデータを格納
@@ -89,12 +89,11 @@ public class TiTypingManager : MonoBehaviour
        cd = GetComponent<HiraDictionary>();
 
        //デバック用出題数
-       //TyMondaisuu = 5;
+      
        TyQuesCount =0;
        GameManager.instance.TyHiraganaCount=0;
        q = 0;
-       TikaraQues.instance.TiMondaiLoad();
-       Debug.Log("TyMondaisuu"+TyMondaisuu);
+       //TikaraQues.instance.TiMondaiLoad();
         //Output();
         //SetListTi();
         //TiDebugTable();
@@ -162,10 +161,10 @@ void ChangeKtoH(string moji){
        TipipoEnemy.SetActive(true);
        TyQuesCount++;
        TyQuesCountText.text = TyQuesCount.ToString();
-       string Mondai = TyMondaisuu.ToString();
+       string Mondai = TikaraQues.instance.TiMondai.ToString();
        TyQuesText.text = "／"+Mondai+"問";
        //出題数のカウントがMondaisuuを超えたらGradePanelが出てくる
-       if (TyQuesCount > TyMondaisuu)
+       if (TyQuesCount > TikaraQues.instance.TiMondai)
         {
             TySeikai = GameManager.instance.TyHiraganaCount;
             GameManager.instance.LoadCoinGoukei();
@@ -255,14 +254,13 @@ void ChangeKtoH(string moji){
                 }
         Debug.Log("qNum"+_qNum);
         //qNumに代入するQuesNum[q]のインデックスｑを＋＋して次回出題時に問題が変更される様にする
-        
+        }
         //もしインデックスがQuewNumの要素数を上回る倍はインデックス用変数ｑを0にする
+        q++;
+        Debug.Log("q+"+q);
         if(q > QuesNum.Count-1){
             q=0;
         }
-        }
-        q++;
-        Debug.Log("q+"+q);
     }
    
 

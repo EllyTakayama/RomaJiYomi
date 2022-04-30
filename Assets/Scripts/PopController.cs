@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine;//4月29日更新
 
 public class PopController : MonoBehaviour
 {
@@ -23,6 +23,7 @@ public class PopController : MonoBehaviour
             {
                 popup1.transform.GetChild(i).transform.gameObject.SetActive(true);
             }
+            TikaraQues.instance.TiMondaiLoad();
         }
 
     }
