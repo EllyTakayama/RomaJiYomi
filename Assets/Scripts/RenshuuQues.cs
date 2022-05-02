@@ -249,6 +249,7 @@ public class RenshuuQues : MonoBehaviour
             Debug.Log("r"+renshuuNum[i]);}
         RenshuuCount=0;
         Renshuu();
+        
 
     }
     public void Renshuu(){

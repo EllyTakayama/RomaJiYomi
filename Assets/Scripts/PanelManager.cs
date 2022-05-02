@@ -14,30 +14,35 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
+        SoundManager.instance.PlayBGM("TopScene");
         SceneManager.LoadScene("TopScene");
     }
     public void KihonSceneMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
+        SoundManager.instance.PlayBGM("KihonScene");
         SceneManager.LoadScene("KihonScene");
     }
     public void RenshuuSceneMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
+        SoundManager.instance.PlayBGM("RenshuuScene");
         SceneManager.LoadScene("RenshuuScene");
     }
     public void TikaraSceneMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
+        SoundManager.instance.PlayBGM("TikaraScene");
         SceneManager.LoadScene("TikaraScene");
     }
     public void GachaSceneMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlaySousaSE(2);
+        SoundManager.instance.PlayBGM("GachaScene");
         SceneManager.LoadScene("GachaScene");
     }
 

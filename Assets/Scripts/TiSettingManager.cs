@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-//3月21日更新
+//5月2日更新
 
-public class ReSettingManager : MonoBehaviour
+public class TiSettingManager : MonoBehaviour
 {
+    
     public Toggle tallToggle;//大文字の選択 /A
     public Toggle smallToggle;//小文字の選択 /a
     public Toggle hebonToggle;//ヘボン式の選択 /shi
@@ -16,7 +17,6 @@ public class ReSettingManager : MonoBehaviour
     public bool canAnswer;//Buttonの不具合を解消するため連続してボタンを押せなないよう制御
 
     public bool TestfontSize;//テスト用データ
-    [SerializeField] private GameObject RenshuuPanel;
 
     void Start()
     {
@@ -30,65 +30,61 @@ public class ReSettingManager : MonoBehaviour
 
     public void FontSelectToggle(){
         if(tallToggle.isOn == true){
-
+            //大文字選択
             GameManager.instance.isGfontsize=true;
+            
             GameManager.instance.SaveGfontsize();
+            Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
         }
         else{
             //小文字が選択されているなら
             GameManager.instance.isGfontsize= false;
             GameManager.instance.SaveGfontsize();
-             Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
+           
         }
-        Debug.Log("クリックGameMfontSize"+GameManager.instance.isGfontsize);
+
+        Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
     }
 
     public void FontTogLoad(){
+       
         GameManager.instance.LoadGfontsize();
-        Debug.Log("RロードGameMfontSize"+GameManager.instance.isGfontsize);
+        Debug.Log("1GameMfontSize"+GameManager.instance.isGfontsize);
          if(GameManager.instance.isGfontsize == true){
-           tallToggle.isOn = true;
+             tallToggle.isOn = true;
             smallToggle.isOn = false;
-             }
-         else{
+            }
+             else
+             {
             tallToggle.isOn = false;
             smallToggle.isOn = true;
                   }
-
+       
         Debug.Log("ロードtallToggle"+tallToggle.isOn);
         Debug.Log("ロードsmallToggle"+smallToggle.isOn);
-        Debug.Log("ロードGameMfontSize"+GameManager.instance.isGfontsize);
-    }
-    public void IsKunrei(){
-         if(tallToggle.isOn == false){
-             Debug.Log("tall");
-         }else{
-              Debug.Log("small");
-         }
+        Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
     }
 
     public void ShosikiSelectToggle(){
         if(kunreiToggle.isOn == true){
             //訓令選択はtrue
-               
                 GameManager.instance.isGKunrei = true;
                 GameManager.instance.SaveGKunrei();
+           
         }
         else{
             //ヘボン式が選択されているならfalse
             GameManager.instance.isGKunrei = false;
             GameManager.instance.SaveGKunrei();
-            
+           
+          
         }
-         Debug.Log("クリックkunreiToggle"+kunreiToggle.isOn);
-        Debug.Log("クリックhebonToggle"+hebonToggle.isOn);
-         Debug.Log("クリックGameManagerisGKunrei"+GameManager.instance.isGKunrei);
-
+          Debug.Log("クリックisGKunrei"+GameManager.instance.isGKunrei);
     }
 
     public void ShosikiTogLoad(){
         GameManager.instance.LoadGKunrei();
-        Debug.Log("ロードGameKunrei"+GameManager.instance.isGKunrei);
+        Debug.Log("GameKunrei"+GameManager.instance.isGKunrei);
         if(GameManager.instance.isGKunrei ==true){
             kunreiToggle.isOn = true;
             hebonToggle.isOn = false;
@@ -108,14 +104,16 @@ public class ReSettingManager : MonoBehaviour
             SoundManager.instance.BGMmute();
             GameManager.instance.isBgmOn = false;
             GameManager.instance.SaveGbgm();
-            
+            //ES3.Save<bool>("BGM_OnOf", bgmToggle.isOn);
+            //Debug.Log("BGM"+bgmToggle.isOn);
             } 
         else if(bgmToggle.isOn ==true){
         SoundManager.instance.UnmuteBGM();
-        SoundManager.instance.PlayBGM("RenshuuScene");
+        SoundManager.instance.PlayBGM("TikaraScene");
         GameManager.instance.isBgmOn = true;
         GameManager.instance.SaveGbgm();
-        
+        //ES3.Save<bool>("BGM_OnOf", bgmToggle.isOn);
+        //Debug.Log("クリックBGM"+bgmToggle.isOn);
         }
         Debug.Log("クリックBGMtoggle"+bgmToggle.isOn);//toggleのboolの状態をisOnで取得
       
@@ -125,16 +123,16 @@ public class ReSettingManager : MonoBehaviour
             SoundManager.instance.SEmute(); 
             GameManager.instance.isSEOn = false;
             GameManager.instance.SaveGse();
-           
+            //ES3.Save<bool>("SE_OnOf", seToggle.isOn); 
             Debug.Log("クリックSE"+seToggle.isOn);
             Debug.Log("GisSEon"+GameManager.instance.isSEOn);
             } 
         else{
-           
+            //seToggle.isOn =true;
             SoundManager.instance.UnmuteSE();
             GameManager.instance.isSEOn = true;
             GameManager.instance.SaveGse();
-           
+            //ES3.Save<bool>("SE_OnOf", seToggle.isOn); 
              Debug.Log("SESave"+seToggle.isOn);
               Debug.Log("GisSEon"+GameManager.instance.isSEOn);
         }
@@ -156,7 +154,7 @@ public class ReSettingManager : MonoBehaviour
      Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
-             SoundManager.instance.PlayBGM("RenshuuScene");
+             //SoundManager.instance.PlayBGM("TikaraScene");
              }
         else{
             SoundManager.instance.BGMmute();
@@ -185,13 +183,6 @@ public class ReSettingManager : MonoBehaviour
         }
         Debug.Log("ロードSE"+seToggle.isOn);
 
-    }
-
-    public void ReSettingMove(){
-        RenshuuPanel.SetActive(false);
-    }
-    public void RenshuuTopMove(){
-        RenshuuPanel.SetActive(true);
     }
 
 }

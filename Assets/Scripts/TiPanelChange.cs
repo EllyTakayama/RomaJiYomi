@@ -16,6 +16,7 @@ public class TiPanelChange : MonoBehaviour
     {
         mPanel1,
         mPanel2,
+        mPanel3,
         ShutudaiPanel,
         Shutudai2Panel,
         TigradePanel,
@@ -45,6 +46,13 @@ public class TiPanelChange : MonoBehaviour
             case Panel.mPanel2:
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-1000, 0);
+                LeftButton.SetActive(true);
+                RightButton.SetActive(true);
+                break;
+            
+            case Panel.mPanel3:
+                SoundManager.instance.StopSE();
+                transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
                 RightButton.SetActive(false);
                 break;
@@ -79,13 +87,21 @@ public class TiPanelChange : MonoBehaviour
         ShowTikaraPanel(Panel.mPanel2);
         //Debug.Log("2");
         }
+        else if(currentPanel == Panel.mPanel2){
+        ShowTikaraPanel(Panel.mPanel3);
+        //Debug.Log("2");
+        }
     
     }
     public void OnLeftButton(){
         if(currentPanel == Panel.mPanel2 ){
         ShowTikaraPanel(Panel.mPanel1);
         //Debug.Log("2");
-    }
+        }
+        else if(currentPanel == Panel.mPanel3 ){
+        ShowTikaraPanel(Panel.mPanel2);
+        //Debug.Log("2");
+        }
     }
     public void OnButton(){
 

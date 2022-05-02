@@ -40,15 +40,23 @@ public class SoundManager : MonoBehaviour
             default:
             case "TopScene":
                 audioSourceBGM.clip = audioClipsBGM[0];
+                Debug.Log("BGM,TopScene");
                 break;
             case "KihonScene":
                 audioSourceBGM.clip = audioClipsBGM[1];
+                Debug.Log("BGM,KihonScene");
                 break;
             case "RenshuuScene":
                 audioSourceBGM.clip = audioClipsBGM[2];
+                Debug.Log("BGM,RenshuuScene");
                 break;
             case "TikaraScene":
                 audioSourceBGM.clip = audioClipsBGM[3];
+                Debug.Log("BGM,TikaraScene");
+                break;
+            case "GachaScene":
+                audioSourceBGM.clip = audioClipsBGM[1];
+                 Debug.Log("BGM,GachaScene");
                 break;
             
         }
