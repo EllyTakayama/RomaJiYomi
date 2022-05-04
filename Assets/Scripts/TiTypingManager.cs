@@ -168,7 +168,7 @@ void ChangeKtoH(string moji){
         {
             TySeikai = GameManager.instance.TyHiraganaCount;
             GameManager.instance.LoadCoinGoukei();
-            GameManager.instance.TyCoin = TySeikai * 1;
+            GameManager.instance.TyCoin = TySeikai * 3;
             GameManager.instance.totalCoin += GameManager.instance.TyCoin;
             GameManager.instance.SaveCoinGoukei();
             TipipoEnemy.SetActive(false);

@@ -5316,7 +5316,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 711259083}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.8999999
+  m_Size: 0.9
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6811,14 +6811,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.990566, g: 0.964598, b: 0.6401299, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 45eee63b3aba842a39a36119fb2d3706, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8d1b6211af57d42a59726aee57eb6167, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18660,6 +18660,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1755563901}
   - component: {fileID: 1755563900}
+  - component: {fileID: 1755563903}
+  - component: {fileID: 1755563902}
   m_Layer: 0
   m_Name: AdMobManager
   m_TagString: Untagged
@@ -18693,6 +18695,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1755563902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755563899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dac04d1e31ce405a843b0c9fa4d2777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1755563903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1755563899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e4fdd4bb8a044cd97b1b9d1f1883e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1762479641
 GameObject:
   m_ObjectHideFlags: 0
