@@ -12,10 +12,8 @@ public class PanelChange : MonoBehaviour
         Panel0,
         Panel1,
         Panel2,
-        Panel3,
         Panel4,
         Panel5,
-        Panel6,
     }
     // 現在表示しているパネル
     Panel currentPanel;
@@ -100,14 +98,10 @@ public class PanelChange : MonoBehaviour
                 LeftButton.SetActive(true);
                 RightButton.SetActive(false);
                 QuesManager.instance.OnRomaji();
-                Invoke("ReKiriPanel",0.8f);
-                Invoke("ReQues",0.8f);
+                //Play();
+                Invoke("ReKiriPanel",1.0f);
+                Invoke("ReQues",1.0f);
                 //QuesManager.instance.RomajiQues();
-                break;
-
-            case Panel.Panel3:
-                transform.localPosition = new Vector2(-3000, 0);
-                 RightButton.SetActive(false);
                 break;
             
             case Panel.Panel4:
@@ -127,12 +121,10 @@ public class PanelChange : MonoBehaviour
                 //RightButton.SetActive(true);
                 break;
 
-            case Panel.Panel6:
-                transform.localPosition = new Vector2(-3000, 1500);
-                //LeftButton.SetActive(false);
-                RightButton.SetActive(false);
-                break;
         }
+    }
+    public void Play(){
+        KiriPanel.GetComponent<KiriPanel>().OffKiriPanel();
     }
     public void ReKiriPanel(){
         KiriPanel.GetComponent<KiriPanel>().OffKiriPanel();
@@ -152,42 +144,22 @@ public class PanelChange : MonoBehaviour
         //Debug.Log("2");
         }
 
-    else if(currentPanel == Panel.Panel2 ){
-        ShowPanel(Panel.Panel3);
-        //Debug.Log("3");
-        }
-
     else if(currentPanel == Panel.Panel4 ){
         ShowPanel(Panel.Panel5);
         //Debug.Log("5");
-    }
-    else if(currentPanel == Panel.Panel5 ){
-        ShowPanel(Panel.Panel6);
-        //Debug.Log("6");
         }
     }
     public void OnLeftButton(){
-        if(currentPanel == Panel.Panel3 ){
-        ShowPanel(Panel.Panel2);
-        //Debug.Log("2");
-    }
-    else if(currentPanel == Panel.Panel2){
+       
+    if(currentPanel == Panel.Panel2){
         ShowPanel(Panel.Panel1);
         //Debug.Log("1");
-        }
-
-    else if(currentPanel == Panel.Panel6){
-        ShowPanel(Panel.Panel5);
-        //Debug.Log("5");
         }
 
     else if(currentPanel == Panel.Panel5){
         ShowPanel(Panel.Panel4);
         Debug.Log("4");
         }
-    /*else if(currentPanel == Panel.Panel1 ){
-        ShowPanel(Panel.Panel0);
-        Debug.Log("0");}*/
         
     }
 

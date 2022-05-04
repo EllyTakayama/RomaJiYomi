@@ -50,7 +50,7 @@ public class DOaText : MonoBehaviour
 
     public void Atext(){
         aText.DOText("\nあ行のアルファベットを"
-        +"\n覚えましょう。"
+        +"\nおぼえましょう。"
         , 2f)
         .OnComplete(MoveButtons);
         Invoke("LateSE",0.0f);
