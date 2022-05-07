@@ -10,8 +10,8 @@ public class KiriPanel : MonoBehaviour
     [SerializeField]
     Image image;
 
-    [SerializeField]
-    Image loadingImage;  // トランジション用の画像
+    //[SerializeField]
+    //Image loadingImage;  // トランジション用の画像
     // Start is called before the first frame update
     void Start()
     {
