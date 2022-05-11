@@ -643,7 +643,7 @@ GameObject:
   - component: {fileID: 69426293}
   - component: {fileID: 69426292}
   m_Layer: 5
-  m_Name: kusabanaButton11
+  m_Name: namae1Button11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5316,7 +5316,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 711259083}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9
+  m_Size: 0.8999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -5797,6 +5797,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 488169680}
+  m_CullTransparentMesh: 1
+--- !u!1 &490278265
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 490278266}
+  - component: {fileID: 490278268}
+  - component: {fileID: 490278267}
+  m_Layer: 5
+  m_Name: backImage
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &490278266
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490278265}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1153991089}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 750, y: 1350}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &490278267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490278265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.59607846, g: 0.85882354, b: 0.83137256, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &490278268
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 490278265}
   m_CullTransparentMesh: 1
 --- !u!1 &497095549
 GameObject:
@@ -9167,6 +9242,10 @@ MonoBehaviour:
   Tdoubutu: {fileID: 4900000, guid: 6393341197d354459a2af3999bb7b487, type: 3}
   Ttabemono: {fileID: 4900000, guid: 2979141f2cc314bdc9907760ad2620b4, type: 3}
   Tseikatu: {fileID: 4900000, guid: 611cb3a4264604926966e52c391fb75a, type: 3}
+  Tkisetu: {fileID: 4900000, guid: e5e90a12f933b4e558827785692ae1cc, type: 3}
+  Tnorimono: {fileID: 4900000, guid: bebe403e9c0474393a2816ec7e122ae2, type: 3}
+  Tkusabana: {fileID: 4900000, guid: 8e8cd0632fb6e47638f08d7ce9361b43, type: 3}
+  Tchimei: {fileID: 4900000, guid: d7ba8aa6e2e40444bb72a0c18a311444, type: 3}
   Tromelines: []
 --- !u!4 &839093095
 Transform:
@@ -9234,6 +9313,10 @@ MonoBehaviour:
   Tyseikatu: {fileID: 4900000, guid: 4ab965fcd497f4539bcb4da4a418cca2, type: 3}
   Tydoubutu: {fileID: 4900000, guid: 47fdc9f65bdc84269b67bf24c77118c8, type: 3}
   Tytabemono: {fileID: 4900000, guid: 694fc399ff1194e6dbe889898c49be49, type: 3}
+  Tykisetu: {fileID: 4900000, guid: 41930be889b0944359baa999ed01ad33, type: 3}
+  Tynorimono: {fileID: 4900000, guid: ae7a85f01a66e4695a8ee5b2ac41b256, type: 3}
+  Tykusabana: {fileID: 4900000, guid: b2099a7293a5b41989ef5aab0879b4f1, type: 3}
+  Tychimei: {fileID: 4900000, guid: d4bde2d20ddaa4e84850d401915bba36, type: 3}
   _qNum: 0
   _aNum: 0
   _mojiNum: 0
@@ -9590,6 +9673,7 @@ RectTransform:
   - {fileID: 1220627650}
   - {fileID: 1978125763}
   - {fileID: 1714495024}
+  - {fileID: 1153991089}
   - {fileID: 1349976772}
   m_Father: {fileID: 85776877}
   m_RootOrder: 1
@@ -12252,6 +12336,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153056589}
   m_CullTransparentMesh: 1
+--- !u!1 &1153991088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1153991089}
+  - component: {fileID: 1153991091}
+  - component: {fileID: 1153991090}
+  m_Layer: 5
+  m_Name: FadePanel
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &1153991089
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153991088}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 490278266}
+  m_Father: {fileID: 870929419}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1153991090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153991088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1153991091
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1153991088}
+  m_CullTransparentMesh: 1
 --- !u!1 &1162740321
 GameObject:
   m_ObjectHideFlags: 0
@@ -14250,7 +14410,7 @@ RectTransform:
   - {fileID: 818511017}
   - {fileID: 1097563343}
   m_Father: {fileID: 870929419}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -15671,7 +15831,7 @@ GameObject:
   - component: {fileID: 1497174389}
   - component: {fileID: 1497174388}
   m_Layer: 5
-  m_Name: gyoujiButton9
+  m_Name: chimei2Button9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18883,7 +19043,7 @@ GameObject:
   - component: {fileID: 1772206278}
   - component: {fileID: 1772206277}
   m_Layer: 5
-  m_Name: chimeiButton12
+  m_Name: namae2Button12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20007,7 +20167,7 @@ GameObject:
   - component: {fileID: 1862232353}
   - component: {fileID: 1862232352}
   m_Layer: 5
-  m_Name: seikatuButton10
+  m_Name: miyojiButton10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20662,7 +20822,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "<size=30>\u4E2D\u90E8\u304B\u3089\u5317</size>\n\u5730\u540D1"
+  m_Text: "<size=30>\u3061\u3081\u3044</size>\n\u5730\u540D"
 --- !u!222 &1925800055
 CanvasRenderer:
   m_ObjectHideFlags: 0

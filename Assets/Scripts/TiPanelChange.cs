@@ -47,7 +47,7 @@ public class TiPanelChange : MonoBehaviour
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-1000, 0);
                 LeftButton.SetActive(true);
-                RightButton.SetActive(true);
+                RightButton.SetActive(false);
                 break;
             
             case Panel.mPanel3:

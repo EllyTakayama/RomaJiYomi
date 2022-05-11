@@ -52,10 +52,14 @@ public class TikaraQues : MonoBehaviour
     [SerializeField] TextAsset JinmeiRomajiT;
     [SerializeField] TextAsset TChimeiRomaji;
     [SerializeField] TextAsset Tentatei;
-    [SerializeField] TextAsset Tfood;
-    [SerializeField] TextAsset Tdoubutu;
-    [SerializeField] TextAsset Ttabemono;
-    [SerializeField] TextAsset Tseikatu;
+    [SerializeField] TextAsset Tfood;//Button1野菜・果物
+    [SerializeField] TextAsset Tdoubutu;//Button3・生き物
+    [SerializeField] TextAsset Ttabemono;//Button4・食べ物
+    [SerializeField] TextAsset Tseikatu;//Button2・日用品
+    [SerializeField] TextAsset Tkisetu;//Button5・きせつ行事
+    [SerializeField] TextAsset Tnorimono;//Button6・生活
+    [SerializeField] TextAsset Tkusabana;//Button7・草花
+    [SerializeField] TextAsset Tchimei;//Button8・地名
 
     //テキストデータを格納
     public string[,] TSTable;
@@ -111,20 +115,21 @@ public class TikaraQues : MonoBehaviour
     }
 
     public void Kantan(string buttonname)
-    {
-
-        switch (buttonname)
+    { switch (buttonname)
         {
             case "Button1":
                 if (isWord == true)
                 {
                     TcurrentMode = 1;
-                    SetList();
-                    ShuffleTikaQuesNum();
                     Debug.Log("1");
                     //DebugTable();
+                    /*
+                    SetList();
+                    ShuffleTikaQuesNum();
                     ShutudaiPanel.SetActive(true);
                     TKantan();
+                    */
+                    ButtonTKantan();
                 }
                 else
                 {
@@ -140,10 +145,10 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 2;
-                    SetList();
-                    ShuffleTikaQuesNum();
                     Debug.Log("2");
                     //DebugTable();
+                    SetList();
+                    ShuffleTikaQuesNum();
                     ShutudaiPanel.SetActive(true);
                     TKantan();
                 }
@@ -204,31 +209,88 @@ public class TikaraQues : MonoBehaviour
                 case "Button5":
                 if (isWord == true)
                 {
-                    TcurrentMode = 1;
-                    SetList();
-                    ShuffleTikaQuesNum();
-                    Debug.Log("1");
+                    TcurrentMode = 5;
+                    
+                    Debug.Log("5");
+                    ButtonTKantan();
                     //DebugTable();
-                    ShutudaiPanel.SetActive(true);
-                    TKantan();
 
                 }
                 else
                 {
-                    Shutudai2Panel.SetActive(true);
-                    TiTypingManager.instance.TicurrentMode = 1;
+                    TiTypingManager.instance.TicurrentMode = 5;
+                    /*Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.Output();
+                    TiTypingManager.instance.Output();*/
+                    ButtonTiKantan();
                 }
                 break;
+            
+            case "Button6":
+                if (isWord == true)
+                {
+                    TcurrentMode = 6;
+                    Debug.Log("6");
+                    ButtonTKantan();
+                   
+                }
+                else
+                {
+                    TiTypingManager.instance.TicurrentMode = 6;
+                    ButtonTiKantan();
+                }
+                break;
+            
+            case "Button7":
+                if (isWord == true)
+                {
+                    TcurrentMode = 7;
+                    Debug.Log("7");
+                    ButtonTKantan();
+                   
+                }
+                else
+                {
+                    TiTypingManager.instance.TicurrentMode = 7;
+                    ButtonTiKantan();
+                }
+                break;
+            
+            case "Button8":
+                if (isWord == true)
+                {
+                    TcurrentMode = 8;
+                    Debug.Log("8");
+                    ButtonTKantan();
+                   
+                }
+                else
+                {
+                    TiTypingManager.instance.TicurrentMode = 8;
+                    ButtonTiKantan();
+                }
+                break;
+
+
         }
 
-
-
     }
-    //string kunrei = "MO";
-    //string hoka = "SHOUGUN";
+    void ButtonTKantan(){
+                    SetList();
+                    ShuffleTikaQuesNum();
+                    ShutudaiPanel.SetActive(true);
+                    DebugTable();
+                    TKantan();
+                        }
+    void ButtonTiKantan(){
+                    Shutudai2Panel.SetActive(true);
+                    TiTypingManager.instance.SetListTi();
+                    TiTypingManager.instance.ShuffleQuesNum();
+                    DebugTable();
+                    TiTypingManager.instance.Output();
+}
+  
 
     void ShutudaiSlice(string moji)
     {
@@ -388,6 +450,22 @@ public class TikaraQues : MonoBehaviour
         else if (TcurrentMode == 4)
         {
             Tromelines = Ttabemono.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if (TcurrentMode == 5)
+        {
+            Tromelines = Tkisetu.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if (TcurrentMode == 6)
+        {
+            Tromelines = Tnorimono.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if (TcurrentMode == 7)
+        {
+            Tromelines = Tkusabana.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if (TcurrentMode == 8)
+        {
+            Tromelines = Tchimei.text.Split(new[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
         }
         // 行数と列数の取得
         yokoNumber = Tromelines[0].Split(',').Length;

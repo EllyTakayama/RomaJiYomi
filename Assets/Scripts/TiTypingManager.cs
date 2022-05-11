@@ -49,10 +49,14 @@ public class TiTypingManager : MonoBehaviour
     public int qCount;//出題のインデックス数を取得して管理
 
     //テキストデータを読み込む
-    [SerializeField] TextAsset Tyfood;
-    [SerializeField] TextAsset Tyseikatu;
-    [SerializeField] TextAsset Tydoubutu;
-    [SerializeField] TextAsset Tytabemono;
+    [SerializeField] TextAsset Tyfood;//Button1・野菜・果物
+    [SerializeField] TextAsset Tyseikatu;//Button2/日用品
+    [SerializeField] TextAsset Tydoubutu;//Button3/生き物
+    [SerializeField] TextAsset Tytabemono;//Button4/食べ物
+    [SerializeField] TextAsset Tykisetu;//Button5・きせつ行事
+    [SerializeField] TextAsset Tynorimono;//Button6/生活
+    [SerializeField] TextAsset Tykusabana;//Button7/草花
+    [SerializeField] TextAsset Tychimei;//Button8/地名
     //private DictionaryChange cd;
 
     //テキストアセットの何行の問題かの変数
@@ -386,6 +390,18 @@ void ChangeKtoH(string moji){
         }
         else if(TicurrentMode ==4){
              Tiromelines = Tytabemono.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if(TicurrentMode ==5){
+             Tiromelines = Tykisetu.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if(TicurrentMode ==6){
+             Tiromelines = Tynorimono.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if(TicurrentMode ==7){
+             Tiromelines = Tykusabana.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+        }
+        else if(TicurrentMode ==8){
+             Tiromelines = Tychimei.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         //textAsset の取得　改行で分ける
         // 行数と列数の取得
