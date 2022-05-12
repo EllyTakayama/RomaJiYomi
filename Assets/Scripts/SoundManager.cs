@@ -79,7 +79,10 @@ public class SoundManager : MonoBehaviour
         audioSourceSE.PlayOneShot(aKihon[index]); // SEを一度だけならす
         Debug.Log("AGSe");
     }
-    //0/正解 1/不正解
+    /* PlaySousaSE
+       0:正解 1:ヒュン・不正解時の正解Panel表示音 2:Scene変化のButton音 3:不正解音
+       4:poro・操作音 5:Button音2 6：Button音3（小）7：ルーレット　8：ルーレット結果
+    */
     public void PlaySousaSE(int index){
         audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす
     }
