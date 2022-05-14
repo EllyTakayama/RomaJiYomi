@@ -422,6 +422,7 @@ public class QuesManager : MonoBehaviour
         
     }
         public void SelectHoka(){
+            SoundManager.instance.PlaySousaSE(6);
             Hdropdown2.SetActive(true);
             //hokaImage.SetActive(true);
             Hdropdown.SetActive(false);
@@ -433,6 +434,7 @@ public class QuesManager : MonoBehaviour
             }
 
         public void Hiragana50Selet(){
+            SoundManager.instance.PlaySousaSE(6);
             Hdropdown2.SetActive(false);
             //hokaImage.SetActive(true);
             Hdropdown.SetActive(true);

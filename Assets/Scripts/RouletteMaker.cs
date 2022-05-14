@@ -153,6 +153,8 @@ public class RouletteMaker : MonoBehaviour
                 tmpArray[i].RoletteDestroy();
             }
             Debug.Log("tmpArra3"+tmpArray);
+            SoundManager.instance.StopSE();
+            SoundManager.instance.PlaySousaSE(5);
             RMaker();
         }
     }

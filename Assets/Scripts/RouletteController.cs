@@ -75,6 +75,7 @@ public class RouletteController : MonoBehaviour
         rouletteSpeed = Random.Range (30f, 50f);
         hiraganaImage.gameObject.SetActive (false);  
         startButton.gameObject.SetActive (false);
+        SoundManager.instance.PlaySousaSE(7);
         Invoke ("ShowStopButton", 0.2f);
         isPlaying = true;
     }
@@ -94,6 +95,7 @@ public class RouletteController : MonoBehaviour
     }
 
     private void ShowResult (float x) {
+        SoundManager.instance.StopSE();
         for (int i = 1; i <= rMaker.choices.Count; i++) {
             if (((rotatePerRoulette * (i - 1) <= x) && x <= (rotatePerRoulette * i)) ||
                 (-(360 - ((i - 1) * rotatePerRoulette)) >= x && x >= -(360 - (i * rotatePerRoulette)))) {
@@ -398,12 +400,14 @@ public class RouletteController : MonoBehaviour
             Debug.Log("i"+i+","+RCNum[i]);
         }
         GameManager.instance.RoulletteNum = new List<int>(RCNum);
+        SoundManager.instance.PlaySousaSE(8);
         resultText.text = result+"  ("+gyou+"行)" + "\nが選ばれた！";
         SetRoulette();
         
     }
 
     public void OnRCclick(int Bnum){
+               SoundManager.instance.PlaySousaSE(5);
                StopCoroutine(RCButton(Bnum));
                StartCoroutine(RCButton(Bnum));
                SoundManager.instance.PlaySE(RCNum[Bnum]);

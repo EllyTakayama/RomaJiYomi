@@ -31,7 +31,8 @@ public class TiTypingManager : MonoBehaviour
     public List<int> QuesNum = new List<int>();//出題をシャッフルさせるため
     public int q;//出題のシャッフル用の変数
     public string textcolor;
-    public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō|Â|Ê|Î|Ô|Û|â|ê|î|ô|û";
+    public string pattern = "Ā|Ī|Ū|Ē|Ō|ā|ī|ū|ē|ō";
+    public string pattern1 = "Â|Ê|Î|Ô|Û|â|ê|î|ô|û";
     public string Hebonpattern = "chi|tsu|CHI|TSU|shi|SHI";
     public string Hebonpattern2 = "ja|ju|jo|JA|JU|JO";
     public int TyQuesCount;//出題数をカウントする
@@ -187,7 +188,7 @@ void ChangeKtoH(string moji){
        k=3;//正解文字は2次元配列から取得　正解はインデックス3からスタート
        _mojiNum=0;//色を変える文字数の管理
         //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        //_qNum =13;
+        //_qNum =23;
         _qNum = QuesNum[q];//テキストアセットの縦の要素数から出題のインデックス用List QuesNumを作成 = QuesNum[q];
         _aNum = int.Parse(TiTable[_qNum,2]);
 
@@ -266,8 +267,6 @@ void ChangeKtoH(string moji){
             q=0;
         }
     }
-   
-
 
     public void PressButton(int Bnum){
         answerMoji = TiButtons[Bnum].GetComponentInChildren<Text>().text;
@@ -292,22 +291,47 @@ void ChangeKtoH(string moji){
         Debug.Log("mojisuu"+QuestionAnswer.Length);
         //正解した場合の文字の色を変えるための分岐
         if(QuestionAnswer.Length==1){
-            _mojiNum += QuestionAnswer.Length;
-        }
+            //もし長音単体なら2文字ぶん色変更
+            if(Regex.IsMatch(QuestionAnswer, pattern)){
+                _mojiNum += QuestionAnswer.Length+1;
+                 Debug.Log("1文字ヘボン対応");
+                }
+            else if(Regex.IsMatch(QuestionAnswer, pattern1)){
+                _mojiNum += QuestionAnswer.Length+1;
+                 Debug.Log("1文字訓令対応");
+                }
+            else{
+                    _mojiNum += QuestionAnswer.Length;
+                     Debug.Log("母音1文字対応");
+                }
+           
+            }
         else{
-            Debug.Log("mojisuu"+(QuestionAnswer.Length-2));
+            //Debug.Log("mojisuu"+(QuestionAnswer.Length-2));
             if(Regex.IsMatch(QuestionAnswer, pattern)){
                 _mojiNum += QuestionAnswer.Length;
+                Debug.Log("ヘボン長音");
+                }
+            else if(Regex.IsMatch(QuestionAnswer, pattern1)){
+                _mojiNum += QuestionAnswer.Length;
+                Debug.Log("訓令長音");
                 }
             else if(Regex.IsMatch(QuestionAnswer, Hebonpattern)){
-                _mojiNum += QuestionAnswer.Length-2;}
+                _mojiNum += QuestionAnswer.Length-2;
+                 Debug.Log("hebon対応");
+                }
             else if(QuestionAnswer.Contains("shi")||QuestionAnswer.Contains("SHI")){
-                _mojiNum += QuestionAnswer.Length-2;}
+                _mojiNum += QuestionAnswer.Length-2;
+                Debug.Log("SHI対応");
+                }
             else if(Regex.IsMatch(QuestionAnswer, Hebonpattern2)){
-                _mojiNum += QuestionAnswer.Length;}
+                _mojiNum += QuestionAnswer.Length;
+                 Debug.Log("hebon2対応");
+                }
     
             else{
                 _mojiNum += QuestionAnswer.Length-1;
+                Debug.Log("一般対応");
                 }
         }
         Debug.Log("moji"+_mojiNum);
@@ -317,6 +341,7 @@ void ChangeKtoH(string moji){
         qText.text = "<color=#E72929>"+textcolor.Substring(0,_mojiNum)+"</color>"+textcolor.Substring(_mojiNum);
         //answerNumで正解をカウント
         answerNum++;
+        Debug.Log("answerNum"+answerNum);
         TyPipoEffect = Instantiate(MagicHitEffect);
         //問題の正解カウントが設定された正解数を超えたらTiChangeQuesで新たな出題がされる
         if(answerNum>=_aNum){

@@ -82,6 +82,7 @@ public class DOaText : MonoBehaviour
                SoundManager.instance.StopSE();
                StopCoroutine(AButton(Bnum));
                StartCoroutine(AButton(Bnum));
+               SoundManager.instance.PlaySousaSE(5);
                SoundManager.instance.PlayAgSE(Bnum);
                SpawnB(Bnum);
                Debug.Log("Bnumber"+Bnum);

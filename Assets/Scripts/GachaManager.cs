@@ -42,6 +42,8 @@ public class GachaManager : MonoBehaviour
 	public GameObject flashImage;//ガチャの開く前BallImageオブジェクト
 	public Text coinText;//所持するcoinの枚数を表示する
 	//Gachaのセーブは他のSceneに影響ないはずなのでガチャないでセーブロードする
+	public GameObject RightButton;
+    public GameObject LeftButton;
 	
 	void Start(){
 		getNekoPanel.SetActive(false);
@@ -85,8 +87,15 @@ public class GachaManager : MonoBehaviour
             Debug.Log(i.ToString()+","+setumeis[i]);
             }
     }
+	public void OkButton(){
+		RightButton.SetActive(true);
+		LeftButton.SetActive(true);
+		getNekoPanel.SetActive(false);
+	}
 
 	public void GetDropItem(){
+		RightButton.SetActive(false);
+		LeftButton.SetActive(false);
 		// 各種辞書の初期化
 		//InitializeDicts();
         
