@@ -95,7 +95,7 @@ public class PanelChange : MonoBehaviour
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-2000, 0);
                 KiriPanel.SetActive(true);
-                LeftButton.SetActive(true);
+                LeftButton.SetActive(false);
                 RightButton.SetActive(false);
                 QuesManager.instance.OnRomaji();
                 //Play();

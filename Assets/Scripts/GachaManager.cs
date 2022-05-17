@@ -6,7 +6,6 @@ using System;//0217更新
 
 public class GachaManager : MonoBehaviour
 {
-
 	// アイテムのデータを保持する辞書
 	Dictionary<int, string> itemInfo;
 
@@ -147,6 +146,7 @@ public class GachaManager : MonoBehaviour
 	IEnumerator ItemGet(){
         yield return new WaitForSeconds(1.0f);
 		getNekoPanel.SetActive(true);
+		closeButton.SetActive(false);
 		nameText.text = "なにがでるかな？?";
 		openBallImage.SetActive(true);
 		nekoImage.SetActive(false);
@@ -155,13 +155,15 @@ public class GachaManager : MonoBehaviour
 		pOpenBallImage.SetActive(true);
 		yield return new WaitForSeconds(0.6f);
 		pOpenBallImage.SetActive(false);
+		string name = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
+		//nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nekoImage.SetActive(true);
 		nekochanImage.sprite = GetComponent<GachaItem>().ItemNeko[nekoNum];
 		flashImage.SetActive(true);
-		closeButton.SetActive(true);
-
 		//nameText.text = itemName + "\nをゲットした"
+		yield return new WaitForSeconds(0.4f);
+		closeButton.SetActive(true);
 
 	}
 

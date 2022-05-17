@@ -64,6 +64,7 @@ public class DOaPanel : MonoBehaviour
     IEnumerator AgyouPanel()
     {   QuesManager.instance.QuesCount = 0;
         yield return new WaitForSeconds(0.5f);
+        SoundManager.instance.PlaySousaSE(10);
         YattaText();
         yield return new WaitForSeconds(0.8f);
         
@@ -92,6 +93,8 @@ public class DOaPanel : MonoBehaviour
         stampImage.SetActive(false);
         nekoStaImage.SetActive(true);
         GameManager.instance.AcorrectCount=0;
+        SoundManager.instance.PlaySousaSE(11);
+        yield return new WaitForSeconds(0.2f);
         AretryButton.SetActive(true);
         AsonotaButton.SetActive(true);
 
@@ -112,6 +115,7 @@ public class DOaPanel : MonoBehaviour
     IEnumerator HiraganaPanel()
     {   QuesManager.instance.QuesCount1 = 0;
         yield return new WaitForSeconds(0.5f);
+        SoundManager.instance.PlaySousaSE(10);
         Yatta2Text();
         yield return new WaitForSeconds(0.8f);
         
@@ -140,6 +144,8 @@ public class DOaPanel : MonoBehaviour
         stamp1Image.SetActive(false);
         neko1StaImage.SetActive(true);
         GameManager.instance.HcorrectCount=0;
+        SoundManager.instance.PlaySousaSE(11);
+        yield return new WaitForSeconds(0.2f);
         retryButton.SetActive(true);
         sonotaButton.SetActive(true);
 

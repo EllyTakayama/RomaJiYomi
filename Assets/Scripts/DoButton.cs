@@ -7,18 +7,14 @@ using UnityEngine.UI;
 
 public class DoButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    
+    public void ButtonBig(){
+        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.2f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    public void ButtonBig(){
-        transform.DOScale(new Vector3(1.1f, 1.1f, 1f), 0.2f);
+    public void TextScale(){
+        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.8f, 1, 0.5f)
+        .SetRelative(true);
+        Debug.Log("textPunch");
     }
 }

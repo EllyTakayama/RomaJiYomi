@@ -81,7 +81,8 @@ public class RouletteController : MonoBehaviour
     }
 
     private void StopOnClick () {
-        slowDownSpeed = Random.Range (0.92f, 0.98f);
+        //ルーレットの停止時間の調整
+        slowDownSpeed = Random.Range (0.75f, 0.95f);//0.92-0.98f
         isStop = true;
         stopButton.gameObject.SetActive (false);
     }
@@ -402,6 +403,7 @@ public class RouletteController : MonoBehaviour
         GameManager.instance.RoulletteNum = new List<int>(RCNum);
         SoundManager.instance.PlaySousaSE(8);
         resultText.text = result+"  ("+gyou+"行)" + "\nが選ばれた！";
+        resultText.GetComponent<DoButton>().TextScale();
         SetRoulette();
         
     }
