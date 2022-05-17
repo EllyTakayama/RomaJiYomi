@@ -156,7 +156,8 @@ public class ReSettingManager : MonoBehaviour
      Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
-             SoundManager.instance.PlayBGM("RenshuuScene");
+             //SoundManager.instance.PlayBGM("RenshuuScene");
+             SoundManager.instance.PlayPanelBGM("SelectPanel");
              }
         else{
             SoundManager.instance.BGMmute();

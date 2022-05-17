@@ -19,6 +19,7 @@ public class DoRegrade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.instance.PlayPanelBGM("GradePanel");
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
@@ -27,6 +28,7 @@ public class DoRegrade : MonoBehaviour
         renTopButton.SetActive(false);
     }
     public void RgradePanel(){
+        SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
         renTopButton.SetActive(false);
         yattaneText.text = "";

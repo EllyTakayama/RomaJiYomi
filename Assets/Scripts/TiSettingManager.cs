@@ -154,6 +154,7 @@ public class TiSettingManager : MonoBehaviour
      Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
+             SoundManager.instance.PlayPanelBGM("SelectPanel");
              //SoundManager.instance.PlayBGM("TikaraScene");
              }
         else{

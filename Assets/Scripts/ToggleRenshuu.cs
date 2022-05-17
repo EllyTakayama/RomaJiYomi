@@ -416,6 +416,7 @@ public class ToggleRenshuu : MonoBehaviour
             }
             ShuffleM();
             RenMondai();
+            SoundManager.instance.PlayBGM("RenshuuScene");
             ShutudaiPanel.SetActive(true);
 
     }

@@ -18,6 +18,7 @@ public class DoTigrade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SoundManager.instance.PlayPanelBGM("GradePanel");
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
@@ -26,6 +27,7 @@ public class DoTigrade : MonoBehaviour
         renTopButton.SetActive(false);
     }
     public void TgradePanel(){
+        SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
         renTopButton.SetActive(false);
         yattaneText.text = "";
@@ -51,6 +53,7 @@ public class DoTigrade : MonoBehaviour
     IEnumerator TiGradePanel()
     { 
         yield return new WaitForSeconds(0.5f);
+        //SoundManager.instance.PlaySousaSE(10);
         YattaneText();
         yield return new WaitForSeconds(0.8f);
         //RenshuuQues.instance.QuesCount = "0";
@@ -66,10 +69,12 @@ public class DoTigrade : MonoBehaviour
     }
 
     public void CoinText(){
+        SoundManager.instance.PlaySousaSE(12);
         coinText.DOText("\nコインを"
         +Tikaracoin+"枚ゲット！"
         , 0.6f)
         .OnComplete(Coinhoka);
+        
         print("coinText");
         print("正解数"+Tikaracoin);
     }
@@ -102,6 +107,7 @@ public class DoTigrade : MonoBehaviour
 
     }
     public void RetryButton(){
+
         if(TikaraQues.instance.isWord == true){
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 

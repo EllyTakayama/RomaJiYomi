@@ -115,7 +115,9 @@ public class TikaraQues : MonoBehaviour
     }
 
     public void Kantan(string buttonname)
-    { switch (buttonname)
+    { 
+        SoundManager.instance.PlayBGM("TikaraScene");
+        switch (buttonname)
         {
             case "Button1":
                 if (isWord == true)

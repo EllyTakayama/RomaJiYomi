@@ -1785,7 +1785,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 195966343}
-  - component: {fileID: 195966344}
   - component: {fileID: 195966345}
   m_Layer: 0
   m_Name: SettingManager
@@ -1808,26 +1807,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &195966344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 195966342}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 226ee91ba3d2f48a4b05f82445e545ea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tallToggle: {fileID: 2002149385}
-  smallToggle: {fileID: 2030062122}
-  hebonToggle: {fileID: 321996536}
-  kunreiToggle: {fileID: 451698997}
-  bgmToggle: {fileID: 1710932943}
-  seToggle: {fileID: 264513702}
-  canAnswer: 0
-  TestfontSize: 0
 --- !u!114 &195966345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5316,7 +5295,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 711259083}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.8999999
+  m_Size: 0.9
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -21423,6 +21402,18 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
         m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 195966345}
+        m_TargetAssemblyTypeName: TiSettingManager, Assembly-CSharp
+        m_MethodName: SetBGMLoad
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

@@ -43,26 +43,21 @@ public class SoundManager : MonoBehaviour
                 Debug.Log("BGM,TopPanel");
                 break;
             case "GradePanel":
-                audioSourceBGM.clip = audioClipsBGM[1];
+                audioSourceBGM.clip = audioClipsBGM[6];
                 Debug.Log("BGM,GradePanel");
                 break;
             case "SelectPanel":
-                audioSourceBGM.clip = audioClipsBGM[2];
+                audioSourceBGM.clip = audioClipsBGM[5];
                 Debug.Log("BGM,SelectPanel");
-                break;
-            case "ShutudaiPanel":
-                audioSourceBGM.clip = audioClipsBGM[3];
-                Debug.Log("BGM,ShutudaiPane");
-                break;
-            case "TikaraPanel":
-                audioSourceBGM.clip = audioClipsBGM[1];
-                 Debug.Log("BGM,TikaraPanel");
                 break;
             
         }
         audioSourceBGM.Play();
     }
-    
+    /*0 TopScene　1:KihonScene 2:RenshuuScene 3:TikaraScene
+    4:GachaScene 5:SelectPanel 6:GradePanel
+
+    */
     public void PlayBGM(string sceneName)
     {
         audioSourceBGM.Stop();
@@ -86,7 +81,7 @@ public class SoundManager : MonoBehaviour
                 Debug.Log("BGM,TikaraScene");
                 break;
             case "GachaScene":
-                audioSourceBGM.clip = audioClipsBGM[1];
+                audioSourceBGM.clip = audioClipsBGM[4];
                  Debug.Log("BGM,GachaScene");
                 break;
             
@@ -114,6 +109,7 @@ public class SoundManager : MonoBehaviour
        0:正解 1:ヒュン・不正解時の正解Panel表示音 2:Scene変化のButton音 3:不正解音
        4:poro・操作音 5:Button音2 6：Button音3ぴ（小）7：ルーレット　8：ルーレット結果
        9:スワイプ（画面移動）音 10:GradePanelテキスト 11:GradePanelスタンプ音
+       12: Gradeファンファーレ
     */
     public void PlaySousaSE(int index){
         audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす
