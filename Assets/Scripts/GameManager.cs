@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
    public int RCoin;//RenshuuSceneの正解数に応じたコイン枚数
    public int TiCoin;//TikaraSceneの単語問題の正解数に応じたコイン枚数
    public int TyCoin;//TikaraSceneの1文字問題の正解数に応じたコイン枚数
+   public int beforeTotalCoin;//追加する前のコイン枚数　DOTweenのDOCountに使用
    public int totalCoin;//各Sceneのコイン枚数はこちらに追加していく
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
 

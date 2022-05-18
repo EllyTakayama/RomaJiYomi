@@ -14,6 +14,9 @@ public class DoRegrade : MonoBehaviour
     [SerializeField] private GameObject flashImage;
     [SerializeField] private GameObject retryButton;
     [SerializeField] private GameObject renTopButton;
+    [SerializeField] private GameObject coinAddImage;
+    [SerializeField] private Text coinAddText;
+
     public string RhiraganaCorrect;
     public string Rcoin;
     // Start is called before the first frame update
@@ -26,6 +29,7 @@ public class DoRegrade : MonoBehaviour
         flashImage.SetActive(false);
         retryButton.SetActive(false);
         renTopButton.SetActive(false);
+        coinAddImage.SetActive(false);
     }
     public void RgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
@@ -34,8 +38,8 @@ public class DoRegrade : MonoBehaviour
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
+        coinAddImage.SetActive(false);
 
-    
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
     
@@ -49,6 +53,7 @@ public class DoRegrade : MonoBehaviour
     { 
         yield return new WaitForSeconds(0.5f);
         YattaneText();
+        SoundManager.instance.PlaySousaSE(15);
         yield return new WaitForSeconds(0.8f);
         //RenshuuQues.instance.QuesCount = "0";
         
@@ -64,7 +69,7 @@ public class DoRegrade : MonoBehaviour
 
     public void CoinText(){
         coinText.DOText("\nコインを"
-        +Rcoin+"枚ゲット！"
+        +Rcoin+"枚ゲット"
         , 0.6f)
         .OnComplete(Coinhoka);
         print("coinText");
@@ -82,12 +87,33 @@ public class DoRegrade : MonoBehaviour
         flashImage.GetComponent<DOflash>().Flash18();
         yield return new WaitForSeconds(1.2f);
         flashImage.SetActive(false);
-
+        coinImage.SetActive(false);
        GameManager.instance.RcorrectCount=0;
        RenshuuQues.instance.RenshuuCount = 0;
        yield return new WaitForSeconds(0.2f);
+       SoundManager.instance.PlaySousaSE(14);
+       coinAddImage.SetActive(true);
+       coinAddText.GetComponent<DOCounter>().CountCoin2();
+       yield return new WaitForSeconds(2.2f);
+       SoundManager.instance.PlaySousaSE(8);
+       coinAddImage.GetComponent<DOScale>().BigScale2();
+       coinAddText.GetComponent<DOScale>().BigScale2();
+       yield return new WaitForSeconds(0.2f);
+
        retryButton.SetActive(true);
        renTopButton.SetActive(true);
 
     }
+    public void RenRetryButton(){
+         if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.PlayBGM("RenshuuScene");
+        }
+        //coinAddImage.Kill();
+        //coinAddText.Kill();
+        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            });
+    }
+    
 }

@@ -154,8 +154,10 @@ public class RouletteMaker : MonoBehaviour
             }
             Debug.Log("tmpArra3"+tmpArray);
             SoundManager.instance.StopSE();
-            SoundManager.instance.PlaySousaSE(5);
             RMaker();
         }
+    }
+    public void ToggleClick(){
+        SoundManager.instance.PlaySousaSE(6);
     }
 }

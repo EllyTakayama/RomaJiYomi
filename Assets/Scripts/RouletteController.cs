@@ -82,6 +82,7 @@ public class RouletteController : MonoBehaviour
 
     private void StopOnClick () {
         //ルーレットの停止時間の調整
+        SoundManager.instance.PlaySousaSE(13);
         slowDownSpeed = Random.Range (0.75f, 0.95f);//0.92-0.98f
         isStop = true;
         stopButton.gameObject.SetActive (false);

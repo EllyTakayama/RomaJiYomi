@@ -279,6 +279,7 @@ public class RenshuuQues : MonoBehaviour
        if(RenshuuCount > RenMondaisuu){
            RenSeikai = GameManager.instance.RcorrectCount;
            GameManager.instance.LoadCoinGoukei();
+           GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
            GameManager.instance.RCoin = RenSeikai*1;
            GameManager.instance.totalCoin += GameManager.instance.RCoin;
            GameManager.instance.SaveCoinGoukei();
