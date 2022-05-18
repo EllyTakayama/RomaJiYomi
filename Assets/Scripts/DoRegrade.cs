@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
-//3月18日更新
+//5月19日更新
 
 public class DoRegrade : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class DoRegrade : MonoBehaviour
     [SerializeField] private GameObject flashImage;
     [SerializeField] private GameObject retryButton;
     [SerializeField] private GameObject renTopButton;
+     [SerializeField] private GameObject rewardButton;//リワード広告ボタン
     [SerializeField] private GameObject coinAddImage;
     [SerializeField] private Text coinAddText;
 
@@ -29,12 +30,14 @@ public class DoRegrade : MonoBehaviour
         flashImage.SetActive(false);
         retryButton.SetActive(false);
         renTopButton.SetActive(false);
+        rewardButton.SetActive(false);
         coinAddImage.SetActive(false);
     }
     public void RgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
         renTopButton.SetActive(false);
+        rewardButton.SetActive(false);
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
@@ -87,7 +90,7 @@ public class DoRegrade : MonoBehaviour
         flashImage.GetComponent<DOflash>().Flash18();
         yield return new WaitForSeconds(1.2f);
         flashImage.SetActive(false);
-        coinImage.SetActive(false);
+        //coinImage.SetActive(false);
        GameManager.instance.RcorrectCount=0;
        RenshuuQues.instance.RenshuuCount = 0;
        yield return new WaitForSeconds(0.2f);
@@ -99,9 +102,10 @@ public class DoRegrade : MonoBehaviour
        coinAddImage.GetComponent<DOScale>().BigScale2();
        coinAddText.GetComponent<DOScale>().BigScale2();
        yield return new WaitForSeconds(0.2f);
-
        retryButton.SetActive(true);
        renTopButton.SetActive(true);
+       rewardButton.SetActive(true);
+       rewardButton.GetComponent<DOScale>().BigScale2();
 
     }
     public void RenRetryButton(){
@@ -113,6 +117,7 @@ public class DoRegrade : MonoBehaviour
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
+            Debug.Log("IDKill");
             });
     }
     
