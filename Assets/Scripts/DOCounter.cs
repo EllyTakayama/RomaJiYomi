@@ -20,9 +20,9 @@ public class DOCounter : MonoBehaviour
     */
 
     public void CountCoin2(){
-        int beforeCoin = GameManager.instance.beforeTotalCoin;
-        int totalCoin = GameManager.instance.totalCoin;
-        coinAddText.DOCounter(beforeCoin,totalCoin,2f);
+        //int beforeCoin = GameManager.instance.beforeTotalCoin;
+        //int totalCoin = GameManager.instance.totalCoin;
+        coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,2f);
         Debug.Log("DOCounter");
     }
 }

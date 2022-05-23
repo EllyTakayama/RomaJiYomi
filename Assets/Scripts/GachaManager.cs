@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;//0217更新
+using System;
+using DG.Tweening;
+//0524更新
 
 public class GachaManager : MonoBehaviour
 {
@@ -89,12 +91,20 @@ public class GachaManager : MonoBehaviour
 	public void OkButton(){
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
+		closeButton.SetActive(false);
 		getNekoPanel.SetActive(false);
+		DOTween.TweensById("idBigScale3").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
 	}
 
 	public void GetDropItem(){
+		SoundManager.instance.PlaySousaSE(16);
 		RightButton.SetActive(false);
 		LeftButton.SetActive(false);
+
 		// 各種辞書の初期化
 		//InitializeDicts();
         
@@ -148,19 +158,25 @@ public class GachaManager : MonoBehaviour
 		getNekoPanel.SetActive(true);
 		closeButton.SetActive(false);
 		nameText.text = "なにがでるかな？?";
+		SoundManager.instance.PlaySousaSE(4);
 		openBallImage.SetActive(true);
+		openBallImage.GetComponent<DOShake1>().ShakeBall();
 		nekoImage.SetActive(false);
-		yield return new WaitForSeconds(0.7f);
+		yield return new WaitForSeconds(1.0f);
 		openBallImage.SetActive(false);
 		pOpenBallImage.SetActive(true);
-		yield return new WaitForSeconds(0.6f);
+		pOpenBallImage.GetComponent<DOScale2>().OpenBall();
+		yield return new WaitForSeconds(1.0f);
 		pOpenBallImage.SetActive(false);
 		string name = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
 		//nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
+		nameText.GetComponent<DOScale>().BigScale3();
 		nekoImage.SetActive(true);
 		nekochanImage.sprite = GetComponent<GachaItem>().ItemNeko[nekoNum];
+		SoundManager.instance.PlaySousaSE(8);
 		flashImage.SetActive(true);
+		flashImage.GetComponent<DOflash>().Flash18();
 		//nameText.text = itemName + "\nをゲットした"
 		yield return new WaitForSeconds(0.4f);
 		closeButton.SetActive(true);
@@ -207,18 +223,18 @@ public class GachaManager : MonoBehaviour
 		return 0;
 	}
 
-/*0ゆうしゃネコ
-1おさかなくわえたネコ,2ふくめんネコ,3ねこかぶりネコ,4たまごかぶりネコ
-5カボチャかぶりネコ,6ガクランネコ,7スイカかぶりネコ,8まほうつかいネコ
-9メイドネコ　なつ,10ダイビングねこ,11ゆうれいネコ,12メイドネコ　ふゆ
-13ギャングネコ,14セーラーふくネコ,15てんしネコ,16にんぎょネコ
-17まおうネコ,18ねこかん　かつお,19ねこかん　しらす
-20ねこかん　サーモン,21キャットフードまぐろ,22キャットフードチキン
-23キャットフードかつお,24ねずみのおもちゃ,25ねこのぬいぐるみ
-26さかなのおもちゃ,27ラグビーボールおもちゃ,28テニスボールおもちゃ
-29かわいいくびわ,30ブラシ,31ねこシャンプー
-32ねこトリートメント,33みみベッド,34リボンクッション
-35キャットタワー*/
+     /*0ゆうしゃネコ
+	 1おさかなくわえたネコ,2ふくめんネコ,3ねこかぶりネコ,4たまごかぶりネコ
+	 5カボチャかぶりネコ,6ガクランネコ,7スイカかぶりネコ,8まほうつかいネコ
+	 9メイドネコ　なつ,10ダイビングねこ,11ゆうれいネコ,12メイドネコ　ふゆ
+	 13ギャングネコ,14セーラーふくネコ,15てんしネコ,16にんぎょネコ
+	 17まおうネコ,18ねこかん　かつお,19ねこかん　しらす
+	 20ねこかん　サーモン,21キャットフードまぐろ,22キャットフードチキン
+	 23キャットフードかつお,24ねずみのおもちゃ,25ねこのぬいぐるみ
+	 26さかなのおもちゃ,27ラグビーボールおもちゃ,28テニスボールおもちゃ
+	 29かわいいくびわ,30ブラシ,31ねこシャンプー
+	 32ねこトリートメント,33みみベッド,34リボンクッション
+	 35キャットタワー*/
 
 }
 

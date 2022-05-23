@@ -14,9 +14,10 @@ public class DoRegrade : MonoBehaviour
     [SerializeField] private GameObject flashImage;
     [SerializeField] private GameObject retryButton;
     [SerializeField] private GameObject renTopButton;
-     [SerializeField] private GameObject rewardButton;//リワード広告ボタン
+    [SerializeField] private GameObject rewardButton;//リワード広告ボタン
     [SerializeField] private GameObject coinAddImage;
     [SerializeField] private Text coinAddText;
+    [SerializeField] private GameObject afterAdPanel;
 
     public string RhiraganaCorrect;
     public string Rcoin;
@@ -29,20 +30,21 @@ public class DoRegrade : MonoBehaviour
         coinImage.SetActive(false);
         flashImage.SetActive(false);
         retryButton.SetActive(false);
-        renTopButton.SetActive(false);
+        //renTopButton.SetActive(false);
         rewardButton.SetActive(false);
         coinAddImage.SetActive(false);
+        afterAdPanel.SetActive(false);
     }
     public void RgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
-        renTopButton.SetActive(false);
+        //renTopButton.SetActive(false);
         rewardButton.SetActive(false);
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
         coinAddImage.SetActive(false);
-
+        afterAdPanel.SetActive(false);
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
     
@@ -54,7 +56,7 @@ public class DoRegrade : MonoBehaviour
 	
     IEnumerator ReGradePanel()
     { 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         YattaneText();
         SoundManager.instance.PlaySousaSE(15);
         yield return new WaitForSeconds(0.8f);
@@ -103,12 +105,13 @@ public class DoRegrade : MonoBehaviour
        coinAddText.GetComponent<DOScale>().BigScale2();
        yield return new WaitForSeconds(0.2f);
        retryButton.SetActive(true);
-       renTopButton.SetActive(true);
+       //renTopButton.SetActive(true);
        rewardButton.SetActive(true);
        rewardButton.GetComponent<DOScale>().BigScale2();
 
     }
     public void RenRetryButton(){
+        
          if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.PlayBGM("RenshuuScene");
         }
@@ -119,6 +122,9 @@ public class DoRegrade : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
+        afterAdPanel.SetActive(false);
+        RegradePanel.SetActive(false);
+
     }
     
 }

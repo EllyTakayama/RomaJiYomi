@@ -1,6 +1,9 @@
 using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
+using DG.Tweening;
+using UnityEngine.UI;
+//5月19日更新
 
 public class AdMobReward : MonoBehaviour
 {
@@ -15,6 +18,7 @@ public class AdMobReward : MonoBehaviour
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
 
     private string adUnitId;
+    public GameObject afterAdPanel;
 
     //リワード広告を表示する関数
     //ボタンに割付けして使用
@@ -43,12 +47,16 @@ public class AdMobReward : MonoBehaviour
 
             //ここに報酬の処理を書く
             GameManager.instance.LoadCoinGoukei();
-            GameManager.instance.totalCoin += 50;
+            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
+            GameManager.instance.totalCoin += 100;
+            Debug.Log("coinGet"+GameManager.instance.totalCoin+"枚");
             GameManager.instance.SaveCoinGoukei();
-        }
+            afterAdPanel.SetActive(true);
+            afterAdPanel.GetComponent<DOafterRewardPanel>().AfterReward();
+            }
 
     }
-
+    
 
     private void Start()
     {      

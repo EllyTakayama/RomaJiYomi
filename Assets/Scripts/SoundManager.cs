@@ -107,10 +107,10 @@ public class SoundManager : MonoBehaviour
     }
     /* PlaySousaSE
        0:正解 1:ヒュン・不正解時の正解Panel表示音 2:Scene変化のButton音 3:不正解音
-       4:poro・操作音 5:Button音2 6：Button音3ぴ（小）7：ルーレット　8：ルーレット結果
+       4:ガチャガチャのボール音 5:Button音2 6：Button音3ぴ（小）7：ルーレット　8：ルーレット結果
        9:スワイプ（画面移動）音 10:GradePanelテキスト 11:GradePanelスタンプ音
        12: Gradeファンファーレ（Kihon) 13:ルーレットストップ 14:コインゲット音
-       15: Gradeファンファーレ（Renshuu ,Tikara)
+       15: Gradeファンファーレ（Renshuu ,Tikara) 16:ガチャガチャ音
     */
     public void PlaySousaSE(int index){
         audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす

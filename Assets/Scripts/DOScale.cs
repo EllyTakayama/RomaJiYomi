@@ -12,4 +12,9 @@ public class DOScale : MonoBehaviour
         .SetLoops(10, LoopType.Yoyo)
         .SetId("idBigScale2");
    }
+   public void BigScale3(){
+       transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 2f, 1, 0.6f)
+        .SetLoops(-1, LoopType.Yoyo)
+        .SetId("idBigScale3");
+   }
 }
