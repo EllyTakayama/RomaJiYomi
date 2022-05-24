@@ -14,6 +14,8 @@ public class AdMobReward : MonoBehaviour
 
 
     private bool rewardeFlag=false;//リワード広告の報酬付与用　初期値はfalse
+    private bool rewardeFlag1=false;//リワード広告の報酬付与用　初期値はfalse
+    
 
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
 
@@ -41,20 +43,13 @@ public class AdMobReward : MonoBehaviour
     {
         //広告を見た後にrewardeFlagをtrueにしている
         //広告を見たらこの中の処理が実行される
-        if (rewardeFlag == true)
-        {
-            rewardeFlag = false;//報酬付与用のフラグをfalseへ戻す
-
-            //ここに報酬の処理を書く
-            GameManager.instance.LoadCoinGoukei();
-            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
-            GameManager.instance.totalCoin += 100;
-            Debug.Log("coinGet"+GameManager.instance.totalCoin+"枚");
-            GameManager.instance.SaveCoinGoukei();
+        if(rewardeFlag1 == true && rewardeFlag == true){
+            rewardeFlag1 = false;
+            rewardeFlag = false;
             afterAdPanel.SetActive(true);
             afterAdPanel.GetComponent<DOafterRewardPanel>().AfterReward();
-            }
-
+        }
+        
     }
     
 
@@ -87,44 +82,73 @@ public class AdMobReward : MonoBehaviour
         rewardedAd.OnAdFailedToLoad += HandleRewardedAdFailedToLoad;//rewardedAdの状態が　リワード広告読み込み失敗 　となった時に起動する関数(関数名HandleRewardedAdFailedToLoad)を登録
         rewardedAd.OnAdClosed += HandleRewardedAdClosed;//rewardedAdの状態が  リワード広告閉じられた　となった時に起動する関数(関数名HandleRewardedAdFailedToLoad)を登録
         rewardedAd.OnUserEarnedReward += HandleUserEarnedReward;//rewardedAdの状態が ユーザーの報酬処理　となった時に起動する関数(関数名HandleUserEarnedReward)を登録
-
+        rewardedAd.OnAdOpening += HandleRewardedAdOpening;
 
         //リクエストを生成
         AdRequest request = new AdRequest.Builder().Build();
         //リクエストと共にリワード広告をロード
         rewardedAd.LoadAd(request);
     }
-
-
-    //リワード読み込み完了 となった時に起動する関数
-    public void HandleRewardedAdLoaded(object sender, EventArgs args)
-    {
-        Debug.Log("リワード広告読み込み完了");
-    }
+  
 
     //リワード読み込み失敗 となった時に起動する関数
     public void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
     {
         Debug.Log("リワード広告読み込み失敗" + args.LoadAdError);//args.LoadAdError:エラー内容 
     }
+    //リワード広告が始まったときに起動する関数
+    public void HandleRewardedAdOpening(object sender, EventArgs args)
+    {
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.BGMmute();
+            Debug.Log("BGM一時ミュート");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.SEmute();
+            Debug.Log("SE一時ミュート");
+        }
+        MonoBehaviour.print("HandleRewardedAdOpening event received");
+
+    }
 
     //リワード広告閉じられた時に起動する関数
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-        Debug.Log("リワード広告閉じられる");
-
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.UnmuteBGM();
+            Debug.Log("BGMミュート解除");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.UnmuteSE();
+            Debug.Log("SEミュート解除");
+        }
+         rewardeFlag1 = true;
+         Debug.Log("rewardFlag1"+rewardeFlag1);
         //広告再読み込み
-        CreateAndLoadRewardedAd();
+        //CreateAndLoadRewardedAd();
     }
 
     //ユーザーの報酬処理 となった時に起動する関数
     public void HandleUserEarnedReward(object sender, Reward args)
     {
+        GameManager.instance.LoadCoinGoukei();
+        GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
+        GameManager.instance.totalCoin += 100;
+        Debug.Log("coinGet"+GameManager.instance.totalCoin+"枚");
+        GameManager.instance.SaveCoinGoukei();
         Debug.Log("報酬受け取り");
 
         //この関数内ではゲームオブジェクトの操作ができない
         //そのため、ここでは報酬受け取りのフラグをtrueにするだけにする
         //具体的な処理はUpdate関数内で行う。
         rewardeFlag = true;
+        Debug.Log("rewardFlag"+rewardeFlag);
+
     }
+    //リワード読み込み完了 となった時に起動する関数
+    public void HandleRewardedAdLoaded(object sender, EventArgs args)
+    {
+        Debug.Log("リワード広告読み込み完了");
+    }
+
 }

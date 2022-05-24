@@ -23,6 +23,7 @@ public class TikaraQues : MonoBehaviour
     public GameObject ShutudaiPanel;
     public GameObject Shutudai2Panel;
     public GameObject TigradePanel;
+    public GameObject afterRewardPanel;
     public Toggle toggle1;//簡単・難しい分岐
     public bool Select;//デフォルトでは簡単がtrue
     private List<string> yomiageSlice = new List<string>();
@@ -110,8 +111,11 @@ public class TikaraQues : MonoBehaviour
         tagOfButton = locationOfTikaraAnswer.ToString();
 
     }
+
+   
     public void TiSprite(){
         TiQuesManager.GetComponent<TspriteChange>().TiSChange();
+
     }
 
     public void Kantan(string buttonname)
