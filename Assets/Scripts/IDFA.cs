@@ -22,11 +22,15 @@ public class IDFA : MonoBehaviour
 
     private void DelayIDFA()
     {
-#if UNITY_IOS//iOSの場合だけ処理
+        #if UNITY_EDITOR//Unityエディターの場合の処理
+
+        //何もしない
+        
+        #elif UNITY_IOS//Unityエディターでない かつ iOSの場合に処理
 
         _requestIDFA();//IDFAリクエストの実行
         
-#endif//iOSの処理範囲終わり
+        #endif//iOSの処理範囲終わり
     }
 
 }

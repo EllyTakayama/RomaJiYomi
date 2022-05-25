@@ -280,7 +280,7 @@ public class RenshuuQues : MonoBehaviour
            RenSeikai = GameManager.instance.RcorrectCount;
            GameManager.instance.LoadCoinGoukei();
            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
-           GameManager.instance.RCoin = RenSeikai*1;
+           GameManager.instance.RCoin = RenSeikai*3;
            GameManager.instance.totalCoin += GameManager.instance.RCoin;
            GameManager.instance.SaveCoinGoukei();
            RegradePanel.SetActive(true);

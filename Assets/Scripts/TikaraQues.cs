@@ -345,7 +345,9 @@ public class TikaraQues : MonoBehaviour
         {
             TiSeikai = GameManager.instance.TiTangoCount;
             GameManager.instance.LoadCoinGoukei();
-            GameManager.instance.TiCoin = TiSeikai * 2;
+            GameManager.instance.TiCoin = TiSeikai * 4;
+            Debug.Log("TiCoin"+GameManager.instance.TiCoin);
+            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += GameManager.instance.TiCoin;
             GameManager.instance.SaveCoinGoukei();
             pipoEnemy.SetActive(false);

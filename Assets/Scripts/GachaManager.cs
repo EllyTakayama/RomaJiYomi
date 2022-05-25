@@ -45,6 +45,7 @@ public class GachaManager : MonoBehaviour
 	//Gachaのセーブは他のSceneに影響ないはずなのでガチャないでセーブロードする
 	public GameObject RightButton;
     public GameObject LeftButton;
+	public CanvasGroup fadePanel;//fadeよう
 	
 	void Start(){
 		getNekoPanel.SetActive(false);
@@ -88,6 +89,7 @@ public class GachaManager : MonoBehaviour
             Debug.Log(i.ToString()+","+setumeis[i]);
             }
     }
+
 	public void OkButton(){
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
@@ -168,6 +170,10 @@ public class GachaManager : MonoBehaviour
 		pOpenBallImage.GetComponent<DOScale2>().OpenBall();
 		yield return new WaitForSeconds(1.0f);
 		pOpenBallImage.SetActive(false);
+		//FadePanel
+		yield return fadePanel.DOFade(1,1).WaitForCompletion();
+		fadePanel.DOFade(0,0.5f);
+		yield return new WaitForSeconds(0.2f);
 		string name = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
 		//nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
