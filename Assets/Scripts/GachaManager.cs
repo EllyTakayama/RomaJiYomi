@@ -48,6 +48,8 @@ public class GachaManager : MonoBehaviour
     public GameObject LeftButton;
 	public GameObject PanelAd;//コインが足りない時に表示するようPanel
 	public CanvasGroup fadePanel;//fadeよう
+	//Debug用
+	//public int itemID =1;
 	
 	void Start(){
 		getNekoPanel.SetActive(false);
@@ -57,10 +59,12 @@ public class GachaManager : MonoBehaviour
 		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
 		coinText.text = GameManager.instance.totalCoin.ToString();
 		//gachaButton.enabled = true;
+		//初回時の取得キャラ反映用defaltの作成
 		int a = GetComponent<GachaItem>().GachaChara.Length;
 		for(int i = 0 ; i < a ;i++){
 			DeNum.Add(0);
 		}
+		DeNum[0]=1;
 		for(int i = 0 ; i < a ;i++){
 			Debug.Log(DeNum[i]);
 		}
@@ -101,12 +105,15 @@ public class GachaManager : MonoBehaviour
 		getNekoPanel.SetActive(false);
 		DOTween.TweensById("idBigScale3").ForEach((tween) =>
         {
+
             tween.Kill();
             Debug.Log("IDKill");
             });
 	}
 
 	public void GetDropItem(){
+		
+		//Debug時はオフ
 		if(GameManager.instance.totalCoin < 150){
 			PanelAd.SetActive(true);
 			return;
@@ -117,7 +124,8 @@ public class GachaManager : MonoBehaviour
 		GameManager.instance.totalCoin -= 150;
 		GameManager.instance.SaveCoinGoukei();
 		coinText.text = GameManager.instance.totalCoin.ToString();
-
+		//Debug時はオフ
+		
 		SoundManager.instance.PlaySousaSE(16);
 		RightButton.SetActive(false);
 		LeftButton.SetActive(false);
@@ -126,17 +134,29 @@ public class GachaManager : MonoBehaviour
 		//InitializeDicts();
         
         //* ドロップアイテムの抽選の時
-        int itemId = Choose();
+        int itemId = Choose();//*
+
+		
 
 		// アイテムIDに応じたメッセージ出力
-		  nekoNum = itemId;
+		nekoNum = itemId;//＊
+	
+		  //nekoNum = itemID;//Debug
 		  string itemName = itemInfo[itemId];
 			//nameText.text = itemName + "\n をゲット!";
 			Debug.Log(itemName + " をゲット!");
 			Debug.Log("nekoNum"+nekoNum);
 		
-		
 		int ringiNum = GachaNum[nekoNum];
+		//Debug表示用
+		/*itemID++;//DEbug
+		if(itemID>GachaNum.Count){
+			itemID = 0;
+		}
+		Debug.Log("itemID"+itemID);
+		//
+		*/
+
 		ringiNum++;
 		GachaNum[nekoNum] = ringiNum;
 		Debug.Log(GachaNum[nekoNum]);
