@@ -22,7 +22,7 @@ public class DoRegrade : MonoBehaviour
     public string RhiraganaCorrect;
     public string Rcoin;
     // Start is called before the first frame update
-    /*
+    
     void Start()
     {
         SoundManager.instance.PlayPanelBGM("GradePanel");
@@ -35,7 +35,7 @@ public class DoRegrade : MonoBehaviour
         rewardButton.SetActive(false);
         coinAddImage.SetActive(false);
         afterAdPanel.SetActive(false);
-    }*/
+    }
     public void RgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);

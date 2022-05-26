@@ -14,8 +14,10 @@ public class DOShake1 : MonoBehaviour
     */
     public void ShakeBall(){
         DOTween.Sequence()
-        .Append(transform.DOShakeRotation(0.5f,new Vector3(0,0,60f),8,90,true))
-        .Append(transform.DOShakeRotation(0.5f,new Vector3(0,0,-60f),8,90,true))
-       ;
+        .Append(transform.DOShakeRotation(0.3f,new Vector3(0,0,60f),2,60,true))
+        .Append(transform.DOShakeRotation(0.3f,new Vector3(0,0,0),2,60,true))
+        .Append(transform.DOShakeRotation(0.3f,new Vector3(0,0,-60f),2,60,true))
+        .Append(transform.DOShakeRotation(0.3f,new Vector3(0,0,0),2,60,true))
+        ;
    }
 }

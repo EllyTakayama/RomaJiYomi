@@ -23,6 +23,7 @@ public class GachaManager : MonoBehaviour
 	public GameObject GachaObject1;
 	public GameObject GachaMana;
 	public GameObject closeButton;
+	public Button gachaButton;//ガチャガチャのButton
     public List<int> GachaNum = new List<int>();//各要素の基準のインデックスを管理
 	public List<int> DeNum = new List<int>();//各要素のデフォルト用List
     public List<string> nameChara = new List<string>();//名前の管理
@@ -45,14 +46,17 @@ public class GachaManager : MonoBehaviour
 	//Gachaのセーブは他のSceneに影響ないはずなのでガチャないでセーブロードする
 	public GameObject RightButton;
     public GameObject LeftButton;
+	public GameObject PanelAd;//コインが足りない時に表示するようPanel
 	public CanvasGroup fadePanel;//fadeよう
 	
 	void Start(){
 		getNekoPanel.SetActive(false);
+		PanelAd.SetActive(false);
 		GameManager.instance.LoadCoinGoukei();
 		GachaMana.GetComponent<GachaItem>().SetGachaText();
 		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
 		coinText.text = GameManager.instance.totalCoin.ToString();
+		//gachaButton.enabled = true;
 		int a = GetComponent<GachaItem>().GachaChara.Length;
 		for(int i = 0 ; i < a ;i++){
 			DeNum.Add(0);
@@ -103,6 +107,17 @@ public class GachaManager : MonoBehaviour
 	}
 
 	public void GetDropItem(){
+		if(GameManager.instance.totalCoin < 150){
+			PanelAd.SetActive(true);
+			return;
+		}
+		//画面遷移までガチャボタン押せなくなる
+		gachaButton.enabled = false;
+		//コインから保存する
+		GameManager.instance.totalCoin -= 150;
+		GameManager.instance.SaveCoinGoukei();
+		coinText.text = GameManager.instance.totalCoin.ToString();
+
 		SoundManager.instance.PlaySousaSE(16);
 		RightButton.SetActive(false);
 		LeftButton.SetActive(false);
@@ -157,6 +172,7 @@ public class GachaManager : MonoBehaviour
 
 	IEnumerator ItemGet(){
         yield return new WaitForSeconds(1.0f);
+		gachaButton.enabled = true;
 		getNekoPanel.SetActive(true);
 		closeButton.SetActive(false);
 		nameText.text = "なにがでるかな？?";
@@ -171,8 +187,8 @@ public class GachaManager : MonoBehaviour
 		yield return new WaitForSeconds(1.0f);
 		pOpenBallImage.SetActive(false);
 		//FadePanel
-		yield return fadePanel.DOFade(1,1).WaitForCompletion();
-		fadePanel.DOFade(0,0.5f);
+		yield return fadePanel.DOFade(0.8f,0.8f).WaitForCompletion();
+		fadePanel.DOFade(0,0.6f);
 		yield return new WaitForSeconds(0.2f);
 		string name = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];

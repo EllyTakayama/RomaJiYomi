@@ -127,7 +127,7 @@ public class AdMobReward : MonoBehaviour
          rewardeFlag1 = true;
          Debug.Log("rewardFlag1"+rewardeFlag1);
         //広告再読み込み
-        //CreateAndLoadRewardedAd();
+        CreateAndLoadRewardedAd();
     }
 
     //ユーザーの報酬処理 となった時に起動する関数

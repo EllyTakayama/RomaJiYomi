@@ -9241,6 +9241,57 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 774150418}
   m_CullTransparentMesh: 1
+--- !u!1 &780189953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 780189954}
+  - component: {fileID: 780189955}
+  m_Layer: 5
+  m_Name: coinGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &780189954
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780189953}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1031811991}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -800}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &780189955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 780189953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fb738a75c83545a68ed13d6fa4c65fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coinGenerator: {fileID: 780189953}
+  coinPrefab: {fileID: 8106910618918575056, guid: 7b1e6d97219994e8cb7370f3b9d03ea4, type: 3}
+  RewardPanel: {fileID: 1031811990}
 --- !u!1 &782473489
 GameObject:
   m_ObjectHideFlags: 0
@@ -12367,6 +12418,7 @@ RectTransform:
   - {fileID: 682361724}
   - {fileID: 1304160464}
   - {fileID: 1980496734}
+  - {fileID: 780189954}
   m_Father: {fileID: 279543147}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12431,7 +12483,7 @@ MonoBehaviour:
   RewardCoinImage: {fileID: 1980496733}
   RewardflashImage: {fileID: 1304160463}
   coinAddText: {fileID: 1889958989}
-  rewardCoinSprite: {fileID: 580117187947227337, guid: 6e4a6afe6e4cd4e37862bd7fc0135123, type: 3}
+  coinGenerator: {fileID: 780189953}
 --- !u!1 &1036448240
 GameObject:
   m_ObjectHideFlags: 0
@@ -12447,7 +12499,7 @@ GameObject:
   - component: {fileID: 1036448245}
   m_Layer: 5
   m_Name: coinAddImage
-  m_TagString: Untagged
+  m_TagString: coinAddImage
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

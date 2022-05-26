@@ -31,7 +31,7 @@ public class GPanelChange : MonoBehaviour
         switch(panel){
             case Panel.gachaPanel:
             transform.localPosition = new Vector2(0, 0);
-            LeftButton.SetActive(false);
+            LeftButton.SetActive(true);
             RightButton.SetActive(true);
             break;
 
@@ -57,7 +57,7 @@ public class GPanelChange : MonoBehaviour
                 transform.localPosition = new Vector2(-2000, 1500);
                 //kihonButton.SetActive(true);
                 LeftButton.SetActive(true);
-                RightButton.SetActive(false);
+                RightButton.SetActive(true);
                 break;
         }
     }
@@ -77,11 +77,15 @@ public class GPanelChange : MonoBehaviour
         ShowGachaPanel(Panel.Panel3item);
         //Debug.Log("3");
         }
-
     else if(currentPanel == Panel.Panel3item ){
         ShowGachaPanel(Panel.Panel4item);
-        //Debug.Log("5");
-    }
+        //Debug.Log("3");
+        }
+    else if(currentPanel == Panel.Panel4item ){
+        ShowGachaPanel(Panel.gachaPanel);
+        //Debug.Log("3");
+        }
+
     
     }
     public void OnLeftButton(){
@@ -100,6 +104,10 @@ public class GPanelChange : MonoBehaviour
 
     else if(currentPanel == Panel.Panel1chara){
         ShowGachaPanel(Panel.gachaPanel);
+        //Debug.Log("5");
+        }
+    else if(currentPanel == Panel.gachaPanel){
+        ShowGachaPanel(Panel.Panel4item);
         //Debug.Log("5");
         }
     }

@@ -30,7 +30,8 @@ public class CoinGenerator : MonoBehaviour
     IEnumerator RewardCoinSpawn(){
         //Debug.Log("instantiate");
         for(int i = 0; i<20;i++){
-        GameObject coin  = Instantiate(coinPrefab, new Vector3( Random.Range(-100f,100f), Random.Range(-800f,-700f), 0.0f), transform.rotation);
+            //(0,-800,0)のあたりにCoinをInstantiateしたい
+        GameObject coin  = Instantiate(coinPrefab, new Vector3( Random.Range(-200f,200f), Random.Range(-900f,-700f), 0.0f), transform.rotation);
         coin.transform.SetParent(RewardPanel.transform,false);  
             yield return new WaitForSeconds(0.2f);
              Debug.Log("instantiate");
