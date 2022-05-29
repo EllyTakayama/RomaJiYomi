@@ -16,6 +16,9 @@ public class GachaItem : MonoBehaviour
     public int[] charaKakuritu;//各キャラの確率を取得
     public string[] kakuritu;//テキストアセットからstringのまま確率を取得する
     public Sprite[] ItemNeko;//各キャラのスプライト画像
+    [SerializeField] private GameObject NekoitemPanel;//Gachaでゲットした猫アイテムの説明
+	[SerializeField] private Text NnameText;//アイテムPanelの猫の名前
+	[SerializeField] private Text NsetumeiText;//アイテムPanelの猫の説明
 
 
      //テキストデータを読み込む
@@ -31,6 +34,7 @@ public class GachaItem : MonoBehaviour
         //DebugSetumei();
         //DebugKKakuritu();
         //DebugKakuritu();
+       
     }
     public void SetGachaText(){
         GachaChara = GcharaName.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
@@ -41,6 +45,13 @@ public class GachaItem : MonoBehaviour
             charaKakuritu[i] = int.Parse(kakuritu[i]); 
             }
     }
+
+     //Gachaでゲットしたアイテムの説明Panel表示
+	public void ChoiceItem(int ButtonNum){
+		NekoitemPanel.SetActive(true);
+		NnameText.text = GachaChara[ButtonNum];
+        NsetumeiText.text = setumeiText[ButtonNum];
+	}
 
     void DebugChara()
     {
@@ -53,6 +64,7 @@ public class GachaItem : MonoBehaviour
     {
         for (int i = 0; i < setumeiText.Length; i++)
         {
+            ///GachaChara[i] = GachaChara[i].Replace(".",System.Environment.NewLine);
             Debug.Log(i.ToString()+","+setumeiText[i]);
             }
     }
@@ -72,4 +84,5 @@ public class GachaItem : MonoBehaviour
             }
         Debug.Log("確率要素数"+charaKakuritu.Length);
     }
+   
 }

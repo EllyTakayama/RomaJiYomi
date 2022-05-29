@@ -2380,7 +2380,7 @@ GameObject:
   - component: {fileID: 287020787}
   - component: {fileID: 287020786}
   m_Layer: 5
-  m_Name: NInameText
+  m_Name: NnameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2438,7 +2438,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u306A\u306B\u304C \u3067\u308B\u304B\u306A\uFF1F"
+  m_Text: "\u306D\u3053\u306E\u304A\u540D\u524D\u3060\u3088\u3093"
 --- !u!222 &287020787
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3352,7 +3352,7 @@ GameObject:
   - component: {fileID: 420450981}
   - component: {fileID: 420450980}
   m_Layer: 5
-  m_Name: NIcloseButton
+  m_Name: NcloseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14263,6 +14263,7 @@ MonoBehaviour:
   LeftButton: {fileID: 477018963}
   PanelAd: {fileID: 1405815611}
   fadePanel: {fileID: 1094879541}
+  NekoitemPanel: {fileID: 450761138}
 --- !u!114 &1938144813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14317,6 +14318,9 @@ MonoBehaviour:
   - {fileID: 2474216886109553769, guid: 494f4551736b849a7a8651291d518e89, type: 3}
   - {fileID: 2210657963002393182, guid: 494f4551736b849a7a8651291d518e89, type: 3}
   - {fileID: 8566203095890215832, guid: 494f4551736b849a7a8651291d518e89, type: 3}
+  NekoitemPanel: {fileID: 0}
+  NnameText: {fileID: 0}
+  NsetumeiText: {fileID: 0}
   GcharaName: {fileID: 4900000, guid: 6c5f918aa25124bd3b3945bf6b639053, type: 3}
   GcharaSetumei: {fileID: 4900000, guid: e843ef9d3067c444fb25a71c97f4e348, type: 3}
   GcharaKakuritu: {fileID: 4900000, guid: 04b6d4f98925b4b769134aefe7b470a6, type: 3}
@@ -14938,7 +14942,7 @@ GameObject:
   - component: {fileID: 2136381025}
   - component: {fileID: 2136381024}
   m_Layer: 5
-  m_Name: NIsetumeiText
+  m_Name: NsetumeiText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14961,7 +14965,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -900}
-  m_SizeDelta: {x: 500, y: 200}
+  m_SizeDelta: {x: 550, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2136381024
 MonoBehaviour:
@@ -14996,7 +15000,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u30C4\u30E4\u30C4\u30E4\u306B\u306A\u308B\u30B7\u30E3\u30F3\u30D7\u30FC"
+  m_Text: "\u30CD\u30B3\u306A\u306E\u306B.\n\u30CD\u30B3\u306E\u307C\u3046\u3057\u3092.\n\u304B\u3076\u3063\u305F\u306D\u3053"
 --- !u!222 &2136381025
 CanvasRenderer:
   m_ObjectHideFlags: 0

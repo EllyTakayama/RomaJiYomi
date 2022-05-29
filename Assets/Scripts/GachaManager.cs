@@ -48,11 +48,15 @@ public class GachaManager : MonoBehaviour
     public GameObject LeftButton;
 	public GameObject PanelAd;//コインが足りない時に表示するようPanel
 	public CanvasGroup fadePanel;//fadeよう
+	[SerializeField] private GameObject NekoitemPanel;//Gachaでゲットした猫アイテムの説明
+
+	
 	//Debug用
 	//public int itemID =1;
 	
 	void Start(){
 		getNekoPanel.SetActive(false);
+		NekoitemPanel.SetActive(false);
 		PanelAd.SetActive(false);
 		GameManager.instance.LoadCoinGoukei();
 		GachaMana.GetComponent<GachaItem>().SetGachaText();
@@ -110,6 +114,7 @@ public class GachaManager : MonoBehaviour
             Debug.Log("IDKill");
             });
 	}
+	
 
 	public void GetDropItem(){
 		
@@ -210,8 +215,8 @@ public class GachaManager : MonoBehaviour
 		yield return fadePanel.DOFade(0.8f,0.8f).WaitForCompletion();
 		fadePanel.DOFade(0,0.6f);
 		yield return new WaitForSeconds(0.2f);
-		string name = GetComponent<GachaItem>().GachaChara[nekoNum];
-		nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
+		string name = GetComponent<GachaItem>().GachaChara[nekoNum];//nameで取得した"."を改行に置き換える
+		nameText.text = name.Replace(".",System.Environment.NewLine);
 		//nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
 		nameText.GetComponent<DOScale>().BigScale3();
 		nekoImage.SetActive(true);
