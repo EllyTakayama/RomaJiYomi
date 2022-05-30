@@ -19,7 +19,7 @@ public class GachaItem : MonoBehaviour
     [SerializeField] private GameObject NekoitemPanel;//Gachaでゲットした猫アイテムの説明
 	[SerializeField] private Text NnameText;//アイテムPanelの猫の名前
 	[SerializeField] private Text NsetumeiText;//アイテムPanelの猫の説明
-
+    [SerializeField] private Image NnekoItemImage;//アイテムPanelの猫の説明
 
      //テキストデータを読み込む
     [SerializeField] TextAsset GcharaName;
@@ -48,9 +48,20 @@ public class GachaItem : MonoBehaviour
 
      //Gachaでゲットしたアイテムの説明Panel表示
 	public void ChoiceItem(int ButtonNum){
-		NekoitemPanel.SetActive(true);
-		NnameText.text = GachaChara[ButtonNum];
-        NsetumeiText.text = setumeiText[ButtonNum];
+        int i = GetComponent<GachaManager>().GachaNum[ButtonNum];
+        print("i,"+i);
+        if(i>0){
+            NekoitemPanel.SetActive(true);
+            string NekoName = GachaChara[ButtonNum];
+            NnameText.text = NekoName.Replace(".",System.Environment.NewLine);
+            string ItemName = setumeiText[ButtonNum];
+            NsetumeiText.text = ItemName.Replace(".",System.Environment.NewLine);
+            NnekoItemImage.sprite = ItemNeko[ButtonNum];
+        }
+        else{
+            return;
+        }
+        
 	}
 
     void DebugChara()

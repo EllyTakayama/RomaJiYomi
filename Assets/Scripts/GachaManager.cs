@@ -63,10 +63,10 @@ public class GachaManager : MonoBehaviour
 		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
 		coinText.text = GameManager.instance.totalCoin.ToString();
 		//gachaButton.enabled = true;
-		//初回時の取得キャラ反映用defaltの作成
+		//初回時の取得キャラ反映用defaltの作成 Debugにも使える
 		int a = GetComponent<GachaItem>().GachaChara.Length;
 		for(int i = 0 ; i < a ;i++){
-			DeNum.Add(0);
+			DeNum.Add(1);
 		}
 		DeNum[0]=1;
 		for(int i = 0 ; i < a ;i++){
@@ -106,13 +106,17 @@ public class GachaManager : MonoBehaviour
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
 		closeButton.SetActive(false);
-		getNekoPanel.SetActive(false);
-		DOTween.TweensById("idBigScale3").ForEach((tween) =>
+		
+		NekoitemPanel.SetActive(false);
+		if(getNekoPanel.activeSelf){
+			DOTween.TweensById("idBigScale3").ForEach((tween) =>
         {
 
             tween.Kill();
             Debug.Log("IDKill");
             });
+		}
+		getNekoPanel.SetActive(false);
 	}
 	
 
