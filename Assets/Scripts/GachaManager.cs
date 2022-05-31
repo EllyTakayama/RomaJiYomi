@@ -49,6 +49,7 @@ public class GachaManager : MonoBehaviour
 	public GameObject PanelAd;//コインが足りない時に表示するようPanel
 	public CanvasGroup fadePanel;//fadeよう
 	[SerializeField] private GameObject NekoitemPanel;//Gachaでゲットした猫アイテムの説明
+	[SerializeField] private GameObject AdButton;//AdPanel内のReward広告を呼び出すButton
 
 	
 	//Debug用
@@ -66,7 +67,7 @@ public class GachaManager : MonoBehaviour
 		//初回時の取得キャラ反映用defaltの作成 Debugにも使える
 		int a = GetComponent<GachaItem>().GachaChara.Length;
 		for(int i = 0 ; i < a ;i++){
-			DeNum.Add(1);
+			DeNum.Add(0);
 		}
 		DeNum[0]=1;
 		for(int i = 0 ; i < a ;i++){
@@ -106,7 +107,7 @@ public class GachaManager : MonoBehaviour
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
 		closeButton.SetActive(false);
-		
+		 SoundManager.instance.PlaySousaSE(9);
 		NekoitemPanel.SetActive(false);
 		if(getNekoPanel.activeSelf){
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
@@ -117,6 +118,15 @@ public class GachaManager : MonoBehaviour
             });
 		}
 		getNekoPanel.SetActive(false);
+		if(PanelAd.activeSelf){
+			DOTween.TweensById("idBigScale3").ForEach((tween) =>
+        {
+
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
+		}
+		PanelAd.SetActive(false);
 	}
 	
 
@@ -125,6 +135,10 @@ public class GachaManager : MonoBehaviour
 		//Debug時はオフ
 		if(GameManager.instance.totalCoin < 150){
 			PanelAd.SetActive(true);
+			RightButton.SetActive(false);
+			LeftButton.SetActive(false);
+			//AdButton.GetComponent<DOScale>().BigScale3();
+			SoundManager.instance.PlaySousaSE(2);
 			return;
 		}
 		//画面遷移までガチャボタン押せなくなる

@@ -57,6 +57,7 @@ public class GachaItem : MonoBehaviour
             string ItemName = setumeiText[ButtonNum];
             NsetumeiText.text = ItemName.Replace(".",System.Environment.NewLine);
             NnekoItemImage.sprite = ItemNeko[ButtonNum];
+            SoundManager.instance.PlaySousaSE(9);
         }
         else{
             return;

@@ -18,13 +18,13 @@ public class CoinGenerator : MonoBehaviour
         }
     }*/
     public void SpawnRewardCoin(){
-        StartCoroutine(RewardCoinSpawn());
-        /*
-        for(int i =0; i<10;i++){
-            coinGenerator = Instantiate(coinPrefab,new Vector3( 0f, -800f, 0.0f), transform.rotation);
+        //StartCoroutine(RewardCoinSpawn());
+        
+        for(int i =0; i<20;i++){
+            coinGenerator = Instantiate(coinPrefab,new Vector3(Random.Range(-200f,200f), Random.Range(-900f,-700f), 0.0f), transform.rotation);
             coinGenerator.transform.SetParent(RewardPanel.transform,false);  
             Debug.Log("coinPrefab");
-        }*/
+        }
     }
 
     IEnumerator RewardCoinSpawn(){
@@ -33,9 +33,9 @@ public class CoinGenerator : MonoBehaviour
             //(0,-800,0)のあたりにCoinをInstantiateしたい
         GameObject coin  = Instantiate(coinPrefab, new Vector3( Random.Range(-200f,200f), Random.Range(-900f,-700f), 0.0f), transform.rotation);
         coin.transform.SetParent(RewardPanel.transform,false);  
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.1f);
              Debug.Log("instantiate");
-            if(i==10){
+            if(i==20){
                 yield break;
             }
         }
