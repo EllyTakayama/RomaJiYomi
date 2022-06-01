@@ -107,7 +107,7 @@ public class GachaManager : MonoBehaviour
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
 		closeButton.SetActive(false);
-		 SoundManager.instance.PlaySousaSE(9);
+		SoundManager.instance.PlaySousaSE(9);
 		NekoitemPanel.SetActive(false);
 		if(getNekoPanel.activeSelf){
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
@@ -230,7 +230,7 @@ public class GachaManager : MonoBehaviour
 		yield return new WaitForSeconds(1.0f);
 		pOpenBallImage.SetActive(false);
 		//FadePanel
-		yield return fadePanel.DOFade(0.8f,0.8f).WaitForCompletion();
+		yield return fadePanel.DOFade(0.9f,0.8f).WaitForCompletion();
 		fadePanel.DOFade(0,0.6f);
 		yield return new WaitForSeconds(0.2f);
 		string name = GetComponent<GachaItem>().GachaChara[nekoNum];//nameで取得した"."を改行に置き換える

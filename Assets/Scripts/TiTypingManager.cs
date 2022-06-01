@@ -48,6 +48,7 @@ public class TiTypingManager : MonoBehaviour
     private int TiyokoNumber; // 列　横
     public string[] Tiromelines;//テキストアセット取得に使う
     public int qCount;//出題のインデックス数を取得して管理
+    [SerializeField] private GameObject TiMaruSprite;
 
     //テキストデータを読み込む
     [SerializeField] TextAsset Tyfood;//Button1・野菜・果物
@@ -347,6 +348,8 @@ void ChangeKtoH(string moji){
         //問題の正解カウントが設定された正解数を超えたらTiChangeQuesで新たな出題がされる
         if(answerNum>=_aNum){
             GameManager.instance.TyHiraganaCount++;
+            TiMaruSprite.SetActive(true);
+            SoundManager.instance.PlaySousaSE(0);
             Debug.Log("seikai"+GameManager.instance.TyHiraganaCount);
             TipipoEnemy.GetComponent<EnemyDamage>().DamageCall();
             StartCoroutine(TiChangeQues());
@@ -391,11 +394,12 @@ void ChangeKtoH(string moji){
         Debug.Log("miss");
     }
     IEnumerator TiChangeQues(){
-        
         for(int i=0;i<TiButtons.Length;i++){
         TiButtons[i].enabled =false;
     }
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.6f);
+        TiMaruSprite.SetActive(false);
+        yield return new WaitForSeconds(0.2f);
         Output();
         TQuesManager.GetComponent<TspriteChange>().TySChange();
         for(int i=0;i<TiButtons.Length;i++){

@@ -14,7 +14,7 @@ public class DOScale : MonoBehaviour
         BigScale2();
     }
    public void BigScale2(){
-       //transform.localScale = defaultScale;
+       
        transform.localScale = new Vector3(1f, 1f, 1f);
        Debug.Log("transform.localScale"+transform.localScale);
        transform.DOPunchScale(Vector3.one * 0.1f, 2f, 1, 0.5f)
@@ -23,7 +23,7 @@ public class DOScale : MonoBehaviour
         Debug.Log("BigScale2");
    }
    public void BigScale3(){
-       transform.localScale = defaultScale;
+       transform.localScale = new Vector3(1f, 1f, 1f);
        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 2f, 1, 0.6f)
         .SetLoops(-1, LoopType.Yoyo)
         .SetId("idBigScale3");

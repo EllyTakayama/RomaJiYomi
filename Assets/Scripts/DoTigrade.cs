@@ -31,8 +31,9 @@ public class DoTigrade : MonoBehaviour
         retryButton.SetActive(false);
         //renTopButton.SetActive(false);
         rewardButton.SetActive(false);
-        coinAddImage.SetActive(false);
+        coinAddImage.SetActive(true);
         afterAdPanel.SetActive(false);
+        coinAddText.text = GameManager.instance.totalCoin.ToString();
     }
     public void TgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
@@ -43,8 +44,9 @@ public class DoTigrade : MonoBehaviour
         coinImage.SetActive(false);
         flashImage.SetActive(false);
         rewardButton.SetActive(false);
-        coinAddImage.SetActive(false);
+        coinAddImage.SetActive(true);
         afterAdPanel.SetActive(false);
+        coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
         
         if(TikaraQues.instance.isWord == true){
             TihiraganaCorrect = GameManager.instance.TiTangoCount.ToString();
@@ -113,7 +115,7 @@ public class DoTigrade : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         SoundManager.instance.PlaySousaSE(14);
-        coinAddImage.SetActive(true);
+        //coinAddImage.SetActive(true);
         coinAddText.GetComponent<DOCounter>().CountCoin2();
         yield return new WaitForSeconds(2.2f);
         SoundManager.instance.PlaySousaSE(8);
@@ -127,7 +129,7 @@ public class DoTigrade : MonoBehaviour
 
     }
     public void RetryButton(){
-
+        TikaraQues.instance.StartFadePanel();
         if(TikaraQues.instance.isWord == true){
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 

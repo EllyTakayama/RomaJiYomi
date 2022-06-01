@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 using System;
-//4月28に日更新
+using DG.Tweening;
+//6月1に日更新
 
 public class TikaraQues : MonoBehaviour
 {
@@ -38,7 +39,9 @@ public class TikaraQues : MonoBehaviour
     public Toggle[] TiMondaiToggle;//問題数を選択するToggle
     public int TiMondai;//トグルでの問題数保存
     public List<int> TikaQuesNum = new List<int>();//出題をシャッフルさせるため
-    public GameObject PanelParent;//画面遷移の親
+    //public GameObject PanelParent;//画面遷移の親
+    public CanvasGroup FadePanel;//fade用のCanvasGroup
+    
 
     public enum TikaraType
     {
@@ -119,7 +122,7 @@ public class TikaraQues : MonoBehaviour
     }
 
     public void Kantan(string buttonname)
-    { 
+    { StartCoroutine(FadeCanvasPanel());
         SoundManager.instance.PlayBGM("TikaraScene");
         switch (buttonname)
         {
@@ -139,11 +142,8 @@ public class TikaraQues : MonoBehaviour
                 }
                 else
                 {
-                    Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode = 1;
-                    TiTypingManager.instance.SetListTi();
-                    TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.Output();
+                    ButtonTiKantan();
                 }
                 break;
 
@@ -152,19 +152,12 @@ public class TikaraQues : MonoBehaviour
                 {
                     TcurrentMode = 2;
                     Debug.Log("2");
-                    //DebugTable();
-                    SetList();
-                    ShuffleTikaQuesNum();
-                    ShutudaiPanel.SetActive(true);
-                    TKantan();
+                    ButtonTKantan();
                 }
                 else
                 {
-                    Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode = 2;
-                    TiTypingManager.instance.SetListTi();
-                    TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.Output();
+                    ButtonTiKantan();
                 }
                 break;
 
@@ -172,20 +165,13 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 3;
-                    SetList();
-                    ShuffleTikaQuesNum();
                     Debug.Log("3");
-                    //DebugTable();
-                    ShutudaiPanel.SetActive(true);
-                    TKantan();
+                    ButtonTKantan();
                 }
                 else
                 {
-                    Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode = 3;
-                    TiTypingManager.instance.SetListTi();
-                    TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.Output();
+                    ButtonTiKantan();
                 }
                 break;
 
@@ -193,22 +179,13 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 4;
-                    SetList();
-                    ShuffleTikaQuesNum();
                     Debug.Log("4");
-                    //DebugTable();
-                   
-                    ShutudaiPanel.SetActive(true);
-                    TKantan();
+                    ButtonTKantan();
                 }
                 else
                 {
-
-                    Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.TicurrentMode = 4;
-                    TiTypingManager.instance.SetListTi();
-                    TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.Output();
+                    ButtonTiKantan();
                 }
                 break;
 
@@ -216,19 +193,12 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 5;
-                    
                     Debug.Log("5");
                     ButtonTKantan();
-                    //DebugTable();
-
                 }
                 else
                 {
                     TiTypingManager.instance.TicurrentMode = 5;
-                    /*Shutudai2Panel.SetActive(true);
-                    TiTypingManager.instance.SetListTi();
-                    TiTypingManager.instance.ShuffleQuesNum();
-                    TiTypingManager.instance.Output();*/
                     ButtonTiKantan();
                 }
                 break;
@@ -239,7 +209,6 @@ public class TikaraQues : MonoBehaviour
                     TcurrentMode = 6;
                     Debug.Log("6");
                     ButtonTKantan();
-                   
                 }
                 else
                 {
@@ -254,7 +223,6 @@ public class TikaraQues : MonoBehaviour
                     TcurrentMode = 7;
                     Debug.Log("7");
                     ButtonTKantan();
-                   
                 }
                 else
                 {
@@ -269,7 +237,6 @@ public class TikaraQues : MonoBehaviour
                     TcurrentMode = 8;
                     Debug.Log("8");
                     ButtonTKantan();
-                   
                 }
                 else
                 {
@@ -277,11 +244,9 @@ public class TikaraQues : MonoBehaviour
                     ButtonTiKantan();
                 }
                 break;
-
-
         }
-
     }
+    //単語問題用スクリプト TikaraQues
     void ButtonTKantan(){
                     SetList();
                     ShuffleTikaQuesNum();
@@ -289,15 +254,25 @@ public class TikaraQues : MonoBehaviour
                     DebugTable();
                     TKantan();
                         }
+    
+    //1文字ずつ問題用スクリプト TiTypingManager
     void ButtonTiKantan(){
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
                     DebugTable();
                     TiTypingManager.instance.Output();
-}
-  
-
+                    }
+    
+    //FadePanelのコルーチン
+    public void StartFadePanel(){
+        StartCoroutine(FadeCanvasPanel());
+    }
+    IEnumerator FadeCanvasPanel(){
+        yield return FadePanel.DOFade(1f,0.0f).WaitForCompletion();
+		FadePanel.DOFade(0,1.4f);
+        }
+        
     void ShutudaiSlice(string moji)
     {
         if (cd1.dicT.ContainsKey(moji))
@@ -436,9 +411,6 @@ public class TikaraQues : MonoBehaviour
         }
 
     }
-
-
-
     void SetList()
     {
         //押したButtonに応じて分岐
