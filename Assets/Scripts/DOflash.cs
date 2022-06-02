@@ -8,20 +8,23 @@ using System;//0416更新
 public class DOflash : MonoBehaviour
 {
     // Start is called before the first frame update
+    /*
     void Start()
-    {/*
-        transform.DOLocalRotate(new Vector3(0, 0, 240f), 1.2f,
-        RotateMode.FastBeyond360)
-        .SetDelay(0.2f);  
-        Debug.Log("flash");*/
+    {
+        Flash18();
     }
+    */
 
     public void Flash18(){
         transform.eulerAngles = new Vector3(0, 0, 0);
-        transform.DOLocalRotate(new Vector3(0, 0, 240f), 1.8f,
+        transform.DOLocalRotate(new Vector3(0, 0, 360f), 6f,
         RotateMode.FastBeyond360)
-        .SetDelay(0.2f);  
-        Debug.Log("flash");
+        .SetDelay(0.2f)
+        .SetLoops(-1, LoopType.Yoyo)
+        .SetId("idFlash18");
+        Debug.Log("idFlash18");
+        ;  
+        
     }
     public void Flash360(){
         transform.DOLocalRotate(new Vector3(0, 0, 360f), 1.8f,

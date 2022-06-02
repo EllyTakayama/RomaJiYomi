@@ -33,7 +33,7 @@ public class DoRegrade : MonoBehaviour
         retryButton.SetActive(false);
         //renTopButton.SetActive(false);
         rewardButton.SetActive(false);
-        coinAddImage.SetActive(false);
+        //coinAddImage.SetActive(false);
         afterAdPanel.SetActive(false);
     }
     public void RgradePanel(){
@@ -44,10 +44,11 @@ public class DoRegrade : MonoBehaviour
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
-        coinAddImage.SetActive(false);
+        //coinAddImage.SetActive(false);
         afterAdPanel.SetActive(false);
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
+        coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
     
         StartCoroutine(ReGradePanel());
     }
@@ -92,13 +93,13 @@ public class DoRegrade : MonoBehaviour
         flashImage.SetActive(true);
         flashImage.GetComponent<DOflash>().Flash18();
         yield return new WaitForSeconds(1.2f);
-        flashImage.SetActive(false);
+        //flashImage.SetActive(false);
         //coinImage.SetActive(false);
        GameManager.instance.RcorrectCount=0;
        RenshuuQues.instance.RenshuuCount = 0;
        yield return new WaitForSeconds(0.2f);
        SoundManager.instance.PlaySousaSE(14);
-       coinAddImage.SetActive(true);
+       //coinAddImage.SetActive(true);
        coinAddText.GetComponent<DOCounter>().CountCoin2();
        yield return new WaitForSeconds(2.2f);
        SoundManager.instance.PlaySousaSE(8);
@@ -112,7 +113,7 @@ public class DoRegrade : MonoBehaviour
 
     }
     public void RenRetryButton(){
-        
+        TikaraQues.instance.StartFadePanel();
          if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.PlayBGM("RenshuuScene");
         }
@@ -123,6 +124,12 @@ public class DoRegrade : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
+        DOTween.TweensById("idFlash18").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
+
         afterAdPanel.SetActive(false);
         RegradePanel.SetActive(false);
 

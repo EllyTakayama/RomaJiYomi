@@ -23,7 +23,7 @@ public class PopController : MonoBehaviour
             {
                 popup1.transform.GetChild(i).transform.gameObject.SetActive(true);
             }
-            TikaraQues.instance.TiMondaiLoad();
+            //TikaraQues.instance.TiMondaiLoad();
         }
 
     }

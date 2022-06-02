@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
+//6月1に日更新
 
 //練習問題画面の出題メソッド
-//4月16日更新バグ修正
 
 public class RenshuuQues : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class RenshuuQues : MonoBehaviour
     public GameObject RenshuuPanel;
     [SerializeField] private GameObject RegradePanel;
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
+    public CanvasGroup RenFadePanel;//fade用のCanvasGroup
     public enum RenshuuType
     {
         RenRomaji50,
@@ -271,6 +273,14 @@ public class RenshuuQues : MonoBehaviour
         tagOfButton = locationOfRenshuuAnswer.ToString();
         
     }
+    //FadePanelのコルーチン
+    public void StartRenFadePanel(){
+        StartCoroutine(RenFadeCanvasPanel());
+    }
+    public IEnumerator RenFadeCanvasPanel(){
+        yield return RenFadePanel.DOFade(1f,0.0f).WaitForCompletion();
+		RenFadePanel.DOFade(0,1.4f);
+        }
     
     public void RenRomaji50(){
         string Mondai = RenMondaisuu.ToString();

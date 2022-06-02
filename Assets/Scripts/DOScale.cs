@@ -9,9 +9,7 @@ public class DOScale : MonoBehaviour
 {
     private Vector3 defaultScale;
     void Start(){
-        defaultScale = transform.localScale;
-        Debug.Log("defaultScale"+defaultScale);
-        BigScale2();
+        
     }
    public void BigScale2(){
        

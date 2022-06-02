@@ -270,7 +270,7 @@ public class TikaraQues : MonoBehaviour
     }
     IEnumerator FadeCanvasPanel(){
         yield return FadePanel.DOFade(1f,0.0f).WaitForCompletion();
-		FadePanel.DOFade(0,1.4f);
+		FadePanel.DOFade(0,2.0f);
         }
         
     void ShutudaiSlice(string moji)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using DG.Tweening;
 
 //練習問題の基本画面の出題メソッド
 //4月27日更新
@@ -22,6 +23,7 @@ public class ToggleRenshuu : MonoBehaviour
     //[SerializeField] private GameObject reSettingPanel;
     [SerializeField] private GameObject SetsuImage;
     [SerializeField] private GameObject[] SetPanels;
+    public CanvasGroup RTFadePanel;//fade用のCanvasGroup
     //プレハブの生成のため
     //public List<string> renshuuHiragana50 = new List<string>();
     //public List<string> renshuuRomaji50 = new List<string>();
@@ -414,12 +416,23 @@ public class ToggleRenshuu : MonoBehaviour
                 Debug.Log("Tkara");
                 return;
             }
+            StartCoroutine(RenFadePanel());
             ShuffleM();
             RenMondai();
             SoundManager.instance.PlayBGM("RenshuuScene");
             ShutudaiPanel.SetActive(true);
-
     }
+    //FadePanelのコルーチン
+    public void StartRTFadePanel(){
+        StartCoroutine(RenFadePanel());
+    }
+    public IEnumerator RenFadePanel(){
+        yield return RTFadePanel.DOFade(1f,0.0f).WaitForCompletion();
+        RTFadePanel.DOFade(0,2.0f);
+        //yield return new WaitForSeconds(1.2f);
+        //ShutudaiPanel.SetActive(true);
+        }
+    //RenshuuSceneのToggleで出題数を選択してセーブする
     void RenMondai(){
         if(ReMondaiToggle[0].isOn == true){
             toggleMondai = 10;
@@ -439,6 +452,7 @@ public class ToggleRenshuu : MonoBehaviour
         }
     }
 
+    //TikaraSceneのToggleで出題数を選択してセーブする
     public void ClickTMondai(){
         if(ReMondaiToggle[0].isOn == true){
             toggleMondai = 10;
