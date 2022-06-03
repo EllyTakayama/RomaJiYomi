@@ -16,8 +16,7 @@ public class DOFade : MonoBehaviour
 
     IEnumerator FadeTiPanel(){
         yield return canvasGroup.DOFade(1f,0.8f).WaitForCompletion();
-		canvasGroup.DOFade(0,0.6f);
-        
+		canvasGroup.DOFade(0,0.6f); 
     }
     public void FadeOut()
     {

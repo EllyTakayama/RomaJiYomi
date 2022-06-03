@@ -29,6 +29,7 @@ public class PanelChange : MonoBehaviour
     public GameObject Dropdown2;
     //public GameObject kihonButton;
     public GameObject KiriPanel;
+    public GameObject KiriPanel5;
     public Text aText;
     public GameObject RouletteM;//ルーレット呼び出し
 
@@ -98,9 +99,10 @@ public class PanelChange : MonoBehaviour
                 LeftButton.SetActive(false);
                 RightButton.SetActive(false);
                 QuesManager.instance.OnRomaji();
+                KiriPanel.GetComponent<KiriPanel>().OffKiriPanel();
                 //Play();
-                Invoke("ReKiriPanel",1.0f);
-                Invoke("ReQues",1.0f);
+                //Invoke("ReKiriPanel",1.0f);
+                //Invoke("ReQues",1.0f);
                 //QuesManager.instance.RomajiQues();
                 break;
             
@@ -116,7 +118,9 @@ public class PanelChange : MonoBehaviour
                 transform.localPosition = new Vector2(-2000, 1500);
                 LeftButton.SetActive(false);
                 RightButton.SetActive(false);
-                QuesManager.instance.Hiragana50Selet();
+                KiriPanel5.SetActive(true);
+                KiriPanel5.GetComponent<KiriPanel>().OffKiriPanel();
+                //QuesManager.instance.Hiragana50Selet();
                 //QuesManager.instance.RomajiQues();
                 //RightButton.SetActive(true);
                 break;

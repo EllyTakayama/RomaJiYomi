@@ -51,8 +51,9 @@ public class DOaText : MonoBehaviour
     public void Atext(){
         aText.DOText("\nあ行のアルファベットを"
         +"\nおぼえましょう。"
-        , 2f)
-        .OnComplete(MoveButtons);
+        , 2f);
+        //.OnComplete(MoveButtons)
+        MoveButtons();
         Invoke("LateSE",0.0f);
         print("aText");
     }
@@ -69,7 +70,7 @@ public class DOaText : MonoBehaviour
                  }
          }
         ButtonPanel.GetComponent<RectTransform>()   
-        .DOAnchorPos(new Vector2(-950,0), 0.5f)
+        .DOAnchorPos(new Vector2(-200,0), 0.5f)
         .SetRelative(true)
     .SetEase(Ease.OutBack)
     ;
