@@ -452,6 +452,7 @@ public class QuesManager : MonoBehaviour
          
          //CountText4.text = "/ 6問";
          //qMondai = 6;//6問出題する
+         n = 0;
          QuesCount1 = 0;
          kihonNum.Clear();
          if(dropdown2.value == 0){
@@ -578,6 +579,7 @@ public class QuesManager : MonoBehaviour
         }
 
         public void OnRomaji(){
+            n = 0;
             QuesCount1 = 0;
             isHira = true;//基本の50音でないということ
             CountText4.text = "/ 5問";

@@ -198,6 +198,10 @@ public class HiraDictionary : MonoBehaviour
         {"SYA","SHA"},{"SYU","SHU"}, {"SYO","SHO"},
         {"TYA","CHA"}, {"TYU","CHU"},{"TYO","CHO"},
         {"JYA","JA"},{"JYU","JU"}, {"JYO","JO"},{"TYĀ","CHĀ"},
+        
+        //単語の出題
+        {"GANKYÛ","GANKYŪ"},
+       
        
         //訓令長音
         {"RÂ","RĀ"},{"RÎ","RĪ"},{"RÛ","RŪ"},{"RÊ","RĒ"},{"RÔ","RŌ"},
@@ -215,6 +219,9 @@ public class HiraDictionary : MonoBehaviour
         {"sya","sha"},{"syu","shu"}, {"syo","sho"},
         {"tya","cha"}, {"tyu","chu"},{"tyo","cho"},
         {"tyā","chā"}, {"Si","Shi"},{"Hu","Fu"},{"Ti","Chi"},
+
+        //単語の出題
+        {"gankyû","gankyū"},
 
         //訓令長音
         {"râ","rā"},{"rî","rī"},{"rû","rū"},{"rê","rē"},{"rô","rō"},
