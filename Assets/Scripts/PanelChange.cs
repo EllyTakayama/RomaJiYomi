@@ -14,6 +14,7 @@ public class PanelChange : MonoBehaviour
         Panel2,
         Panel4,
         Panel5,
+        Panel6,
     }
     // 現在表示しているパネル
     Panel currentPanel;
@@ -55,7 +56,7 @@ public class PanelChange : MonoBehaviour
         SoundManager.instance.PlaySousaSE(2);
         
     }
-    //50音を覚えようボタン
+    //50音を覚えようボタン ルーレットに移動
     public void SelectRomaji50(){
         ShowPanel(Panel.Panel4);
          QuesManager.instance.currentMode = 4;
@@ -64,15 +65,22 @@ public class PanelChange : MonoBehaviour
          RouletteM.GetComponent<RouletteMaker>().RMaker();
 
     }
-    //その他音を覚えようボタン
+    //その他音を覚えようボタン ローマ字クイズ
     public void SelectRomajiHoka(){
         ShowPanel(Panel.Panel5);
          QuesManager.instance.currentMode = 5;
          QuesManager.instance.CurrentMode();
          SoundManager.instance.PlaySousaSE(2);
          //QuesManager.instance.RomajiQues();
-        
-    }
+        }
+
+    //その他音を覚えようボタン ローマ字クイズ
+    public void SelectHyo(){
+        ShowPanel(Panel.Panel6);
+        SoundManager.instance.PlaySousaSE(2);
+         //QuesManager.instance.RomajiQues();
+        }
+
 
     void ShowPanel(Panel panel){
         currentPanel = panel;
@@ -123,6 +131,13 @@ public class PanelChange : MonoBehaviour
                 //QuesManager.instance.Hiragana50Selet();
                 //QuesManager.instance.RomajiQues();
                 //RightButton.SetActive(true);
+                break;
+            
+            case Panel.Panel6:
+                SoundManager.instance.StopSE();
+                transform.localPosition = new Vector2(0, 1500);
+                LeftButton.SetActive(false);
+                RightButton.SetActive(false);
                 break;
 
         }

@@ -11,10 +11,10 @@ public class QuesManager : MonoBehaviour
     public KihonType kihonType;
     [HideInInspector] public string answer;
     [HideInInspector] public string select1;//選択肢
-     [HideInInspector] public string select2;//選択肢
+    [HideInInspector] public string select2;//選択肢
     [HideInInspector] public string answer4;
     [HideInInspector] public string select3;//選択肢
-     [HideInInspector] public string select4;//選択肢
+    [HideInInspector] public string select4;//選択肢
     [SerializeField] private GameObject AgradePanel;
     [SerializeField] private GameObject HiraGradePanel;
     [SerializeField] private GameObject Hdropdown;

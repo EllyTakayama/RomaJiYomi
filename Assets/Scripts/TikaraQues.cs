@@ -315,7 +315,7 @@ public class TikaraQues : MonoBehaviour
         string Mondai = TiMondai.ToString();
         Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
-        SoundManager.instance.PlaySousaSE(3);
+        SoundManager.instance.PlaySousaSE(9);
         if (TiQuesCount > TiMondai)
         {
             TiSeikai = GameManager.instance.TiTangoCount;

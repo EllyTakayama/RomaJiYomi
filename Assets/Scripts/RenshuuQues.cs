@@ -284,7 +284,7 @@ public class RenshuuQues : MonoBehaviour
         }
     
     public void RenRomaji50(){
-        SoundManager.instance.PlaySousaSE(3);
+        SoundManager.instance.PlaySousaSE(9);
         string Mondai = RenMondaisuu.ToString();
         RenMondaiText.text = "／"+Mondai+"問";
         RenshuuCount++;
