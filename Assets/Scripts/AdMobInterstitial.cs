@@ -61,7 +61,7 @@ public class AdMobInterstitial : MonoBehaviour
         interstitial.OnAdLoaded += HandleOnAdLoaded;//interstitialの状態が　インタースティシャル読み込み完了　となった時に起動する関数(関数名HandleOnAdLoaded)を登録
         interstitial.OnAdFailedToLoad += HandleOnAdFailedToLoad;//interstitialの状態が　インタースティシャル読み込み失敗 　となった時に起動する関数(関数名HandleOnAdFailedToLoad)を登録
         interstitial.OnAdClosed += HandleOnAdClosed;//interstitialの状態が  インタースティシャル表示終了　となった時に起動する関数(HandleOnAdClosed)を登録
-
+        interstitial.OnAdOpening += HandleOnAdOpening;//インタースティシャルが表示開始になった時に呼び出し
 
         //リクエストを生成
         AdRequest request = new AdRequest.Builder().Build();
@@ -80,11 +80,29 @@ public class AdMobInterstitial : MonoBehaviour
     {
         Debug.Log("インタースティシャル読み込み失敗" + args.LoadAdError);//args.LoadAdError:エラー内容 
     }
-
-
+    public void HandleOnAdOpening(object sender, EventArgs args){
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.BGMmute();
+            Debug.Log("BGM一時ミュート");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.SEmute();
+            Debug.Log("SE一時ミュート");
+        }
+        MonoBehaviour.print("HandleRewardedAdOpening event received");
+        
+    }
     //インタースティシャル表示終了 となった時に起動する関数
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.UnmuteBGM();
+            Debug.Log("BGMミュート解除");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.UnmuteSE();
+            Debug.Log("SEミュート解除");
+        }
         Debug.Log("インタースティシャル広告終了");
 
         //インタースティシャル広告は使い捨てなので一旦破棄

@@ -30,6 +30,7 @@ public class RenshuuQues : MonoBehaviour
     [SerializeField] private GameObject RegradePanel;
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     public CanvasGroup RenFadePanel;//fade用のCanvasGroup
+    [SerializeField] private int RenshuuMondai;//3-5問用のカウント数
     public enum RenshuuType
     {
         RenRomaji50,
@@ -250,8 +251,8 @@ public class RenshuuQues : MonoBehaviour
         for(int i =0; i< renshuuNum.Count; i++){
             Debug.Log("r"+renshuuNum[i]);}
         RenshuuCount=0;
+        RenshuuMondai=0;
         Renshuu();
-        
 
     }
     public void Renshuu(){
@@ -283,6 +284,7 @@ public class RenshuuQues : MonoBehaviour
         }
     
     public void RenRomaji50(){
+        SoundManager.instance.PlaySousaSE(3);
         string Mondai = RenMondaisuu.ToString();
         RenMondaiText.text = "／"+Mondai+"問";
         RenshuuCount++;
@@ -293,6 +295,16 @@ public class RenshuuQues : MonoBehaviour
            GameManager.instance.RCoin = RenSeikai*3;
            GameManager.instance.totalCoin += GameManager.instance.RCoin;
            GameManager.instance.SaveCoinGoukei();
+           if(ToggleRenshuu.instance.toggleMondai<30){
+               GameManager.instance.SceneCount++;
+           }else{
+               RenshuuMondai++;//3-5問題数用カウント
+               if(RenshuuMondai == 1){
+                   GameManager.instance.SceneCount++;
+                   RenshuuMondai = 0;
+                   }
+            }
+           Debug.Log("GameManager.instance.SceneCount"+GameManager.instance.SceneCount);
            RegradePanel.SetActive(true);
            RegradePanel.GetComponent<DoRegrade>().RgradePanel();
            Debug.Log("GameManager.totalCoin"+GameManager.instance.totalCoin);

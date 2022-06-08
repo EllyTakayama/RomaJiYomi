@@ -14,16 +14,15 @@ public class DOafterRewardPanel : MonoBehaviour
     [SerializeField] private GameObject RewardflashImage;
     [SerializeField] private Text coinAddText;
     [SerializeField] private GameObject coinGenerator;//CoinPrefabを生成する場所
-
+    [SerializeField] private GameObject SpinnerPanel;
 
     public void AfterReward(){
-
         //SoundManager.instance.PlayPanelBGM("GradePanel");
-        
         RewardButton.SetActive(false);
         RewardCoinImage.SetActive(false);
         RewardflashImage.SetActive(false);
         rewardText.text = "";
+        SpinnerPanel.SetActive(false);
         StartCoroutine(DoRewardPanel());
     }
     IEnumerator DoRewardPanel()

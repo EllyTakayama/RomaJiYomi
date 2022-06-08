@@ -315,7 +315,7 @@ public class TikaraQues : MonoBehaviour
         string Mondai = TiMondai.ToString();
         Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
-
+        SoundManager.instance.PlaySousaSE(3);
         if (TiQuesCount > TiMondai)
         {
             TiSeikai = GameManager.instance.TiTangoCount;
@@ -325,11 +325,13 @@ public class TikaraQues : MonoBehaviour
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += GameManager.instance.TiCoin;
             GameManager.instance.SaveCoinGoukei();
+            GameManager.instance.SceneCount++;
             pipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();
             Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
-            Debug.Log("GameManager" + GameManager.instance.TiCoin);
+            Debug.Log("GameManager.TiCoin" + GameManager.instance.TiCoin);
+            Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
             return;
         }
         Debug.Log("問題数" + TiQuesCount);

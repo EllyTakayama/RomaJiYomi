@@ -17,6 +17,7 @@ public class DoTigrade : MonoBehaviour
     [SerializeField] private GameObject coinAddImage;
     [SerializeField] private Text coinAddText;
     [SerializeField] private GameObject afterAdPanel;
+    [SerializeField] private GameObject SpinnerPanel;
     public string TihiraganaCorrect;
     public string Tikaracoin;
 
@@ -33,6 +34,7 @@ public class DoTigrade : MonoBehaviour
         rewardButton.SetActive(false);
         coinAddImage.SetActive(true);
         afterAdPanel.SetActive(false);
+        SpinnerPanel.SetActive(false);
         coinAddText.text = GameManager.instance.totalCoin.ToString();
     }
     public void TgradePanel(){

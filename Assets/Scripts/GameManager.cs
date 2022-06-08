@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//3月19日更新
+//6月7日更新
 
 public class GameManager : MonoBehaviour
 {
@@ -28,6 +28,7 @@ public class GameManager : MonoBehaviour
    public int beforeTotalCoin;//追加する前のコイン枚数　DOTweenのDOCountに使用
    public int totalCoin;//各Sceneのコイン枚数はこちらに追加していく
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
+   public int SceneCount;//インタースティシャル広告表示のためにScene表示をカウントしていきます
 
     private void Awake()
     {
@@ -51,6 +52,8 @@ public class GameManager : MonoBehaviour
        //LoadGse();
        //LoadGbgm();
        //Debug.Log("start");
+       SceneCount = 0;
+       Debug.Log("Sceneカウント"+SceneCount);
     }
     public void SaveCoinGoukei(){
         //isGfontsize = SettingManager.instance.isfontSize;

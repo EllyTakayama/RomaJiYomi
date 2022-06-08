@@ -282,6 +282,7 @@ public class QuesManager : MonoBehaviour
         else if(currentMode == 5){
             kihonType = KihonType.HokaRomaji;
         }
+        /*配列をシャッフルするのをやめた
        //乱数を生成
         System.Random randomNum = new System.Random();
      
@@ -315,6 +316,7 @@ public class QuesManager : MonoBehaviour
             ary[m] = tmp;
             //Debug.Log(ary[n])
             }
+        */
     }
 
     public void RomajiQues(){

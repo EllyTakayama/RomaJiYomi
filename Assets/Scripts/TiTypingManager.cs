@@ -169,6 +169,7 @@ void ChangeKtoH(string moji){
        TyQuesCountText.text = TyQuesCount.ToString();
        string Mondai = TikaraQues.instance.TiMondai.ToString();
        TyQuesText.text = "／"+Mondai+"問";
+       SoundManager.instance.PlaySousaSE(3);
        //出題数のカウントがMondaisuuを超えたらGradePanelが出てくる
        if (TyQuesCount > TikaraQues.instance.TiMondai)
         {
@@ -178,11 +179,13 @@ void ChangeKtoH(string moji){
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += GameManager.instance.TyCoin;
             GameManager.instance.SaveCoinGoukei();
+            GameManager.instance.SceneCount++;
             TipipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();
             Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
-            Debug.Log("GameManager" + GameManager.instance.TyCoin);
+            Debug.Log("GameManager.TyCoin" + GameManager.instance.TyCoin);
+            Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
             return;
         }
        Debug.Log("問題"+TyQuesCount);

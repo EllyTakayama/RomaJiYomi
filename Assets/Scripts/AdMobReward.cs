@@ -15,12 +15,13 @@ public class AdMobReward : MonoBehaviour
 
     private bool rewardeFlag=false;//リワード広告の報酬付与用　初期値はfalse
     private bool rewardeFlag1=false;//リワード広告の報酬付与用　初期値はfalse
-    
+    private bool SpinnerFlag =false;//Spinnerパネル表示よう　初期値はfalse
 
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
 
     private string adUnitId;
     public GameObject afterAdPanel;
+    public GameObject SpinnerPanel;
 
     //リワード広告を表示する関数
     //ボタンに割付けして使用
@@ -49,7 +50,11 @@ public class AdMobReward : MonoBehaviour
             afterAdPanel.SetActive(true);
             afterAdPanel.GetComponent<DOafterRewardPanel>().AfterReward();
         }
-        
+        if( SpinnerFlag == true){
+            SpinnerFlag = false;
+            SpinnerPanel.SetActive(true);
+            Debug.Log("Spinner"+SpinnerFlag);
+        }
     }
     
 
@@ -110,6 +115,8 @@ public class AdMobReward : MonoBehaviour
             Debug.Log("SE一時ミュート");
         }
         MonoBehaviour.print("HandleRewardedAdOpening event received");
+        SpinnerFlag = true;
+        Debug.Log("Spinner"+SpinnerFlag);
 
     }
 
