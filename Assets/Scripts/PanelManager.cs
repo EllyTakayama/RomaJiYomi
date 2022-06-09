@@ -15,7 +15,7 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        if(IScount>0 && IScount%2 ==0){
              GameManager.instance.SceneCount=0;
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
@@ -28,7 +28,7 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        if(IScount>0 && IScount%2 ==0){
             GameManager.instance.SceneCount=0;
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
@@ -41,7 +41,7 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        if(IScount>0 && IScount%2 ==0){
             GameManager.instance.SceneCount=0;
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
@@ -54,7 +54,7 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        if(IScount>0 && IScount%2 ==0){
             GameManager.instance.SceneCount=0;
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
@@ -102,6 +102,4 @@ public class PanelManager : MonoBehaviour
     public void TopPanelMove(){
         Panel0.SetActive(true);
     }
-
-
 }

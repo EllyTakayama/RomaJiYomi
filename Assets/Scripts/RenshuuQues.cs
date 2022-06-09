@@ -284,7 +284,7 @@ public class RenshuuQues : MonoBehaviour
         }
     
     public void RenRomaji50(){
-        SoundManager.instance.PlaySousaSE(9);
+        
         string Mondai = RenMondaisuu.ToString();
         RenMondaiText.text = "／"+Mondai+"問";
         RenshuuCount++;
@@ -304,6 +304,7 @@ public class RenshuuQues : MonoBehaviour
                    RenshuuMondai = 0;
                    }
             }
+            SoundManager.instance.PlaySousaSE(8);
            Debug.Log("GameManager.instance.SceneCount"+GameManager.instance.SceneCount);
            RegradePanel.SetActive(true);
            RegradePanel.GetComponent<DoRegrade>().RgradePanel();

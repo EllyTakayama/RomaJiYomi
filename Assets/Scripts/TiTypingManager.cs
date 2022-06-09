@@ -169,7 +169,7 @@ void ChangeKtoH(string moji){
        TyQuesCountText.text = TyQuesCount.ToString();
        string Mondai = TikaraQues.instance.TiMondai.ToString();
        TyQuesText.text = "／"+Mondai+"問";
-       SoundManager.instance.PlaySousaSE(3);
+       
        //出題数のカウントがMondaisuuを超えたらGradePanelが出てくる
        if (TyQuesCount > TikaraQues.instance.TiMondai)
         {
@@ -188,6 +188,7 @@ void ChangeKtoH(string moji){
             Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
             return;
         }
+        SoundManager.instance.PlaySousaSE(8);
        Debug.Log("問題"+TyQuesCount);
        answerNum=0;//正解数をカウントする変数
        k=3;//正解文字は2次元配列から取得　正解はインデックス3からスタート

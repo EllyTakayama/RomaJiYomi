@@ -315,7 +315,7 @@ public class TikaraQues : MonoBehaviour
         string Mondai = TiMondai.ToString();
         Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
-        SoundManager.instance.PlaySousaSE(9);
+       
         if (TiQuesCount > TiMondai)
         {
             TiSeikai = GameManager.instance.TiTangoCount;
@@ -334,6 +334,7 @@ public class TikaraQues : MonoBehaviour
             Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
             return;
         }
+        SoundManager.instance.PlaySousaSE(8);
         Debug.Log("問題数" + TiQuesCount);
         TiQuesCountText.text = TiQuesCount.ToString();
         TikaraAnsButtons[0].enabled = true;
