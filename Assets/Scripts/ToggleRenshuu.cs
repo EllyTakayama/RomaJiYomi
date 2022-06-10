@@ -4,9 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using DG.Tweening;
+using UnityEngine.Events;
 
 //練習問題の基本画面の出題メソッド
-//4月27日更新
+//6月11日更新
 
 public class ToggleRenshuu : MonoBehaviour
 {
@@ -118,6 +119,23 @@ public class ToggleRenshuu : MonoBehaviour
         shutsudaiNum.Clear();
         MondaiLoad();
         Debug.Log("toggleMondai"+toggleMondai);
+        for(int i =0;i < toggle.Length; i++){
+            toggle[i].onValueChanged.AddListener(CallSound);
+        }
+    }
+    public void CallSound(bool state)
+    {
+        if (state)
+        {
+            SoundManager.instance.PlaySousaSE(6);
+            Debug.Log("toggleTouch");
+        }
+        if (!state)
+        {
+            SoundManager.instance.PlaySousaSE(6);
+            Debug.Log("toggle!Touch");
+        }
+        
     }
     public void SpawnSetPanel(){
         SetsuImage = Instantiate(SetPanels[0],
@@ -125,9 +143,7 @@ public class ToggleRenshuu : MonoBehaviour
             transform.rotation);//生成時の向き
         SetsuImage.transform.SetParent(RenshuuPanel.transform,false);  
     }
-    
-
-        public void SelectToggle(){
+    public void SelectToggle(){
         //0 あ行0-4
         if(toggle[0].isOn == true){
             for(int i=0; i<5; i++){

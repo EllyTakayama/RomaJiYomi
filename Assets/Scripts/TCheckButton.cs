@@ -50,6 +50,7 @@ public class TCheckButton : MonoBehaviour
             maruSprite.SetActive(false);
             Debug.Log("maru");
       TikaraQues.instance.TKantan();
+      TikaraQues.instance.TiSprite();
     }
     IEnumerator TiBatsuButton()
     {   

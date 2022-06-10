@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System;
 using DG.Tweening;
-//6月1に日更新
+//6月11日に更新
 
 public class TikaraQues : MonoBehaviour
 {
@@ -16,7 +16,7 @@ public class TikaraQues : MonoBehaviour
     public GameObject pipoEnemy;
     [SerializeField] private GameObject TiQuesManager;
     public string tagOfButton;
-    public Text TikaraText;
+    public Text TikaraText;//問題表示テキスト
     public Text furiganaText;
     public int TikaraCount;
     public int TcurrentMode;
@@ -114,16 +114,13 @@ public class TikaraQues : MonoBehaviour
         tagOfButton = locationOfTikaraAnswer.ToString();
 
     }
-
-   
     public void TiSprite(){
         TiQuesManager.GetComponent<TspriteChange>().TiSChange();
-
-    }
+        }
 
     public void Kantan(string buttonname)
     { StartCoroutine(FadeCanvasPanel());
-        SoundManager.instance.PlayBGM("TikaraScene");
+        //SoundManager.instance.PlayBGM("TikaraScene");
         switch (buttonname)
         {
             case "Button1":
@@ -251,27 +248,37 @@ public class TikaraQues : MonoBehaviour
                     SetList();
                     ShuffleTikaQuesNum();
                     ShutudaiPanel.SetActive(true);
-                    DebugTable();
-                    TKantan();
+                    //DebugTable();//デバッグ用
+                    Invoke("CallTKantan",0.3f);
+                    //TKantan();
                         }
+    void CallTKantan(){
+        TKantan();
+    }
     
     //1文字ずつ問題用スクリプト TiTypingManager
     void ButtonTiKantan(){
                     Shutudai2Panel.SetActive(true);
                     TiTypingManager.instance.SetListTi();
                     TiTypingManager.instance.ShuffleQuesNum();
-                    DebugTable();
-                    TiTypingManager.instance.Output();
+                    //DebugTable();//デバッグ用
+                    Invoke("CallTiKantan",0.3f);
+                    //TiTypingManager.instance.Output();
                     }
+    void CallTiKantan(){
+        TiTypingManager.instance.Output();
+    }
     
     //FadePanelのコルーチン
     public void StartFadePanel(){
         StartCoroutine(FadeCanvasPanel());
     }
     IEnumerator FadeCanvasPanel(){
-        yield return FadePanel.DOFade(1f,0.0f).WaitForCompletion();
-		FadePanel.DOFade(0,2.0f);
+        FadePanel.DOFade(1f,0.0f);
+        yield return new WaitForSeconds(0.3f);
+		FadePanel.DOFade(0,0.6f);
         }
+
         
     void ShutudaiSlice(string moji)
     {
@@ -315,7 +322,8 @@ public class TikaraQues : MonoBehaviour
         string Mondai = TiMondai.ToString();
         Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
-       
+        TikaraText.GetComponent<DOScale>().BigScale2();
+       //Toggleで選択した問題数を超えたら、コイン獲得Panal遷移などの処理を行う
         if (TiQuesCount > TiMondai)
         {
             TiSeikai = GameManager.instance.TiTangoCount;
@@ -326,6 +334,11 @@ public class TikaraQues : MonoBehaviour
             GameManager.instance.totalCoin += GameManager.instance.TiCoin;
             GameManager.instance.SaveCoinGoukei();
             GameManager.instance.SceneCount++;
+            DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
             pipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();
@@ -334,7 +347,9 @@ public class TikaraQues : MonoBehaviour
             Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
             return;
         }
+        //SoundManager.instance.PlaySousaSE(8);
         SoundManager.instance.PlaySousaSE(8);
+        pipoEnemy.GetComponent<EnemyDamage>().EnemyShutudai();
         Debug.Log("問題数" + TiQuesCount);
         TiQuesCountText.text = TiQuesCount.ToString();
         TikaraAnsButtons[0].enabled = true;
@@ -414,6 +429,8 @@ public class TikaraQues : MonoBehaviour
         }
 
     }
+    
+   
     void SetList()
     {
         //押したButtonに応じて分岐

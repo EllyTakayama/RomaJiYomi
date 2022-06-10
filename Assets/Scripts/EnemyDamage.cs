@@ -14,9 +14,20 @@ public class EnemyDamage : MonoBehaviour
       //DamageCall();
       
     }
+    //出題時のアニメーション
+    public void EnemyShutudai(){
+      /* DOPunchPosition
+      1	振動時最大移動座標2	トゥイーン時間 3	振動数 4	振動する範囲
+      5	スナップフラグ
+      */
+      transform.DOPunchPosition(new Vector3(30f,0,0), 1.0f,5, 1f,false)
+    .SetEase(Ease.Linear);
+    Debug.Log("EnemyShutudai");
+    }
 
     public void EnemyShake(){
-       //時間、強さ、回数、手ぶれ値、スナップフラグ、dフェードアウト
+       //DOShakePosition
+       /*時間、強さ、回数、手ぶれ値、スナップフラグ、dフェードアウト*/
       transform.DOShakePosition(1.0f, 10f, 3, 1, false, true);
     }
 
