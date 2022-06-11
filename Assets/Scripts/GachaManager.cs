@@ -103,6 +103,17 @@ public class GachaManager : MonoBehaviour
             }
     }
 
+	public void CloseAdPanelManager(){
+		DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
+		PanelAd.SetActive(false);
+		RightButton.SetActive(true);
+		LeftButton.SetActive(true);
+	}
+
 	public void OkButton(){
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
@@ -132,12 +143,13 @@ public class GachaManager : MonoBehaviour
 
 	public void GetDropItem(){
 		
-		//Debug時はオフ
+		//Debug時はオフ 
+		/*coinが150枚以下ならガチャはできない*/
 		if(GameManager.instance.totalCoin < 150){
 			PanelAd.SetActive(true);
 			RightButton.SetActive(false);
 			LeftButton.SetActive(false);
-			//AdButton.GetComponent<DOScale>().BigScale3();
+			AdButton.GetComponent<DOScale>().BigScale2();
 			SoundManager.instance.PlaySousaSE(2);
 			return;
 		}

@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;//3月1日更新
+using System;
+using UnityEngine.Events;
+//6月12日更新
 
 public class TiToggleManager : MonoBehaviour
 {
@@ -14,9 +16,25 @@ public class TiToggleManager : MonoBehaviour
     // Start is called before the first frame update
     void Start(){
         TiTogLoad();
-        //Debug.Log("単語isTango"+Toggle1.isOn);
-        //Debug.Log("1文字isTango"+Toggle2.isOn);
+        Toggle1.onValueChanged.AddListener(CallSound);
+        Toggle2.onValueChanged.AddListener(CallSound);
     }
+
+    public void CallSound(bool state)
+    {
+        if (state)
+        {
+            SoundManager.instance.PlaySousaSE(5);
+            Debug.Log("toggleTouch");
+        }
+        if (!state)
+        {
+            SoundManager.instance.PlaySousaSE(5);
+            Debug.Log("toggle!Touch");
+        }
+        
+    }
+        
     public void TiSelectToggle(){
         if(Toggle1.isOn == true){
             //単語単位での選択
@@ -34,7 +52,6 @@ public class TiToggleManager : MonoBehaviour
              Debug.Log("単語isTango"+Toggle1.isOn);
              Debug.Log("1文字isTango"+Toggle2.isOn);
         }
-        
     }
     public void TiTogLoad(){
         isTango = ES3.Load<bool>("isTango","isTango.es3",true);
@@ -52,7 +69,5 @@ public class TiToggleManager : MonoBehaviour
         Debug.Log("ロード単語Toggle"+Toggle1.isOn);
         Debug.Log("ロード文字Toggle"+Toggle2.isOn);
     }
-
-
-
 }
+

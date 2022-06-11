@@ -1,12 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;//4月29日更新
+using UnityEngine;
+using UnityEngine.UI;
+//6月12日更新
 
 public class PopController : MonoBehaviour
 {
     
     public GameObject popup1;
+    [SerializeField] private Button MainButton;
     
+    void Start()
+    {
+        MainButton.onClick.AddListener(PopClick);   //クリック時にbuttonClick()を発火させる
+    }
+    public void PopClick(){
+        SoundManager.instance.PlaySousaSE(5);
+    }
+
     public void POPUP1() {
         //if menu is opened
         if (popup1.transform.GetChild(0).transform.gameObject.activeSelf)

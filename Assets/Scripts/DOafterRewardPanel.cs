@@ -69,6 +69,7 @@ public class DOafterRewardPanel : MonoBehaviour
             Debug.Log("IDKill");
             });
         RewardPanel.SetActive(false);
+        
     }
 
     

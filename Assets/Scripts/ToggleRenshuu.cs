@@ -122,6 +122,21 @@ public class ToggleRenshuu : MonoBehaviour
         for(int i =0;i < toggle.Length; i++){
             toggle[i].onValueChanged.AddListener(CallSound);
         }
+        toggle50.onValueChanged.AddListener(ToggleSound);
+        toggleHoka.onValueChanged.AddListener(ToggleSound);
+    }
+    public void ToggleSound(bool state)
+    {
+        if (state)
+        {
+            SoundManager.instance.PlaySousaSE(5);
+            Debug.Log("toggleTouch");
+        }
+        if (!state)
+        {
+            SoundManager.instance.PlaySousaSE(5);
+            Debug.Log("toggle!Touch");
+        }
     }
     public void CallSound(bool state)
     {
@@ -135,7 +150,6 @@ public class ToggleRenshuu : MonoBehaviour
             SoundManager.instance.PlaySousaSE(6);
             Debug.Log("toggle!Touch");
         }
-        
     }
     public void SpawnSetPanel(){
         SetsuImage = Instantiate(SetPanels[0],
