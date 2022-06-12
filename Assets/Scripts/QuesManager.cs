@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System;//ローマ字読みの基本画面の出題メソッド
-//4月8日更新
+using System;
+using UnityEngine.Events;
+//ローマ字読みの基本画面の出題メソッド
+//6月13日更新
 
 public class QuesManager : MonoBehaviour
 {
@@ -19,6 +21,7 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject HiraGradePanel;
     [SerializeField] private GameObject Hdropdown;
     [SerializeField] private GameObject Hdropdown2;
+    [SerializeField] private string setText;
 
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     private int locationOfAnswer;
@@ -235,6 +238,8 @@ public class QuesManager : MonoBehaviour
         //104-106
         "PYA","PYU","PYO"
         };
+    [SerializeField] private Button[] HyouButtons;
+    //[SerializeField] private int hButtonNum;
 
     // Start is called before the first frame update
      void Awake()
@@ -269,6 +274,47 @@ public class QuesManager : MonoBehaviour
         //Debug.Log("isGfontSize"+GameManager.instance.isGfontsize);
         //デフォルトだとfalse
         //Debug.Log("GameManagerisGfontsize"+GameManager.instance.isGfontsize);
+        for(int i =0;i<HyouButtons.Length;i++){
+            var count = i;
+            HyouButtons[i].onClick.AddListener(() => HyouOnClick(count));  // ローカル変数を引数にする
+        }
+    }
+        
+        void HyouOnClick(int i){
+            SoundManager.instance.PlaySE(i);
+        }
+    public void SetHyou(){
+        for(int i =0; i< HyouButtons.Length; i++){
+            if(GameManager.instance.isGKunrei == true){
+                if(GameManager.instance.isGfontsize == true){
+                   
+                    setText = hiragana50[i]+"\n"+RomaJi50[i];
+
+                }else{
+                    setText = hiragana50[i]+"\n"+romaji50[i];
+                }
+            }else{//ヘボン式の場合は検索する必要がある
+            if(GameManager.instance.isGfontsize == true){
+            string hebon = RomaJi50[i];
+            if(rq.dicHebon.ContainsKey(hebon)){
+                        hebon = rq.dicHebon[hebon];
+                        setText = hiragana50[i]+"\n"+hebon;
+            }else{
+                setText = hiragana50[i]+"\n"+RomaJi50[i];
+            }
+            }else{//ヘボン式かつ小文字の場合
+            string hebon = romaji50[i];
+            if(rq.dicHebon.ContainsKey(hebon)){
+                        hebon = rq.dicHebon[hebon];
+                        setText = hiragana50[i]+"\n"+hebon;
+            }else{
+                setText = hiragana50[i]+"\n"+romaji50[i];
+                
+            }
+            }
+            }
+            HyouButtons[i].GetComponentInChildren<Text>().text = setText; 
+        }
     }
 
     public void CurrentMode(){
@@ -318,6 +364,7 @@ public class QuesManager : MonoBehaviour
             }
         */
     }
+    
 
     public void RomajiQues(){
         switch (kihonType)

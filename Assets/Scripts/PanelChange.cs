@@ -78,7 +78,7 @@ public class PanelChange : MonoBehaviour
     public void SelectHyo(){
         ShowPanel(Panel.Panel6);
         SoundManager.instance.PlaySousaSE(2);
-         //QuesManager.instance.RomajiQues();
+        QuesManager.instance.SetHyou();
         }
 
 
