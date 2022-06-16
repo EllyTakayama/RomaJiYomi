@@ -7,7 +7,6 @@ using DG.Tweening;
 
 public class TiPanelChange : MonoBehaviour
 {
-
     public GameObject RightButton;
     public GameObject LeftButton;
     public GameObject NekoToggle;
@@ -30,7 +29,7 @@ public class TiPanelChange : MonoBehaviour
     void Start()
     {
         currentPanel = Panel.mPanel1;
-        LeftButton.SetActive(false);
+        LeftButton.SetActive(true);
         NekoToggle.SetActive(true);
         
     }
@@ -39,7 +38,7 @@ public class TiPanelChange : MonoBehaviour
         switch(panel){
             case Panel.mPanel1:
             transform.localPosition = new Vector2(0, 0);
-            LeftButton.SetActive(false);
+            LeftButton.SetActive(true);
             RightButton.SetActive(true);
             break;
 
@@ -47,14 +46,14 @@ public class TiPanelChange : MonoBehaviour
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-1000, 0);
                 LeftButton.SetActive(true);
-                RightButton.SetActive(false);
+                RightButton.SetActive(true);
                 break;
             
             case Panel.mPanel3:
                 SoundManager.instance.StopSE();
                 transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
-                RightButton.SetActive(false);
+                RightButton.SetActive(true);
                 break;
     
 
@@ -82,15 +81,45 @@ public class TiPanelChange : MonoBehaviour
             
         }
     }
+    void ShowTikaraPanel1(Panel panel){
+        currentPanel = panel;
+        switch(panel){
+            case Panel.mPanel1:
+            transform.localPosition = new Vector2(0, 0);
+            LeftButton.SetActive(true);
+            RightButton.SetActive(true);
+            break;
+
+            case Panel.mPanel2:
+                SoundManager.instance.StopSE();
+                transform.localPosition = new Vector2(-1000, 0);
+                LeftButton.SetActive(true);
+                RightButton.SetActive(true);
+                break;
+            /*
+            case Panel.mPanel3:
+                SoundManager.instance.StopSE();
+                transform.localPosition = new Vector2(-2000, 0);
+                LeftButton.SetActive(true);
+                RightButton.SetActive(true);
+                break;
+                */
+        }
+    }
     public void OnRightButton(){
        if(currentPanel == Panel.mPanel1 ){
         ShowTikaraPanel(Panel.mPanel2);
         //Debug.Log("2");
         }
         else if(currentPanel == Panel.mPanel2){
-        ShowTikaraPanel(Panel.mPanel3);
+        ShowTikaraPanel(Panel.mPanel1);
         //Debug.Log("2");
         }
+        /*
+        else if(currentPanel == Panel.mPanel3){
+        ShowTikaraPanel(Panel.mPanel1);
+        //Debug.Log("2");
+        }*/
     
     }
     public void OnLeftButton(){
@@ -98,7 +127,11 @@ public class TiPanelChange : MonoBehaviour
         ShowTikaraPanel(Panel.mPanel1);
         //Debug.Log("2");
         }
-        else if(currentPanel == Panel.mPanel3 ){
+        /*else if(currentPanel == Panel.mPanel3 ){
+        ShowTikaraPanel(Panel.mPanel2);
+        //Debug.Log("2");
+        }*/
+        else if(currentPanel == Panel.mPanel1 ){
         ShowTikaraPanel(Panel.mPanel2);
         //Debug.Log("2");
         }

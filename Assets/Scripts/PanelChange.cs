@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-//1月18日更新
+//6月16日更新
 
 public class PanelChange : MonoBehaviour
 {
@@ -51,6 +51,7 @@ public class PanelChange : MonoBehaviour
     //あ行を覚えようボタン
     public void SelectRomajiA(){
         ShowPanel(Panel.Panel1);
+        GameManager.instance.SceneCount++;
         QuesManager.instance.currentMode =2;
         QuesManager.instance.CurrentMode();
         SoundManager.instance.PlaySousaSE(2);
@@ -59,6 +60,7 @@ public class PanelChange : MonoBehaviour
     //50音を覚えようボタン ルーレットに移動
     public void SelectRomaji50(){
         ShowPanel(Panel.Panel4);
+        GameManager.instance.SceneCount++;
          QuesManager.instance.currentMode = 4;
          QuesManager.instance.CurrentMode();
          SoundManager.instance.PlaySousaSE(2);
@@ -68,6 +70,7 @@ public class PanelChange : MonoBehaviour
     //その他音を覚えようボタン ローマ字クイズ
     public void SelectRomajiHoka(){
         ShowPanel(Panel.Panel5);
+        GameManager.instance.SceneCount++;
          QuesManager.instance.currentMode = 5;
          QuesManager.instance.CurrentMode();
          SoundManager.instance.PlaySousaSE(2);
@@ -77,6 +80,7 @@ public class PanelChange : MonoBehaviour
     //その他音を覚えようボタン ローマ字クイズ
     public void SelectHyo(){
         ShowPanel(Panel.Panel6);
+        GameManager.instance.SceneCount++;
         SoundManager.instance.PlaySousaSE(2);
         QuesManager.instance.SetHyou();
         }

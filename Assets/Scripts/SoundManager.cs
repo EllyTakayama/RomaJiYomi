@@ -92,18 +92,18 @@ public class SoundManager : MonoBehaviour
     public void StopSE()
     {
         audioSourceSE.Stop();
-        Debug.Log("stopSE");
+        //Debug.Log("stopSE");
     }
     
     public void PlaySE(int index)
     {
         audioSourceSE.PlayOneShot(hiragana50[index]); // SEを一度だけならす
-        Debug.Log("Se");
+        //Debug.Log("Se");
     }
     public void PlayAgSE(int index)
     {
         audioSourceSE.PlayOneShot(aKihon[index]); // SEを一度だけならす
-        Debug.Log("AGSe");
+        //Debug.Log("AGSe");
     }
     /* PlaySousaSE
        0:正解 1:ヒュン・不正解時の正解Panel表示音 2:Scene変化のButton音 3:不正解音

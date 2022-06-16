@@ -22,6 +22,10 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject Hdropdown;
     [SerializeField] private GameObject Hdropdown2;
     [SerializeField] private string setText;
+    [SerializeField] private Toggle[] HyoToggles;
+    [SerializeField] private GameObject hButtonPanel;
+    [SerializeField] private GameObject hokaButtonPanel;
+    [SerializeField] private GameObject KiTopPanel;//KihonSceneの移動ないパネル
 
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     private int locationOfAnswer;
@@ -35,6 +39,7 @@ public class QuesManager : MonoBehaviour
     public Text CountText4;//1行クイズ問題数表示用
     public int currentMode;
     public GameObject PanelParent;
+    [SerializeField] private int KihonMondai;//5問用のカウント数
     private int n;
     public int a;
     public int b;
@@ -278,6 +283,26 @@ public class QuesManager : MonoBehaviour
             var count = i;
             HyouButtons[i].onClick.AddListener(() => HyouOnClick(count));  // ローカル変数を引数にする
         }
+    }
+    public void KiSettingPanel(){
+        SoundManager.instance.PlaySousaSE(5);
+            KiTopPanel.SetActive(false);
+    }
+    public void KiSettingPanelclose(){
+        SoundManager.instance.PlaySousaSE(5);
+            KiTopPanel.SetActive(true);
+    }
+
+    public void HyoToggleClick(){
+        if(HyoToggles[0].isOn == true){
+            hButtonPanel.SetActive(true);
+        }
+        else{
+            hButtonPanel.SetActive(false);
+        }
+    }
+    public void HyoToggleSEClick(){
+        SoundManager.instance.PlaySousaSE(6);
     }
         
         void HyouOnClick(int i){

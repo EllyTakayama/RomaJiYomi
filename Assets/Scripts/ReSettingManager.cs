@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-//3月21日更新
+//6月16日更新
 
 public class ReSettingManager : MonoBehaviour
 {
@@ -27,7 +27,9 @@ public class ReSettingManager : MonoBehaviour
         SetSELoad();
         Debug.Log("スタートロード");
     }
-
+    public void ToggleSE(){
+        SoundManager.instance.PlaySousaSE(5);
+    }
     public void FontSelectToggle(){
         if(tallToggle.isOn == true){
 
@@ -189,9 +191,11 @@ public class ReSettingManager : MonoBehaviour
     }
 
     public void ReSettingMove(){
+        SoundManager.instance.PlaySousaSE(5);
         RenshuuPanel.SetActive(false);
     }
     public void RenshuuTopMove(){
+        SoundManager.instance.PlaySousaSE(5);
         RenshuuPanel.SetActive(true);
     }
 

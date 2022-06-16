@@ -45,7 +45,9 @@ public class TiSettingManager : MonoBehaviour
 
         Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
     }
-
+    public void ToggleSE(){
+        SoundManager.instance.PlaySousaSE(5);
+    }
     public void FontTogLoad(){
        
         GameManager.instance.LoadGfontsize();

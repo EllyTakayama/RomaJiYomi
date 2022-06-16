@@ -20,6 +20,8 @@ public class GachaItem : MonoBehaviour
 	[SerializeField] private Text NnameText;//アイテムPanelの猫の名前
 	[SerializeField] private Text NsetumeiText;//アイテムPanelの猫の説明
     [SerializeField] private Image NnekoItemImage;//アイテムPanelの猫の説明
+    [SerializeField] private GameObject LeftButton;//ひだりボタン
+    [SerializeField] private GameObject RightButton;//みぎボタン
 
      //テキストデータを読み込む
     [SerializeField] TextAsset GcharaName;
@@ -58,6 +60,8 @@ public class GachaItem : MonoBehaviour
             NsetumeiText.text = ItemName.Replace(".",System.Environment.NewLine);
             NnekoItemImage.sprite = ItemNeko[ButtonNum];
             SoundManager.instance.PlaySousaSE(9);
+            RightButton.SetActive(false);
+            LeftButton.SetActive(false);
         }
         else{
             return;

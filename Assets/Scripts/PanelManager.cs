@@ -11,6 +11,7 @@ public class PanelManager : MonoBehaviour
     public GameObject Panel0;
     [SerializeField] GameObject AdMobManager;
     
+    //各Sceneへ移動する際に2回に一度インタースティシャル広告を呼び出し
     public void TopSceneMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();

@@ -41,6 +41,7 @@ public class TikaraQues : MonoBehaviour
     public List<int> TikaQuesNum = new List<int>();//出題をシャッフルさせるため
     //public GameObject PanelParent;//画面遷移の親
     public CanvasGroup FadePanel;//fade用のCanvasGroup
+    [SerializeField] private GameObject PanelFade;//FadePanelの指定
     
 
     public enum TikaraType
@@ -93,7 +94,6 @@ public class TikaraQues : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         GameManager.instance.LoadGfontsize();
         GameManager.instance.LoadGKunrei();
         //出題数デバッグ用
@@ -242,6 +242,7 @@ public class TikaraQues : MonoBehaviour
                 }
                 break;
         }
+        
     }
     //単語問題用スクリプト TikaraQues
     void ButtonTKantan(){
@@ -274,6 +275,7 @@ public class TikaraQues : MonoBehaviour
         StartCoroutine(FadeCanvasPanel());
     }
     IEnumerator FadeCanvasPanel(){
+        PanelFade.SetActive(true);
         FadePanel.DOFade(1f,0.0f);
         yield return new WaitForSeconds(0.3f);
 		FadePanel.DOFade(0,0.6f);
@@ -558,6 +560,7 @@ public class TikaraQues : MonoBehaviour
         }
     }
     public void TiSettingPanel(){
+        SoundManager.instance.PlaySousaSE(5);
         if(TikaraPanel.activeSelf ==true){
             TikaraPanel.SetActive(false);
             }

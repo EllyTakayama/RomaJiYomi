@@ -50,6 +50,7 @@ public class GachaManager : MonoBehaviour
 	public CanvasGroup fadePanel;//fadeよう
 	[SerializeField] private GameObject NekoitemPanel;//Gachaでゲットした猫アイテムの説明
 	[SerializeField] private GameObject AdButton;//AdPanel内のReward広告を呼び出すButton
+	public GameObject rewardText0;//コインが足りませんテキスト
 
 	
 	//Debug用
@@ -137,9 +138,15 @@ public class GachaManager : MonoBehaviour
             Debug.Log("IDKill");
             });
 		}
+		rewardText0.SetActive(true);
 		PanelAd.SetActive(false);
 	}
-	
+	public void GetCoin(){
+		PanelAd.SetActive(true);
+		rewardText0.SetActive(false);
+		AdButton.GetComponent<DOScale>().BigScale2();
+		SoundManager.instance.PlaySousaSE(2);
+	}
 
 	public void GetDropItem(){
 		

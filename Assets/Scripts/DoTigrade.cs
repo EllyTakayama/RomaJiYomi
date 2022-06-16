@@ -18,6 +18,7 @@ public class DoTigrade : MonoBehaviour
     [SerializeField] private Text coinAddText;
     [SerializeField] private GameObject afterAdPanel;
     [SerializeField] private GameObject SpinnerPanel;
+    [SerializeField] private GameObject TikaraPanelMove;
     public string TihiraganaCorrect;
     public string Tikaracoin;
 
@@ -125,6 +126,7 @@ public class DoTigrade : MonoBehaviour
         coinAddText.GetComponent<DOScale>().BigScale2();
 
         yield return new WaitForSeconds(0.2f);
+        TikaraPanelMove.SetActive(true);
         retryButton.SetActive(true);
         rewardButton.SetActive(true);
         rewardButton.GetComponent<DOScale>().BigScale2();
