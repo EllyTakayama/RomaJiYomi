@@ -105,6 +105,7 @@ public class GachaManager : MonoBehaviour
     }
 
 	public void CloseAdPanelManager(){
+		SoundManager.instance.PlaySousaSE(5);
 		DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
@@ -119,7 +120,7 @@ public class GachaManager : MonoBehaviour
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
 		closeButton.SetActive(false);
-		SoundManager.instance.PlaySousaSE(9);
+		SoundManager.instance.PlaySousaSE(5);
 		NekoitemPanel.SetActive(false);
 		if(getNekoPanel.activeSelf){
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
@@ -146,6 +147,8 @@ public class GachaManager : MonoBehaviour
 		rewardText0.SetActive(false);
 		AdButton.GetComponent<DOScale>().BigScale2();
 		SoundManager.instance.PlaySousaSE(2);
+		RightButton.SetActive(false);
+		LeftButton.SetActive(false);
 	}
 
 	public void GetDropItem(){

@@ -119,7 +119,7 @@ public class GPanelChange : MonoBehaviour
                 transform.DOLocalMove(new Vector3(0, 0, 0), 0.4f);  
             }
             else{
-                transform.DOLocalMove(new Vector3(0, 0, 0), 0.8f);    
+                transform.DOLocalMove(new Vector3(0, 0, 0), 0.6f);    
             }
             //transform.DOLocalMove(new Vector3(0, 0, 0), 1f);
             //transform.localPosition = new Vector2(0, 0);
@@ -130,10 +130,10 @@ public class GPanelChange : MonoBehaviour
             case Panel.Panel1chara:
                 SoundManager.instance.StopSE();
                 if(LeftMuki==true){
-                transform.DOLocalMove(new Vector3(-1000, 0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-1000, 0, 0), 0.6f);
                 }
                 else{
-                transform.DOLocalMove(new Vector3(-1000, 0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-1000, 0, 0), 0.6f);
                 }
                 //transform.localPosition = new Vector2(-1000, 0);
                 LeftButton.SetActive(true);
@@ -143,10 +143,10 @@ public class GPanelChange : MonoBehaviour
             case Panel.Panel2chara:
                 SoundManager.instance.StopSE();
                 if(LeftMuki==true){
-                transform.DOLocalMove(new Vector3(-2000, 0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-2000, 0, 0), 0.6f);
                 }
                 else{
-                transform.DOLocalMove(new Vector3(-2000, 0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-2000, 0, 0), 0.6f);
                 }
                 //transform.localPosition = new Vector2(-2000, 0);
                 LeftButton.SetActive(true);
@@ -156,17 +156,17 @@ public class GPanelChange : MonoBehaviour
             case Panel.Panel3item:
                 if(LeftMuki==true){
                 //transform.localPosition = new Vector2(0, 1500);
-                transform.DOLocalMove(new Vector3(-3000,0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-3000,0, 0), 0.6f);
             }
             else{
-                transform.DOLocalMove(new Vector3(-3000, 0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-3000, 0, 0), 0.6f);
             }
                 
                 break;
             
             case Panel.Panel4item:
             if(LeftMuki==true){
-                transform.DOLocalMove(new Vector3(-4000, 0, 0), 0.8f);
+                transform.DOLocalMove(new Vector3(-4000, 0, 0), 0.6f);
             }
             else{
                 transform.localPosition = new Vector2(-4600, 0);
@@ -179,8 +179,12 @@ public class GPanelChange : MonoBehaviour
                 break;
         }
     }
+    public void ButtonLR(){
+        SoundManager.instance.PlaySousaSE(1);
+    }
 
-    public void OnRightButton(){  
+    public void OnRightButton(){
+        
     if(currentPanel == Panel.gachaPanel ){
         ShowGachaPanel(Panel.Panel1chara);
         //Debug.Log("2");
@@ -230,6 +234,7 @@ public class GPanelChange : MonoBehaviour
     }
 
     public void OnLeftButton(){
+        
         if(currentPanel == Panel.Panel4item ){
         ShowGachaPanel(Panel.Panel3item);
         //Debug.Log("2");
