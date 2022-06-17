@@ -26,6 +26,9 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject hButtonPanel;
     [SerializeField] private GameObject hokaButtonPanel;
     [SerializeField] private GameObject KiTopPanel;//KihonSceneの移動ないパネル
+    [SerializeField] private GameObject[] HyoBallons;//表のバルーン生成用プレハブの配列
+    [SerializeField] private List<string> HyoBallonsText;//表のバルーン生成用プレハブの配列
+    [SerializeField] private int BallonPre;//バルーンのプレハブを指定する変数
 
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     private int locationOfAnswer;
@@ -244,6 +247,7 @@ public class QuesManager : MonoBehaviour
         "PYA","PYU","PYO"
         };
     [SerializeField] private Button[] HyouButtons;
+    [SerializeField] private int BallonNum;//バルーン生成用の値
     //[SerializeField] private int hButtonNum;
 
     // Start is called before the first frame update
@@ -304,10 +308,77 @@ public class QuesManager : MonoBehaviour
     public void HyoToggleSEClick(){
         SoundManager.instance.PlaySousaSE(6);
     }
-        
+        //表のButtonをクリックする
         void HyouOnClick(int i){
             SoundManager.instance.PlaySE(i);
+            SpawnHyoBaloon(i);
         }
+        //Panel4で平仮名をSpawnさせる
+    public void SpawnHyoBaloon(int i){
+        //BallonPreプレハブのアイウエオ順の指定(色が違うから)
+        if(i<36){
+            BallonPre =i%5;
+        }
+        else if(i>=36 && i<46){
+            if(i==36){
+                BallonPre = 2;
+            }
+            else if(i==37){
+                BallonPre = 4;
+            }
+            else if(i==38){
+                BallonPre = 0;
+            }
+            else if(i==39){
+                BallonPre = 1;
+            }
+            else if(i==40){
+                BallonPre = 2;
+            }
+            else if(i==41){
+                BallonPre = 3;
+            }
+            else if(i==42){
+                BallonPre = 4;
+            }
+            else if(i==43){
+                BallonPre = 0;
+            }
+            else if(i==44){
+                BallonPre = 2;
+            }
+            else if(i==45){
+                BallonPre = 4;
+            }
+        }
+        else if(i>=46 && i<71){
+            BallonPre = i%5-1;
+            if(BallonPre<0){
+                BallonPre =4;
+            }
+        }
+        else if(i>70){
+            int Keisan = i-71;
+            BallonPre = Keisan%3;
+        }
+        
+        int n = BallonPre;
+        //int n = i%5;
+        Debug.Log("i,"+i);
+        Debug.Log("n,"+n);
+        GameObject Ballon = Instantiate(HyoBallons[BallonPre],
+        new Vector3 (UnityEngine.Random.Range(-250f,100f), UnityEngine.Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
+            transform.rotation);//生成時の向き
+            if(HyoToggles[0].isOn == true){
+                Ballon.transform.SetParent(hButtonPanel.transform,false); 
+            }
+            else{
+                Ballon.transform.SetParent(hokaButtonPanel.transform,false); 
+            }
+        Ballon.GetComponent<BDest>().BallonNumber = i;
+        Ballon.GetComponentInChildren<Text>().text = HyoBallonsText[i];
+    }
+
     public void SetHyou(){
         for(int i =0; i< HyouButtons.Length; i++){
             if(GameManager.instance.isGKunrei == true){
@@ -339,6 +410,7 @@ public class QuesManager : MonoBehaviour
             }
             }
             HyouButtons[i].GetComponentInChildren<Text>().text = setText; 
+            HyoBallonsText.Add(setText);
         }
     }
 

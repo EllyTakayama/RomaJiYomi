@@ -33,8 +33,8 @@ public class DOafterRewardPanel : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
     }
     public void DoRewardText(){
-        rewardText.DOText("\nやったね\nコインを100枚\nゲットしたよ"
-        , 1.8f)
+        rewardText.DOText("\nやったね!\n\nコインを100枚\nゲットしたよ"
+        , 0.5f)
         .OnComplete(Coinhoka)
         ;
         print("rewardText");
@@ -44,18 +44,21 @@ public class DOafterRewardPanel : MonoBehaviour
         StartCoroutine(CoinMove());
     }
     IEnumerator CoinMove()
-    {   yield return new WaitForSeconds(0.2f);
+    {   yield return new WaitForSeconds(0.1f);
         RewardCoinImage.SetActive(true);
         RewardflashImage.SetActive(true);
         RewardflashImage.GetComponent<DOflash>().Flash18();
-        yield return new WaitForSeconds(1.2f);
-        RewardflashImage.SetActive(false);
-        //StartCoroutine(RewardCoinSpawn());
+        
+        //yield return new WaitForSeconds(1.2f);
+        //RewardflashImage.SetActive(false);
+       
        yield return new WaitForSeconds(0.2f);
-       coinGenerator.GetComponent<CoinGenerator>().SpawnRewardCoin();
+       //coinGenerator.GetComponent<CoinGenerator>().SpawnRewardCoin();
        SoundManager.instance.PlaySousaSE(14);
-       coinAddText.GetComponent<DOCounter>().CountCoin2();
-       yield return new WaitForSeconds(2.2f);
+       coinAddText.GetComponent<DOCounter>().CountCoin1();
+       yield return new WaitForSeconds(2.0f);
+       SoundManager.instance.StopSE();
+       yield return new WaitForSeconds(0.1f);
        SoundManager.instance.PlaySousaSE(8);
        RewardButton.SetActive(true);
        RewardButton.GetComponent<DOScale>().BigScale2();
@@ -68,6 +71,12 @@ public class DOafterRewardPanel : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
+        DOTween.TweensById("idFlash18").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
+
         RewardPanel.SetActive(false);
         
     }

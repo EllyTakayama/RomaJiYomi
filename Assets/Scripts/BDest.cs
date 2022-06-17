@@ -10,6 +10,7 @@ public class BDest : MonoBehaviour
     public Image[] bPrefabs1;
     private int b;
     public List<int> HRoulletteNum = new List<int>();//ルーレットの風船の変数の保持
+    public int BallonNumber;//生成されたButtonの番号を取得したい
     private HiraDictionary cd;
     string[] Agyou = new string[]{
          "A",
@@ -31,8 +32,6 @@ public class BDest : MonoBehaviour
     void Start()
     {
         cd = GetComponent<HiraDictionary>();
-      
-
         //3秒後に削除
         b = 0;
         Destroy(gameObject, 4.0f);
@@ -91,7 +90,7 @@ public class BDest : MonoBehaviour
              }
              //ルーレットシーンのバルーンで文字を取得する時の分岐
         }
-        else{//currentModeが2じゃなかった場合
+        else if(QuesManager.instance.currentMode ==4){//currentModeが2じゃなかった場合
          HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
            SoundManager.instance.PlaySE(HRoulletteNum[num]);
            if(b > 0){
@@ -137,6 +136,51 @@ public class BDest : MonoBehaviour
             
             Debug.Log("hiragana");
             }
+            else{
+                if(b==0){
+                     bPrefabs1[num].GetComponentInChildren<Text>().text =  hiragana50[BallonNumber];
+                     b++;
+                }
+                else if(b==1){
+                if(GameManager.instance.isGfontsize==true){
+                //大文字でヘボン式の分岐
+                if(GameManager.instance.isGKunrei == false){
+                    string c = RomaJi50[BallonNumber];
+                    Debug.Log("c"+c);
+                    if(cd.dicHebon.ContainsKey(c)){
+                        c = cd.dicHebon[c];
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                        else{
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber];
+                        }
+                    }else{//大文字で訓令式の分岐
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
+                        }
+                Debug.Log("大文字ひらがなb"+b);
+                b++;}
+                else{//小文字の場合の分岐
+                    //小文字でヘボン式の場合の分岐
+                    if(GameManager.instance.isGKunrei == false){
+                    string c = RomaJi50[BallonNumber].ToLower();
+                    if(cd.dicHebon.ContainsKey(c)){
+                        c = cd.dicHebon[c];
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                        else{
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber].ToLower();
+                        }
+                    }else{//小文字で訓令式の分岐
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber].ToLower();
+                        }
+                    Debug.Log("小文字ひらがなb"+b);
+                    b++;
+                }
+                } 
+            else if(b>1){
+                Destroy(gameObject);
+            }
+        }
     }
         
 

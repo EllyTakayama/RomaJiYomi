@@ -74,9 +74,9 @@ public class GachaManager : MonoBehaviour
 		for(int i = 0 ; i < a ;i++){
 			Debug.Log(DeNum[i]);
 		}
-		Debug.Log(DeNum.Count);
+		//Debug.Log(DeNum.Count);
 		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
-		Debug.Log(GachaNum.Count);
+		//Debug.Log(GachaNum.Count);
 		
 		SetChara();
 
@@ -103,9 +103,12 @@ public class GachaManager : MonoBehaviour
             Debug.Log(i.ToString()+","+setumeis[i]);
             }
     }
+	public void GachaSE(){
+		SoundManager.instance.PlaySousaSE(5);
+	}
 
 	public void CloseAdPanelManager(){
-		SoundManager.instance.PlaySousaSE(5);
+		//SoundManager.instance.PlaySousaSE(5);
 		DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
