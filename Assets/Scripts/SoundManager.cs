@@ -110,7 +110,7 @@ public class SoundManager : MonoBehaviour
        4:ガチャガチャのボール音 5:Button音2 6：Button音3ぴ（小）7：ルーレット　8：ルーレット結果
        9:スワイプ（画面移動）音 10:GradePanelテキスト 11:GradePanelスタンプ音
        12: Gradeファンファーレ（Kihon) 13:ルーレットストップ 14:コインゲット音
-       15: Gradeファンファーレ（Renshuu ,Tikara) 16:ガチャガチャ音
+       15: Gradeファンファーレ（Renshuu ,Tikara) 16:ガチャガチャ音,17 Ballon破裂音
     */
     public void PlaySousaSE(int index){
         audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす

@@ -42,6 +42,7 @@ public class TikaraQues : MonoBehaviour
     //public GameObject PanelParent;//画面遷移の親
     public CanvasGroup FadePanel;//fade用のCanvasGroup
     [SerializeField] private GameObject PanelFade;//FadePanelの指定
+    public bool Chimei;//最初だけ大文字で記述するカテゴリーのブール
     
 
     public enum TikaraType
@@ -142,6 +143,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 1;
                     ButtonTiKantan();
                 }
+                Chimei = false;
                 break;
 
             case "Button2":
@@ -156,6 +158,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 2;
                     ButtonTiKantan();
                 }
+                Chimei = false;
                 break;
 
             case "Button3":
@@ -170,6 +173,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 3;
                     ButtonTiKantan();
                 }
+                Chimei = false;
                 break;
 
             case "Button4":
@@ -184,6 +188,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 4;
                     ButtonTiKantan();
                 }
+                Chimei = false;
                 break;
 
                 case "Button5":
@@ -198,6 +203,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 5;
                     ButtonTiKantan();
                 }
+                Chimei = false;
                 break;
             
             case "Button6":
@@ -226,6 +232,7 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 7;
                     ButtonTiKantan();
                 }
+                Chimei = false;
                 break;
             
             case "Button8":
@@ -240,7 +247,11 @@ public class TikaraQues : MonoBehaviour
                     TiTypingManager.instance.TicurrentMode = 8;
                     ButtonTiKantan();
                 }
+                Chimei = true;
                 break;
+        }
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.PlayBGM("TikaraScene");
         }
         
     }

@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 947354688662492415}
   - component: {fileID: -3866773933415461390}
   - component: {fileID: 2762467741475423618}
+  - component: {fileID: -3417357128736282178}
   m_Layer: 5
   m_Name: bOImage
   m_TagString: Untagged
@@ -228,6 +229,12 @@ MonoBehaviour:
   - {fileID: 5292131561981605438}
   HRoulletteNum: 
   BallonNumber: 0
+  BrokenBallon:
+  - {fileID: 21300000, guid: 49c11c17d41884deebe5af36a444109c, type: 3}
+  - {fileID: 21300000, guid: e91f795e60371415999f602b43000568, type: 3}
+  - {fileID: 21300000, guid: ac5cf9f36f0a7477fab99e72ebbc0538, type: 3}
+  - {fileID: 21300000, guid: b8cc8285862cb44b69d37842cb7a4a39, type: 3}
+  - {fileID: 21300000, guid: 06ea6b9c6546d458c9e314b0f9a5d453, type: 3}
 --- !u!114 &-3866773933415461390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,5 +274,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5a641a7307d6048e18a0e21f5cf32dcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-3417357128736282178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5292131561981605434}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d912de2a3bf64a239a847663abca603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

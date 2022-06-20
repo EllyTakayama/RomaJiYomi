@@ -26,4 +26,8 @@ public class DOScale : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo)
         .SetId("idBigScale3");
    }
+   public void BallonScale(){
+       transform.DOScale(new Vector3(1.25f, 1.25f, 1f), 0.1f);
+   }
+   
 }

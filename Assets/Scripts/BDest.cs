@@ -12,6 +12,7 @@ public class BDest : MonoBehaviour
     public List<int> HRoulletteNum = new List<int>();//ルーレットの風船の変数の保持
     public int BallonNumber;//生成されたButtonの番号を取得したい
     private HiraDictionary cd;
+   [SerializeField] private Sprite[] BrokenBallon;//割れた風船の画像
     string[] Agyou = new string[]{
          "A",
          "I",
@@ -89,14 +90,15 @@ public class BDest : MonoBehaviour
                 }    
              }
              //ルーレットシーンのバルーンで文字を取得する時の分岐
-        }
+        }// ルーレットバルーン
         else if(QuesManager.instance.currentMode ==4){//currentModeが2じゃなかった場合
          HRoulletteNum = new List<int>(GameManager.instance.RoulletteNum);
            SoundManager.instance.PlaySE(HRoulletteNum[num]);
-           if(b > 0){
-               bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
+           if(b == 1){
+               //bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
+               StartCoroutine(LateBreakB(num));
                 Debug.Log("大文字ひらがなb"+b);
-               b=0;}
+               }
             else if(b==0){
                 if(GameManager.instance.isGfontsize==true){
                 //大文字でヘボン式の分岐
@@ -132,10 +134,8 @@ public class BDest : MonoBehaviour
                     Debug.Log("小文字ひらがなb"+b);
                     b++;
                 }
-            }
-            
-            Debug.Log("hiragana");
-            }
+                }
+            }//ローマ字表のバルーン生成のあれこれ
             else{
                 if(b==0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text =  hiragana50[BallonNumber];
@@ -178,9 +178,19 @@ public class BDest : MonoBehaviour
                 }
                 } 
             else if(b>1){
-                Destroy(gameObject);
+                bPrefabs1[num].sprite = BrokenBallon[num];
+                bPrefabs1[num].GetComponent<DOScale>().BallonScale();
+                SoundManager.instance.PlaySousaSE(17);
+                Destroy(gameObject,0.5f);
             }
         }
+    }
+   IEnumerator  LateBreakB(int num){
+       yield return new WaitForSeconds(0.3f);
+        bPrefabs1[num].sprite = BrokenBallon[num];
+                bPrefabs1[num].GetComponent<DOScale>().BallonScale();
+                SoundManager.instance.PlaySousaSE(17);
+                Destroy(gameObject,0.5f);
     }
         
 
