@@ -423,7 +423,8 @@ public class TikaraQues : MonoBehaviour
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
         if (GameManager.instance.isGfontsize == true)
         {
-            if (locationOfTikaraAnswer == 0)
+            if(Chimei == false){
+                if (locationOfTikaraAnswer == 0)
             {
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer;
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito3;
@@ -442,28 +443,74 @@ public class TikaraQues : MonoBehaviour
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito5;
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito3;
             }
+            }else{
+
+                if (locationOfTikaraAnswer == 0)
+            {
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer.ToUpper();
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito3.ToUpper();
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4.ToUpper();
+            }
+              else if (locationOfTikaraAnswer == 1)
+            {
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer.ToUpper();
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4.ToUpper();
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito5.ToUpper();
+
+            }
+              else if (locationOfTikaraAnswer == 2)
+            {
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer.ToUpper();
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito5.ToUpper();
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito3.ToUpper();
+            }
+            }
+            
         }
         else//小文字表示の場合
         {
-            if (locationOfTikaraAnswer == 0)
+            if(Chimei == false){
+                if (locationOfTikaraAnswer == 0)
             {
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito3.ToLower();
                 TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4.ToLower();
             }
-            else if (locationOfTikaraAnswer == 1)
+              else if (locationOfTikaraAnswer == 1)
             {
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
                 TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4.ToLower();
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito5.ToLower();
 
             }
-            else if (locationOfTikaraAnswer == 2)
+              else if (locationOfTikaraAnswer == 2)
             {
                 TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito5.ToLower();
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito3.ToLower();
             }
+            }else{
+                if (locationOfTikaraAnswer == 0)
+            {
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer;
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito3;
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4;
+            }
+            else if (locationOfTikaraAnswer == 1)
+            {
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer;
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4;
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito5;
+
+            }
+            else if (locationOfTikaraAnswer == 2)
+            {
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer;
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito5;
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito3;
+            }
+            }
+            
 
         }
         t++;
