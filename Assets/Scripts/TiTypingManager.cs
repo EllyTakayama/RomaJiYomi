@@ -203,6 +203,8 @@ void ChangeKtoH(string moji){
 
         //大文字の時の分岐         
         if(GameManager.instance.isGfontsize==true){
+            //一般的な表記の場合のブール
+        if(TikaraQues.instance.Chimei == false){
         kanjiText.text = TiTable[_qNum,0];
         qText.text = TiTable[_qNum,1];
         textcolor = TiTable[_qNum,1];
@@ -232,10 +234,45 @@ void ChangeKtoH(string moji){
                    Debug.Log("outputkey"+QuestionAnswer);
                 }
                 Debug.Log("qNum"+_qNum);}
+            }
+            else{//地名・氏名など最初だけ大文字の表記の時のブール
+            kanjiText.text = TiTable[_qNum,0].ToUpper();
+            qText.text = TiTable[_qNum,1].ToUpper();
+            textcolor = TiTable[_qNum,1].ToUpper();
+            aText.text = "";
+            Debug.Log("QuesNum[q]"+QuesNum[q]);
+                 Debug.Log("_qNum"+_qNum);
+            int j =3;
+            for(int i =0;i<TiyokoNumber-3;i++){
+                 TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j].ToUpper();
+                 //小文字かつヘボン式の場合はButtonのテキストを差し替える
+                 if(GameManager.instance.isGKunrei == false){
+                     string b = TiTable[_qNum,j].ToUpper();
+                    if(cd.dicHebon.ContainsKey(b)){
+                        b = cd.dicHebon[b];
+                        TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text=b;
+                }
+                 }
+                 j++;}
+            QuestionAnswer = TiTable[_qNum,k].ToUpper();Debug.Log("qestionanswer"+QuestionAnswer);
+                //小文字かつヘボン式の場合は正解のテキストを差し替える
+                if(GameManager.instance.isGKunrei == false){
+                     string a = QuestionAnswer;
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        QuestionAnswer = a;
+                        Debug.Log("a"+a);
+                        }
+                }
+        Debug.Log("qNum"+_qNum);
+        //qNumに代入するQuesNum[q]のインデックスｑを＋＋して次回出題時に問題が変更される様にする
+         }
+        
         }
         //小文字の場合の分岐
         else{
-            kanjiText.text = TiTable[_qNum,0].ToLower();
+            if(TikaraQues.instance.Chimei == false){
+                kanjiText.text = TiTable[_qNum,0].ToLower();
             qText.text = TiTable[_qNum,1].ToLower();
             textcolor = TiTable[_qNum,1].ToLower();
             aText.text = "";
@@ -265,6 +302,40 @@ void ChangeKtoH(string moji){
                 }
         Debug.Log("qNum"+_qNum);
         //qNumに代入するQuesNum[q]のインデックスｑを＋＋して次回出題時に問題が変更される様にする
+        
+            }
+            else{//地名・氏名など最初だけ大文字の表記の時のブール
+                 kanjiText.text = TiTable[_qNum,0];
+                 qText.text = TiTable[_qNum,1];
+                 textcolor = TiTable[_qNum,1];
+                 aText.text = "";
+                 int j =3;
+                 for(int i =0;i<TiyokoNumber-3;i++){
+                 TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text = TiTable[_qNum,j];
+                 Debug.Log("QuesNum[q]"+QuesNum[q]);
+                 Debug.Log("_qNum"+_qNum);
+                 //大文字かつヘボン式の場合はButtonのテキストを差し替える
+                 if(GameManager.instance.isGKunrei == false){
+                     string a = TiTable[_qNum,j];
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        TiButtons[ButtonNum[i]].GetComponentInChildren<Text>().text=a;
+                   Debug.Log("key");
+                }
+                 }
+                 j++;}
+                 QuestionAnswer = TiTable[_qNum,k];
+                 //大文字かつヘボン式の場合は正解を差し替える
+                if(GameManager.instance.isGKunrei == false){
+                     string a = QuestionAnswer;
+                    if(cd.dicHebon.ContainsKey(a)){
+                        a = cd.dicHebon[a];
+                        QuestionAnswer = a;
+                   Debug.Log("outputkey"+QuestionAnswer);
+                }
+                Debug.Log("qNum"+_qNum);}
+            
+            }
         }
         //もしインデックスがQuewNumの要素数を上回る倍はインデックス用変数ｑを0にする
         q++;
@@ -366,8 +437,12 @@ void ChangeKtoH(string moji){
         k++;
         //大文字かつ、ヘボン式の場合正解を差し替える
         if(GameManager.instance.isGfontsize==true){
-            QuestionAnswer = TiTable[_qNum,k];
-            if(GameManager.instance.isGKunrei == false){
+            if(TikaraQues.instance.Chimei==false){
+                QuestionAnswer = TiTable[_qNum,k];
+                 }else{
+                QuestionAnswer = TiTable[_qNum,k].ToUpper();
+                }
+                if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){
                         a = cd.dicHebon[a];
@@ -375,9 +450,15 @@ void ChangeKtoH(string moji){
                         }
                 }
             }
+            
         //小文字かつ、ヘボン式の場合正解を差し替える
         else{
-             QuestionAnswer = TiTable[_qNum,k].ToLower();
+            if(TikaraQues.instance.Chimei == false){
+                 QuestionAnswer = TiTable[_qNum,k].ToLower();
+            }
+            else{
+                QuestionAnswer = TiTable[_qNum,k];
+            }
              if(GameManager.instance.isGKunrei == false){
                      string a = QuestionAnswer;
                     if(cd.dicHebon.ContainsKey(a)){

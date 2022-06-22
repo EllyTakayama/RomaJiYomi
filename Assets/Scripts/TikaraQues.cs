@@ -42,7 +42,11 @@ public class TikaraQues : MonoBehaviour
     //public GameObject PanelParent;//画面遷移の親
     public CanvasGroup FadePanel;//fade用のCanvasGroup
     [SerializeField] private GameObject PanelFade;//FadePanelの指定
-    public bool Chimei;//最初だけ大文字で記述するカテゴリーのブール
+    public bool Chimei;//最初だけ大文字で記述するカテゴリー(住所、氏名)のブール
+    //訓令式とヘボン式の解答の差し替え
+    public string Kaito3;//配列3の場所
+    public string Kaito4;//配列4の場所
+    public string Kaito5;//配列5の場所
     
 
     public enum TikaraType
@@ -260,7 +264,7 @@ public class TikaraQues : MonoBehaviour
                     SetList();
                     ShuffleTikaQuesNum();
                     ShutudaiPanel.SetActive(true);
-                    //DebugTable();//デバッグ用
+                    DebugTable();//デバッグ用
                     Invoke("CallTKantan",0.3f);
                     //TKantan();
                         }
@@ -386,6 +390,34 @@ public class TikaraQues : MonoBehaviour
         //漢字、ふりがな表示
         furiganaText.text = TSTable[n, 0];
         //n++;
+        Kaito3 = TSTable[n, 3];
+        Kaito4 = TSTable[n, 4];
+        Kaito5 = TSTable[n, 5];
+        if(GameManager.instance.isGKunrei == false){
+                    string a = Kaito3;
+                    if(cd1.dicHebon.ContainsKey(a)){
+                        a = cd1.dicHebon[a];
+                        Kaito3 = a;
+                   Debug.Log("outputkey"+Kaito3);
+                   }
+                }
+        if(GameManager.instance.isGKunrei == false){
+                    string a = Kaito4;
+                    if(cd1.dicHebon.ContainsKey(a)){
+                        a = cd1.dicHebon[a];
+                        Kaito4 = a;
+                   Debug.Log("outputkey"+Kaito5);
+                   }
+                }
+        if(GameManager.instance.isGKunrei == false){
+                    string a = Kaito5;
+                    if(cd1.dicHebon.ContainsKey(a)){
+                        a = cd1.dicHebon[a];
+                        Kaito5 = a;
+                   Debug.Log("outputkey"+Kaito5);
+                   }
+                }
+
 
         locationOfTikaraAnswer = UnityEngine.Random.Range(0, 3);
         //Debug.Log("locationOfAnswer"+locationOfAnswer);
@@ -394,43 +426,43 @@ public class TikaraQues : MonoBehaviour
             if (locationOfTikaraAnswer == 0)
             {
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer;
-                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n, 3];
-                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n, 4];
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito3;
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4;
             }
             else if (locationOfTikaraAnswer == 1)
             {
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer;
-                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n, 4];
-                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n, 5];
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4;
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito5;
 
             }
             else if (locationOfTikaraAnswer == 2)
             {
                 TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer;
-                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n, 5];
-                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n, 3];
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito5;
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito3;
             }
         }
-        else
+        else//小文字表示の場合
         {
             if (locationOfTikaraAnswer == 0)
             {
                 TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
-                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n, 3].ToLower();
-                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n, 4].ToLower();
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito3.ToLower();
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4.ToLower();
             }
             else if (locationOfTikaraAnswer == 1)
             {
                 TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
-                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TSTable[n, 4].ToLower();
-                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n, 5].ToLower();
+                TikaraAnsButtons[2].GetComponentInChildren<Text>().text = Kaito4.ToLower();
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito5.ToLower();
 
             }
             else if (locationOfTikaraAnswer == 2)
             {
                 TikaraAnsButtons[2].GetComponentInChildren<Text>().text = TikaraAnswer.ToLower();
-                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = TSTable[n, 5].ToLower();
-                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = TSTable[n, 3].ToLower();
+                TikaraAnsButtons[1].GetComponentInChildren<Text>().text = Kaito5.ToLower();
+                TikaraAnsButtons[0].GetComponentInChildren<Text>().text = Kaito3.ToLower();
             }
 
         }
