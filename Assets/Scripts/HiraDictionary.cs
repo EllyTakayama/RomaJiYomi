@@ -209,8 +209,11 @@ public class HiraDictionary : MonoBehaviour
         {"RENNYÛ","RENNYŪ"},{"HANNBÂGU","HANNBĀGU"},{"TUKUE","TSUKUE"},
         {"MENBÔ","MENBŌ"},{"ROKKÂ","ROKKĀ"},{"GABYÔ","GABYŌ"},{"GAKKÔ","GAKKŌ"},
         {"ZÔKIN","ZŌKIN"},{"BÔSAI","BŌSAI"},{"KÔSATEN","KŌSATEN"},
-        {"HIMITU","HIMITSU"},
-       
+        {"HIMITU","HIMITSU"}, {"YÛGAO","YŪGAO"},{"RABENDÂ","RABENDĀ"},
+        {"TANBO","TAMBO"},{"SIBAHU","SHIBAFU"},{"SUISÔ","SUISŌ"},
+        {"TANPOPO","TAMPOPO"},{"HIGANBANA","HIGAMBANA"},{"KANBUN","KAMBUN"},
+        {"YUKIMATURI","YUKIMATSURI"},{"SITINARABE","SICHINARABE"},{"NIKKÔYOKU","NIKKŌYOKU"},
+        {"OZÔNI","OZŌNI"},{"ÔNAMENTO","ŌNAMENTO"},{"HOKKAIDÔ","HOKKAIDŌ"},
        
         //訓令長音
         {"RÂ","RĀ"},{"RÎ","RĪ"},{"RÛ","RŪ"},{"RÊ","RĒ"},{"RÔ","RŌ"},
