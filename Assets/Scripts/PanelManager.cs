@@ -61,8 +61,9 @@ public class PanelManager : MonoBehaviour
         }
         SoundManager.instance.PlaySousaSE(2);
         if(GameManager.instance.isBgmOn == true){
-        SoundManager.instance.PlayBGM("TikaraScene");}
+        SoundManager.instance.PlayPanelBGM("SelectPanel");
         SceneManager.LoadScene("TikaraScene");
+        }
     }
     public void GachaSceneMove(){
         SoundManager.instance.StopSE();
@@ -86,7 +87,7 @@ public class PanelManager : MonoBehaviour
         }
         SceneManager.LoadScene("SettingScene");
     }
-     //
+    
     public void TopSettingMove(){
         SoundManager.instance.StopSE();
         DOTween.KillAll();

@@ -113,10 +113,8 @@ public class DoRegrade : MonoBehaviour
 
     }
     public void RenRetryButton(){
-        TikaraQues.instance.StartFadePanel();
-         if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.PlayBGM("RenshuuScene");
-        }
+        RenshuuQues.instance.StartRenFadePanel();
+        SoundManager.instance.PlayBGM("RenshuuScene");
         //coinAddImage.Kill();
         //coinAddText.Kill();
         DOTween.TweensById("idBigScale2").ForEach((tween) =>

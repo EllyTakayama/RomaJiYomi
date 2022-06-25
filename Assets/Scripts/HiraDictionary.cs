@@ -214,7 +214,24 @@ public class HiraDictionary : MonoBehaviour
         {"TANPOPO","TAMPOPO"},{"HIGANBANA","HIGAMBANA"},{"KANBUN","KAMBUN"},
         {"YUKIMATURI","YUKIMATSURI"},{"SITINARABE","SICHINARABE"},{"NIKKÔYOKU","NIKKŌYOKU"},
         {"OZÔNI","OZŌNI"},{"ÔNAMENTO","ŌNAMENTO"},{"HOKKAIDÔ","HOKKAIDŌ"},
-       
+
+        //地名の単語
+        {"Hukuzawa","Fukuzawa"},{"Hukuoka","Fukuoka"},{"Akisima","Akishima"},
+        {"Tôkai","Tōkai"},{"Tôgane","Tōgane"},{"Gusi","Gushi"},{"Tigasaki","Chigasaki"},
+        {"Titibu","Chichibu"},{"Titose","Chitose"},{"Kyôto","Kyōto"},{"Kagosima","Kagoshima"},
+        {"Nikkô","Nikkō"},{"Isigaki","Ishigaki"},{"Isikari","Ishikari"},
+        {"Isinomaki","Ishinomaki"},{"Hukusima","Fukusima"},{"Hukuyama","Fukuyama"},
+        {"Yamaguti","Yamaguchi"},{"Gyôda","Gyōda"},{"Gotô","Gotō"},
+        {"Siogama","Shiogama"},{"Sinagawa","Shinagawa"},{"Akasi","Akashi"},
+        {"Siki","Shiki"},{"Sima","Shima"},{"Sibuya","Shibuya"},{"Tôkyô","Tōkyō"},
+        {"Ôita","Ōita"},{"Osima","Oshima"},{"Wazima","Wajima"},{"Totigi","Tochigi"},{"Tokusima","Tokushima"},
+        {"Simabara","Shimabara"},{"Simanto","Shimanto"},{"Simada","Shimada"},
+        {"Hitati","Hitachi"},{"Yamanasi","Yamanashi"},{"Tôkamati","Tōkamachi"},{"Kasima","Kashima"},
+        {"Ebetu","Ebetsu"},{"Etizen","Echizen"},{"Kôhu","Kōfu"},{"Kôbe","Kōbe"},{"Hukaya","Fukaya"},
+        {"Kusatu","Kusatsu"},{"Ôme","Ōme"},{"Ôkawa","Ōkawa"},{"Ôsaka","Ōsaka"},{"Miyazima","Miyajima"},
+        {"Ôfunato","Ōfunato"},{"Ôgaki","Ōgaki"},{"Ôsima","Ōshima"},
+
+
         //訓令長音
         {"RÂ","RĀ"},{"RÎ","RĪ"},{"RÛ","RŪ"},{"RÊ","RĒ"},{"RÔ","RŌ"},
         {"BÂ","BĀ"},{"CHÂ","CHĀ"},

@@ -134,6 +134,7 @@ public class DoTigrade : MonoBehaviour
     }
     public void RetryButton(){
         TikaraQues.instance.StartFadePanel();
+        SoundManager.instance.PlayBGM("TikaraScene");
         if(TikaraQues.instance.isWord == true){
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 

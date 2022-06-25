@@ -111,7 +111,7 @@ public class TiSettingManager : MonoBehaviour
             } 
         else if(bgmToggle.isOn ==true){
         SoundManager.instance.UnmuteBGM();
-        SoundManager.instance.PlayBGM("TikaraScene");
+        //SoundManager.instance.PlayBGM("TikaraScene");
         GameManager.instance.isBgmOn = true;
         GameManager.instance.SaveGbgm();
         //ES3.Save<bool>("BGM_OnOf", bgmToggle.isOn);
@@ -156,7 +156,7 @@ public class TiSettingManager : MonoBehaviour
      Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
-             SoundManager.instance.PlayPanelBGM("SelectPanel");
+             //SoundManager.instance.PlayPanelBGM("SelectPanel");
              //SoundManager.instance.PlayBGM("TikaraScene");
              }
         else{

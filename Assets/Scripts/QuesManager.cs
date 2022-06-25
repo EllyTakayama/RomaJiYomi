@@ -42,7 +42,7 @@ public class QuesManager : MonoBehaviour
     public Text CountText4;//1行クイズ問題数表示用
     public int currentMode;
     public GameObject PanelParent;
-    [SerializeField] private int KihonMondai;//5問用のカウント数
+    public int KihonMondai;//5問用のカウント数
     private int n;
     public int a;
     public int b;
@@ -277,6 +277,7 @@ public class QuesManager : MonoBehaviour
         HiraGradePanel.SetActive(false);
         QuesCount = 0;
         QuesCount1 = 0;
+        KihonMondai = 0;
         GameManager.instance.LoadGfontsize();
         GameManager.instance.LoadGKunrei();
         rq = GetComponent<HiraDictionary>();
@@ -495,6 +496,11 @@ public class QuesManager : MonoBehaviour
             Debug.Log("Apanel");
             return;
         }
+        KihonMondai++;//3-5問題数用カウント
+               if(KihonMondai == 3){
+                   GameManager.instance.SceneCount++;
+                   KihonMondai = 0;
+                   }
         AnsButton[0].enabled = true;
         AnsButton[1].enabled = true;
         AnsButton[2].enabled = true;
@@ -832,6 +838,11 @@ public class QuesManager : MonoBehaviour
             Debug.Log("hirapanel");
             return;
         }
+        KihonMondai++;//3-5問題数用カウント
+               if(KihonMondai == 3){
+                   GameManager.instance.SceneCount++;
+                   KihonMondai = 0;
+                   }
         AnsButton[3].enabled = true;
         AnsButton[4].enabled = true;
         AnsButton[5].enabled = true;

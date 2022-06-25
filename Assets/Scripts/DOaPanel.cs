@@ -63,10 +63,10 @@ public class DOaPanel : MonoBehaviour
 	
     IEnumerator AgyouPanel()
     {   QuesManager.instance.QuesCount = 0;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.6f);
         SoundManager.instance.PlaySousaSE(10);
         YattaText();
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.7f);
         
     }
     public void YattaText(){
