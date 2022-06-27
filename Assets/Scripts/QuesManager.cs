@@ -21,6 +21,8 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject HiraGradePanel;
     [SerializeField] private GameObject Hdropdown;
     [SerializeField] private GameObject Hdropdown2;
+    [SerializeField] private Dropdown dropdown50;
+    [SerializeField] private Dropdown dropdownHoka;
     [SerializeField] private string setText;
     [SerializeField] private Toggle[] HyoToggles;
     [SerializeField] private GameObject hButtonPanel;
@@ -29,6 +31,14 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private GameObject[] HyoBallons;//表のバルーン生成用プレハブの配列
     [SerializeField] private List<string> HyoBallonsText;//表のバルーン生成用プレハブの配列
     [SerializeField] private int BallonPre;//バルーンのプレハブを指定する変数
+    public string[] KHiragana = {"が行(G)","ざ行(Z)","だ行(D)","ば行(B)","ぱ行(P)","きゃ(KY)しゃ(SY)行","ちゃ(TY)にゃ(NY)行",
+    "ひゃ(HY)みゃ(MY)行","りゃ(RY)ぎゃ(GY)行","じゃ(ZY)ぢゃ(DY)行","びゃ(BY)ぴゃ(PY)行"} ;
+    //[SerializeField] private List<string> kHiragana = new List<string>(){"が行(g)","ざ行(z)","だ行(d)","ば行(b)","ぱ行(p)","きゃ(ky)しゃ(sy)行","ちゃ(ty)にゃ(ny)行",
+    //"ひゃ(hy)みゃ(my)行","りゃ(ry)ぎゃ(gy)行","じゃ(zy)ぢゃ(dy)行","びゃ(by)ぴゃ(py)行"} ;
+    public string[] HeHiragana = {"が行(G)","ざ行(Z)","だ行(D)","ば行(B)","ぱ行(P)","きゃ(KY)しゃ(SH)行","ちゃ(CH)にゃ(NY)行",
+    "ひゃ(HY)みゃ(MY)行","りゃ(RY)ぎゃ(GY)行","じゃ(J)ぢゃ(DY)行","びゃ(BY)ぴゃ(PY)行"} ;
+    //[SerializeField] private List<string> heHiragana = new List<string>(){"が行(g)","ざ行(z)","だ行(d)","ば行(b)","ぱ行(p)","きゃ(ky)しゃ(sh)行","ちゃ(ch)にゃ(ny)行",
+    //"ひゃ(hy)みゃ(my)行","りゃ(ry)ぎゃ(gy)行","じゃ(j)ぢゃ(dy)行","びゃ(by)ぴゃ(py)行"} ;
 
     private HiraDictionary rq;//RenshuuQues用のHiraDictionaryの取得
     private int locationOfAnswer;
@@ -575,6 +585,31 @@ public class QuesManager : MonoBehaviour
     }
         public void SelectHoka(){
             Hdropdown2.SetActive(true);
+            
+            
+            /*for(int i=0;i<KHiragana.Length;i++){
+                Debug.Log(KHiragana[i]);
+            }*/
+            dropdownHoka.ClearOptions();
+            if(GameManager.instance.isGKunrei== true){
+                List<string> list = new List<string>();
+                list.AddRange(KHiragana);
+                for(int i=0;i<KHiragana.Length;i++){
+                    Debug.Log("i,"+list[i]);
+                }
+                dropdownHoka.AddOptions(list);
+                }
+                
+            else{
+                List<string> list = new List<string>();
+                list.AddRange(HeHiragana);
+                for(int i=0;i<KHiragana.Length;i++){
+                    Debug.Log("i,"+list[i]);
+                }
+                dropdownHoka.AddOptions(list);
+                }
+            
+
             //hokaImage.SetActive(true);
             Hdropdown.SetActive(false);
             //hiraganaImage.SetActive(false);

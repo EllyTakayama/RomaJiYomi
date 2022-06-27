@@ -21,8 +21,7 @@ public class PanelManager : MonoBehaviour
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
         SoundManager.instance.PlaySousaSE(2);
-       if(GameManager.instance.isBgmOn == true){
-        SoundManager.instance.PlayBGM("TopScene");}
+        SoundManager.instance.PlayBGM("TopScene");
         SceneManager.LoadScene("TopScene");
     }
     public void KihonSceneMove(){
@@ -34,8 +33,7 @@ public class PanelManager : MonoBehaviour
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
         SoundManager.instance.PlaySousaSE(2);
-        if(GameManager.instance.isBgmOn == true){
-        SoundManager.instance.PlayBGM("KihonScene");}
+        SoundManager.instance.PlayBGM("KihonScene");
         SceneManager.LoadScene("KihonScene");
     }
     public void RenshuuSceneMove(){
@@ -47,8 +45,7 @@ public class PanelManager : MonoBehaviour
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
         SoundManager.instance.PlaySousaSE(2);
-        if(GameManager.instance.isBgmOn == true){
-        SoundManager.instance.PlayBGM("RenshuuScene");}
+        SoundManager.instance.PlayBGM("RenshuuScene");
         SceneManager.LoadScene("RenshuuScene");
     }
     public void TikaraSceneMove(){
@@ -60,10 +57,9 @@ public class PanelManager : MonoBehaviour
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
         SoundManager.instance.PlaySousaSE(2);
-        if(GameManager.instance.isBgmOn == true){
         SoundManager.instance.PlayPanelBGM("SelectPanel");
         SceneManager.LoadScene("TikaraScene");
-        }
+       
     }
     public void GachaSceneMove(){
         SoundManager.instance.StopSE();
@@ -73,8 +69,7 @@ public class PanelManager : MonoBehaviour
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
         }
         SoundManager.instance.PlaySousaSE(2);
-        if(GameManager.instance.isBgmOn == true){
-        SoundManager.instance.PlayBGM("GachaScene");}
+        SoundManager.instance.PlayBGM("GachaScene");
         SceneManager.LoadScene("GachaScene");
     }
 

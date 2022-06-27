@@ -155,7 +155,7 @@ public class BDest : MonoBehaviour
                             bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber];
                         }
                     }else{//大文字で訓令式の分岐
-                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber];
                         }
                 Debug.Log("大文字ひらがなb"+b);
                 b++;}
