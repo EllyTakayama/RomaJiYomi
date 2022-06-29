@@ -37,6 +37,7 @@ public class DoRegrade : MonoBehaviour
         afterAdPanel.SetActive(false);
     }
     public void RgradePanel(){
+        
         SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
         //renTopButton.SetActive(false);
@@ -113,6 +114,10 @@ public class DoRegrade : MonoBehaviour
 
     }
     public void RenRetryButton(){
+        RenshuuQues.instance.RenshuuCount = 0;
+        GameManager.instance.RcorrectCount = 0;
+        GameManager.instance.RCoin = 0;
+        RenshuuQues.instance.RenRomaji50();
         RenshuuQues.instance.StartRenFadePanel();
         SoundManager.instance.PlayBGM("RenshuuScene");
         //coinAddImage.Kill();

@@ -658,7 +658,6 @@ RectTransform:
   m_Children:
   - {fileID: 1754953480}
   - {fileID: 631889596}
-  - {fileID: 1168543952}
   - {fileID: 292389524}
   - {fileID: 398382532}
   m_Father: {fileID: 1349976772}
@@ -689,6 +688,7 @@ MonoBehaviour:
   coinAddText: {fileID: 510982880}
   coinGenerator: {fileID: 398382531}
   SpinnerPanel: {fileID: 1444186335}
+  RegradePanel: {fileID: 1349976771}
 --- !u!114 &39695298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3876,7 +3876,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 39695296}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -4685,6 +4685,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4026183765522471017}
+        m_TargetAssemblyTypeName: UnityEngine.Object, UnityEngine
+        m_MethodName: set_name
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Home
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &357432706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5362,7 +5374,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 39695296}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -8079,10 +8091,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1464706627}
-  - {fileID: 981314898}
+  - {fileID: 1168543952}
   - {fileID: 1599803983}
   - {fileID: 1245118297}
   - {fileID: 1598417085}
+  - {fileID: 981314898}
   m_Father: {fileID: 39695296}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12332,9 +12345,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 915733296}
-        m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: TikaraSceneMove
+      - m_Target: {fileID: 39695297}
+        m_TargetAssemblyTypeName: DOafterRewardPanel, Assembly-CSharp
+        m_MethodName: CloseAdPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12395,7 +12408,7 @@ RectTransform:
   m_Children:
   - {fileID: 1955701720}
   m_Father: {fileID: 631889596}
-  m_RootOrder: 1
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -14310,12 +14323,12 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 39695296}
-  m_RootOrder: 2
+  m_Father: {fileID: 631889596}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0, y: -800}
+  m_AnchoredPosition: {x: 0, y: -429.99994}
   m_SizeDelta: {x: 2000, y: 1448}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1168543953
@@ -26783,6 +26796,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4026183767005241112, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+      propertyPath: AdMobManager
+      value: 
+      objectReference: {fileID: 405711822}
     - target: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
       propertyPath: SpinnerPanel
       value: 
@@ -26850,5 +26867,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dac04d1e31ce405a843b0c9fa4d2777, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4026183765522471017 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4026183767005241112, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 4026183765522471015}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 405711822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e4fdd4bb8a044cd97b1b9d1f1883e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

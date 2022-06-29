@@ -299,7 +299,7 @@ public class RenshuuQues : MonoBehaviour
                GameManager.instance.SceneCount++;
            }else{
                RenshuuMondai++;//3-5問題数用カウント
-               if(RenshuuMondai == 1){
+               if(RenshuuMondai == 2){
                    GameManager.instance.SceneCount++;
                    RenshuuMondai = 0;
                    }

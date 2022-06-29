@@ -977,6 +977,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4026183767005241112, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+      propertyPath: AdMobManager
+      value: 
+      objectReference: {fileID: 73794294}
     - target: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -1039,6 +1043,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+--- !u!1 &73794294 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4026183767005241116, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 73794293}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &73794295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4026183767005241112, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 73794293}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73794294}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e4fdd4bb8a044cd97b1b9d1f1883e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &85776873
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,6 +1263,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 73794295}
+        m_TargetAssemblyTypeName: AdMobInterstitial, Assembly-CSharp
+        m_MethodName: HomeOnClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Home
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &118785388
@@ -13288,7 +13320,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
   m_PrefabInstance: {fileID: 73794293}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 73794294}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2dac04d1e31ce405a843b0c9fa4d2777, type: 3}

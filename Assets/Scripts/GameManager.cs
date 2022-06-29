@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
    public int totalCoin;//各Sceneのコイン枚数はこちらに追加していく
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
    public int SceneCount;//インタースティシャル広告表示のためにScene表示をカウントしていきます
-
+   
     private void Awake()
     {
         if (instance == null)

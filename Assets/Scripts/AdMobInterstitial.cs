@@ -1,17 +1,24 @@
 using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
+using UnityEngine.SceneManagement;
 
 public class AdMobInterstitial : MonoBehaviour
 {
     //やること
     //1.インタースティシャル広告IDの入力
     //2.インタースティシャル起動設定　ShowAdMobInterstitial()を使う
-
+    //Button押した時にブール取得　Home false Return trueで行き先のシーンを取得する
+    public string name;//ホームへ移動する
+    public string Home;
+    public string Return;
+    public GameObject AdMobManager;//各SceneのアドモブManager
     private InterstitialAd interstitial;//InterstitialAd型の変数interstitialを宣言　この中にインタースティシャル広告の情報が入る
 
     private void Start()
     {
+        string SceneName =SceneManager.GetActiveScene().name;
+        print("シーン名"+SceneName);
         RequestInterstitial();
         Debug.Log("読み込み開始");
     }
@@ -28,7 +35,17 @@ public class AdMobInterstitial : MonoBehaviour
         }
         else
         {
+            if(name == Home){
+            SceneManager.LoadScene("TopScene");
+            Debug.Log("Home,TopScene");
+            }else{
+            string SceneName =SceneManager.GetActiveScene().name;
+            print("シーン名"+SceneName);
+            Debug.Log("Return,もどる");
+            SceneManager.LoadScene(SceneName);
+            }
             Debug.Log("広告読み込み未完了");
+
         }
     }
 
@@ -92,9 +109,22 @@ public class AdMobInterstitial : MonoBehaviour
         MonoBehaviour.print("HandleRewardedAdOpening event received");
         
     }
+    public void HomeOnClick(string Button){
+        name = Button;
+        print("インター名前,"+name);
+    }
     //インタースティシャル表示終了 となった時に起動する関数
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
+        /*if(name == Home){
+            SceneManager.LoadScene("TopScene");
+            Debug.Log("Home,TopScene");
+        }else{
+            string SceneName =SceneManager.GetActiveScene().name;
+            print("シーン名"+SceneName);
+            Debug.Log("Return,もどる");
+            SceneManager.LoadScene(SceneName);
+        }*/
         if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.UnmuteBGM();
             Debug.Log("BGMミュート解除");

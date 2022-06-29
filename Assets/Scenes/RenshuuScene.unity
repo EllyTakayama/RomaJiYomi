@@ -5576,9 +5576,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 907387309530023479}
-        m_TargetAssemblyTypeName: PanelManager, Assembly-CSharp
-        m_MethodName: RenshuuSceneMove
+      - m_Target: {fileID: 1031811994}
+        m_TargetAssemblyTypeName: DOafterRewardPanel, Assembly-CSharp
+        m_MethodName: CloseAdPanel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12933,6 +12933,7 @@ MonoBehaviour:
   coinAddText: {fileID: 1889958989}
   coinGenerator: {fileID: 780189953}
   SpinnerPanel: {fileID: 594726220}
+  RegradePanel: {fileID: 279543146}
 --- !u!1 &1036448240
 GameObject:
   m_ObjectHideFlags: 0
@@ -16229,6 +16230,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1398614142}
+        m_TargetAssemblyTypeName: AdMobInterstitial, Assembly-CSharp
+        m_MethodName: HomeOnClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Home
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1382175329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16509,6 +16522,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4026183767005241112, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+      propertyPath: AdMobManager
+      value: 
+      objectReference: {fileID: 1398614141}
     - target: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
       propertyPath: SpinnerPanel
       value: 
@@ -16583,6 +16600,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 4026183767005241116, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
   m_PrefabInstance: {fileID: 1398614139}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1398614142 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4026183767005241112, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 1398614139}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398614141}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e4fdd4bb8a044cd97b1b9d1f1883e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1427469588
 GameObject:
   m_ObjectHideFlags: 0
@@ -17974,6 +18002,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1398614142}
+        m_TargetAssemblyTypeName: AdMobInterstitial, Assembly-CSharp
+        m_MethodName: HomeOnClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Home
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1527570933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18507,7 +18547,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1561328287
 RectTransform:
   m_ObjectHideFlags: 0
@@ -22797,6 +22837,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1398614142}
+        m_TargetAssemblyTypeName: AdMobInterstitial, Assembly-CSharp
+        m_MethodName: HomeOnClick
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Return
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1950479121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24560,7 +24612,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35205897adc0c4a148147b0470f0d0ea, type: 3}
-    m_FontSize: 60
+    m_FontSize: 55
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0

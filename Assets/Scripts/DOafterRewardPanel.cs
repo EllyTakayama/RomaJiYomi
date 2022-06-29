@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 //5月19日更新
 
 public class DOafterRewardPanel : MonoBehaviour
@@ -15,6 +17,7 @@ public class DOafterRewardPanel : MonoBehaviour
     [SerializeField] private Text coinAddText;
     [SerializeField] private GameObject coinGenerator;//CoinPrefabを生成する場所
     [SerializeField] private GameObject SpinnerPanel;
+    [SerializeField] private GameObject RegradePanel;
 
     public void AfterReward(){
         //SoundManager.instance.PlayPanelBGM("GradePanel");
@@ -33,7 +36,7 @@ public class DOafterRewardPanel : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
     }
     public void DoRewardText(){
-        rewardText.DOText("\nやったね!\n\nコインを100枚\nゲットしたよ"
+        rewardText.DOText("\nやったね!\nコインを100枚\nゲットしたよ"
         , 0.5f)
         .OnComplete(Coinhoka)
         ;
@@ -77,7 +80,12 @@ public class DOafterRewardPanel : MonoBehaviour
             Debug.Log("IDKill");
             });
 
-        RewardPanel.SetActive(false);
+        //RewardPanel.SetActive(false);
+        //RegradePanel.SetActive(false);
+        string SceneName =SceneManager.GetActiveScene().name;
+        print("シーン名"+SceneName);
+        Debug.Log("Return,もどる");
+        SceneManager.LoadScene(SceneName);
         
     }
 

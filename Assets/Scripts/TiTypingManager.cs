@@ -117,7 +117,7 @@ public class TiTypingManager : MonoBehaviour
         if(Regex.IsMatch(a, Hebonpattern)){
                Debug.Log("a+"+kunrei);
                }
-        else if(a.Contains("shi")||a.Contains("SHI")){
+        else if(a.Contains("shi")||a.Contains("SHI")||a.Contains("Shi")){
         Debug.Log("atta+"+kunrei);
     }
     }
@@ -397,7 +397,7 @@ void ChangeKtoH(string moji){
                 _mojiNum += QuestionAnswer.Length-2;
                  Debug.Log("hebon対応");
                 }
-            else if(QuestionAnswer.Contains("shi")||QuestionAnswer.Contains("SHI")){
+            else if(QuestionAnswer.Contains("shi")||QuestionAnswer.Contains("SHI")||QuestionAnswer.Contains("Shi")){
                 _mojiNum += QuestionAnswer.Length-2;
                 Debug.Log("SHI対応");
                 }
@@ -405,7 +405,6 @@ void ChangeKtoH(string moji){
                 _mojiNum += QuestionAnswer.Length;
                  Debug.Log("hebon2対応");
                 }
-    
             else{
                 _mojiNum += QuestionAnswer.Length-1;
                 Debug.Log("一般対応");
