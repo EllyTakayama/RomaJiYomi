@@ -106,7 +106,13 @@ public class DoRegrade : MonoBehaviour
        SoundManager.instance.PlaySousaSE(8);
        coinAddImage.GetComponent<DOScale>().BigScale2();
        coinAddText.GetComponent<DOScale>().BigScale2();
+       DOTween.TweensById("idFlash18").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("Kill,idFlash18");
+            });
        yield return new WaitForSeconds(0.2f);
+       flashImage.SetActive(false);
        retryButton.SetActive(true);
        //renTopButton.SetActive(true);
        rewardButton.SetActive(true);
@@ -125,13 +131,9 @@ public class DoRegrade : MonoBehaviour
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
-            Debug.Log("IDKill");
+            Debug.Log("IDBigScale2");
             });
-        DOTween.TweensById("idFlash18").ForEach((tween) =>
-        {
-            tween.Kill();
-            Debug.Log("IDKill");
-            });
+        
 
         afterAdPanel.SetActive(false);
         RegradePanel.SetActive(false);

@@ -49,13 +49,19 @@ public class TopLogin : MonoBehaviour
         {
             //ログインボーナス
             case LOGIN_TYPE.TODAY_LOGIN:
-
-            GameManager.instance.LoadCoinGoukei();
-            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
-            GameManager.instance.totalCoin += 50;
-            GameManager.instance.SaveCoinGoukei();
-            loginBonusPanel.SetActive(true);
-            coinText.GetComponent<DOCounter>().CountCoin1();
+            if (lastDate == 0)
+                {
+                    print("初回ログイン");
+                }else{
+                    GameManager.instance.LoadCoinGoukei();
+                    GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
+                    GameManager.instance.totalCoin += 50;
+                    GameManager.instance.SaveCoinGoukei();
+                    loginBonusPanel.SetActive(true);
+                    coinText.GetComponent<DOCounter>().CountCoin1();
+                    print("今日のログボ"+todayDate);
+                }
+            
                 break;
 
             //すでにログイン済み

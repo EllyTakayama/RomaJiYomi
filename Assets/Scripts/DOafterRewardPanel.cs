@@ -61,24 +61,27 @@ public class DOafterRewardPanel : MonoBehaviour
        coinAddText.GetComponent<DOCounter>().CountCoin1();
        yield return new WaitForSeconds(2.0f);
        SoundManager.instance.StopSE();
+       DOTween.TweensById("idFlash18").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
        yield return new WaitForSeconds(0.1f);
+       RewardflashImage.SetActive(false);
        SoundManager.instance.PlaySousaSE(8);
        RewardButton.SetActive(true);
        RewardButton.GetComponent<DOScale>().BigScale2();
 
     }
     public void CloseAdPanel(){
-
+        
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
             });
-        DOTween.TweensById("idFlash18").ForEach((tween) =>
-        {
-            tween.Kill();
-            Debug.Log("IDKill");
-            });
+        
+        
 
         //RewardPanel.SetActive(false);
         //RegradePanel.SetActive(false);
@@ -86,7 +89,6 @@ public class DOafterRewardPanel : MonoBehaviour
         print("シーン名"+SceneName);
         Debug.Log("Return,もどる");
         SceneManager.LoadScene(SceneName);
-        
     }
 
     

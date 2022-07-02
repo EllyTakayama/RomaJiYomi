@@ -36,7 +36,7 @@ public class DoTigrade : MonoBehaviour
         coinAddImage.SetActive(true);
         afterAdPanel.SetActive(false);
         SpinnerPanel.SetActive(false);
-        coinAddText.text = GameManager.instance.totalCoin.ToString();
+        coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
     }
     public void TgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
@@ -105,7 +105,7 @@ public class DoTigrade : MonoBehaviour
         flashImage.SetActive(true);
         flashImage.GetComponent<DOflash>().Flash18();
         yield return new WaitForSeconds(1.2f);
-        flashImage.SetActive(false);
+        
         if(TikaraQues.instance.isWord == true){
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 
@@ -118,7 +118,6 @@ public class DoTigrade : MonoBehaviour
         }
         yield return new WaitForSeconds(0.2f);
         SoundManager.instance.PlaySousaSE(14);
-        //coinAddImage.SetActive(true);
         coinAddText.GetComponent<DOCounter>().CountCoin2();
         yield return new WaitForSeconds(2.2f);
         SoundManager.instance.PlaySousaSE(8);
@@ -126,6 +125,12 @@ public class DoTigrade : MonoBehaviour
         coinAddText.GetComponent<DOScale>().BigScale2();
 
         yield return new WaitForSeconds(0.2f);
+        DOTween.TweensById("idFlash18").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("Kill,idFlash18");
+            });
+        flashImage.SetActive(false);
         TikaraPanelMove.SetActive(true);
         retryButton.SetActive(true);
         rewardButton.SetActive(true);
@@ -133,6 +138,11 @@ public class DoTigrade : MonoBehaviour
 
     }
     public void RetryButton(){
+        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
         TikaraQues.instance.StartFadePanel();
         SoundManager.instance.PlayBGM("TikaraScene");
         if(TikaraQues.instance.isWord == true){
@@ -150,11 +160,7 @@ public class DoTigrade : MonoBehaviour
             TiTypingManager.instance.Output();
             
         }
-        DOTween.TweensById("idBigScale2").ForEach((tween) =>
-        {
-            tween.Kill();
-            Debug.Log("IDKill");
-            });
+        
            afterAdPanel.SetActive(false);
            TigradePanel.SetActive(false);
     }

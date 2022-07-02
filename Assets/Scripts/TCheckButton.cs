@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;//12月14日　Tikara正誤判定用
+using DG.Tweening;
 
 public class TCheckButton : MonoBehaviour
 {
     [SerializeField] private GameObject maruSprite;
     [SerializeField] private GameObject pekeSprite;
     [SerializeField] private GameObject TQuesManager;
+
     //[SerializeField] private GameObject enemyMaker;
     public GameObject enemyDamageCall;
     //[SerializeField] private Image enemyImage;
@@ -32,6 +34,11 @@ public class TCheckButton : MonoBehaviour
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");
             enemyDamageCall.GetComponent<EnemyDamage>().DamageCall();
+            DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
             StartCoroutine(TiMaruButton());
         }
         else{

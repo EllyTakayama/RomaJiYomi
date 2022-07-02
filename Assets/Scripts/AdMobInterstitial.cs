@@ -11,8 +11,14 @@ public class AdMobInterstitial : MonoBehaviour
     //Button押した時にブール取得　Home false Return trueで行き先のシーンを取得する
     public string name;//ホームへ移動する
     public string Home;
-    public string Return;
+    public string KihonScene;
+    public string RenshuuScene;
+    public string TikaraScene;
+    public string GachaScene;
+    private bool rewardeFlag=false;//リワード広告の報酬付与用　初期値はfalse
+    private bool SpinnerFlag =false;//Spinnerパネル表示よう　初期値はfalse
     public GameObject AdMobManager;//各SceneのアドモブManager
+    public GameObject SpinnerPanel;//シーン移動の間を持たせるようのPanel
     private InterstitialAd interstitial;//InterstitialAd型の変数interstitialを宣言　この中にインタースティシャル広告の情報が入る
 
     private void Start()
@@ -21,6 +27,19 @@ public class AdMobInterstitial : MonoBehaviour
         print("シーン名"+SceneName);
         RequestInterstitial();
         Debug.Log("読み込み開始");
+    }
+    private void Update()
+    {
+        //広告を見た後にrewardeFlagをtrueにしている
+        //広告を見たらこの中の処理が実行される
+        if(rewardeFlag == true){
+            rewardeFlag = false;
+           }
+        if( SpinnerFlag == true){
+            SpinnerFlag = false;
+            SpinnerPanel.SetActive(true);
+            Debug.Log("Spinner"+SpinnerFlag);
+        }
     }
 
     //インタースティシャル広告を表示する関数
@@ -38,7 +57,16 @@ public class AdMobInterstitial : MonoBehaviour
             if(name == Home){
             SceneManager.LoadScene("TopScene");
             Debug.Log("Home,TopScene");
-            }else{
+            }else if(name == KihonScene){
+            SceneManager.LoadScene("KihonScene");
+            }
+            else if(name == RenshuuScene){
+            SceneManager.LoadScene("RenshuuScene");    
+            }
+            else if(name == TikaraScene){
+                SceneManager.LoadScene("TikaraScene");    
+            }
+            else {
             string SceneName =SceneManager.GetActiveScene().name;
             print("シーン名"+SceneName);
             Debug.Log("Return,もどる");
@@ -107,7 +135,8 @@ public class AdMobInterstitial : MonoBehaviour
             Debug.Log("SE一時ミュート");
         }
         MonoBehaviour.print("HandleRewardedAdOpening event received");
-        
+        SpinnerFlag = true;
+        Debug.Log("Spinner"+SpinnerFlag);
     }
     public void HomeOnClick(string Button){
         name = Button;
@@ -116,15 +145,33 @@ public class AdMobInterstitial : MonoBehaviour
     //インタースティシャル表示終了 となった時に起動する関数
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
-        /*if(name == Home){
+        Debug.Log("終了name"+name);
+        rewardeFlag = true;
+        if(name == "Home"){
             SceneManager.LoadScene("TopScene");
             Debug.Log("Home,TopScene");
-        }else{
+            Debug.Log("TopScene");
+            }else if(name == "KihonScene"){
+            SceneManager.LoadScene("KihonScene");
+            Debug.Log("KihonScene");
+            }
+            else if(name == "RenshuuScene"){
+            SceneManager.LoadScene("RenshuuScene"); 
+            Debug.Log("RenshuuScene");   
+            }
+            else if(name == "TikaraScene"){
+                SceneManager.LoadScene("TikaraScene");  
+                Debug.Log("TikaraScene");     
+            }else if(name == "GachaScene"){
+                SceneManager.LoadScene("GachaScene"); 
+                Debug.Log("TikaraScene");        
+            }
+            else {
             string SceneName =SceneManager.GetActiveScene().name;
             print("シーン名"+SceneName);
             Debug.Log("Return,もどる");
             SceneManager.LoadScene(SceneName);
-        }*/
+            }
         if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.UnmuteBGM();
             Debug.Log("BGMミュート解除");

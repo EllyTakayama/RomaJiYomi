@@ -7,15 +7,12 @@ using DG.Tweening;
 
 public class DOScale : MonoBehaviour
 {
-    private Vector3 defaultScale;
-    void Start(){
-        
-    }
+    
+    
    public void BigScale2(){
-       
        transform.localScale = new Vector3(1f, 1f, 1f);
        Debug.Log("transform.localScale"+transform.localScale);
-       transform.DOPunchScale(Vector3.one * 0.1f, 2f, 1, 0.5f)
+       transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 2f, 1, 0.5f)
         .SetLoops(-1, LoopType.Yoyo)
         .SetId("idBigScale2");
         Debug.Log("BigScale2");
