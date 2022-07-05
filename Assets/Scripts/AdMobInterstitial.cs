@@ -59,18 +59,22 @@ public class AdMobInterstitial : MonoBehaviour
             Debug.Log("Home,TopScene");
             }else if(name == KihonScene){
             SceneManager.LoadScene("KihonScene");
+            Debug.Log("KihonScene");
             }
             else if(name == RenshuuScene){
-            SceneManager.LoadScene("RenshuuScene");    
+            SceneManager.LoadScene("RenshuuScene"); 
+            Debug.Log("RenshuuScene");   
             }
             else if(name == TikaraScene){
-                SceneManager.LoadScene("TikaraScene");    
+                SceneManager.LoadScene("TikaraScene"); 
+                Debug.Log("TikaraScene");      
             }
-            else {
-            string SceneName =SceneManager.GetActiveScene().name;
-            print("シーン名"+SceneName);
-            Debug.Log("Return,もどる");
-            SceneManager.LoadScene(SceneName);
+            else if(name == GachaScene) {
+            SceneManager.LoadScene("GachaScene"); 
+             Debug.Log("GachaScene");       
+            }else{
+                SceneManager.LoadScene("TopScene");
+               
             }
             Debug.Log("広告読み込み未完了");
 
@@ -150,27 +154,29 @@ public class AdMobInterstitial : MonoBehaviour
         if(name == "Home"){
             SceneManager.LoadScene("TopScene");
             Debug.Log("Home,TopScene");
-            Debug.Log("TopScene");
+            Debug.Log("Inter,TopScene");
             }else if(name == "KihonScene"){
             SceneManager.LoadScene("KihonScene");
-            Debug.Log("KihonScene");
+            Debug.Log("Inter,KihonScene");
             }
             else if(name == "RenshuuScene"){
             SceneManager.LoadScene("RenshuuScene"); 
-            Debug.Log("RenshuuScene");   
+            Debug.Log("Inter,RenshuuScene");   
             }
             else if(name == "TikaraScene"){
                 SceneManager.LoadScene("TikaraScene");  
-                Debug.Log("TikaraScene");     
+                Debug.Log("Inter,TikaraScene");     
             }else if(name == "GachaScene"){
                 SceneManager.LoadScene("GachaScene"); 
-                Debug.Log("TikaraScene");        
+                Debug.Log("Inter,GachaScene");        
             }
             else {
+                SceneManager.LoadScene("TopScene");
+                /*
             string SceneName =SceneManager.GetActiveScene().name;
             print("シーン名"+SceneName);
             Debug.Log("Return,もどる");
-            SceneManager.LoadScene(SceneName);
+            SceneManager.LoadScene(SceneName);*/
             }
         if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.UnmuteBGM();
