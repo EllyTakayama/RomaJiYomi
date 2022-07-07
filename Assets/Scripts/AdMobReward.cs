@@ -16,6 +16,7 @@ public class AdMobReward : MonoBehaviour
     private bool rewardeFlag=false;//リワード広告の報酬付与用　初期値はfalse
     private bool rewardeFlag1=false;//リワード広告の報酬付与用　初期値はfalse
     private bool SpinnerFlag =false;//Spinnerパネル表示よう　初期値はfalse
+    private bool OpenRewardFlag=false;//リワード広告全面表示　初期値はfalse
 
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
 
@@ -47,14 +48,45 @@ public class AdMobReward : MonoBehaviour
         if(rewardeFlag1 == true && rewardeFlag == true){
             rewardeFlag1 = false;
             rewardeFlag = false;
+            GameManager.instance.LoadCoinGoukei();
+            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
+            GameManager.instance.totalCoin += 100;
+            Debug.Log("coinGet"+GameManager.instance.totalCoin+"枚");
+            GameManager.instance.SaveCoinGoukei();
+            SpinnerPanel.SetActive(false);
             afterAdPanel.SetActive(true);
             afterAdPanel.GetComponent<DOafterRewardPanel>().AfterReward();
+            SpinnerPanel.SetActive(false);
+            Debug.Log("SpinPanel,"+SpinnerPanel.activeSelf);
+
+        }else if(rewardeFlag1 == true && rewardeFlag == false){
+            rewardeFlag1 = false;
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.UnmuteBGM();
+            Debug.Log("BGMミュート解除");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.UnmuteSE();
+            Debug.Log("SEミュート解除");
+        }
         }
         if( SpinnerFlag == true){
             SpinnerFlag = false;
             SpinnerPanel.SetActive(true);
             Debug.Log("Spinner"+SpinnerFlag);
         }
+        if( OpenRewardFlag == true){
+            OpenRewardFlag = false;
+            if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.BGMmute();
+            Debug.Log("BGM一時ミュート");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.SEmute();
+            Debug.Log("SE一時ミュート");
+        }
+        }
+
     }
     
 
@@ -106,16 +138,8 @@ public class AdMobReward : MonoBehaviour
     //リワード広告が始まったときに起動する関数
     public void HandleRewardedAdOpening(object sender, EventArgs args)
     {
-        if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.BGMmute();
-            Debug.Log("BGM一時ミュート");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.SEmute();
-            Debug.Log("SE一時ミュート");
-        }
-        MonoBehaviour.print("HandleRewardedAdOpening event received");
         SpinnerFlag = true;
+        OpenRewardFlag = true;
         Debug.Log("Spinner"+SpinnerFlag);
 
     }
@@ -123,14 +147,6 @@ public class AdMobReward : MonoBehaviour
     //リワード広告閉じられた時に起動する関数
     public void HandleRewardedAdClosed(object sender, EventArgs args)
     {
-        if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.UnmuteBGM();
-            Debug.Log("BGMミュート解除");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.UnmuteSE();
-            Debug.Log("SEミュート解除");
-        }
          rewardeFlag1 = true;
          Debug.Log("rewardFlag1"+rewardeFlag1);
         //広告再読み込み
@@ -139,12 +155,7 @@ public class AdMobReward : MonoBehaviour
 
     //ユーザーの報酬処理 となった時に起動する関数
     public void HandleUserEarnedReward(object sender, Reward args)
-    {
-        GameManager.instance.LoadCoinGoukei();
-        GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
-        GameManager.instance.totalCoin += 100;
-        Debug.Log("coinGet"+GameManager.instance.totalCoin+"枚");
-        GameManager.instance.SaveCoinGoukei();
+    {  
         Debug.Log("報酬受け取り");
 
         //この関数内ではゲームオブジェクトの操作ができない

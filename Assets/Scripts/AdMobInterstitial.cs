@@ -17,6 +17,8 @@ public class AdMobInterstitial : MonoBehaviour
     public string GachaScene;
     private bool rewardeFlag=false;//リワード広告の報酬付与用　初期値はfalse
     private bool SpinnerFlag =false;//Spinnerパネル表示よう　初期値はfalse
+    private bool OpenInterAdFlag=false;//リワード広告全面表示　初期値はfalse
+    private bool CloseInterAdFlag=false;//リワード広告全面表示　初期値はfalse
     public GameObject AdMobManager;//各SceneのアドモブManager
     public GameObject SpinnerPanel;//シーン移動の間を持たせるようのPanel
     private InterstitialAd interstitial;//InterstitialAd型の変数interstitialを宣言　この中にインタースティシャル広告の情報が入る
@@ -34,11 +36,55 @@ public class AdMobInterstitial : MonoBehaviour
         //広告を見たらこの中の処理が実行される
         if(rewardeFlag == true){
             rewardeFlag = false;
+            Debug.Log("rewardFlag"+rewardeFlag);
+            if(name == "Home"){
+            SceneManager.LoadScene("TopScene");
+            Debug.Log("Home,TopScene");
+            Debug.Log("Inter,TopScene");
+            }else if(name == "KihonScene"){
+            SceneManager.LoadScene("KihonScene");
+            Debug.Log("Inter,KihonScene");
+            }
+            else if(name == "RenshuuScene"){
+            SceneManager.LoadScene("RenshuuScene"); 
+            Debug.Log("Inter,RenshuuScene");   
+            }
+            else if(name == "TikaraScene"){
+                SceneManager.LoadScene("TikaraScene");  
+                Debug.Log("Inter,TikaraScene");     
+            }else if(name == "GachaScene"){
+                SceneManager.LoadScene("GachaScene"); 
+                Debug.Log("Inter,GachaScene");        
+            }
+            else {
+                SceneManager.LoadScene("TopScene");
+            }
+        if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.UnmuteBGM();
+            Debug.Log("BGMミュート解除");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.UnmuteSE();
+            Debug.Log("SEミュート解除");
+        }
+        SpinnerPanel.SetActive(false);
            }
         if( SpinnerFlag == true){
             SpinnerFlag = false;
             SpinnerPanel.SetActive(true);
             Debug.Log("Spinner"+SpinnerFlag);
+        }
+        
+        if(OpenInterAdFlag== true){
+            OpenInterAdFlag= false;
+            if(GameManager.instance.isBgmOn == true){
+            SoundManager.instance.BGMmute();
+            Debug.Log("BGM一時ミュート");
+        }
+        if(GameManager.instance.isSEOn == true){
+            SoundManager.instance.SEmute();
+            Debug.Log("SE一時ミュート");
+        }
         }
     }
 
@@ -85,10 +131,15 @@ public class AdMobInterstitial : MonoBehaviour
     //インタースティシャル広告を読み込む関数
     private void RequestInterstitial()
     {
+        /*
         //AndroidとiOSで広告IDが違うのでプラットフォームで処理を分けます。
         // 参考
         //【Unity】AndroidとiOSで処理を分ける方法
+        //iOS では、InterstitialAd オブジェクトは使い捨てオブジェクトです。
+        つまり、インタースティシャル広告を一度表示すると、同じ InterstitialAd オブジェクトを使って他の広告を読み込むことはできません。
+        別のインタースティシャルをリクエストするには、新しい InterstitialAd オブジェクトを作成する必要があります。
         // https://marumaro7.hatenablog.com/entry/platformsyoriwakeru
+        */
 
 #if UNITY_ANDROID
         string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
@@ -104,7 +155,6 @@ public class AdMobInterstitial : MonoBehaviour
 
         //インタースティシャル広告初期化
         interstitial = new InterstitialAd(adUnitId);
-
 
         //InterstitialAd型の変数 interstitialの各種状態 に関数を登録
         interstitial.OnAdLoaded += HandleOnAdLoaded;//interstitialの状態が　インタースティシャル読み込み完了　となった時に起動する関数(関数名HandleOnAdLoaded)を登録
@@ -129,16 +179,11 @@ public class AdMobInterstitial : MonoBehaviour
     {
         Debug.Log("インタースティシャル読み込み失敗" + args.LoadAdError);//args.LoadAdError:エラー内容 
     }
+     //インタースティシャル全面表示になった時に起動する関数
     public void HandleOnAdOpening(object sender, EventArgs args){
-        if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.BGMmute();
-            Debug.Log("BGM一時ミュート");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.SEmute();
-            Debug.Log("SE一時ミュート");
-        }
+        
         MonoBehaviour.print("HandleRewardedAdOpening event received");
+        OpenInterAdFlag = true;
         SpinnerFlag = true;
         Debug.Log("Spinner"+SpinnerFlag);
     }
@@ -151,41 +196,7 @@ public class AdMobInterstitial : MonoBehaviour
     {
         Debug.Log("終了name"+name);
         rewardeFlag = true;
-        if(name == "Home"){
-            SceneManager.LoadScene("TopScene");
-            Debug.Log("Home,TopScene");
-            Debug.Log("Inter,TopScene");
-            }else if(name == "KihonScene"){
-            SceneManager.LoadScene("KihonScene");
-            Debug.Log("Inter,KihonScene");
-            }
-            else if(name == "RenshuuScene"){
-            SceneManager.LoadScene("RenshuuScene"); 
-            Debug.Log("Inter,RenshuuScene");   
-            }
-            else if(name == "TikaraScene"){
-                SceneManager.LoadScene("TikaraScene");  
-                Debug.Log("Inter,TikaraScene");     
-            }else if(name == "GachaScene"){
-                SceneManager.LoadScene("GachaScene"); 
-                Debug.Log("Inter,GachaScene");        
-            }
-            else {
-                SceneManager.LoadScene("TopScene");
-                /*
-            string SceneName =SceneManager.GetActiveScene().name;
-            print("シーン名"+SceneName);
-            Debug.Log("Return,もどる");
-            SceneManager.LoadScene(SceneName);*/
-            }
-        if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.UnmuteBGM();
-            Debug.Log("BGMミュート解除");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.UnmuteSE();
-            Debug.Log("SEミュート解除");
-        }
+        
         Debug.Log("インタースティシャル広告終了");
 
         //インタースティシャル広告は使い捨てなので一旦破棄

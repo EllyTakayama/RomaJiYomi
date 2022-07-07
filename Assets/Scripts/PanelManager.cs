@@ -89,8 +89,7 @@ public class PanelManager : MonoBehaviour
         print("name,"+name);
         GameManager.instance.SceneCount++;
         int IScount = GameManager.instance.SceneCount;
-        
-        if(IScount>0 && IScount%1 ==0){
+        if(IScount>0){
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
             return;
         }
