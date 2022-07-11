@@ -51,6 +51,8 @@ public class GachaManager : MonoBehaviour
 	[SerializeField] private GameObject NekoitemPanel;//Gachaでゲットした猫アイテムの説明
 	[SerializeField] private GameObject AdButton;//AdPanel内のReward広告を呼び出すButton
 	public GameObject rewardText0;//コインが足りませんテキスト
+    [SerializeField] private GameObject AdMobManager;
+
 
 	
 	//Debug用
@@ -106,9 +108,17 @@ public class GachaManager : MonoBehaviour
 	public void GachaSE(){
 		SoundManager.instance.PlaySousaSE(5);
 	}
-
+	public void GachaReward(){
+		DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
+		PanelAd.SetActive(false);
+		AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
+	}
 	public void CloseAdPanelManager(){
-		//SoundManager.instance.PlaySousaSE(5);
+		SoundManager.instance.PlaySousaSE(5);
 		DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
@@ -145,6 +155,7 @@ public class GachaManager : MonoBehaviour
 		rewardText0.SetActive(true);
 		PanelAd.SetActive(false);
 	}
+	//コインボタンを押すとAdPanelが出てくる
 	public void GetCoin(){
 		PanelAd.SetActive(true);
 		rewardText0.SetActive(false);

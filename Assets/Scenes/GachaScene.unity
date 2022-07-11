@@ -2936,7 +2936,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u306D\u3053\u306E\u304A\u540D\u524D\u3060\u3088\u3093"
+  m_Text: "\u306D\u3053\u306E\u304A\u540D\u524D\u3060\u3088\u3093\u3069\u3046\u306A\u308B\u304B\u306A\u3042\u3042\u3042"
 --- !u!222 &287020787
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13433,21 +13433,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1567735620}
-        m_TargetAssemblyTypeName: AdMobReward, Assembly-CSharp
-        m_MethodName: ShowAdMobReward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1938144812}
         m_TargetAssemblyTypeName: GachaManager, Assembly-CSharp
-        m_MethodName: CloseAdPanelManager
+        m_MethodName: GachaReward
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -13495,17 +13483,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1563615420}
   m_CullTransparentMesh: 1
---- !u!114 &1567735620 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
-  m_PrefabInstance: {fileID: 73794293}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 73794294}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dac04d1e31ce405a843b0c9fa4d2777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1572181126
 GameObject:
   m_ObjectHideFlags: 0
@@ -16053,6 +16030,7 @@ MonoBehaviour:
   NekoitemPanel: {fileID: 450761138}
   AdButton: {fileID: 1563615420}
   rewardText0: {fileID: 1255946698}
+  AdMobManager: {fileID: 73794294}
 --- !u!114 &1938144813
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16082,7 +16060,7 @@ MonoBehaviour:
   - {fileID: -1742412910652283387, guid: bd83ea4a1845f491d843e6ef552dbbc5, type: 3}
   - {fileID: 5483489066803502898, guid: 5d0ce4ee30eea43588e2b604754678fd, type: 3}
   - {fileID: -4162690656514615701, guid: 2615e939f7d2d4b41bb0c7c60c4d194b, type: 3}
-  - {fileID: 2261850992312540422, guid: 706077eefcb62460db3eea6fa2f39821, type: 3}
+  - {fileID: -4683754670838381125, guid: 0899fde47ddd1417ea4debdfc81be1bd, type: 3}
   - {fileID: -8487355262483012246, guid: cd05dc6105f2243bd97358caec7c175a, type: 3}
   - {fileID: 1676081186826133986, guid: 8904305fb1b1a42f282b6796b4bf0443, type: 3}
   - {fileID: -8645525218811974668, guid: 4f8cb8d1c869a483384926cd00d55fc0, type: 3}
@@ -16639,18 +16617,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1938144812}
-        m_TargetAssemblyTypeName: GachaManager, Assembly-CSharp
-        m_MethodName: GachaSE
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &2104492531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16823,7 +16789,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35205897adc0c4a148147b0470f0d0ea, type: 3}
-    m_FontSize: 50
+    m_FontSize: 45
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -16833,8 +16799,8 @@ MonoBehaviour:
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: "\u30CD\u30B3\u306A\u306E\u306B.\n\u30CD\u30B3\u306E\u307C\u3046\u3057\u3092.\n\u304B\u3076\u3063\u305F\u306D\u3053"
+    m_LineSpacing: 1.2
+  m_Text: "\u30ED\u30FC\u30DE\u5B57\u306E\u554F\u984C\u306B\u3053\u305F\u3048\u3066.\n\u30E2\u30F3\u30B9\u30BF\u30FC\u3068\u305F\u305F\u304B\u3046.\n\u3086\u3046\u3057\u3083\u306E\u306D\u3053"
 --- !u!222 &2136381025
 CanvasRenderer:
   m_ObjectHideFlags: 0
