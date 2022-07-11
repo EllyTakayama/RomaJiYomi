@@ -18,6 +18,7 @@ public class DoRegrade : MonoBehaviour
     [SerializeField] private GameObject coinAddImage;
     [SerializeField] private Text coinAddText;
     [SerializeField] private GameObject afterAdPanel;
+    [SerializeField] private GameObject AdMobManager;
 
     public string RhiraganaCorrect;
     public string Rcoin;
@@ -134,10 +135,18 @@ public class DoRegrade : MonoBehaviour
             Debug.Log("IDBigScale2");
             });
         
-
         afterAdPanel.SetActive(false);
         RegradePanel.SetActive(false);
 
+    }
+    public void RenRewardButton(){
+        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDBigScale2");
+            });
+        afterAdPanel.SetActive(true);
+        AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
     }
     
 }

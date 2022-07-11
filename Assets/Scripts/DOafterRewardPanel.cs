@@ -82,8 +82,6 @@ public class DOafterRewardPanel : MonoBehaviour
             Debug.Log("IDKill");
             });
         
-        
-
         //RewardPanel.SetActive(false);
         //RegradePanel.SetActive(false);
         string SceneName =SceneManager.GetActiveScene().name;

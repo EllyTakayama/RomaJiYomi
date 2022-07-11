@@ -19,6 +19,7 @@ public class DoTigrade : MonoBehaviour
     [SerializeField] private GameObject afterAdPanel;
     [SerializeField] private GameObject SpinnerPanel;
     [SerializeField] private GameObject TikaraPanelMove;
+    [SerializeField] private GameObject AdMobManager;
     public string TihiraganaCorrect;
     public string Tikaracoin;
 
@@ -163,6 +164,17 @@ public class DoTigrade : MonoBehaviour
         
            afterAdPanel.SetActive(false);
            TigradePanel.SetActive(false);
+    }
+    public void TiRewardButton(){
+        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDKill");
+            });
+           afterAdPanel.SetActive(true);
+
+        AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
+        
     }
 }
 

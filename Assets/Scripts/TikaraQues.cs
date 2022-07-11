@@ -339,7 +339,7 @@ public class TikaraQues : MonoBehaviour
         string Mondai = TiMondai.ToString();
         Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
-        TikaraText.GetComponent<DOScale>().BigScale2();
+        //TikaraText.GetComponent<DOScale>().BigScale2();
        //Toggleで選択した問題数を超えたら、コイン獲得Panal遷移などの処理を行う
         if (TiQuesCount > TiMondai)
         {
@@ -351,11 +351,12 @@ public class TikaraQues : MonoBehaviour
             GameManager.instance.totalCoin += GameManager.instance.TiCoin;
             GameManager.instance.SaveCoinGoukei();
             GameManager.instance.SceneCount++;
+            /*
             DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
+            });*/
             pipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();

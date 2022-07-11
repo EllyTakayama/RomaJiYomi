@@ -3553,6 +3553,7 @@ MonoBehaviour:
   coinAddImage: {fileID: 1036448240}
   coinAddText: {fileID: 1889958989}
   afterAdPanel: {fileID: 1031811990}
+  AdMobManager: {fileID: 1398614141}
   RhiraganaCorrect: 
   Rcoin: 
 --- !u!114 &279543149
@@ -16530,17 +16531,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
---- !u!114 &1398614140 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
-  m_PrefabInstance: {fileID: 1398614139}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1398614141}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dac04d1e31ce405a843b0c9fa4d2777, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1398614141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4026183767005241116, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
@@ -17040,9 +17030,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1398614140}
-        m_TargetAssemblyTypeName: AdMobReward, Assembly-CSharp
-        m_MethodName: ShowAdMobReward
+      - m_Target: {fileID: 279543148}
+        m_TargetAssemblyTypeName: DoRegrade, Assembly-CSharp
+        m_MethodName: RenRewardButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -24356,7 +24346,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 35205897adc0c4a148147b0470f0d0ea, type: 3}
-    m_FontSize: 120
+    m_FontSize: 100
     m_FontStyle: 0
     m_BestFit: 1
     m_MinSize: 0
@@ -24465,7 +24455,7 @@ MonoBehaviour:
   autoPlay: 1
   useTargetAsV3: 0
   endValueFloat: 0
-  endValueV3: {x: 0.3, y: 0.3, z: 1}
+  endValueV3: {x: 0.2, y: 0.2, z: 0.2}
   endValueV2: {x: 0, y: 0}
   endValueColor: {r: 1, g: 1, b: 1, a: 1}
   endValueString: 

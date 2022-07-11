@@ -34,15 +34,15 @@ public class TCheckButton : MonoBehaviour
             SoundManager.instance.PlaySousaSE(0);
             Debug.Log("正解");
             enemyDamageCall.GetComponent<EnemyDamage>().DamageCall();
+            /*
             DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
+            });*/
             StartCoroutine(TiMaruButton());
         }
         else{
-           
             pekeSprite.SetActive(true);
             SoundManager.instance.PlaySousaSE(3);
             Debug.Log("間違い");

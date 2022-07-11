@@ -28,13 +28,15 @@ public class AdMobInterstitial : MonoBehaviour
         string SceneName =SceneManager.GetActiveScene().name;
         print("シーン名"+SceneName);
         RequestInterstitial();
-        Debug.Log("読み込み開始");
+        Debug.Log("インタースティシャル読み込み開始");
     }
     private void Update()
     {
         //広告を見た後にrewardeFlagをtrueにしている
         //広告を見たらこの中の処理が実行される
         if(rewardeFlag == true){
+            Debug.Log("インタースティシャルBGM"+GameManager.instance.isBgmOn);
+            Debug.Log("インタースティシャルSE"+GameManager.instance.isSEOn);
             rewardeFlag = false;
             Debug.Log("rewardFlag"+rewardeFlag);
             if(name == "Home"){
@@ -61,31 +63,33 @@ public class AdMobInterstitial : MonoBehaviour
             }
         if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.UnmuteBGM();
-            Debug.Log("BGMミュート解除");
+            Debug.Log("インタースティシャルBGMミュート解除");
         }
         if(GameManager.instance.isSEOn == true){
             SoundManager.instance.UnmuteSE();
-            Debug.Log("SEミュート解除");
+            Debug.Log("インタースティシャルSEミュート解除");
         }
         SpinnerPanel.SetActive(false);
            }
+        /*
         if( SpinnerFlag == true){
             SpinnerFlag = false;
             SpinnerPanel.SetActive(true);
-            Debug.Log("Spinner"+SpinnerFlag);
+            Debug.Log("インタースティシャルOpenSpinner"+SpinnerFlag);
         }
         
         if(OpenInterAdFlag== true){
+            Debug.Log("インタースティシャルOpenInterAdFlag"+OpenInterAdFlag);
             OpenInterAdFlag= false;
             if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.BGMmute();
-            Debug.Log("BGM一時ミュート");
+            Debug.Log("インタースティシャルBGM一時ミュート");
         }
         if(GameManager.instance.isSEOn == true){
             SoundManager.instance.SEmute();
-            Debug.Log("SE一時ミュート");
+            Debug.Log("インタースティシャルSE一時ミュート");
         }
-        }
+        }*/
     }
 
     //インタースティシャル広告を表示する関数
@@ -96,7 +100,7 @@ public class AdMobInterstitial : MonoBehaviour
         if (interstitial.IsLoaded() == true)
         {
             interstitial.Show();
-            Debug.Log("広告表示");
+            Debug.Log("インタースティシャル広告表示");
         }
         else
         {
@@ -122,7 +126,7 @@ public class AdMobInterstitial : MonoBehaviour
                 SceneManager.LoadScene("TopScene");
                
             }
-            Debug.Log("広告読み込み未完了");
+            Debug.Log("インタースティシャル広告読み込み未完了");
 
         }
     }
@@ -185,22 +189,23 @@ public class AdMobInterstitial : MonoBehaviour
         MonoBehaviour.print("HandleRewardedAdOpening event received");
         OpenInterAdFlag = true;
         SpinnerFlag = true;
-        Debug.Log("Spinner"+SpinnerFlag);
+        Debug.Log("全面インタースティシャルSpinner"+SpinnerFlag);
     }
     public void HomeOnClick(string Button){
         name = Button;
-        print("インター名前,"+name);
+        print("インタースティシャル名前,"+name);
     }
     //インタースティシャル表示終了 となった時に起動する関数
     public void HandleOnAdClosed(object sender, EventArgs args)
     {
-        Debug.Log("終了name"+name);
+        Debug.Log("インタースティシャル終了name"+name);
         rewardeFlag = true;
         
         Debug.Log("インタースティシャル広告終了");
 
         //インタースティシャル広告は使い捨てなので一旦破棄
         interstitial.Destroy();
+        Debug.Log("インタースティシャル広告破棄");
 
         //インタースティシャル再読み込み開始
         RequestInterstitial();
