@@ -26,7 +26,7 @@ public class DoTigrade : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SoundManager.instance.PlayPanelBGM("GradePanel");
+        //SoundManager.instance.PlayPanelBGM("GradePanel");
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
@@ -40,7 +40,7 @@ public class DoTigrade : MonoBehaviour
         coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
     }
     public void TgradePanel(){
-        SoundManager.instance.PlayPanelBGM("GradePanel");
+        //SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
         //renTopButton.SetActive(false);
         yattaneText.text = "";

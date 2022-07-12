@@ -137,6 +137,7 @@ public class BDest : MonoBehaviour
                 }
             }//ローマ字表のバルーン生成のあれこれ
             else{
+                SoundManager.instance.PlaySE(BallonNumber);
                 if(b==0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text =  hiragana50[BallonNumber];
                      b++;

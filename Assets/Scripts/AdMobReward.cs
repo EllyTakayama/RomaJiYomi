@@ -17,12 +17,14 @@ public class AdMobReward : MonoBehaviour
     private bool rewardeFlag1=false;//リワード広告の報酬付与用　初期値はfalse
     private bool SpinnerFlag =false;//Spinnerパネル表示よう　初期値はfalse
     private bool OpenRewardFlag=false;//リワード広告全面表示　初期値はfalse
+    private bool NoShowFlag=false;//リワード広告が読み込めていなかった場合　初期値はfalse
 
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
 
     private string adUnitId;
     public GameObject afterAdPanel;
     public GameObject SpinnerPanel;
+    public Text rewardText;//広告読み込めなかった時にテキスト差し替え
 
     private void Start()
     {      
@@ -46,6 +48,11 @@ public class AdMobReward : MonoBehaviour
     }
     private void Update()
     {
+        //広告がダウンロード失敗して表示されない場合
+        if(NoShowFlag == true){
+            NoShowFlag = false;
+            rewardText.text = "広告がダウンロード\nできませんでした";
+        }
         //広告を見た後にrewardeFlagをtrueにしている
         //広告を見たらこの中の処理が実行される
         //報酬をゲットしてリワードをクローズする場合
@@ -75,9 +82,10 @@ public class AdMobReward : MonoBehaviour
             //報酬を得ないでクローズする場合
         }else if(rewardeFlag1 == true && rewardeFlag == false){
             rewardeFlag1 = false;
-            Debug.Log("報酬なしリワードBGM"+GameManager.instance.isBgmOn);
-            Debug.Log("報酬なしリワードSE"+GameManager.instance.isSEOn);
+            Debug.Log("報酬なしクローズリワードBGM"+GameManager.instance.isBgmOn);
+            Debug.Log("報酬なしクローズリワードSE"+GameManager.instance.isSEOn);
             afterAdPanel.SetActive(false);
+            Debug.Log("報酬なしクローズafterAdPanel,"+afterAdPanel.activeSelf);
             /*
         if(GameManager.instance.isBgmOn == true){
             SoundManager.instance.UnmuteBGM();
@@ -140,6 +148,7 @@ public class AdMobReward : MonoBehaviour
         else
         {
             Debug.Log("リワード広告読み込み未完了");
+            NoShowFlag = true;
         }
     }
   

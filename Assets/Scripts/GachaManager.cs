@@ -52,6 +52,7 @@ public class GachaManager : MonoBehaviour
 	[SerializeField] private GameObject AdButton;//AdPanel内のReward広告を呼び出すButton
 	public GameObject rewardText0;//コインが足りませんテキスト
     [SerializeField] private GameObject AdMobManager;
+	[SerializeField] private GameObject afterAdPanel;
 
 
 	
@@ -62,6 +63,7 @@ public class GachaManager : MonoBehaviour
 		getNekoPanel.SetActive(false);
 		NekoitemPanel.SetActive(false);
 		PanelAd.SetActive(false);
+		flashImage.SetActive(false);
 		GameManager.instance.LoadCoinGoukei();
 		GachaMana.GetComponent<GachaItem>().SetGachaText();
 		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
@@ -114,9 +116,12 @@ public class GachaManager : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
-		PanelAd.SetActive(false);
 		AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
+		afterAdPanel.SetActive(true);
+		PanelAd.SetActive(false);
+		
 	}
+	//アイテムPanel,GetPanel共通のOkButton
 	public void CloseAdPanelManager(){
 		SoundManager.instance.PlaySousaSE(5);
 		DOTween.TweensById("idBigScale2").ForEach((tween) =>
@@ -136,6 +141,11 @@ public class GachaManager : MonoBehaviour
 		SoundManager.instance.PlaySousaSE(5);
 		NekoitemPanel.SetActive(false);
 		if(getNekoPanel.activeSelf){
+			DOTween.TweensById("idFlash18").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("Kill,idFlash18");
+            });
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
         {
 
@@ -143,6 +153,7 @@ public class GachaManager : MonoBehaviour
             Debug.Log("IDKill");
             });
 		}
+		flashImage.SetActive(false);
 		getNekoPanel.SetActive(false);
 		if(PanelAd.activeSelf){
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
@@ -254,7 +265,7 @@ public class GachaManager : MonoBehaviour
 		gachaButton.enabled = true;
 		getNekoPanel.SetActive(true);
 		closeButton.SetActive(false);
-		nameText.text = "なにがでるかな？?";
+		nameText.text = "なにがでるかな？";
 		SoundManager.instance.PlaySousaSE(4);
 		openBallImage.SetActive(true);
 		openBallImage.GetComponent<DOShake1>().ShakeBall();

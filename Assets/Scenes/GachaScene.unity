@@ -813,6 +813,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+      propertyPath: rewardText
+      value: 
+      objectReference: {fileID: 1776499157}
+    - target: {fileID: 4026183767005241113, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
       propertyPath: SpinnerPanel
       value: 
       objectReference: {fileID: 369974220}
@@ -3453,7 +3457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &360954286
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7545,7 +7549,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &820446084
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8727,7 +8731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1023537335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14755,7 +14759,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u3084\u3063\u305F\u306D\uFF01\n\u30B3\u30A4\u30F3\u3092100\u679A\n\u30B2\u30C3\u30C8\u3057\u305F\u3088\uFF01"
+  m_Text: "Loading\u306B\u3083\u3093"
 --- !u!222 &1776499158
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16031,6 +16035,7 @@ MonoBehaviour:
   AdButton: {fileID: 1563615420}
   rewardText0: {fileID: 1255946698}
   AdMobManager: {fileID: 73794294}
+  afterAdPanel: {fileID: 588973531}
 --- !u!114 &1938144813
 MonoBehaviour:
   m_ObjectHideFlags: 0

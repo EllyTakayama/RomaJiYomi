@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using UnityEngine.SceneManagement;
 //5月2日更新
 
 public class TiSettingManager : MonoBehaviour
@@ -26,6 +27,13 @@ public class TiSettingManager : MonoBehaviour
         SetBGMLoad();
         SetSELoad();
         Debug.Log("スタートロード");
+        string SceneName =SceneManager.GetActiveScene().name;
+        if(SceneName =="TikaraScene"){
+            SoundManager.instance.PlayPanelBGM("SelectPanel");
+        }
+        if(SceneName =="KihonScene"){
+            SoundManager.instance.PlayBGM("KihonScene");
+        }
     }
 
     public void FontSelectToggle(){

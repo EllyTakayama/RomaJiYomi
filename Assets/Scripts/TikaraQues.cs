@@ -350,7 +350,8 @@ public class TikaraQues : MonoBehaviour
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += GameManager.instance.TiCoin;
             GameManager.instance.SaveCoinGoukei();
-            GameManager.instance.SceneCount++;
+            
+            //GameManager.instance.SceneCount++;
             /*
             DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
@@ -360,6 +361,7 @@ public class TikaraQues : MonoBehaviour
             pipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();
+            SoundManager.instance.PlayPanelBGM("GradePanel");
             Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
             Debug.Log("GameManager.TiCoin" + GameManager.instance.TiCoin);
             Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);

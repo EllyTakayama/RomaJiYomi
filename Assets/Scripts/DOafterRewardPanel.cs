@@ -76,18 +76,21 @@ public class DOafterRewardPanel : MonoBehaviour
 
     }
     public void CloseAdPanel(){
-        
-        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        if(RewardflashImage.activeSelf){
+        DOTween.TweensById("idFlash18").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
-        
-        //RewardPanel.SetActive(false);
-        //RegradePanel.SetActive(false);
+            });}
+        if(RewardButton.activeSelf){
+        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        {
+            tween.Kill();
+            Debug.Log("IDBigScale2");
+            });}
         string SceneName =SceneManager.GetActiveScene().name;
         print("シーン名"+SceneName);
-        Debug.Log("Return,もどる");
+        Debug.Log("Return,"+SceneName);
         SceneManager.LoadScene(SceneName);
     }
 
