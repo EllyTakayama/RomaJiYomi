@@ -20,12 +20,13 @@ public class DOafterRewardPanel : MonoBehaviour
     [SerializeField] private GameObject RegradePanel;
 
     public void AfterReward(){
+        rewardText.text = "";
         SpinnerPanel.SetActive(false);
         //SoundManager.instance.PlayPanelBGM("GradePanel");
         RewardButton.SetActive(false);
         RewardCoinImage.SetActive(false);
         RewardflashImage.SetActive(false);
-        rewardText.text = "";
+        
         Debug.Log("AfterReward,SpinPanel,"+SpinnerPanel.activeSelf);
         StartCoroutine(DoRewardPanel());
     }

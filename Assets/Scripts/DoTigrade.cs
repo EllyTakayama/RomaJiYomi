@@ -171,10 +171,9 @@ public class DoTigrade : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
-           afterAdPanel.SetActive(true);
-
+           
         AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
-        
+        afterAdPanel.SetActive(true);    
     }
 }
 

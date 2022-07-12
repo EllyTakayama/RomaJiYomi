@@ -21,7 +21,10 @@ public class PanelManager : MonoBehaviour
         print("name,"+name);
         GameManager.instance.SceneCount++;
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
+        int RewardCount =IScount%6;
+        Debug.Log("RewardCount,"+RewardCount);
+        if(IScount>0 && IScount%6 ==0){
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
             return;
         }
@@ -38,8 +41,10 @@ public class PanelManager : MonoBehaviour
         print("name,"+name);
         GameManager.instance.SceneCount++;
         int IScount = GameManager.instance.SceneCount;
-        
-        if(IScount>0 && IScount%1 ==0){
+        Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
+        int RewardCount =IScount%6;
+        Debug.Log("RewardCount,"+RewardCount);
+        if(IScount>0 && IScount%6 ==0){
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
             return;
             }
@@ -55,7 +60,10 @@ public class PanelManager : MonoBehaviour
         print("name,"+name);
         GameManager.instance.SceneCount++;
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
+        int RewardCount =IScount%6;
+        Debug.Log("RewardCount,"+RewardCount);
+        if(IScount>0 && IScount%6 ==0){
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
             return;
             }
@@ -72,7 +80,10 @@ public class PanelManager : MonoBehaviour
         print("name,"+name);
         GameManager.instance.SceneCount++;
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0 && IScount%1 ==0){
+        Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
+        int RewardCount =IScount%6;
+        Debug.Log("RewardCount,"+RewardCount);
+        if(IScount>0 && IScount%6 ==0){
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
             return;
         }
@@ -89,7 +100,10 @@ public class PanelManager : MonoBehaviour
         print("name,"+name);
         GameManager.instance.SceneCount++;
         int IScount = GameManager.instance.SceneCount;
-        if(IScount>0){
+        Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
+        int RewardCount =IScount%6;
+        Debug.Log("RewardCount,"+RewardCount);
+        if(IScount>0 && IScount%6 ==0){
             AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
             return;
         }
@@ -130,7 +144,7 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlayBGM("TopScene");
-        GameManager.instance.SceneCount++;
+        //GameManager.instance.SceneCount++;
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TopScene");
     }

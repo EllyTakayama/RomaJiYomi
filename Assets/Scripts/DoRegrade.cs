@@ -145,8 +145,9 @@ public class DoRegrade : MonoBehaviour
             tween.Kill();
             Debug.Log("IDBigScale2");
             });
-        afterAdPanel.SetActive(true);
+        
         AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
+        afterAdPanel.SetActive(true);
     }
     
 }
