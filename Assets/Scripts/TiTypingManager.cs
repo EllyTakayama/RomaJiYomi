@@ -194,7 +194,7 @@ void ChangeKtoH(string moji){
        k=3;//正解文字は2次元配列から取得　正解はインデックス3からスタート
        _mojiNum=0;//色を変える文字数の管理
         //_qNum = UnityEngine.Random.Range(0,TitateNumber);//2次元配列の行の選択
-        //_qNum =47;
+        //_qNum =11;
         _qNum = QuesNum[q];//テキストアセットの縦の要素数から出題のインデックス用List QuesNumを作成 = QuesNum[q];
         _aNum = int.Parse(TiTable[_qNum,2]);
 
@@ -400,6 +400,10 @@ void ChangeKtoH(string moji){
             else if(QuestionAnswer.Contains("shi")||QuestionAnswer.Contains("SHI")||QuestionAnswer.Contains("Shi")){
                 _mojiNum += QuestionAnswer.Length-2;
                 Debug.Log("SHI対応");
+                }
+            else if(QuestionAnswer.Contains("Chi")){
+                _mojiNum += QuestionAnswer.Length-2;
+                Debug.Log("Chi対応");
                 }
             else if(Regex.IsMatch(QuestionAnswer, Hebonpattern2)){
                 _mojiNum += QuestionAnswer.Length;
