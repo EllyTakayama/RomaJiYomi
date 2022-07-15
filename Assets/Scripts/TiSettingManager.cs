@@ -34,6 +34,10 @@ public class TiSettingManager : MonoBehaviour
         if(SceneName =="KihonScene"){
             SoundManager.instance.PlayBGM("KihonScene");
         }
+        if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
+        GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
+            GameManager.instance.RequestReview();
+        }
     }
 
     public void FontSelectToggle(){

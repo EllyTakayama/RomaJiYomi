@@ -25,6 +25,10 @@ public class ReSettingManager : MonoBehaviour
         ShosikiTogLoad();
         SetBGMLoad();
         SetSELoad();
+        if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
+        GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
+            GameManager.instance.RequestReview();
+        }
         Debug.Log("スタートロード");
     }
     public void ToggleSE(){

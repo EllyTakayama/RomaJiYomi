@@ -20,6 +20,8 @@ public class PanelManager : MonoBehaviour
         string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
         GameManager.instance.SceneCount++;
+        
+        GameManager.instance.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
         int RewardCount =IScount%6;
@@ -40,6 +42,8 @@ public class PanelManager : MonoBehaviour
         string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
         GameManager.instance.SceneCount++;
+        
+        GameManager.instance.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
         int RewardCount =IScount%6;
@@ -59,6 +63,8 @@ public class PanelManager : MonoBehaviour
         string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
         GameManager.instance.SceneCount++;
+        
+        GameManager.instance.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
         int RewardCount =IScount%6;
@@ -79,6 +85,8 @@ public class PanelManager : MonoBehaviour
         string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
         GameManager.instance.SceneCount++;
+        
+        GameManager.instance.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
         int RewardCount =IScount%6;
@@ -99,6 +107,8 @@ public class PanelManager : MonoBehaviour
         string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
         GameManager.instance.SceneCount++;
+        
+        GameManager.instance.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
         int RewardCount =IScount%6;
@@ -152,7 +162,7 @@ public class PanelManager : MonoBehaviour
         SoundManager.instance.StopSE();
         DOTween.KillAll();
         SoundManager.instance.PlayBGM("KihonScene");
-        GameManager.instance.SceneCount++;
+        //GameManager.instance.SceneCount++;
         SoundManager.instance.PlaySousaSE(2); 
         SceneManager.LoadScene("KihonScene");
             }

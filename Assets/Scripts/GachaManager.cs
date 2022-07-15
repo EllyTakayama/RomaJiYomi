@@ -92,6 +92,10 @@ public class GachaManager : MonoBehaviour
 		DebugNames();
 		
 		GetDropItem();*/
+		if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
+        GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
+            GameManager.instance.RequestReview();
+        }
 	}
 	void DebugNames()
     {

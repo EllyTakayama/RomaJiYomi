@@ -70,23 +70,29 @@ public class BDest : MonoBehaviour
                 if(b == 0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
                      Debug.Log("大文字あb"+b);
-                     b++;}
-                else if(b > 0){
+                     StartCoroutine(LateBreakB(num));
+                     //b++;
+                     }
+                else if(b == 1){
                     bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
                      Debug.Log("大文字あb"+b);
-                    b = 0;
+                    //b = 0;
+                    StartCoroutine(LateBreakB(num));
                     }
                 }
              //あ行で小文字だった場合の分岐
             else{
                 if(b==0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
+                     StartCoroutine(LateBreakB(num));
                       Debug.Log("子文字あb"+b);
-                     b++;}
+                     //b++;
+                     }
                 else if(b >0){
-                    bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
+                    //bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
                      Debug.Log("子文字あb"+b);
-                    b = 0;
+                     StartCoroutine(LateBreakB(num));
+                    //b = 0;
                 }    
              }
              //ルーレットシーンのバルーンで文字を取得する時の分岐

@@ -296,11 +296,11 @@ public class RenshuuQues : MonoBehaviour
            GameManager.instance.totalCoin += GameManager.instance.RCoin;
            GameManager.instance.SaveCoinGoukei();
            if(ToggleRenshuu.instance.toggleMondai<30){
-               GameManager.instance.SceneCount++;
+               //GameManager.instance.SceneCount++;
            }else{
                RenshuuMondai++;//3-5問題数用カウント
                if(RenshuuMondai == 2){
-                   GameManager.instance.SceneCount++;
+                   //GameManager.instance.SceneCount++;
                    RenshuuMondai = 0;
                    }
             }

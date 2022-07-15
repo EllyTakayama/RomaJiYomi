@@ -175,11 +175,11 @@ void ChangeKtoH(string moji){
         {
             TySeikai = GameManager.instance.TyHiraganaCount;
             GameManager.instance.LoadCoinGoukei();
-            GameManager.instance.TyCoin = TySeikai * 6;
+            GameManager.instance.TyCoin = TySeikai * 10;
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += GameManager.instance.TyCoin;
             GameManager.instance.SaveCoinGoukei();
-            GameManager.instance.SceneCount++;
+            //GameManager.instance.SceneCount++;
             TipipoEnemy.SetActive(false);
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();

@@ -508,7 +508,7 @@ public class QuesManager : MonoBehaviour
         }
         KihonMondai++;//3-5問題数用カウント
                if(KihonMondai == 3){
-                   GameManager.instance.SceneCount++;
+                   //GameManager.instance.SceneCount++;
                    KihonMondai = 0;
                    }
         AnsButton[0].enabled = true;
@@ -875,7 +875,7 @@ public class QuesManager : MonoBehaviour
         }
         KihonMondai++;//3-5問題数用カウント
                if(KihonMondai == 3){
-                   GameManager.instance.SceneCount++;
+                   //GameManager.instance.SceneCount++;
                    KihonMondai = 0;
                    }
         AnsButton[3].enabled = true;
