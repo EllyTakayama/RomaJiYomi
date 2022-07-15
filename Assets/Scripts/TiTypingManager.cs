@@ -59,6 +59,7 @@ public class TiTypingManager : MonoBehaviour
     [SerializeField] TextAsset Tynorimono;//Button6/生活
     [SerializeField] TextAsset Tykusabana;//Button7/草花
     [SerializeField] TextAsset Tychimei;//Button8/地名
+    [SerializeField] TextAsset TychimeiHebon;//Button8/地名ヘボン式
     //private DictionaryChange cd;
 
     //テキストアセットの何行の問題かの変数
@@ -362,8 +363,14 @@ void ChangeKtoH(string moji){
 
     //正解した時の関数　
     void Correct(){
-        int se = cd.dicTi[answerMoji];
+        if(cd.dicTi.ContainsKey(answerMoji)){
+            int se = cd.dicTi[answerMoji];
         SoundManager.instance.PlaySE(se);
+        }
+        else{
+            Debug.Log("音声登録されてない");
+        }
+
 
         Debug.Log("mojisuu"+QuestionAnswer.Length);
         //正解した場合の文字の色を変えるための分岐
@@ -519,7 +526,13 @@ void ChangeKtoH(string moji){
              Tiromelines = Tykusabana.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         }
         else if(TicurrentMode ==8){
-             Tiromelines = Tychimei.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+            if(GameManager.instance.isGKunrei == true){
+                Tiromelines = Tychimei.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+            }
+            else{
+                Tiromelines = TychimeiHebon.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
+            }
+             
         }
         //textAsset の取得　改行で分ける
         // 行数と列数の取得

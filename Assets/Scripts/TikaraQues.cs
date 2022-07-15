@@ -108,7 +108,7 @@ public class TikaraQues : MonoBehaviour
         cd1 = GetComponent<HiraDictionary>();
         TiQuesManager.GetComponent<TspriteChange>().TiSChange();
         TiMondaiLoad();
-        Debug.Log("TiMondai"+TiMondai);
+        //Debug.Log("TiMondai"+TiMondai);
         //Hebon(kunrei);
         //ShutudaiSlice(hoka);
         //isWord = true;
