@@ -1,7 +1,8 @@
 using UnityEngine;
 using System;
 using GoogleMobileAds.Api;
-//5月4日更新
+using UnityEngine.SceneManagement;
+//7月17日更新
 
 public class AdMobBanner : MonoBehaviour
 {
@@ -17,7 +18,10 @@ public class AdMobBanner : MonoBehaviour
     //最初からバナーを表示したくない場合はこの関数を消してください。
     private void Start()
     {
+        string SceneName =SceneManager.GetActiveScene().name;
         RequestBanner();//アダプティブバナーを表示する関数 呼び出し
+        Debug.Log(SceneName+"バナー広告読み込み開始");
+        
     }
 
 
@@ -36,7 +40,7 @@ public class AdMobBanner : MonoBehaviour
     }
 
     //アダプティブバナーを表示する関数
-    private void RequestBanner()
+    public void RequestBanner()
     {
         //AndroidとiOSで広告IDが違うのでプラットフォームで処理を分けます。
         // 参考
@@ -44,12 +48,12 @@ public class AdMobBanner : MonoBehaviour
         // https://marumaro7.hatenablog.com/entry/platformsyoriwakeru
 
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
-        //string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
+        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
+        string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
 
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
-        //string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
+        //string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
+        string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
 
 #else
         string adUnitId = "unexpected_platform";

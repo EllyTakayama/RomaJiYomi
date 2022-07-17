@@ -53,6 +53,7 @@ public class GachaManager : MonoBehaviour
 	public GameObject rewardText0;//コインが足りませんテキスト
     [SerializeField] private GameObject AdMobManager;
 	[SerializeField] private GameObject afterAdPanel;
+	public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
 
 
 	
@@ -75,9 +76,10 @@ public class GachaManager : MonoBehaviour
 			DeNum.Add(0);
 		}
 		DeNum[0]=1;
+		/*
 		for(int i = 0 ; i < a ;i++){
 			Debug.Log(DeNum[i]);
-		}
+		}*/
 		//Debug.Log(DeNum.Count);
 		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
 		//Debug.Log(GachaNum.Count);
@@ -96,6 +98,7 @@ public class GachaManager : MonoBehaviour
         GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
             GameManager.instance.RequestReview();
         }
+		PanelParent.GetComponent<GPanelChange>().enabled = true;
 	}
 	void DebugNames()
     {
@@ -136,11 +139,14 @@ public class GachaManager : MonoBehaviour
 		PanelAd.SetActive(false);
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
+		PanelParent.GetComponent<GPanelChange>().enabled = true;
 	}
 
+    //ガチャのGetNekoPanelないのガチャ終了後のOKボタン
 	public void OkButton(){
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
+		PanelParent.GetComponent<GPanelChange>().enabled = true;
 		closeButton.SetActive(false);
 		SoundManager.instance.PlaySousaSE(5);
 		NekoitemPanel.SetActive(false);
@@ -178,6 +184,7 @@ public class GachaManager : MonoBehaviour
 		SoundManager.instance.PlaySousaSE(2);
 		RightButton.SetActive(false);
 		LeftButton.SetActive(false);
+		PanelParent.GetComponent<GPanelChange>().enabled = false;
 	}
 
 	public void GetDropItem(){
@@ -194,6 +201,8 @@ public class GachaManager : MonoBehaviour
 		}
 		//画面遷移までガチャボタン押せなくなる
 		gachaButton.enabled = false;
+		//画面遷移までスワイプできなくなる
+		PanelParent.GetComponent<GPanelChange>().enabled = false;
 		//コインから保存する
 		GameManager.instance.totalCoin -= 150;
 		GameManager.instance.SaveCoinGoukei();

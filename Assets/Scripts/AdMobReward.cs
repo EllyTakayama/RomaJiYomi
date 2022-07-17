@@ -3,6 +3,7 @@ using GoogleMobileAds.Api;
 using System;
 using DG.Tweening;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 //5月19日更新
 
 public class AdMobReward : MonoBehaviour
@@ -34,17 +35,19 @@ public class AdMobReward : MonoBehaviour
         // https://marumaro7.hatenablog.com/entry/platformsyoriwakeru
 
 #if UNITY_ANDROID
-        adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
-        //adUnitId = "ca-app-pub-7439888210247528/2150238155";//ここにAndroidのリワード広告IDを入力
+        //adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
+        adUnitId = "ca-app-pub-7439888210247528/2150238155";//ここにAndroidのリワード広告IDを入力
 #elif UNITY_IPHONE
-        adUnitId = "ca-app-pub-3940256099942544/1712485313";//TestiOSのリワード広告ID
-        //adUnitId = "ca-app-pub-7439888210247528/5351116568";//ここにiOSのリワード広告IDを入力
+        //adUnitId = "ca-app-pub-3940256099942544/1712485313";//TestiOSのリワード広告ID
+        adUnitId = "ca-app-pub-7439888210247528/5351116568";//ここにiOSのリワード広告IDを入力
 #else
         adUnitId = "unexpected_platform";
 #endif
 
-        CreateAndLoadRewardedAd();//リワード広告読み込み
-        Debug.Log("リワード広告スタート関数");
+        string SceneName =SceneManager.GetActiveScene().name;
+            CreateAndLoadRewardedAd();//リワード広告読み込み
+      
+        Debug.Log(SceneName+",リワード広告読み込み開始");
     }
     private void Update()
     {

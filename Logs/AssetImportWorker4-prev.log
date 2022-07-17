@@ -22,96 +22,325 @@ AssetImportWorker4
 -logFile
 Logs/AssetImportWorker4.log
 -srvPort
-49318
+49304
 Successfully changed project path to: /Users/takayamarie/RomaJiYomi
 /Users/takayamarie/RomaJiYomi
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 438.69 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 586.61 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2020.3.22f1 (e1a7f79fd887)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/Resources/UnitySubsystems
 [Subsystems] Discovering subsystems at path /Users/takayamarie/RomaJiYomi/Assets
 GfxDevice: creating device client; threaded=0
-2022-07-15 11:57:58.689 Unity[2241:22220] Color LCD preferred device: Intel(R) Iris(TM) Graphics 6100 (low power)
-2022-07-15 11:57:58.689 Unity[2241:22220] Metal devices available: 1
-2022-07-15 11:57:58.689 Unity[2241:22220] 0: Intel(R) Iris(TM) Graphics 6100 (low power)
-2022-07-15 11:57:58.689 Unity[2241:22220] Using device Intel(R) Iris(TM) Graphics 6100 (low power)
+2022-07-17 06:53:02.198 Unity[3359:42538] Color LCD preferred device: Intel(R) Iris(TM) Graphics 6100 (low power)
+2022-07-17 06:53:02.198 Unity[3359:42538] Metal devices available: 1
+2022-07-17 06:53:02.198 Unity[3359:42538] 0: Intel(R) Iris(TM) Graphics 6100 (low power)
+2022-07-17 06:53:02.198 Unity[3359:42538] Using device Intel(R) Iris(TM) Graphics 6100 (low power)
 Initializing Metal device caps: Intel(R) Iris(TM) Graphics 6100
 Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = '/Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56241
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56359
 Begin MonoManager ReloadAssembly
 Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
-Registered in 0.001639 seconds.
+Registered in 0.002193 seconds.
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 141.12 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 141.32 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Mono: successfully reloaded assembly
-- Completed reload, in  7.166 seconds
+- Completed reload, in  5.524 seconds
 Domain Reload Profiling:
-	ReloadAssembly (7166ms)
-		BeginReloadAssembly (88ms)
+	ReloadAssembly (5524ms)
+		BeginReloadAssembly (64ms)
 			ExecutionOrderSort (0ms)
 			DisableScriptedObjects (0ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (1ms)
-		EndReloadAssembly (754ms)
-			LoadAssemblies (89ms)
+		EndReloadAssembly (698ms)
+			LoadAssemblies (65ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (240ms)
+			SetupTypeCache (221ms)
 			ReleaseScriptCaches (0ms)
-			RebuildScriptCaches (51ms)
-			SetupLoadedEditorAssemblies (340ms)
+			RebuildScriptCaches (47ms)
+			SetupLoadedEditorAssemblies (319ms)
 				LogAssemblyErrors (0ms)
 				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
 				RefreshPlugins (141ms)
-				BeforeProcessingInitializeOnLoad (13ms)
-				ProcessInitializeOnLoadAttributes (140ms)
-				ProcessInitializeOnLoadMethodAttributes (41ms)
+				BeforeProcessingInitializeOnLoad (12ms)
+				ProcessInitializeOnLoadAttributes (121ms)
+				ProcessInitializeOnLoadMethodAttributes (39ms)
 				AfterProcessingInitializeOnLoad (0ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
 			AwakeInstancesAfterBackupRestoration (0ms)
 Platform modules already initialized, skipping
 Registering precompiled user dll's ...
-Registered in 0.022447 seconds.
+Registered in 0.021096 seconds.
 Begin MonoManager ReloadAssembly
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 150.66 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 144.90 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 WARNING: RGBA Compressed ETC2 UNorm format is not supported, decompressing texture
 Mono: successfully reloaded assembly
-- Completed reload, in  4.460 seconds
+- Completed reload, in  2.248 seconds
 Domain Reload Profiling:
-	ReloadAssembly (4462ms)
-		BeginReloadAssembly (222ms)
+	ReloadAssembly (2249ms)
+		BeginReloadAssembly (199ms)
 			ExecutionOrderSort (0ms)
-			DisableScriptedObjects (8ms)
+			DisableScriptedObjects (7ms)
 			BackupInstance (0ms)
 			ReleaseScriptingObjects (0ms)
 			CreateAndSetChildDomain (29ms)
-		EndReloadAssembly (4151ms)
-			LoadAssemblies (2163ms)
+		EndReloadAssembly (1965ms)
+			LoadAssemblies (453ms)
 			RebuildTransferFunctionScriptingTraits (0ms)
-			SetupTypeCache (873ms)
+			SetupTypeCache (513ms)
 			ReleaseScriptCaches (1ms)
-			RebuildScriptCaches (102ms)
-			SetupLoadedEditorAssemblies (761ms)
+			RebuildScriptCaches (93ms)
+			SetupLoadedEditorAssemblies (603ms)
 				LogAssemblyErrors (0ms)
-				InitializePlatformSupportModulesInManaged (4ms)
+				InitializePlatformSupportModulesInManaged (5ms)
 				SetLoadedEditorAssemblies (0ms)
-				RefreshPlugins (151ms)
-				BeforeProcessingInitializeOnLoad (110ms)
-				ProcessInitializeOnLoadAttributes (394ms)
-				ProcessInitializeOnLoadMethodAttributes (100ms)
+				RefreshPlugins (145ms)
+				BeforeProcessingInitializeOnLoad (103ms)
+				ProcessInitializeOnLoadAttributes (319ms)
+				ProcessInitializeOnLoadMethodAttributes (30ms)
 				AfterProcessingInitializeOnLoad (1ms)
 				EditorAssembliesLoaded (0ms)
 			ExecutionOrderSort2 (0ms)
-			AwakeInstancesAfterBackupRestoration (10ms)
+			AwakeInstancesAfterBackupRestoration (9ms)
 Platform modules already initialized, skipping
-Validating Project structure ... 
+Validating Project structure ... 0.119445 seconds.
+Shader import version has changed; will reimport all shaders...
+Upgrading shader files ...1.345569 seconds.
+Application.AssetDatabase Initial Script Refresh Start
+RefreshInfo: InitialScriptRefreshV2(NoUpdateAssetOptions) scanfilter:  ... 1 filters
+RefreshProfiler: Total: 0.000ms
+Application.AssetDatabase Initial Script Refresh End
+Application.AssetDatabase.Refresh Start
+Application.AssetDatabase.Refresh End
+RefreshInfo: StopAssetImportingV2(ForceSynchronousImport) scanfilter: 
+RefreshProfiler: Total: 0.000ms
+WARNING: RGBA Compressed ETC2 UNorm format is not supported, decompressing texture
+Launching external process: /Applications/Unity/Hub/Editor/2020.3.22f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.02 seconds
+Initializing Unity extensions:
+2022-07-17 06:53:21.167 Unity[3359:42538] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x600003482140 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+2022-07-17 06:53:21.173 Unity[3359:42538] NSEventModifierFlagFunction specified to -setKeyEquivalentModifierMask: for item <NSMenuItem: 0x6000034a4f50 Font Asset, ke='Command-F12'>, but is only supported for system-provided menu items; will not be used
+========================================================================
+Worker process is ready to serve import requests
+Refreshing native plugins compatible for Editor in 2.09 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 3128 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 266.4 MB.
+System memory in use after: 263.7 MB.
+
+Unloading 394 unused Assets to reduce memory usage. Loaded Objects now: 3536.
+Total: 13.065170 ms (FindLiveObjects: 0.937057 ms CreateObjectMapping: 2.392333 ms MarkObjects: 8.470318 ms  DeleteObjects: 1.264084 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  path: Assets/Prefabs/AdMobManager.prefab
+  artifactKey: Guid(039b5361c71b64b57bbd447fbd543e81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/AdMobManager.prefab using Guid(039b5361c71b64b57bbd447fbd543e81) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '840d6512b91a2960932e6174f58d41d1') in 2.020256 seconds 
+  Import took 2.027953 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.003900 seconds.
+  path: Assets/Prefabs/bIImage.prefab
+  artifactKey: Guid(5db9d8b2b825e416dbcaffffa19440e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/bIImage.prefab using Guid(5db9d8b2b825e416dbcaffffa19440e8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '5b63b65b5b0fc175446ac60b1cc2037d') in 0.505800 seconds 
+  Import took 0.513556 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000482 seconds.
+  path: Assets/Prefabs/bAImage.prefab
+  artifactKey: Guid(50ec59597f7844741afeb4b6cfc44d74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/bAImage.prefab using Guid(50ec59597f7844741afeb4b6cfc44d74) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '91a213ddee9d597af78b5c865277755f') in 0.015084 seconds 
+  Import took 0.022641 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000367 seconds.
+  path: Assets/Prefabs/bEImage.prefab
+  artifactKey: Guid(60de6e8c067ed4a4cad7df5e722af289) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/bEImage.prefab using Guid(60de6e8c067ed4a4cad7df5e722af289) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ae19a0902238613c722f5d1bd9f33ab') in 0.014411 seconds 
+  Import took 0.022159 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.000337 seconds.
+  path: Assets/Prefabs/bUImage.prefab
+  artifactKey: Guid(41a96646f22444ef49e220d5e6f31a00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Prefabs/bUImage.prefab using Guid(41a96646f22444ef49e220d5e6f31a00) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0852f723d9afd57f08eaa103b4ca9ca2') in 0.015120 seconds 
+  Import took 0.022272 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 230.222351 seconds.
+  path: Assets/Plugins/Android/androidx.work.work-runtime-2.7.0.aar
+  artifactKey: Guid(e15c247159c07463abdaf194f4273877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/androidx.work.work-runtime-2.7.0.aar using Guid(e15c247159c07463abdaf194f4273877) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '571d57a178c2c1d74ea8b54b7bd33f01') in 2.209739 seconds 
+  Import took 2.216677 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 21.833483 seconds.
+  path: Assets/Scripts/HiraDictionary.cs
+  artifactKey: Guid(5a641a7307d6048e18a0e21f5cf32dcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/HiraDictionary.cs using Guid(5a641a7307d6048e18a0e21f5cf32dcf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'b3ed9e6dad6883e7d6ebb5ed6074864e') in 0.476056 seconds 
+  Import took 0.483314 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 5.173201 seconds.
+  path: Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-20.6.0.aar
+  artifactKey: Guid(226113350430741878f455dd9b0a0c16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/com.google.android.gms.play-services-ads-lite-20.6.0.aar using Guid(226113350430741878f455dd9b0a0c16) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fc858e0808a1f85120cdeea7ad8f976c') in 0.026242 seconds 
+  Import took 0.033515 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.887949 seconds.
+  path: Assets/Scripts/TCheckButton.cs
+  artifactKey: Guid(5ab8b34c8d56f42af9cf856421fc2b99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TCheckButton.cs using Guid(5ab8b34c8d56f42af9cf856421fc2b99) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7f46dff666897f8bd3b870934710f8cc') in 0.002683 seconds 
+  Import took 0.009680 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.322356 seconds.
+  path: Assets/Scenes/GachaScene.unity
+  artifactKey: Guid(d4600cad0a8f94646895a5fb08738466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/GachaScene.unity using Guid(d4600cad0a8f94646895a5fb08738466) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8e50bd4bf170e514d3995267c115b508') in 0.003181 seconds 
+  Import took 0.010059 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.833691 seconds.
+  path: Assets/Scenes/KihonScene.unity
+  artifactKey: Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/KihonScene.unity using Guid(2cda990e2423bbf4892e6590ba056729) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '69d1342e4c34cffe4041be4798b7114e') in 0.001941 seconds 
+  Import took 0.009091 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 8.313585 seconds.
+  path: Assets/Scripts/ReSettingManager.cs
+  artifactKey: Guid(d9f7c10021c424c7e878c6e64e1c898c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/ReSettingManager.cs using Guid(d9f7c10021c424c7e878c6e64e1c898c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e2af91ec5c40214a727a90bba5ebc11') in 0.002593 seconds 
+  Import took 0.009485 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 7.511718 seconds.
+  path: Assets/Scripts/PanelManager.cs
+  artifactKey: Guid(69a808d75b3aa493fa0eb1d8edc36e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/PanelManager.cs using Guid(69a808d75b3aa493fa0eb1d8edc36e22) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'cd268e672777e496a707a1a2d901ab37') in 0.002970 seconds 
+  Import took 0.010150 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.031480 seconds.
+  path: Assets/Scripts/GcharaSetumei.txt
+  artifactKey: Guid(e843ef9d3067c444fb25a71c97f4e348) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GcharaSetumei.txt using Guid(e843ef9d3067c444fb25a71c97f4e348) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '2602b86299301c4cafe44f0f69dde542') in 2.150991 seconds 
+  Import took 2.158005 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 10.929992 seconds.
+  path: Assets/Scripts/BDest.cs
+  artifactKey: Guid(af9d97f743deb4e609ee6ea52b137490) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/BDest.cs using Guid(af9d97f743deb4e609ee6ea52b137490) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'd6dbd52f4c09600b286081e2ad13e0ac') in 0.005120 seconds 
+  Import took 0.012294 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.758083 seconds.
+  path: Assets/Scripts/TikaraQues.cs
+  artifactKey: Guid(a33814a2898674e818c63f40302189d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TikaraQues.cs using Guid(a33814a2898674e818c63f40302189d6) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'f7304781e004e841a47a3875daaf1363') in 0.005123 seconds 
+  Import took 0.012534 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 1.179340 seconds.
+  path: Assets/Plugins/Android/gradleTemplate.properties.DISABLED
+  artifactKey: Guid(01de50edb705c45d58f7d44357c006cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/gradleTemplate.properties.DISABLED using Guid(01de50edb705c45d58f7d44357c006cf) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7e8d8828f5b05d530f5764e375874828') in 0.121357 seconds 
+  Import took 0.128583 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.209021 seconds.
+  path: Assets/Scripts/TiSettingManager.cs
+  artifactKey: Guid(05b017b11fd314163aa23ebc16bd2abe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TiSettingManager.cs using Guid(05b017b11fd314163aa23ebc16bd2abe) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'e5353568e3780ab07fcb3ee0e87b45d7') in 0.002704 seconds 
+  Import took 0.009618 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.112558 seconds.
+  path: Assets/Plugins/Android/androidx.startup.startup-runtime-1.0.0.aar
+  artifactKey: Guid(6292e45fe21c34f8face1fb7b2e3d04c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Plugins/Android/androidx.startup.startup-runtime-1.0.0.aar using Guid(6292e45fe21c34f8face1fb7b2e3d04c) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '09b37a81d6c6eedd12380914a839a4e4') in 0.023876 seconds 
+  Import took 0.030868 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 9.574258 seconds.
+  path: Assets/Scripts/TiTypingManager.cs
+  artifactKey: Guid(9b654930337684a86b37c53508b56955) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/TiTypingManager.cs using Guid(9b654930337684a86b37c53508b56955) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bd53e9d4331730cf3f9b39e5174f3817') in 0.002495 seconds 
+  Import took 0.009694 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 38.913770 seconds.
+  path: Assets/Scripts/RenshuuQues.cs
+  artifactKey: Guid(03146ff011fe94792a5c500c776fec29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/RenshuuQues.cs using Guid(03146ff011fe94792a5c500c776fec29) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'fd46029f9d583d00f2045c3aa845ec72') in 0.002830 seconds 
+  Import took 0.009462 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 0.450565 seconds.
+  path: Assets/Scripts/GameManager.cs
+  artifactKey: Guid(df6fa68a304e048e3a91e94aef6afdb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GameManager.cs using Guid(df6fa68a304e048e3a91e94aef6afdb2) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '8b466181d0bf376bf85d1cad69fd7d83') in 0.002372 seconds 
+  Import took 0.009545 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 4.866046 seconds.
+  path: Assets/Scripts/SettingManager.cs
+  artifactKey: Guid(226ee91ba3d2f48a4b05f82445e545ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/SettingManager.cs using Guid(226ee91ba3d2f48a4b05f82445e545ea) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '555a5d018ad132e58d17274e9b0b334e') in 0.002721 seconds 
+  Import took 0.009614 seconds .
+
+========================================================================
+Received Import Request.
+  Time since last request: 2.541507 seconds.
+  path: Assets/Scripts/GachaManager.cs
+  artifactKey: Guid(2374019cad2f44fa7b025611017bc235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scripts/GachaManager.cs using Guid(2374019cad2f44fa7b025611017bc235) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '422f17cdb4de353ab2853e58c0b325e2') in 0.002606 seconds 
+  Import took 0.009801 seconds .
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

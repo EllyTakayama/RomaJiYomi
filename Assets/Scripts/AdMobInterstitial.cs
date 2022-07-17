@@ -27,8 +27,9 @@ public class AdMobInterstitial : MonoBehaviour
     {
         string SceneName =SceneManager.GetActiveScene().name;
         print("シーン名"+SceneName);
-        RequestInterstitial();
-        Debug.Log("インタースティシャル読み込み開始");
+        RequestInterstitial();//読み込み
+        
+        Debug.Log(SceneName+",インタースティシャル読み込み開始");
     }
     private void Update()
     {
@@ -133,7 +134,7 @@ public class AdMobInterstitial : MonoBehaviour
 
 
     //インタースティシャル広告を読み込む関数
-    private void RequestInterstitial()
+    public void RequestInterstitial()
     {
         /*
         //AndroidとiOSで広告IDが違うのでプラットフォームで処理を分けます。
@@ -146,12 +147,12 @@ public class AdMobInterstitial : MonoBehaviour
         */
 
 #if UNITY_ANDROID
-        string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
-        //string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
+        //string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
+        string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
 
 #elif UNITY_IPHONE
-        string adUnitId = "ca-app-pub-3940256099942544/4411468910";//TestiOSのインタースティシャル広告ID
-        //string adUnitId = "ca-app-pub-7439888210247528/6549466402";//ここにiOSのインタースティシャル広告IDを入力
+        //string adUnitId = "ca-app-pub-3940256099942544/4411468910";//TestiOSのインタースティシャル広告ID
+        string adUnitId = "ca-app-pub-7439888210247528/6549466402";//ここにiOSのインタースティシャル広告IDを入力
 
 #else
         string adUnitId = "unexpected_platform";
