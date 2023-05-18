@@ -27,7 +27,8 @@ public class KiriPanel : MonoBehaviour
     IEnumerator FadeKiriPanel(){
         yield return canvasGroup.DOFade(1f,0f).WaitForCompletion();
         yield return new WaitForSeconds(0.5f);
-		canvasGroup.DOFade(0,1.2f); 
+		canvasGroup.DOFade(0,1.2f)
+        .SetLink(gameObject); 
         //yield return new WaitForSeconds(0.2f);
         if(QuesManager.instance.currentMode == 2){
             QuesManager.instance.RomajiQues();

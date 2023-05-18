@@ -60,25 +60,25 @@ public class GameManager : MonoBehaviour
     public void SaveSceneCount(){
         //isGfontsize = SettingManager.instance.isfontSize;
         ES3.Save<int>("SceneCount",SceneCount,"SceneCount.es3" );
-        Debug.Log("セーブSceneCount"+SceneCount);
+        //Debug.Log("セーブSceneCount"+SceneCount);
     }
     
     public void LoadSceneCount(){
          //if(ES3.KeyExists("isfontSize"))
          SceneCount = ES3.Load<int>("SceneCount","SceneCount.es3",0);
-         Debug.Log("ロードSceneCount"+SceneCount);
+         //Debug.Log("ロードSceneCount"+SceneCount);
     }
 
     public void SaveCoinGoukei(){
         //isGfontsize = SettingManager.instance.isfontSize;
         ES3.Save<int>("totalCoin",totalCoin,"totalCoin.es3" );
-        Debug.Log("セーブtotalCoin"+totalCoin);
+        //Debug.Log("セーブtotalCoin"+totalCoin);
     }
 
     public void LoadCoinGoukei(){
          //if(ES3.KeyExists("isfontSize"))
          totalCoin = ES3.Load<int>("totalCoin","totalCoin.es3",0);
-         Debug.Log("ロードtotalCoin"+totalCoin);
+         //Debug.Log("ロードtotalCoin"+totalCoin);
     }
     
     public void SaveGfontsize(){
@@ -90,51 +90,51 @@ public class GameManager : MonoBehaviour
     public void LoadGfontsize(){
          //if(ES3.KeyExists("isfontSize"))
          isGfontsize = ES3.Load<bool>("isGfontsize","isGfontsize.es3",true);
-         Debug.Log("クリックisGfontSize"+isGfontsize);
+         //Debug.Log("クリックisGfontSize"+isGfontsize);
     }
     public void SaveGKunrei(){
         //isGfontsize = SettingManager.instance.isfontSize;
         ES3.Save<bool>("isGKunrei",isGKunrei,"isGKunrei.es3");
-        Debug.Log("クリックisGKunrei"+isGKunrei);
+        //Debug.Log("クリックisGKunrei"+isGKunrei);
     }
     public void LoadGKunrei(){
          //if(ES3.KeyExists("isGKunrei"))
          isGKunrei = ES3.Load<bool>("isGKunrei","isGKunrei.es3",true);
-         Debug.Log("クリックisGKunrei"+isGKunrei);
+         //Debug.Log("クリックisGKunrei"+isGKunrei);
     }
 
 
     public void SaveGse(){
         ES3.Save<bool>("isSEOn",isSEOn,"isSEOn.es3");
-        Debug.Log("クリックisSEOn"+isSEOn);
+        //Debug.Log("クリックisSEOn"+isSEOn);
     }
 
     public void LoadGse(){
          //if(ES3.KeyExists("isSEOn"))
          isSEOn = ES3.Load<bool>("isSEOn","isSEOn.es3",true);
-         Debug.Log("クリックisSEOn"+isSEOn);
+         //Debug.Log("クリックisSEOn"+isSEOn);
     }
 
 public void SaveGbgm(){
         ES3.Save<bool>("isBgmOn",isBgmOn,"isBgmOn.es3");
-        Debug.Log("クリックisBgmOn"+isBgmOn);
+        //Debug.Log("クリックisBgmOn"+isBgmOn);
     }
 
     public void LoadGbgm(){
          //if(ES3.KeyExists("isBgmOn"))
          isBgmOn = ES3.Load<bool>("isBgmOn","isBgmOn.es3",true);
-         Debug.Log("クリックisBgmOn"+isBgmOn);
+         //Debug.Log("クリックisBgmOn"+isBgmOn);
     }
 
     //KihonSceneあ行の正解数保存
     public void SaveACount(){
         //isGfontsize = SettingManager.instance.isfontSize;
         ES3.Save<int>("Acorrect",AcorrectCount,"AcorrectCount.es3");
-        Debug.Log("クリックAcorrect"+AcorrectCount);
+        //Debug.Log("クリックAcorrect"+AcorrectCount);
     }
     public void LoadACount(){
         AcorrectCount = ES3.Load<int>("Acorrect","AcorrectCount.es3",0);
-        Debug.Log("クリックAcorrect"+AcorrectCount);
+        //Debug.Log("クリックAcorrect"+AcorrectCount);
     }
     //TikaraSceneTangoの累計正解数保存
     public void SaveTiCount(){
@@ -145,11 +145,12 @@ public void SaveGbgm(){
 
     public void LoadTiCount(){
         TiTangoCount = ES3.Load<int>("TiTangoCount","TiTangoCount.es3",0);
-        Debug.Log("クリックTiTangoCount"+TiTangoCount);
+        //Debug.Log("クリックTiTangoCount"+TiTangoCount);
     }
 
     public void RequestReview()
     {
+       
 #if UNITY_IOS && !UNITY_EDITOR
         UnityEngine.iOS.Device.RequestStoreReview();
 #elif UNITY_ANDROID && !UNITY_EDITOR
@@ -161,6 +162,7 @@ public void SaveGbgm(){
     }
 
 #if UNITY_ANDROID
+
     private IEnumerator RequestReviewAndroid()
     {
         var reviewManager = new Google.Play.Review.ReviewManager();
@@ -181,7 +183,7 @@ public void SaveGbgm(){
             yield break;
         }
     }
+    
 #endif
-
 
 }

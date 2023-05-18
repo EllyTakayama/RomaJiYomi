@@ -12,7 +12,8 @@ public class DoTextColor : MonoBehaviour
     void Start()
     {
         text.DOColor(new Color(1f, 0, 0), 1.8f)
-        .SetLoops(-1, LoopType.Restart);
+        .SetLoops(-1, LoopType.Restart)
+        .SetLink(gameObject);
     }
 
 }

@@ -32,6 +32,7 @@ public class RouletteMaker : MonoBehaviour
     
     void Start() {
          RTnum = 1;
+         RMaker();
     }
 
     public void RMaker(){

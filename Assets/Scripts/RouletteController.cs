@@ -40,6 +40,7 @@ public class RouletteController : MonoBehaviour
         GameManager.instance.LoadGfontsize();
         GameManager.instance.LoadGKunrei();
         cd = GetComponent<HiraDictionary>();
+        SetRoulette();
         }
 
     public void SetRoulette () {

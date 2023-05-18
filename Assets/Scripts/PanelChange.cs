@@ -33,6 +33,7 @@ public class PanelChange : MonoBehaviour
     public GameObject KiriPanel5;
     public Text aText;
     public GameObject RouletteM;//ルーレット呼び出し
+    public GameObject[] Panels;
 
     // 矢印の表示/非表示
     
@@ -50,6 +51,8 @@ public class PanelChange : MonoBehaviour
     }
     //あ行を覚えようボタン
     public void SelectRomajiA(){
+        Panels[1].SetActive(true);
+        Panels[2].SetActive(true);
         ShowPanel(Panel.Panel1);
         QuesManager.instance.currentMode =2;
         QuesManager.instance.CurrentMode();
@@ -58,6 +61,7 @@ public class PanelChange : MonoBehaviour
     }
     //50音を覚えようボタン ルーレットに移動
     public void SelectRomaji50(){
+        Panels[3].SetActive(true);
         ShowPanel(Panel.Panel4);
         QuesManager.instance.KihonMondai++;
          QuesManager.instance.currentMode = 4;
@@ -68,6 +72,7 @@ public class PanelChange : MonoBehaviour
     }
     //その他音を覚えようボタン ローマ字クイズ
     public void SelectRomajiHoka(){
+        Panels[4].SetActive(true);
         ShowPanel(Panel.Panel5);
          QuesManager.instance.currentMode = 5;
          QuesManager.instance.CurrentMode();
@@ -77,6 +82,7 @@ public class PanelChange : MonoBehaviour
 
     //その他音を覚えようボタン ローマ字クイズ
     public void SelectHyo(){
+        Panels[5].SetActive(true);
         ShowPanel(Panel.Panel6);
         QuesManager.instance.KihonMondai++;
         SoundManager.instance.PlaySousaSE(2);

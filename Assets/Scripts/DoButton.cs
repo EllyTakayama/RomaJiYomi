@@ -14,12 +14,14 @@ public class DoButton : MonoBehaviour
     
     public void ButtonBig(){
         transform.localScale = defaultScale;
-        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.2f);
+        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.2f)
+        .SetLink(gameObject);
     }
 
     public void TextScale(){
         transform.localScale = defaultScale;
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.8f, 1, 0.5f)
+        .SetLink(gameObject)
         .SetRelative(true);
         Debug.Log("textPunch");
     }

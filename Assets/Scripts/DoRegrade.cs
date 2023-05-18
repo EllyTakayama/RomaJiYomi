@@ -26,6 +26,7 @@ public class DoRegrade : MonoBehaviour
     
     void Start()
     {
+        /*
         SoundManager.instance.PlayPanelBGM("GradePanel");
         yattaneText.text = "";
         coinText.text = "";
@@ -36,6 +37,7 @@ public class DoRegrade : MonoBehaviour
         rewardButton.SetActive(false);
         //coinAddImage.SetActive(false);
         afterAdPanel.SetActive(false);
+        */
     }
     public void RgradePanel(){
         
@@ -46,12 +48,14 @@ public class DoRegrade : MonoBehaviour
         yattaneText.text = "";
         coinText.text = "";
         coinImage.SetActive(false);
+        flashImage.SetActive(false);
         //coinAddImage.SetActive(false);
         afterAdPanel.SetActive(false);
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
         coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
-    
+        AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+        Debug.Log("Renshuu,リワード広告読み込み開始");
         StartCoroutine(ReGradePanel());
     }
 
@@ -71,6 +75,7 @@ public class DoRegrade : MonoBehaviour
     public void YattaneText(){
         yattaneText.DOText("\n"+RhiraganaCorrect+"問正解！"
         , 0.5f)
+        .SetLink(gameObject)
         .OnComplete(CoinText);
         print("yattaeText");
         //print("正解数"+HhiraganaCorrect);
@@ -80,6 +85,7 @@ public class DoRegrade : MonoBehaviour
         coinText.DOText("\nコインを"
         +Rcoin+"枚ゲット"
         , 0.6f)
+        .SetLink(gameObject)
         .OnComplete(Coinhoka);
         print("coinText");
         print("正解数"+Rcoin);
@@ -127,8 +133,7 @@ public class DoRegrade : MonoBehaviour
         RenshuuQues.instance.RenRomaji50();
         RenshuuQues.instance.StartRenFadePanel();
         SoundManager.instance.PlayBGM("RenshuuScene");
-        //coinAddImage.Kill();
-        //coinAddText.Kill();
+     
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();

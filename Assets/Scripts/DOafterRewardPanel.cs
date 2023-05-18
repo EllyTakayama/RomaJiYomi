@@ -18,6 +18,7 @@ public class DOafterRewardPanel : MonoBehaviour
     [SerializeField] private GameObject coinGenerator;//CoinPrefabを生成する場所
     [SerializeField] private GameObject SpinnerPanel;
     [SerializeField] private GameObject RegradePanel;
+    [SerializeField] GameObject AdMobManager;
 
     public void AfterReward(){
         rewardText.text = "";
@@ -91,8 +92,9 @@ public class DOafterRewardPanel : MonoBehaviour
         string SceneName =SceneManager.GetActiveScene().name;
         print("シーン名"+SceneName);
         Debug.Log("Return,"+SceneName);
+        AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = SceneName;
+        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
         SceneManager.LoadScene(SceneName);
     }
-
     
 }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using GoogleMobileAds.Api;
+using GoogleMobileAds;
 using UnityEngine.SceneManagement;
 //7月17日更新
 
@@ -8,20 +9,18 @@ public class AdMobBanner : MonoBehaviour
 {
     //やること
     //1.バナー広告IDを入力
-    //2.バナーの表示位置　(現状表示位置は下になっています。)
+    //2.バナーの表示位置(現状表示位置は下になっています。)
     //3.バナー表示のタイミング (現状 起動直後になっています。)
 
-    private BannerView bannerView;//BannerView型の変数bannerViewを宣言　この中にバナー広告の情報が入る
+    private BannerView _bannerView;//BannerView型の変数bannerViewを宣言この中にバナー広告の情報が入る
 
 
     //シーン読み込み時からバナーを表示する
     //最初からバナーを表示したくない場合はこの関数を消してください。
     private void Start()
     {
-        string SceneName =SceneManager.GetActiveScene().name;
         RequestBanner();//アダプティブバナーを表示する関数 呼び出し
-        Debug.Log(SceneName+"バナー広告読み込み開始");
-        
+
     }
 
 
@@ -36,7 +35,7 @@ public class AdMobBanner : MonoBehaviour
     //バナーを削除する関数
     public void BannerDestroy()
     {
-        bannerView.Destroy();//バナー削除
+        _bannerView.Destroy();//バナー削除
     }
 
     //アダプティブバナーを表示する関数
@@ -48,21 +47,21 @@ public class AdMobBanner : MonoBehaviour
         // https://marumaro7.hatenablog.com/entry/platformsyoriwakeru
 
 #if UNITY_ANDROID
-        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
-        string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
+        string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
+        //string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
 
 #elif UNITY_IPHONE
-        //string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
-        string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
+        string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
+        //string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
 
 #else
         string adUnitId = "unexpected_platform";
 #endif
 
         // 新しい広告を表示する前にバナーを削除
-        if (bannerView != null)//もし変数bannerViewの中にバナーの情報が入っていたら
+        if (_bannerView != null)//もし変数bannerViewの中にバナーの情報が入っていたら
         {
-            bannerView.Destroy();//バナー削除
+            _bannerView.Destroy();//バナー削除
         }
 
         //現在の画面の向き横幅を取得しバナーサイズを決定
@@ -71,37 +70,44 @@ public class AdMobBanner : MonoBehaviour
 
 
         //バナーを生成 new BannerView(バナーID,バナーサイズ,バナー表示位置)
-        bannerView = new BannerView(adUnitId, adaptiveSize, AdPosition.Bottom);//バナー表示位置は
-                                                                               //画面上に表示する場合：AdPosition.Top
-                                                                               //画面下に表示する場合：AdPosition.Bottom
-
-
+        _bannerView = new BannerView(adUnitId, adaptiveSize, AdPosition.Bottom);//バナー表示位置は
+    
         //BannerView型の変数 bannerViewの各種状態 に関数を登録
-        bannerView.OnAdLoaded += HandleAdLoaded;//bannerViewの状態が バナー表示完了 となった時に起動する関数(関数名HandleAdLoaded)を登録
-        bannerView.OnAdFailedToLoad += HandleAdFailedToLoad;//bannerViewの状態が バナー読み込み失敗 となった時に起動する関数(関数名HandleAdFailedToLoad)を登録
-
-
+        ListenToAdEvents();
         //リクエストを生成
-        AdRequest adRequest = new AdRequest.Builder().Build();
+        var adRequest = new AdRequest.Builder().Build();
 
         //広告表示
-        bannerView.LoadAd(adRequest);
+        _bannerView.LoadAd(adRequest);
     }
-
-
-    #region Banner callback handlers
-
-    //バナー表示完了 となった時に起動する関数
-    public void HandleAdLoaded(object sender, EventArgs args)
+    private void ListenToAdEvents()
+{
+    // Raised when an ad is loaded into the banner view.
+    _bannerView.OnBannerAdLoaded += () =>
     {
-        Debug.Log("バナー表示完了");
+        Debug.Log("Banner view loaded an ad with response : "
+            + _bannerView.GetResponseInfo());
+            Debug.Log("バナー表示完了");
+    };
+    // Raised when an ad fails to load into the banner view.
+    _bannerView.OnBannerAdLoadFailed += (LoadAdError error) =>
+    {
+        Debug.LogError("バナー読み込み失敗 : "
+            + error);
+    };
+    }
+    
+    //Bannerの破棄とメモリリリース
+    public void DestroyBannerAd()
+    {
+    if (_bannerView != null)
+    {
+        
+        Debug.Log("Destroying banner ad.");
+        _bannerView.Destroy();
+        _bannerView = null;//リソースの解放
+    }
     }
 
-    //バナー読み込み失敗 となった時に起動する関数
-    public void HandleAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
-    {        
-        Debug.Log("バナー読み込み失敗" + args.LoadAdError);//args.LoadAdError:エラー内容 
-    }
-
-    #endregion
 }
+

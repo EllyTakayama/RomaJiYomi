@@ -14,6 +14,7 @@ public class DOScale : MonoBehaviour
        Debug.Log("transform.localScale"+transform.localScale);
        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 2f, 1, 0.5f)
         .SetLoops(-1, LoopType.Yoyo)
+        .SetLink(gameObject)
         .SetId("idBigScale2");
         Debug.Log("BigScale2");
    }
@@ -21,10 +22,12 @@ public class DOScale : MonoBehaviour
        transform.localScale = new Vector3(1f, 1f, 1f);
        transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 2f, 1, 0.6f)
         .SetLoops(-1, LoopType.Yoyo)
+        .SetLink(gameObject)
         .SetId("idBigScale3");
    }
    public void BallonScale(){
-       transform.DOScale(new Vector3(1.25f, 1.25f, 1f), 0.1f);
+       transform.DOScale(new Vector3(1.25f, 1.25f, 1f), 0.1f)
+       .SetLink(gameObject);
    }
    
 }

@@ -72,6 +72,7 @@ public class DOaPanel : MonoBehaviour
     public void YattaText(){
         yattaText.DOText("やったね！"
         , 0.5f)
+        .SetLink(gameObject)
        .OnComplete(Yatta1Text);
         print("yattaText");
     }
@@ -79,6 +80,7 @@ public class DOaPanel : MonoBehaviour
         yatta1Text.DOText("\nあ行のクイズに"
         +"\n"+AhiraganaCorrect+"問正解したね！"
         , 0.8f)
+        .SetLink(gameObject)
         .OnComplete(Stamps);
         print("yatta1Text");
         print("正解数"+HhiraganaCorrect);
@@ -123,6 +125,7 @@ public class DOaPanel : MonoBehaviour
     public void Yatta2Text(){
         yatta2Text.DOText("すごい！"
         , 0.5f)
+        .SetLink(gameObject)
        .OnComplete(Yatta3Text);
         print("yatta2Text");
     }
@@ -130,6 +133,7 @@ public class DOaPanel : MonoBehaviour
         yatta3Text.DOText("\nひらがなクイズに"
         +"\n"+HhiraganaCorrect+"問正解したね！"
         , 0.8f)
+        .SetLink(gameObject)
         .OnComplete(Stamps1);
         print("yatta3Text");
         print("正解数"+HhiraganaCorrect);

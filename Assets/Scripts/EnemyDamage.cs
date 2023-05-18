@@ -55,7 +55,8 @@ public class EnemyDamage : MonoBehaviour
         Debug.Log("1文字ダメージ位置リセット");
       }
       //時間、強さ、回数、手ぶれ値、スナップフラグ、dフェードアウト
-    transform.DOShakePosition(0.7f, 20f, 10, 1, false, true);
+    transform.DOShakePosition(0.7f, 20f, 10, 1, false, true)
+    .SetLink(gameObject);
 
         //無敵時間中の点滅
   for (int i = 0; i < 3; i++)

@@ -10,8 +10,10 @@ public class TextDo : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       transform.DOPunchScale(Vector3.one * 1.2f, 2f, 2, 2f)
+        transform.localScale = new Vector3(1f, 1f, 1f);
+        transform.DOPunchScale(new Vector3(0.15f, 0.15f, 0), 2f, 1, 0.5f)
         //.SetRelative()
-        .SetLoops(-1, LoopType.Incremental);
+        .SetLoops(-1, LoopType.Incremental)
+        .SetLink(gameObject);
     }
 }

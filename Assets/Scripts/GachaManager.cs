@@ -94,6 +94,10 @@ public class GachaManager : MonoBehaviour
 		DebugNames();
 		
 		GetDropItem();*/
+		if(GameManager.instance.totalCoin < 150){
+			AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+			}
+
 		if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
         GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
             GameManager.instance.RequestReview();
@@ -123,9 +127,9 @@ public class GachaManager : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
-		AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
 		afterAdPanel.SetActive(true);
-		PanelAd.SetActive(false);
+		AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
+		//PanelAd.SetActive(false);
 		
 	}
 	//アイテムPanel,GetPanel共通のOkButton
@@ -144,6 +148,9 @@ public class GachaManager : MonoBehaviour
 
     //ガチャのGetNekoPanelないのガチャ終了後のOKボタン
 	public void OkButton(){
+		if(GameManager.instance.totalCoin < 150){
+			AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+			}
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
 		PanelParent.GetComponent<GPanelChange>().enabled = true;
@@ -178,6 +185,7 @@ public class GachaManager : MonoBehaviour
 	}
 	//コインボタンを押すとAdPanelが出てくる
 	public void GetCoin(){
+		AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
 		PanelAd.SetActive(true);
 		rewardText0.SetActive(false);
 		AdButton.GetComponent<DOScale>().BigScale2();
@@ -192,6 +200,7 @@ public class GachaManager : MonoBehaviour
 		//Debug時はオフ 
 		/*coinが150枚以下ならガチャはできない*/
 		if(GameManager.instance.totalCoin < 150){
+			//AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
 			PanelAd.SetActive(true);
 			RightButton.SetActive(false);
 			LeftButton.SetActive(false);

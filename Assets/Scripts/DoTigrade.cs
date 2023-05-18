@@ -25,7 +25,7 @@ public class DoTigrade : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {/*
         //SoundManager.instance.PlayPanelBGM("GradePanel");
         yattaneText.text = "";
         coinText.text = "";
@@ -38,6 +38,7 @@ public class DoTigrade : MonoBehaviour
         afterAdPanel.SetActive(false);
         SpinnerPanel.SetActive(false);
         coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
+        */
     }
     public void TgradePanel(){
         //SoundManager.instance.PlayPanelBGM("GradePanel");
@@ -60,7 +61,8 @@ public class DoTigrade : MonoBehaviour
             TihiraganaCorrect = GameManager.instance.TyHiraganaCount.ToString();
             Tikaracoin = GameManager.instance.TyCoin.ToString();
         }
-    
+        AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+        Debug.Log("Tikara,リワード広告読み込み開始");
         StartCoroutine(TiGradePanel());
     }
 
@@ -171,9 +173,10 @@ public class DoTigrade : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
-           
+
+        afterAdPanel.SetActive(true);   
         AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
-        afterAdPanel.SetActive(true);    
+          
     }
 }
 

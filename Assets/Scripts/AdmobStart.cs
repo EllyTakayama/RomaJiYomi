@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
+using GoogleMobileAds;
 using UnityEngine.SceneManagement;
 
 public class AdmobStart : MonoBehaviour
@@ -13,7 +14,11 @@ public class AdmobStart : MonoBehaviour
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
         print("Admob初期化");
-        
+
+        //メインスレッドでMobile Ads SDK イベントを Unity メインスレッドと同期させる
+        MobileAds.RaiseAdEventsOnUnityMainThread = true;    
     }
 
 }
+
+

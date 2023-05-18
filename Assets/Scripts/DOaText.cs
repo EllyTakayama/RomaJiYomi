@@ -51,7 +51,8 @@ public class DOaText : MonoBehaviour
     public void Atext(){
         aText.DOText("\nあ行のアルファベットを"
         +"\nおぼえましょう。"
-        , 2f);
+        , 2f)
+        .SetLink(gameObject);
         //.OnComplete(MoveButtons)
         MoveButtons();
         Invoke("LateSE",0.0f);
@@ -73,6 +74,7 @@ public class DOaText : MonoBehaviour
         .DOAnchorPos(new Vector2(-200,0), 0.5f)
         .SetRelative(true)
     .SetEase(Ease.OutBack)
+    .SetLink(gameObject)
     ;
     }
     

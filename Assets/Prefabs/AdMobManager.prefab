@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4026183767005241114}
-  - component: {fileID: 4026183767005241115}
-  - component: {fileID: 4026183767005241112}
-  - component: {fileID: 4026183767005241113}
+  - component: {fileID: 3224342195075391426}
+  - component: {fileID: 24627299776832647}
+  - component: {fileID: 683405557623521684}
   m_Layer: 0
   m_Name: AdMobManager
   m_TagString: Untagged
@@ -29,11 +29,12 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4026183767005241115
+--- !u!114 &3224342195075391426
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,10 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4026183767005241116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5ed85dfc5d7145b98c17c9fc9d8a001, type: 3}
+  m_Script: {fileID: 11500000, guid: 87f2d3cda71134953b9669f3ddc84c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4026183767005241112
+--- !u!114 &24627299776832647
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -54,10 +55,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4026183767005241116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55e4fdd4bb8a044cd97b1b9d1f1883e5, type: 3}
+  m_Script: {fileID: 11500000, guid: f96c46b6ef5824ea7a0dfb93d36a670d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4026183767005241113
+  AdSceneName: 
+--- !u!114 &683405557623521684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -66,6 +68,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 4026183767005241116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2dac04d1e31ce405a843b0c9fa4d2777, type: 3}
+  m_Script: {fileID: 11500000, guid: 63333cddb19814a12a8029f85c997704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  afterAdPanel: {fileID: 0}
+  SpinnerPanel: {fileID: 0}
+  rewardText: {fileID: 0}
