@@ -54,13 +54,13 @@ public class GachaManager : MonoBehaviour
     [SerializeField] private GameObject AdMobManager;
 	[SerializeField] private GameObject afterAdPanel;
 	public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
-
-
 	
 	//Debug用
 	//public int itemID =1;
 	
+
 	void Start(){
+		
 		getNekoPanel.SetActive(false);
 		NekoitemPanel.SetActive(false);
 		PanelAd.SetActive(false);
@@ -76,10 +76,10 @@ public class GachaManager : MonoBehaviour
 			DeNum.Add(0);
 		}
 		DeNum[0]=1;
-		/*
+		
 		for(int i = 0 ; i < a ;i++){
 			Debug.Log(DeNum[i]);
-		}*/
+		}
 		//Debug.Log(DeNum.Count);
 		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
 		//Debug.Log(GachaNum.Count);
@@ -93,7 +93,9 @@ public class GachaManager : MonoBehaviour
 		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;
 		DebugNames();
 		
-		GetDropItem();*/
+		GetDropItem();
+		*/
+
 		if(GameManager.instance.totalCoin < 150){
 			AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
 			}
@@ -103,6 +105,7 @@ public class GachaManager : MonoBehaviour
             GameManager.instance.RequestReview();
         }
 		PanelParent.GetComponent<GPanelChange>().enabled = true;
+		
 	}
 	void DebugNames()
     {
