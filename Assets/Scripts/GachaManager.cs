@@ -18,7 +18,7 @@ public class GachaManager : MonoBehaviour
 	Dictionary<int, int> itemResultDict;
 
 	// 抽選回数
-	int rollNum = 100;
+	//int rollNum = 100;
 	public GameObject GachaObject;
 	public GameObject GachaObject1;
 	public GameObject GachaMana;
@@ -54,21 +54,28 @@ public class GachaManager : MonoBehaviour
     [SerializeField] private GameObject AdMobManager;
 	[SerializeField] private GameObject afterAdPanel;
 	public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
-	
+	GameManager GachaGameManager => GameManager.instance;
+	[SerializeField] AdMobReward GachaAdReward;
 	//Debug用
 	//public int itemID =1;
 	
 
 	void Start(){
-		
+		GachaAdReward.CreateAndLoadRewardedAd();
+		GachaGameManager.LoadCoinGoukei();
+		coinText.text = GachaGameManager.totalCoin.ToString();
+		Invoke("StartInvoke",1.5f);
+	}
+
+	void StartInvoke(){
 		getNekoPanel.SetActive(false);
 		NekoitemPanel.SetActive(false);
 		PanelAd.SetActive(false);
 		flashImage.SetActive(false);
-		GameManager.instance.LoadCoinGoukei();
+		GachaGameManager.LoadCoinGoukei();
 		GachaMana.GetComponent<GachaItem>().SetGachaText();
-		Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
-		coinText.text = GameManager.instance.totalCoin.ToString();
+		//Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
+		coinText.text = GachaGameManager.totalCoin.ToString();
 		//gachaButton.enabled = true;
 		//初回時の取得キャラ反映用defaltの作成 Debugにも使える
 		int a = GetComponent<GachaItem>().GachaChara.Length;
@@ -96,16 +103,11 @@ public class GachaManager : MonoBehaviour
 		GetDropItem();
 		*/
 
-		if(GameManager.instance.totalCoin < 150){
-			AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
-			}
-
-		if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
-        GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
-            GameManager.instance.RequestReview();
+		if(GachaGameManager.SceneCount==5||GachaGameManager.SceneCount==30||
+        GachaGameManager.SceneCount==800||GachaGameManager.SceneCount==150){
+            GachaGameManager.RequestReview();
         }
 		PanelParent.GetComponent<GPanelChange>().enabled = true;
-		
 	}
 	void DebugNames()
     {
@@ -131,9 +133,11 @@ public class GachaManager : MonoBehaviour
             Debug.Log("IDKill");
             });
 		afterAdPanel.SetActive(true);
-		AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
-		//PanelAd.SetActive(false);
+		GachaAdReward.ShowAdMobReward();
 		
+	}
+	public void GachaRewardLoad(){
+		GachaAdReward.CreateAndLoadRewardedAd();
 	}
 	//アイテムPanel,GetPanel共通のOkButton
 	public void CloseAdPanelManager(){
@@ -151,9 +155,6 @@ public class GachaManager : MonoBehaviour
 
     //ガチャのGetNekoPanelないのガチャ終了後のOKボタン
 	public void OkButton(){
-		if(GameManager.instance.totalCoin < 150){
-			AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
-			}
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
 		PanelParent.GetComponent<GPanelChange>().enabled = true;
@@ -178,17 +179,16 @@ public class GachaManager : MonoBehaviour
 		if(PanelAd.activeSelf){
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
         {
-
             tween.Kill();
             Debug.Log("IDKill");
             });
 		}
 		rewardText0.SetActive(true);
 		PanelAd.SetActive(false);
+		
 	}
 	//コインボタンを押すとAdPanelが出てくる
 	public void GetCoin(){
-		AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
 		PanelAd.SetActive(true);
 		rewardText0.SetActive(false);
 		AdButton.GetComponent<DOScale>().BigScale2();
@@ -196,20 +196,38 @@ public class GachaManager : MonoBehaviour
 		RightButton.SetActive(false);
 		LeftButton.SetActive(false);
 		PanelParent.GetComponent<GPanelChange>().enabled = false;
+		//Invoke("GachaRewardLoad",1.5f);
 	}
 
-	public void GetDropItem(){
+	IEnumerator DropRewardLoad(){
+		GachaAdReward.CreateAndLoadRewardedAd();
+		var cachedWait = new WaitForSeconds(0.2f);  
+		yield return cachedWait; 
+		PanelAd.SetActive(true);
+		yield return cachedWait; 
+		RightButton.SetActive(false);
+		LeftButton.SetActive(false);
+		yield return cachedWait; 
+		AdButton.GetComponent<DOScale>().BigScale2();
+		SoundManager.instance.PlaySousaSE(2);
+		yield return cachedWait; 
+		yield return new WaitForSeconds(1.2f);
 		
+	}
+	public void GetDropItem(){	
 		//Debug時はオフ 
 		/*coinが150枚以下ならガチャはできない*/
-		if(GameManager.instance.totalCoin < 150){
-			//AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+		
+		if(GachaGameManager.totalCoin < 150){
+			//StartCoroutine(DropRewardLoad());
+			//Invoke("GachaRewardLoad",1.5f);
 			PanelAd.SetActive(true);
 			RightButton.SetActive(false);
 			LeftButton.SetActive(false);
 			AdButton.GetComponent<DOScale>().BigScale2();
 			SoundManager.instance.PlaySousaSE(2);
 			return;
+		
 		}
 		//画面遷移までガチャボタン押せなくなる
 		gachaButton.enabled = false;

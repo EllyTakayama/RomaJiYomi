@@ -586,7 +586,6 @@ public class QuesManager : MonoBehaviour
         public void SelectHoka(){
             Hdropdown2.SetActive(true);
             
-            
             /*for(int i=0;i<KHiragana.Length;i++){
                 Debug.Log(KHiragana[i]);
             }*/
@@ -609,7 +608,6 @@ public class QuesManager : MonoBehaviour
                 dropdownHoka.AddOptions(list);
                 }
             
-
             //hokaImage.SetActive(true);
             Hdropdown.SetActive(false);
             //hiraganaImage.SetActive(false);
@@ -642,6 +640,8 @@ public class QuesManager : MonoBehaviour
          n = 0;
          QuesCount1 = 0;
          kihonNum.Clear();
+         //dropdown2.value = UnityEngine.Random.Range(0,11);
+         //print("dropdown2.value_"+dropdown2.value);
          if(dropdown2.value == 0){
              isHira = true;//基本の50音でないということ
               for(int i=46; i<51; i++){
@@ -773,6 +773,9 @@ public class QuesManager : MonoBehaviour
             qMondai = 5;//5問出題する
             QuesCount1 = 0;
             kihonNum.Clear();
+            //ランダムに取得させる場合
+            //dropdown.value = UnityEngine.Random.Range(0,9);
+            //print("dropdown.value_"+dropdown.value);
             //4-9 ka
         if(dropdown.value == 0){
             kihonNum.Clear();

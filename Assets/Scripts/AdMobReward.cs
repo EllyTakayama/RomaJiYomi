@@ -17,27 +17,26 @@ public class AdMobReward : MonoBehaviour
 
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
 
-    private string adUnitId;
+    
+#if UNITY_ANDROID
+       string adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
+        //adUnitId = "ca-app-pub-7439888210247528/2150238155";//ここにAndroidのリワード広告IDを入力
+#elif UNITY_IPHONE
+　　　　　
+       string adUnitId = "ca-app-pub-3940256099942544/1712485313";//TestiOSのリワード広告ID
+        //adUnitId = "ca-app-pub-7439888210247528/5351116568";//ここにiOSのリワード広告IDを入力
+#else
+       string adUnitId = "unexpected_platform";
+#endif
     public GameObject afterAdPanel;
     public GameObject SpinnerPanel;
     public Text rewardText;//広告読み込めなかった時にテキスト差し替え
 
     private void Start()
     {
-
-#if UNITY_ANDROID
-        adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
-        //adUnitId = "ca-app-pub-7439888210247528/2150238155";//ここにAndroidのリワード広告IDを入力
-#elif UNITY_IPHONE
-        adUnitId = "ca-app-pub-3940256099942544/1712485313";//TestiOSのリワード広告ID
-        //adUnitId = "ca-app-pub-7439888210247528/5351116568";//ここにiOSのリワード広告IDを入力
-#else
-        adUnitId = "unexpected_platform";
-#endif
-
-        string SceneName = SceneManager.GetActiveScene().name;
-        //CreateAndLoadRewardedAd();//リワード広告読み込み
         MobileAds.SetiOSAppPauseOnBackground(true);
+
+        //string SceneName = SceneManager.GetActiveScene().name;   
         
     }
     private void Update()
@@ -45,7 +44,9 @@ public class AdMobReward : MonoBehaviour
         //広告がダウンロード失敗して表示されない場合
         if (NoShowFlag == true)
         {
+            //CreateAndLoadRewardedAd();
             NoShowFlag = false;
+            CreateAndLoadRewardedAd();
             rewardText.text = "広告がダウンロード\nできませんでした";
         }
         //広告を見た後にrewardeFlagをtrueにしている
@@ -55,21 +56,7 @@ public class AdMobReward : MonoBehaviour
         {
             rewardeFlag1 = false;
             rewardeFlag = false;
-            /*
-            #if UNITY_IPHONE
-            MobileAds.SetiOSAppPauseOnBackground(false);
-            
-        if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.UnmuteBGM();
-            Debug.Log("インタースティシャルBGMミュート解除");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.UnmuteSE();
-            Debug.Log("インタースティシャルSEミュート解除");
-        }
-        #endif
-        */
-
+    
             afterAdPanel.SetActive(true);
             GameManager.instance.LoadCoinGoukei();
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
@@ -87,21 +74,7 @@ public class AdMobReward : MonoBehaviour
         else if (rewardeFlag1 == true && rewardeFlag == false)
         {
             rewardeFlag1 = false;
-            /*
-            #if UNITY_IPHONE
-            MobileAds.SetiOSAppPauseOnBackground(false);
-            if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.UnmuteBGM();
-            Debug.Log("インタースティシャルBGMミュート解除");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.UnmuteSE();
-            Debug.Log("インタースティシャルSEミュート解除");
-        }
-            #endif
-            */
-            Debug.Log("報酬なしクローズリワードBGM" + GameManager.instance.isBgmOn);
-            Debug.Log("報酬なしクローズリワードSE" + GameManager.instance.isSEOn);
+        
             afterAdPanel.SetActive(false);
             Debug.Log("報酬なしクローズafterAdPanel," + afterAdPanel.activeSelf);
 
@@ -111,19 +84,7 @@ public class AdMobReward : MonoBehaviour
         {
 
             OpenRewardFlag = false;
-            /*
-            #if UNITY_IPHONE
-            MobileAds.SetiOSAppPauseOnBackground(true);
-            if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.BGMmute();
-            Debug.Log("インタースティシャルBGM一時ミュート");
-        }
-        if(GameManager.instance.isSEOn == true){
-            SoundManager.instance.SEmute();
-            Debug.Log("インタースティシャルSE一時ミュート");
-        }
-            #endif
-            */
+  
             Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
         }
 
@@ -201,6 +162,7 @@ public class AdMobReward : MonoBehaviour
         Debug.LogError("Rewarded ad failed to open full screen content " +
                        "with error : " + error);
         Debug.Log("読み込みエラー");
+        CreateAndLoadRewardedAd();
     };
 
           });
@@ -226,50 +188,18 @@ public class AdMobReward : MonoBehaviour
     }
      
     }
-    /*
-    //リワード読み込み失敗 となった時に起動する関数
-    public void HandleRewardedAdFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+  
+    //Rewardの破棄とメモリリリース
+    public void DestroyRewardAd()
     {
-        Debug.Log("リワード広告読み込み失敗" + args.LoadAdError);//args.LoadAdError:エラー内容 
-    }
-    //リワード広告が始まったときに起動する関数
-    public void HandleRewardedAdOpening(object sender, EventArgs args)
+    if (rewardedAd != null)
     {
-        SpinnerFlag = true;
-        OpenRewardFlag = true;
-        Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
-        Debug.Log("リワードSpinner" + SpinnerFlag);
-
+        
+        Debug.Log("Destroying rewardedAd ad.");
+        rewardedAd.Destroy();
+        rewardedAd = null;//リソースの解放
     }
-
-    //リワード広告閉じられた時に起動する関数
-    public void HandleRewardedAdClosed(object sender, EventArgs args)
-    {
-        rewardeFlag1 = true;
-        Debug.Log("リワードrewardFlag1" + rewardeFlag1);
-        Debug.Log("リワード広告閉じられる");
-        //広告再読み込み
-        CreateAndLoadRewardedAd();
     }
-
-    //ユーザーの報酬処理 となった時に起動する関数
-    public void HandleUserEarnedReward(object sender, Reward args)
-    {
-        Debug.Log("リワード報酬受け取り");
-
-        //この関数内ではゲームオブジェクトの操作ができない
-        //そのため、ここでは報酬受け取りのフラグをtrueにするだけにする
-        //具体的な処理はUpdate関数内で行う。
-        rewardeFlag = true;
-        Debug.Log("リワードrewardFlag" + rewardeFlag);
-
-    }
-    //リワード読み込み完了 となった時に起動する関数
-    public void HandleRewardedAdLoaded(object sender, EventArgs args)
-    {
-        Debug.Log("リワード広告読み込み完了");
-    }
-    */
 }
 
 

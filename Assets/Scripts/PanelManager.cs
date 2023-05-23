@@ -10,18 +10,18 @@ public class PanelManager : MonoBehaviour
 {
     public GameObject Panel0;
     [SerializeField] GameObject AdMobManager;
-    
+    [SerializeField] AdMobBanner pAdMobBanner;
+    [SerializeField] AdMobInterstitial pAdInterstitial;
+    [SerializeField] AdMobReward pAdReward;
+    GameManager PanelGameManager => GameManager.instance;
     //各Sceneへ移動する際に2回に一度インタースティシャル広告を呼び出し
     public void TopSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
         SoundManager.instance.PlayBGM("TopScene");
-        //AdMobManager.GetComponent<AdMobInterstitial>().name = "Home";
-        //string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
-        print("name,"+name);
         GameManager.instance.SceneCount++;
         
-        GameManager.instance.SaveSceneCount();
+        PanelGameManager.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
         int RewardCount =IScount%6;
@@ -32,9 +32,10 @@ public class PanelManager : MonoBehaviour
             return;
         }*/
         SoundManager.instance.PlaySousaSE(2);
-        AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = "TopScene";
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
-        AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
+        pAdInterstitial.AdSceneName = "TopScene";
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
+        pAdInterstitial.ShowAdMobInterstitial();
         //SceneManager.LoadScene("TopScene");
     }
 
@@ -59,9 +60,10 @@ public class PanelManager : MonoBehaviour
             }
             */
         SoundManager.instance.PlaySousaSE(2); 
-        AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = "KihonScene";
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
-        AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
+        pAdInterstitial.AdSceneName = "KihonScene";
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
+        pAdInterstitial.ShowAdMobInterstitial();
         
         //SceneManager.LoadScene("KihonScene");
             }
@@ -86,9 +88,10 @@ public class PanelManager : MonoBehaviour
             }
         */
         SoundManager.instance.PlaySousaSE(2);
-        AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = "RenshuuScene";
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
-        AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
+        pAdInterstitial.AdSceneName = "RenshuuScene";
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
+        pAdInterstitial.ShowAdMobInterstitial();
         //SceneManager.LoadScene("RenshuuScene");
         
     }
@@ -113,9 +116,10 @@ public class PanelManager : MonoBehaviour
         }
         */
         SoundManager.instance.PlaySousaSE(2);
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
-        AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = "TikaraScene";
-        AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
+        pAdMobBanner.DestroyBannerAd();
+        pAdInterstitial.AdSceneName = "TikaraScene";
+        pAdReward.DestroyRewardAd();
+        pAdInterstitial.ShowAdMobInterstitial();
         //SceneManager.LoadScene("TikaraScene");
        
     }
@@ -140,9 +144,10 @@ public class PanelManager : MonoBehaviour
         }
         */
         SoundManager.instance.PlaySousaSE(2);
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
-        AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = "GachaScene";
-        AdMobManager.GetComponent<AdMobInterstitial>().ShowAdMobInterstitial();
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
+        pAdInterstitial.AdSceneName = "GachaScene";
+        pAdInterstitial.ShowAdMobInterstitial();
         //SceneManager.LoadScene("GachaScene");
     }
 
@@ -180,7 +185,8 @@ public class PanelManager : MonoBehaviour
         //DOTween.KillAll();
         SoundManager.instance.PlayBGM("TopScene");
         //GameManager.instance.SceneCount++;
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TopScene");
     }
@@ -189,14 +195,16 @@ public class PanelManager : MonoBehaviour
         //DOTween.KillAll();
         SoundManager.instance.PlayBGM("KihonScene");
         //GameManager.instance.SceneCount++;
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
         SoundManager.instance.PlaySousaSE(2); 
         SceneManager.LoadScene("KihonScene");
             }
     public void RenshuuSceneMoveTitle(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
         SoundManager.instance.PlayBGM("RenshuuScene");
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("RenshuuScene");
@@ -205,7 +213,8 @@ public class PanelManager : MonoBehaviour
     public void TikaraSceneMoveTitle(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
         SoundManager.instance.PlayPanelBGM("SelectPanel");
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TikaraScene");
@@ -214,10 +223,11 @@ public class PanelManager : MonoBehaviour
     public void GachaSceneMoveTitle(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
+        pAdMobBanner.DestroyBannerAd();
+        pAdReward.DestroyRewardAd();
         SoundManager.instance.PlayBGM("GachaScene");
         //GameManager.instance.SceneCount++;
         SoundManager.instance.PlaySousaSE(2);
-        SceneManager.LoadSceneAsync("GachaScene");
+        SceneManager.LoadScene("GachaScene");
     }
 }

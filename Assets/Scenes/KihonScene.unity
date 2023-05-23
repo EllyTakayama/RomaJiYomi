@@ -17187,7 +17187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &760330359
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24469,14 +24469,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: AdMobManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 683405557623521684, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
 --- !u!1 &969117814 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4026183767005241116, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
   m_PrefabInstance: {fileID: 969117813}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &969117815 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 24627299776832647, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 969117813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969117814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96c46b6ef5824ea7a0dfb93d36a670d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &969117816 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3224342195075391426, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 969117813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969117814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87f2d3cda71134953b9669f3ddc84c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &969117817 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 683405557623521684, guid: 039b5361c71b64b57bbd447fbd543e81, type: 3}
+  m_PrefabInstance: {fileID: 969117813}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969117814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63333cddb19814a12a8029f85c997704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &970509114
 GameObject:
   m_ObjectHideFlags: 0
@@ -25692,7 +25724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1013550051
 RectTransform:
   m_ObjectHideFlags: 0
@@ -40095,9 +40127,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8468859720453597507, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+      propertyPath: pAdReward
+      value: 
+      objectReference: {fileID: 969117817}
+    - target: {fileID: 8468859720453597507, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
       propertyPath: AdMobManager
       value: 
       objectReference: {fileID: 969117814}
+    - target: {fileID: 8468859720453597507, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+      propertyPath: pAdMobBanner
+      value: 
+      objectReference: {fileID: 969117816}
+    - target: {fileID: 8468859720453597507, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
+      propertyPath: pAdInterstitial
+      value: 
+      objectReference: {fileID: 969117815}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 06417cacfcaee40eab2d4a7bb8153a53, type: 3}
 --- !u!114 &1590955198 stripped

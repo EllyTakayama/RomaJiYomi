@@ -33,6 +33,8 @@ public class AdMobInterstitial : MonoBehaviour
             rewardeFlag = false;
 
             Debug.Log("rewardFlag" + rewardeFlag);
+            SceneManager.LoadScene(AdSceneName);
+           /*
             if (AdSceneName == "TopScene")
             {
                 SceneManager.LoadScene("TopScene");
@@ -63,6 +65,7 @@ public class AdMobInterstitial : MonoBehaviour
                 SceneManager.LoadScene("TopScene");
             }
             //SpinnerPanel.SetActive(false);
+            */
         }
 
         if (OpenInterAdFlag == true)
@@ -79,45 +82,15 @@ public class AdMobInterstitial : MonoBehaviour
     {
         if (interstitialAd != null && interstitialAd.CanShowAd())
     {
-        Debug.Log("Showing interstitial ad.");
         interstitialAd.Show();
         Debug.Log("インタースティシャル広告表示");
     }
     else
     {
-        if (AdSceneName == "TopScene")
-            {
-                SceneManager.LoadScene("TopScene");
-                Debug.Log("TopScene");
-            }
-            else if (AdSceneName == "KihonScene")
-            {
-                SceneManager.LoadScene("KihonScene");
-                Debug.Log("KihonScene");
-            }
-            else if (AdSceneName == "RenshuuScene")
-            {
-                SceneManager.LoadScene("RenshuuScene");
-                Debug.Log("RenshuuScene");
-            }
-            else if (AdSceneName == "TikaraScene")
-            {
-                SceneManager.LoadScene("TikaraScene");
-                Debug.Log("TikaraScene");
-            }
-            else if (AdSceneName == "GachaScene")
-            {
-                SceneManager.LoadScene("GachaScene");
-                Debug.Log("GachaScene");
-            }
-            else
-            {
-                SceneManager.LoadScene("TopScene");
-
-            }
-            Debug.Log("インタースティシャル広告読み込み未完了");
-            }
+        SceneManager.LoadScene(AdSceneName);
+   
     }
+}
        
     //インタースティシャル広告を読み込む関数
     public void RequestInterstitial()
@@ -188,46 +161,18 @@ public class AdMobInterstitial : MonoBehaviour
             });
 
     }
+
+    //インタースティシャルの破棄とメモリリリース
     public void DestroyInterstitialAd()
     {
-        if (interstitialAd != null)
-        {
-            interstitialAd.Destroy();
-        }
-    }
-
-    /*
-    //インタースティシャル全面表示になった時に起動する関数
-    public void HandleOnAdOpening(object sender, EventArgs args)
+    if (interstitialAd != null)
     {
-
-        MonoBehaviour.print("HandleRewardedAdOpening event received");
-        OpenInterAdFlag = true;
-        SpinnerFlag = true;
-        Debug.Log("全面インタースティシャルSpinner" + SpinnerFlag);
-    }
-    public void HomeOnClick(string Button)
-    {
-        //name = Button;
-        //print("インタースティシャル名前," + name);
-    }
-    //インタースティシャル表示終了 となった時に起動する関数
-    public void HandleOnAdClosed(object sender, EventArgs args)
-    {
-        Debug.Log("インタースティシャル終了name" + AdSceneName);
-        rewardeFlag = true;
-
-        Debug.Log("インタースティシャル広告終了");
-
-        //インタースティシャル広告は使い捨てなので一旦破棄
+        
+        Debug.Log("Destroying interstitialAd.");
         interstitialAd.Destroy();
-        Debug.Log("インタースティシャル広告破棄");
-
-        //インタースティシャル再読み込み開始
-        RequestInterstitial();
-        Debug.Log("インタースティシャル広告再読み込み");
+        interstitialAd = null;//リソースの解放
     }
-    */
+    }
 }
 
 

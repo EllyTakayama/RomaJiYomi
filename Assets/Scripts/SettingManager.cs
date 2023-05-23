@@ -29,7 +29,7 @@ public class SettingManager : MonoBehaviour
         GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
             GameManager.instance.RequestReview();
         }
-        Debug.Log("スタートロード");
+        //Debug.Log("スタートロード");
     }
 
     public void FontSelectToggle(){
