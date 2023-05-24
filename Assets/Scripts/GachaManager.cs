@@ -64,7 +64,7 @@ public class GachaManager : MonoBehaviour
 		GachaAdReward.CreateAndLoadRewardedAd();
 		GachaGameManager.LoadCoinGoukei();
 		coinText.text = GachaGameManager.totalCoin.ToString();
-		Invoke("StartInvoke",1.5f);
+		Invoke("StartInvoke",1.0f);
 	}
 
 	void StartInvoke(){
@@ -83,10 +83,10 @@ public class GachaManager : MonoBehaviour
 			DeNum.Add(0);
 		}
 		DeNum[0]=1;
-		
+		/*
 		for(int i = 0 ; i < a ;i++){
 			Debug.Log(DeNum[i]);
-		}
+		}*/
 		//Debug.Log(DeNum.Count);
 		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
 		//Debug.Log(GachaNum.Count);
@@ -104,7 +104,7 @@ public class GachaManager : MonoBehaviour
 		*/
 
 		if(GachaGameManager.SceneCount==5||GachaGameManager.SceneCount==30||
-        GachaGameManager.SceneCount==800||GachaGameManager.SceneCount==150){
+        GachaGameManager.SceneCount==80||GachaGameManager.SceneCount==150){
             GachaGameManager.RequestReview();
         }
 		PanelParent.GetComponent<GPanelChange>().enabled = true;
@@ -218,7 +218,7 @@ public class GachaManager : MonoBehaviour
 		//Debug時はオフ 
 		/*coinが150枚以下ならガチャはできない*/
 		
-		if(GachaGameManager.totalCoin < 150){
+		if(GameManager.instance.totalCoin < 150){
 			//StartCoroutine(DropRewardLoad());
 			//Invoke("GachaRewardLoad",1.5f);
 			PanelAd.SetActive(true);

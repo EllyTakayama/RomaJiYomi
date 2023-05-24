@@ -8,6 +8,9 @@ using System;
 
 public class SettingManager : MonoBehaviour
 {
+    [SerializeField] private GameObject settingPanel;
+    [SerializeField] private GameObject topPanel;
+    [SerializeField] private GameObject infoPanel;
     public Toggle tallToggle;//大文字の選択 /A
     public Toggle smallToggle;//小文字の選択 /a
     public Toggle hebonToggle;//ヘボン式の選択 /shi
@@ -26,12 +29,89 @@ public class SettingManager : MonoBehaviour
         SetBGMLoad();
         SetSELoad();
         if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
-        GameManager.instance.SceneCount==800||GameManager.instance.SceneCount==150){
+        GameManager.instance.SceneCount==80||GameManager.instance.SceneCount==150){
             GameManager.instance.RequestReview();
         }
-        //Debug.Log("スタートロード");
+       
     }
+     //Debug.Log("スタートロード");
+        public void SetPanelMove(){
+        SoundManager.instance.StopSE();
+        topPanel.SetActive(false);
+        settingPanel.SetActive(true);
+        SetSettingPanel();
+        }
 
+    public void TopPanelMove(){
+        topPanel.SetActive(true);
+        settingPanel.SetActive(false);
+        infoPanel.SetActive(false);
+    }
+    public void InfoPanelMove(){
+        SoundManager.instance.StopSE();
+        topPanel.SetActive(false);
+        settingPanel.SetActive(false);
+        infoPanel.SetActive(true);
+        }
+
+
+    public void ReviewButton(){
+        GameManager.instance.RequestReview();
+    }
+    
+    //SettingPanelをアクティブにするときにトグルを適切に表示させる
+    public void SetSettingPanel(){
+        //大文字小文字トグルのセット
+         if(GameManager.instance.isGfontsize == true){
+            tallToggle.isOn = true;
+            smallToggle.isOn = false;
+            }
+             else
+             {
+            tallToggle.isOn = false;
+            smallToggle.isOn = true;
+            }
+       
+        Debug.Log("ロードtallToggle"+tallToggle.isOn);
+        Debug.Log("ロードsmallToggle"+smallToggle.isOn);
+        Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
+
+        //訓令化ヘボン式かトグルをセットする
+        if(GameManager.instance.isGKunrei ==true){
+            kunreiToggle.isOn = true;
+            hebonToggle.isOn = false;
+            
+        }
+        else{
+            kunreiToggle.isOn = false;
+            hebonToggle.isOn = true;
+        }
+        Debug.Log("ロードkunreiToggle"+kunreiToggle.isOn);
+        Debug.Log("ロードhebonToggle"+hebonToggle.isOn);
+
+        //BGMトグルをセットする
+        if(GameManager.instance.isBgmOn == true){
+           
+            bgmToggle.isOn = true;
+        }
+        else{
+            bgmToggle.isOn = false;
+        }
+     
+        Debug.Log("ロードBGM"+bgmToggle.isOn);
+        Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
+
+        //SEトグルをセットする
+        if(GameManager.instance.isSEOn == true){
+            seToggle.isOn = true;
+        }
+        else{
+            seToggle.isOn = false;
+        }
+        Debug.Log("GisSEOn"+GameManager.instance.isSEOn);
+        Debug.Log("ロードSE"+seToggle.isOn);
+
+    }
     public void FontSelectToggle(){
         if(tallToggle.isOn == true){
             //大文字選択
@@ -50,23 +130,9 @@ public class SettingManager : MonoBehaviour
         Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
     }
 
-    public void FontTogLoad(){
-       
+    public void FontTogLoad(){  
         GameManager.instance.LoadGfontsize();
-        Debug.Log("1GameMfontSize"+GameManager.instance.isGfontsize);
-         if(GameManager.instance.isGfontsize == true){
-             tallToggle.isOn = true;
-            smallToggle.isOn = false;
-            }
-             else
-             {
-            tallToggle.isOn = false;
-            smallToggle.isOn = true;
-                  }
-       
-        Debug.Log("ロードtallToggle"+tallToggle.isOn);
-        Debug.Log("ロードsmallToggle"+smallToggle.isOn);
-        Debug.Log("GameMfontSize"+GameManager.instance.isGfontsize);
+        
     }
 
     public void ShosikiSelectToggle(){
@@ -88,19 +154,6 @@ public class SettingManager : MonoBehaviour
 
     public void ShosikiTogLoad(){
         GameManager.instance.LoadGKunrei();
-        Debug.Log("GameKunrei"+GameManager.instance.isGKunrei);
-        if(GameManager.instance.isGKunrei ==true){
-            kunreiToggle.isOn = true;
-            hebonToggle.isOn = false;
-            
-        }
-        else{
-            kunreiToggle.isOn = false;
-            hebonToggle.isOn = true;
-        }
-        Debug.Log("ロードkunreiToggle"+kunreiToggle.isOn);
-        Debug.Log("ロードhebonToggle"+hebonToggle.isOn);
-
     }
 
     public void OnClickBGMToggle(){
@@ -150,41 +203,26 @@ public class SettingManager : MonoBehaviour
     public void SetBGMLoad(){
         GameManager.instance.LoadGbgm();
         if(GameManager.instance.isBgmOn == true){
-            bgmToggle.isOn = true;
+           SoundManager.instance.UnmuteBGM();
+            SoundManager.instance.PlayBGM("SettingScene");
         }
-        else{
-            bgmToggle.isOn = false;
-        }
-     Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
-      if (bgmToggle.isOn ==true){
-             SoundManager.instance.UnmuteBGM();
-             SoundManager.instance.PlayBGM("SettingScene");
-             }
         else{
             SoundManager.instance.BGMmute();
         }
+     
         Debug.Log("ロードBGM"+bgmToggle.isOn);
-         Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
+        Debug.Log("GameKunrei"+GameManager.instance.isBgmOn);
     }
 
     public void SetSELoad(){
          GameManager.instance.LoadGse();
          if(GameManager.instance.isSEOn == true){
-            seToggle.isOn = true;
+            SoundManager.instance.UnmuteSE();  
         }
-        else{
-            seToggle.isOn = false;
-        }
-         Debug.Log("GisSEOn"+GameManager.instance.isSEOn);
-      if (seToggle.isOn ==true){
-             SoundManager.instance.UnmuteSE();
-             
-             Debug.Log("SEunmute");
-             }
         else{
             SoundManager.instance.SEmute();
-            Debug.Log("SEmute");
         }
+         Debug.Log("GisSEOn"+GameManager.instance.isSEOn);
         Debug.Log("ロードSE"+seToggle.isOn);
 
     }

@@ -34,17 +34,16 @@ public class AdMobReward : MonoBehaviour
 
     private void Start()
     {
+        #if UNITY_IPHONE
         MobileAds.SetiOSAppPauseOnBackground(true);
-
-        //string SceneName = SceneManager.GetActiveScene().name;   
-        
+        #endif   
+        //CreateAndLoadRewardedAd();
     }
     private void Update()
     {
         //広告がダウンロード失敗して表示されない場合
         if (NoShowFlag == true)
         {
-            //CreateAndLoadRewardedAd();
             NoShowFlag = false;
             CreateAndLoadRewardedAd();
             rewardText.text = "広告がダウンロード\nできませんでした";
@@ -68,13 +67,11 @@ public class AdMobReward : MonoBehaviour
             afterAdPanel.GetComponent<DOafterRewardPanel>().AfterReward();
             SpinnerPanel.SetActive(false);
             Debug.Log("リワード報酬後SpinPanel," + SpinnerPanel.activeSelf);
-
             //報酬を得ないでクローズする場合
         }
         else if (rewardeFlag1 == true && rewardeFlag == false)
         {
             rewardeFlag1 = false;
-        
             afterAdPanel.SetActive(false);
             Debug.Log("報酬なしクローズafterAdPanel," + afterAdPanel.activeSelf);
 
@@ -145,16 +142,14 @@ public class AdMobReward : MonoBehaviour
         OpenRewardFlag = true;
         Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
         Debug.Log("リワードSpinner" + SpinnerFlag);
-
-        Debug.Log("Rewarded ad full screen content opened.");
     };
     // Raised when the ad closed full screen content.
     ad.OnAdFullScreenContentClosed += () =>
     {
         rewardeFlag1 = true;
         rewardedAd.Destroy();
-        Debug.Log("Rewarded ad full screen content closed.");
-
+        CreateAndLoadRewardedAd();
+        
     };
     // Raised when the ad failed to open full screen content.
     ad.OnAdFullScreenContentFailed += (AdError error) =>
@@ -164,7 +159,6 @@ public class AdMobReward : MonoBehaviour
         Debug.Log("読み込みエラー");
         CreateAndLoadRewardedAd();
     };
-
           });
     }
     //リワード広告を表示する関数
