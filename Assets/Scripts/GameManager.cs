@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_ANDROID
+using Google.Play.Review;
+#endif
 //6月7日更新
 
 public class GameManager : MonoBehaviour
@@ -151,17 +154,17 @@ public void SaveGbgm(){
     public void RequestReview()
     {
        
-#if UNITY_IOS && !UNITY_EDITOR
+#if UNITY_IOS
         UnityEngine.iOS.Device.RequestStoreReview();
-#elif UNITY_ANDROID && !UNITY_EDITOR
+#elif UNITY_ANDROID
         StartCoroutine(RequestReviewAndroid());
+#elif UNITY_EDITOR
+print("エディターレビュー呼び出し");
 #else
         Debug.LogWarning("This platform is not support RequestReview.");
 #endif
     Debug.Log("レビューリクエスト呼び出し");
     }
-
-#if UNITY_ANDROID
 
     private IEnumerator RequestReviewAndroid()
     {
@@ -183,7 +186,5 @@ public void SaveGbgm(){
             yield break;
         }
     }
-    
-#endif
 
 }

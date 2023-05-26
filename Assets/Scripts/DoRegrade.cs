@@ -25,21 +25,7 @@ public class DoRegrade : MonoBehaviour
     public string Rcoin;
     // Start is called before the first frame update
     
-    void Start()
-    {
-        /*
-        SoundManager.instance.PlayPanelBGM("GradePanel");
-        yattaneText.text = "";
-        coinText.text = "";
-        coinImage.SetActive(false);
-        flashImage.SetActive(false);
-        retryButton.SetActive(false);
-        //renTopButton.SetActive(false);
-        rewardButton.SetActive(false);
-        //coinAddImage.SetActive(false);
-        afterAdPanel.SetActive(false);
-        */
-    }
+
     public void RgradePanel(){
         
         SoundManager.instance.PlayPanelBGM("GradePanel");

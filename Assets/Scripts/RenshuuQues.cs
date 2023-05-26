@@ -292,7 +292,7 @@ public class RenshuuQues : MonoBehaviour
            RenSeikai = GameManager.instance.RcorrectCount;
            GameManager.instance.LoadCoinGoukei();
            GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
-           GameManager.instance.RCoin = RenSeikai*3;
+           GameManager.instance.RCoin = RenSeikai*10;
            GameManager.instance.totalCoin += GameManager.instance.RCoin;
            GameManager.instance.SaveCoinGoukei();
            if(ToggleRenshuu.instance.toggleMondai<30){

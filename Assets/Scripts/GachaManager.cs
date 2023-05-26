@@ -127,11 +127,13 @@ public class GachaManager : MonoBehaviour
 		SoundManager.instance.PlaySousaSE(5);
 	}
 	public void GachaReward(){
+		/*
 		DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
+            });*/
+		PanelAd.SetActive(false);
 		afterAdPanel.SetActive(true);
 		GachaAdReward.ShowAdMobReward();
 		
@@ -142,11 +144,12 @@ public class GachaManager : MonoBehaviour
 	//アイテムPanel,GetPanel共通のOkButton
 	public void CloseAdPanelManager(){
 		SoundManager.instance.PlaySousaSE(5);
+		/*
 		DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
+            });*/
 		PanelAd.SetActive(false);
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
@@ -161,6 +164,7 @@ public class GachaManager : MonoBehaviour
 		closeButton.SetActive(false);
 		SoundManager.instance.PlaySousaSE(5);
 		NekoitemPanel.SetActive(false);
+		/*
 		if(getNekoPanel.activeSelf){
 			DOTween.TweensById("idFlash18").ForEach((tween) =>
         {
@@ -173,16 +177,17 @@ public class GachaManager : MonoBehaviour
             tween.Kill();
             Debug.Log("IDKill");
             });
-		}
+		}*/
 		flashImage.SetActive(false);
 		getNekoPanel.SetActive(false);
+		/*
 		if(PanelAd.activeSelf){
 			DOTween.TweensById("idBigScale3").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
             });
-		}
+		}*/
 		rewardText0.SetActive(true);
 		PanelAd.SetActive(false);
 		
