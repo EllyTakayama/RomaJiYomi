@@ -64,11 +64,12 @@ public class DOafterRewardPanel : MonoBehaviour
        coinAddText.GetComponent<DOCounter>().CountCoin1();
        yield return new WaitForSeconds(2.0f);
        SoundManager.instance.StopSE();
+       /*
        DOTween.TweensById("idFlash18").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
+            });*/
        yield return new WaitForSeconds(0.1f);
        RewardflashImage.SetActive(false);
        SoundManager.instance.PlaySousaSE(8);
@@ -89,12 +90,15 @@ public class DOafterRewardPanel : MonoBehaviour
             tween.Kill();
             Debug.Log("IDBigScale2");
             });}
+        
+        RewardPanel.SetActive(false);
+        /*
         string SceneName =SceneManager.GetActiveScene().name;
         print("シーン名"+SceneName);
         Debug.Log("Return,"+SceneName);
         AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = SceneName;
         AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
-        SceneManager.LoadScene(SceneName);
+        SceneManager.LoadScene(SceneName);*/
     }
     
 }

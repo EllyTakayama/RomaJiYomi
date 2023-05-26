@@ -18,6 +18,7 @@ public class DoRegrade : MonoBehaviour
     [SerializeField] private GameObject coinAddImage;
     [SerializeField] private Text coinAddText;
     [SerializeField] private GameObject afterAdPanel;
+    [SerializeField] private Text afterAdText;
     [SerializeField] private GameObject AdMobManager;
 
     public string RhiraganaCorrect;
@@ -113,11 +114,12 @@ public class DoRegrade : MonoBehaviour
        SoundManager.instance.PlaySousaSE(8);
        coinAddImage.GetComponent<DOScale>().BigScale2();
        coinAddText.GetComponent<DOScale>().BigScale2();
+       /*
        DOTween.TweensById("idFlash18").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("Kill,idFlash18");
-            });
+            });*/
        yield return new WaitForSeconds(0.2f);
        flashImage.SetActive(false);
        retryButton.SetActive(true);
@@ -133,25 +135,27 @@ public class DoRegrade : MonoBehaviour
         RenshuuQues.instance.RenRomaji50();
         RenshuuQues.instance.StartRenFadePanel();
         SoundManager.instance.PlayBGM("RenshuuScene");
-     
+        /*
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDBigScale2");
-            });
+            });*/
         
         afterAdPanel.SetActive(false);
         RegradePanel.SetActive(false);
 
     }
     public void RenRewardButton(){
+        /*
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDBigScale2");
-            });
+            });*/
         
         afterAdPanel.SetActive(true);
+        afterAdText.text = "Loadingにゃん";
         AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
        
     }

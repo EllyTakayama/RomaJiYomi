@@ -22,6 +22,7 @@ public class DoTigrade : MonoBehaviour
     [SerializeField] private GameObject AdMobManager;
     public string TihiraganaCorrect;
     public string Tikaracoin;
+    [SerializeField] private Text afterAdText;
 
     // Start is called before the first frame update
     void Start()
@@ -128,11 +129,12 @@ public class DoTigrade : MonoBehaviour
         coinAddText.GetComponent<DOScale>().BigScale2();
 
         yield return new WaitForSeconds(0.2f);
+        /*
         DOTween.TweensById("idFlash18").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("Kill,idFlash18");
-            });
+            });*/
         flashImage.SetActive(false);
         TikaraPanelMove.SetActive(true);
         retryButton.SetActive(true);
@@ -141,11 +143,11 @@ public class DoTigrade : MonoBehaviour
 
     }
     public void RetryButton(){
-        DOTween.TweensById("idBigScale2").ForEach((tween) =>
+        /*DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
+            });*/
         TikaraQues.instance.StartFadePanel();
         SoundManager.instance.PlayBGM("TikaraScene");
         if(TikaraQues.instance.isWord == true){
@@ -174,7 +176,8 @@ public class DoTigrade : MonoBehaviour
             Debug.Log("IDKill");
             });
 
-        afterAdPanel.SetActive(true);   
+        afterAdPanel.SetActive(true);
+        afterAdText.text = "Loadingにゃん";   
         AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
           
     }

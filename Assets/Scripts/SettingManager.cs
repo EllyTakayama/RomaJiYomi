@@ -40,18 +40,21 @@ public class SettingManager : MonoBehaviour
         topPanel.SetActive(false);
         settingPanel.SetActive(true);
         SetSettingPanel();
+        SoundManager.instance.PlaySousaSE(2);
         }
 
     public void TopPanelMove(){
         topPanel.SetActive(true);
         settingPanel.SetActive(false);
         infoPanel.SetActive(false);
+        SoundManager.instance.PlaySousaSE(2);
     }
     public void InfoPanelMove(){
         SoundManager.instance.StopSE();
         topPanel.SetActive(false);
         settingPanel.SetActive(false);
         infoPanel.SetActive(true);
+        SoundManager.instance.PlaySousaSE(2);
         }
 
 

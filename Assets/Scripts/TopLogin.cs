@@ -55,7 +55,7 @@ public class TopLogin : MonoBehaviour
                 }else{
                     GameManager.instance.LoadCoinGoukei();
                     GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
-                    GameManager.instance.totalCoin += 50;
+                    GameManager.instance.totalCoin += 150;
                     GameManager.instance.SaveCoinGoukei();
                     loginBonusPanel.SetActive(true);
                     coinText.GetComponent<DOCounter>().CountCoin1();
