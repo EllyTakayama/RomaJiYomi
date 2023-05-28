@@ -28,7 +28,7 @@ public class DOafterRewardPanel : MonoBehaviour
         RewardCoinImage.SetActive(false);
         RewardflashImage.SetActive(false);
         
-        Debug.Log("AfterReward,SpinPanel,"+SpinnerPanel.activeSelf);
+        //Debug.Log("AfterReward,SpinPanel,"+SpinnerPanel.activeSelf);
         StartCoroutine(DoRewardPanel());
     }
     IEnumerator DoRewardPanel()
@@ -83,13 +83,13 @@ public class DOafterRewardPanel : MonoBehaviour
         DOTween.TweensById("idFlash18").ForEach((tween) =>
         {
             tween.Kill();
-            Debug.Log("IDKill");
+            //Debug.Log("IDKill");
             });}
         if(RewardButton.activeSelf){
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
-            Debug.Log("IDBigScale2");
+            //Debug.Log("IDBigScale2");
             });}
         
         RewardPanel.SetActive(false);

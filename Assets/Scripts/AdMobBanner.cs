@@ -85,15 +85,17 @@ public class AdMobBanner : MonoBehaviour
     // Raised when an ad is loaded into the banner view.
     _bannerView.OnBannerAdLoaded += () =>
     {
+        /*
         Debug.Log("Banner view loaded an ad with response : "
             + _bannerView.GetResponseInfo());
-            Debug.Log("バナー表示完了");
+            Debug.Log("バナー表示完了");*/
     };
     // Raised when an ad fails to load into the banner view.
     _bannerView.OnBannerAdLoadFailed += (LoadAdError error) =>
     {
+        /*
         Debug.LogError("バナー読み込み失敗 : "
-            + error);
+            + error);*/
     };
     }
     
@@ -103,7 +105,7 @@ public class AdMobBanner : MonoBehaviour
     if (_bannerView != null)
     {
         
-        Debug.Log("Destroying banner ad.");
+        //Debug.Log("Destroying banner ad.");
         _bannerView.Destroy();
         _bannerView = null;//リソースの解放
     }

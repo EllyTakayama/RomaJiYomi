@@ -46,7 +46,7 @@ public class AdMobReward : MonoBehaviour
         {
             NoShowFlag = false;
             CreateAndLoadRewardedAd();
-            rewardText.text = "広告がダウンロード\nできませんでした";
+            //rewardText.text = "広告がダウンロード\nできませんでした";
         }
         //広告を見た後にrewardeFlagをtrueにしている
         //広告を見たらこの中の処理が実行される
@@ -60,20 +60,20 @@ public class AdMobReward : MonoBehaviour
             GameManager.instance.LoadCoinGoukei();
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += 100;
-            Debug.Log("リワードcoinGet" + GameManager.instance.totalCoin + "枚");
+            //Debug.Log("リワードcoinGet" + GameManager.instance.totalCoin + "枚");
             GameManager.instance.SaveCoinGoukei();
             //SpinnerPanel.SetActive(false);
 
             afterAdPanel.GetComponent<DOafterRewardPanel>().AfterReward();
             SpinnerPanel.SetActive(false);
-            Debug.Log("リワード報酬後SpinPanel," + SpinnerPanel.activeSelf);
+            //Debug.Log("リワード報酬後SpinPanel," + SpinnerPanel.activeSelf);
             //報酬を得ないでクローズする場合
         }
         else if (rewardeFlag1 == true && rewardeFlag == false)
         {
             rewardeFlag1 = false;
             afterAdPanel.SetActive(false);
-            Debug.Log("報酬なしクローズafterAdPanel," + afterAdPanel.activeSelf);
+            //Debug.Log("報酬なしクローズafterAdPanel," + afterAdPanel.activeSelf);
 
         }
 
@@ -82,7 +82,7 @@ public class AdMobReward : MonoBehaviour
 
             OpenRewardFlag = false;
   
-            Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
+            //Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
         }
 
     }
@@ -106,8 +106,9 @@ public class AdMobReward : MonoBehaviour
               // if error is not null, the load request failed.
               if (error != null || ad == null)
               {
+                /*
                   Debug.LogError("Rewarded読み込み失敗 " +
-                                 "with error : " + error);
+                                 "with error : " + error);*/
                   return;
               }
 
@@ -126,22 +127,22 @@ public class AdMobReward : MonoBehaviour
     ad.OnAdClicked += () =>
     {
         rewardeFlag = true;
-        Debug.Log("リワードrewardFlag" + rewardeFlag);
-        Debug.Log("Rewarded ad was clicked.");
+        //Debug.Log("リワードrewardFlag" + rewardeFlag);
+        //Debug.Log("Rewarded ad was clicked.");
     };
     ad.OnAdImpressionRecorded += () =>
     {
         rewardeFlag = true;
-        Debug.Log("リワードrewardFlag" + rewardeFlag);
-        Debug.Log("Rewarded ad recorded an impression.");
+        //Debug.Log("リワードrewardFlag" + rewardeFlag);
+        //Debug.Log("Rewarded ad recorded an impression.");
     };
     // Raised when an ad opened full screen content.
     ad.OnAdFullScreenContentOpened += () =>
     {
         SpinnerFlag = true;
         OpenRewardFlag = true;
-        Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
-        Debug.Log("リワードSpinner" + SpinnerFlag);
+        //Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
+        //Debug.Log("リワードSpinner" + SpinnerFlag);
     };
     // Raised when the ad closed full screen content.
     ad.OnAdFullScreenContentClosed += () =>
@@ -156,7 +157,7 @@ public class AdMobReward : MonoBehaviour
     {
         Debug.LogError("Rewarded ad failed to open full screen content " +
                        "with error : " + error);
-        Debug.Log("読み込みエラー");
+        //Debug.Log("読み込みエラー");
         CreateAndLoadRewardedAd();
     };
           });
@@ -177,7 +178,7 @@ public class AdMobReward : MonoBehaviour
         });
     }
     else{
-        Debug.Log("リワード広告読み込み未完了");
+        //Debug.Log("リワード広告読み込み未完了");
             NoShowFlag = true;
     }
      
@@ -189,7 +190,7 @@ public class AdMobReward : MonoBehaviour
     if (rewardedAd != null)
     {
         
-        Debug.Log("Destroying rewardedAd ad.");
+        //Debug.Log("Destroying rewardedAd ad.");
         rewardedAd.Destroy();
         rewardedAd = null;//リソースの解放
     }

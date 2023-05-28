@@ -69,13 +69,13 @@ public class BDest : MonoBehaviour
             if (GameManager.instance.isGfontsize == true){
                 if(b == 0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text = Agyou[num];
-                     Debug.Log("大文字あb"+b);
+                     //Debug.Log("大文字あb"+b);
                      StartCoroutine(LateBreakB(num));
                      //b++;
                      }
                 else if(b == 1){
                     bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
-                     Debug.Log("大文字あb"+b);
+                     //Debug.Log("大文字あb"+b);
                     //b = 0;
                     StartCoroutine(LateBreakB(num));
                     }
@@ -85,12 +85,12 @@ public class BDest : MonoBehaviour
                 if(b==0){
                      bPrefabs1[num].GetComponentInChildren<Text>().text = aGyou[num];
                      StartCoroutine(LateBreakB(num));
-                      Debug.Log("子文字あb"+b);
+                      //Debug.Log("子文字あb"+b);
                      //b++;
                      }
                 else if(b >0){
                     //bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[num];
-                     Debug.Log("子文字あb"+b);
+                     //Debug.Log("子文字あb"+b);
                      StartCoroutine(LateBreakB(num));
                     //b = 0;
                 }    
@@ -103,14 +103,14 @@ public class BDest : MonoBehaviour
            if(b == 1){
                //bPrefabs1[num].GetComponentInChildren<Text>().text = hiragana50[HRoulletteNum[num]];
                StartCoroutine(LateBreakB(num));
-                Debug.Log("大文字ひらがなb"+b);
+                //Debug.Log("大文字ひらがなb"+b);
                }
             else if(b==0){
                 if(GameManager.instance.isGfontsize==true){
                 //大文字でヘボン式の分岐
                 if(GameManager.instance.isGKunrei == false){
                     string c = RomaJi50[HRoulletteNum[num]];
-                    Debug.Log("c"+c);
+                    //Debug.Log("c"+c);
                     if(cd.dicHebon.ContainsKey(c)){
                         c = cd.dicHebon[c];
                         bPrefabs1[num].GetComponentInChildren<Text>().text = c;
@@ -121,7 +121,7 @@ public class BDest : MonoBehaviour
                     }else{//大文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]];
                         }
-                Debug.Log("大文字ひらがなb"+b);
+                //Debug.Log("大文字ひらがなb"+b);
                 b++;}
                 else{//小文字の場合の分岐
                     //小文字でヘボン式の場合の分岐
@@ -137,7 +137,7 @@ public class BDest : MonoBehaviour
                     }else{//小文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[HRoulletteNum[num]].ToLower();
                         }
-                    Debug.Log("小文字ひらがなb"+b);
+                    //Debug.Log("小文字ひらがなb"+b);
                     b++;
                 }
                 }
@@ -153,7 +153,7 @@ public class BDest : MonoBehaviour
                 //大文字でヘボン式の分岐
                 if(GameManager.instance.isGKunrei == false){
                     string c = RomaJi50[BallonNumber];
-                    Debug.Log("c"+c);
+                    //Debug.Log("c"+c);
                     if(cd.dicHebon.ContainsKey(c)){
                         c = cd.dicHebon[c];
                         bPrefabs1[num].GetComponentInChildren<Text>().text = c;
@@ -164,7 +164,7 @@ public class BDest : MonoBehaviour
                     }else{//大文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber];
                         }
-                Debug.Log("大文字ひらがなb"+b);
+                //Debug.Log("大文字ひらがなb"+b);
                 b++;}
                 else{//小文字の場合の分岐
                     //小文字でヘボン式の場合の分岐
@@ -180,7 +180,7 @@ public class BDest : MonoBehaviour
                     }else{//小文字で訓令式の分岐
                         bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber].ToLower();
                         }
-                    Debug.Log("小文字ひらがなb"+b);
+                    //Debug.Log("小文字ひらがなb"+b);
                     b++;
                 }
                 } 

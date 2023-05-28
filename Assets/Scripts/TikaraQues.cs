@@ -47,6 +47,8 @@ public class TikaraQues : MonoBehaviour
     public string Kaito3;//配列3の場所
     public string Kaito4;//配列4の場所
     public string Kaito5;//配列5の場所
+    [SerializeField]private Canvas UICanvas;//UIオフのため
+    [SerializeField]private TiPanelChange tiPanelChange;//スワイプスクリプトの取得
     
 
     public enum TikaraType
@@ -124,7 +126,10 @@ public class TikaraQues : MonoBehaviour
         }
 
     public void Kantan(string buttonname)
-    { StartCoroutine(FadeCanvasPanel());
+    {
+        UICanvas.enabled = false;
+        tiPanelChange.enabled = false;
+        StartCoroutine(FadeCanvasPanel());
         //SoundManager.instance.PlayBGM("TikaraScene");
         switch (buttonname)
         {
@@ -132,7 +137,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 1;
-                    Debug.Log("1");
+                    //Debug.Log("1");
                     //DebugTable();
                     /*
                     SetList();
@@ -154,7 +159,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 2;
-                    Debug.Log("2");
+                    //Debug.Log("2");
                     ButtonTKantan();
                 }
                 else
@@ -169,7 +174,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 3;
-                    Debug.Log("3");
+                    //Debug.Log("3");
                     ButtonTKantan();
                 }
                 else
@@ -184,7 +189,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 4;
-                    Debug.Log("4");
+                    //Debug.Log("4");
                     ButtonTKantan();
                 }
                 else
@@ -199,7 +204,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 5;
-                    Debug.Log("5");
+                    //Debug.Log("5");
                     ButtonTKantan();
                 }
                 else
@@ -214,7 +219,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 6;
-                    Debug.Log("6");
+                    //Debug.Log("6");
                     ButtonTKantan();
                 }
                 else
@@ -228,7 +233,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 7;
-                    Debug.Log("7");
+                    //Debug.Log("7");
                     ButtonTKantan();
                 }
                 else
@@ -243,7 +248,7 @@ public class TikaraQues : MonoBehaviour
                 if (isWord == true)
                 {
                     TcurrentMode = 8;
-                    Debug.Log("8");
+                    //Debug.Log("8");
                     ButtonTKantan();
                 }
                 else
@@ -316,17 +321,17 @@ public class TikaraQues : MonoBehaviour
     {
         if (cd1.dicHebon.ContainsKey(kunrei))
         {
-            Debug.Log("key");
+            //Debug.Log("key");
         }
         else
         {
-            Debug.Log("not key");
+            //Debug.Log("not key");
         }
     }
     //訓令式ローマ字からヘボン式に変更する
     void ChangeKtoH(string moji)
     {
-        Debug.Log("keyは存在します");
+        //Debug.Log("keyは存在します");
         string answer = cd1.dicHebon[moji];
         print(answer);
     }
@@ -337,7 +342,7 @@ public class TikaraQues : MonoBehaviour
         pipoEnemy.SetActive(true);
         TiQuesCount++;
         string Mondai = TiMondai.ToString();
-        Debug.Log("TiMondai"+TiMondai);
+        //Debug.Log("TiMondai"+TiMondai);
         TiQuesText.text = "／"+Mondai+"問";
         //TikaraText.GetComponent<DOScale>().BigScale2();
        //Toggleで選択した問題数を超えたら、コイン獲得Panal遷移などの処理を行う
@@ -346,7 +351,7 @@ public class TikaraQues : MonoBehaviour
             TiSeikai = GameManager.instance.TiTangoCount;
             GameManager.instance.LoadCoinGoukei();
             GameManager.instance.TiCoin = TiSeikai * 15;
-            Debug.Log("TiCoin"+GameManager.instance.TiCoin);
+            //Debug.Log("TiCoin"+GameManager.instance.TiCoin);
             GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
             GameManager.instance.totalCoin += GameManager.instance.TiCoin;
             GameManager.instance.SaveCoinGoukei();
@@ -362,22 +367,22 @@ public class TikaraQues : MonoBehaviour
             TigradePanel.SetActive(true);
             TigradePanel.GetComponent<DoTigrade>().TgradePanel();
             SoundManager.instance.PlayPanelBGM("GradePanel");
-            Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
-            Debug.Log("GameManager.TiCoin" + GameManager.instance.TiCoin);
-            Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
+            //Debug.Log("GameManager.totalCoin" + GameManager.instance.totalCoin);
+            //Debug.Log("GameManager.TiCoin" + GameManager.instance.TiCoin);
+            //Debug.Log("GameManager.SceneCount" + GameManager.instance.SceneCount);
             return;
         }
         //SoundManager.instance.PlaySousaSE(8);
         SoundManager.instance.PlaySousaSE(8);
         pipoEnemy.GetComponent<EnemyDamage>().EnemyShutudai();
-        Debug.Log("問題数" + TiQuesCount);
+        //Debug.Log("問題数" + TiQuesCount);
         TiQuesCountText.text = TiQuesCount.ToString();
         TikaraAnsButtons[0].enabled = true;
         TikaraAnsButtons[1].enabled = true;
         TikaraAnsButtons[2].enabled = true;
 
         int n = TikaQuesNum[t];//出題される問題
-        Debug.Log("n+" + n);
+        //Debug.Log("n+" + n);
         //正解のstring
         if (GameManager.instance.isGKunrei == true)
         {
@@ -401,7 +406,7 @@ public class TikaraQues : MonoBehaviour
                     if(cd1.dicHebon.ContainsKey(a)){
                         a = cd1.dicHebon[a];
                         Kaito3 = a;
-                   Debug.Log("outputkey"+Kaito3);
+                   //Debug.Log("outputkey"+Kaito3);
                    }
                 }
         if(GameManager.instance.isGKunrei == false){
@@ -409,7 +414,7 @@ public class TikaraQues : MonoBehaviour
                     if(cd1.dicHebon.ContainsKey(a)){
                         a = cd1.dicHebon[a];
                         Kaito4 = a;
-                   Debug.Log("outputkey"+Kaito5);
+                   //Debug.Log("outputkey"+Kaito5);
                    }
                 }
         if(GameManager.instance.isGKunrei == false){
@@ -417,7 +422,7 @@ public class TikaraQues : MonoBehaviour
                     if(cd1.dicHebon.ContainsKey(a)){
                         a = cd1.dicHebon[a];
                         Kaito5 = a;
-                   Debug.Log("outputkey"+Kaito5);
+                   //Debug.Log("outputkey"+Kaito5);
                    }
                 }
 

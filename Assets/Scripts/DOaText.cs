@@ -56,7 +56,7 @@ public class DOaText : MonoBehaviour
         //.OnComplete(MoveButtons)
         MoveButtons();
         Invoke("LateSE",0.0f);
-        print("aText");
+        //print("aText");
     }
     
     public void MoveButtons(){
@@ -88,7 +88,7 @@ public class DOaText : MonoBehaviour
                SoundManager.instance.PlaySousaSE(5);
                SoundManager.instance.PlayAgSE(Bnum);
                SpawnB(Bnum);
-               Debug.Log("Bnumber"+Bnum);
+               //Debug.Log("Bnumber"+Bnum);
     }
     public void SpawnB(int n){
         BallonImage = Instantiate(Ballons[n],

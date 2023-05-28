@@ -23,13 +23,13 @@ public class DOCounter : MonoBehaviour
         //int beforeCoin = GameManager.instance.beforeTotalCoin;
         //int totalCoin = GameManager.instance.totalCoin;
         coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,2f);
-        Debug.Log("DOCounter");
+        //Debug.Log("DOCounter");
     }
     public void CountCoin1(){
         //int beforeCoin = GameManager.instance.beforeTotalCoin;
         //int totalCoin = GameManager.instance.totalCoin;
         coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,0.7f)
         .SetId("idFCounterCoin1");
-        Debug.Log("DOCounter1");
+        //Debug.Log("DOCounter1");
     }
 }

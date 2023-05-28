@@ -23,6 +23,6 @@ public class DoButton : MonoBehaviour
         transform.DOPunchScale(new Vector3(0.1f, 0.1f, 0), 0.8f, 1, 0.5f)
         .SetLink(gameObject)
         .SetRelative(true);
-        Debug.Log("textPunch");
+        //Debug.Log("textPunch");
     }
 }

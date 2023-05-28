@@ -23,7 +23,7 @@ public class CoinGenerator : MonoBehaviour
         for(int i =0; i<20;i++){
             coinGenerator = Instantiate(coinPrefab,new Vector3(Random.Range(-200f,200f), Random.Range(-900f,-700f), 0.0f), transform.rotation);
             coinGenerator.transform.SetParent(RewardPanel.transform,false);  
-            Debug.Log("coinPrefab");
+            //Debug.Log("coinPrefab");
         }
     }
 
@@ -34,7 +34,7 @@ public class CoinGenerator : MonoBehaviour
         GameObject coin  = Instantiate(coinPrefab, new Vector3( Random.Range(-200f,200f), Random.Range(-900f,-700f), 0.0f), transform.rotation);
         coin.transform.SetParent(RewardPanel.transform,false);  
             yield return new WaitForSeconds(0.1f);
-             Debug.Log("instantiate");
+             //Debug.Log("instantiate");
             if(i==20){
                 yield break;
             }

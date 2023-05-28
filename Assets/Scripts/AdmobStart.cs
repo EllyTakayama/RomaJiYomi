@@ -15,7 +15,7 @@ public class AdmobStart : MonoBehaviour
         MobileAds.RaiseAdEventsOnUnityMainThread = true;    
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(initStatus => { });
-        print("Admob初期化");
+        //print("Admob初期化");
 
         
     }

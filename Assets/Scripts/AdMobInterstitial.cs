@@ -32,7 +32,7 @@ public class AdMobInterstitial : MonoBehaviour
         {
             rewardeFlag = false;
 
-            Debug.Log("rewardFlag" + rewardeFlag);
+            //Debug.Log("rewardFlag" + rewardeFlag);
             SceneManager.LoadScene(AdSceneName);
            /*
             if (AdSceneName == "TopScene")
@@ -70,7 +70,7 @@ public class AdMobInterstitial : MonoBehaviour
 
         if (OpenInterAdFlag == true)
         {
-            Debug.Log("インタースティシャルOpenInterAdFlag" + OpenInterAdFlag);
+            //Debug.Log("インタースティシャルOpenInterAdFlag" + OpenInterAdFlag);
             OpenInterAdFlag = false;
 
         }
@@ -83,7 +83,7 @@ public class AdMobInterstitial : MonoBehaviour
         if (interstitialAd != null && interstitialAd.CanShowAd())
     {
         interstitialAd.Show();
-        Debug.Log("インタースティシャル広告表示");
+        //Debug.Log("インタースティシャル広告表示");
     }
     else
     {
@@ -122,8 +122,9 @@ public class AdMobInterstitial : MonoBehaviour
               // if error is not null, the load request failed.
               if (error != null || ad == null)
               {
+                /*
                   Debug.LogError("interstitial ad failed to load an ad " +
-                                 "with error : " + error);
+                                 "with error : " + error);*/
                   return;
               }
 
@@ -142,19 +143,20 @@ public class AdMobInterstitial : MonoBehaviour
     // Raised when the ad closed full screen content.
     ad.OnAdFullScreenContentClosed += () =>
     {
-        Debug.Log("インタースティシャル終了name" + AdSceneName);
+        //Debug.Log("インタースティシャル終了name" + AdSceneName);
         rewardeFlag = true;
         //インタースティシャル広告は使い捨てなので一旦破棄
         interstitialAd.Destroy();
-        Debug.Log("インタースティシャル広告破棄");
+        //Debug.Log("インタースティシャル広告破棄");
         RequestInterstitial();
 
     };
     // Raised when the ad failed to open full screen content.
     ad.OnAdFullScreenContentFailed += (AdError error) =>
     {
+        /*
         Debug.LogError("Interstitial ad failed to open full screen content " +
-                       "with error : " + error);
+                       "with error : " + error);*/
                        RequestInterstitial();
 
     };            

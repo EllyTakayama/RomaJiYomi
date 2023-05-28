@@ -74,7 +74,7 @@ public class DOaPanel : MonoBehaviour
         , 0.5f)
         .SetLink(gameObject)
        .OnComplete(Yatta1Text);
-        print("yattaText");
+        //print("yattaText");
     }
     public void Yatta1Text(){
         yatta1Text.DOText("\nあ行のクイズに"
@@ -82,8 +82,8 @@ public class DOaPanel : MonoBehaviour
         , 0.8f)
         .SetLink(gameObject)
         .OnComplete(Stamps);
-        print("yatta1Text");
-        print("正解数"+HhiraganaCorrect);
+        //print("yatta1Text");
+        //print("正解数"+HhiraganaCorrect);
     }
     public void Stamps(){
         StartCoroutine(StampMove());
@@ -127,7 +127,7 @@ public class DOaPanel : MonoBehaviour
         , 0.5f)
         .SetLink(gameObject)
        .OnComplete(Yatta3Text);
-        print("yatta2Text");
+        //print("yatta2Text");
     }
     public void Yatta3Text(){
         yatta3Text.DOText("\nひらがなクイズに"
@@ -135,8 +135,8 @@ public class DOaPanel : MonoBehaviour
         , 0.8f)
         .SetLink(gameObject)
         .OnComplete(Stamps1);
-        print("yatta3Text");
-        print("正解数"+HhiraganaCorrect);
+        //print("yatta3Text");
+        //print("正解数"+HhiraganaCorrect);
     }
     public void Stamps1(){
         StartCoroutine(Stamp1Move());

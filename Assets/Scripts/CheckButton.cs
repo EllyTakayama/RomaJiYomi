@@ -68,24 +68,26 @@ public class CheckButton : MonoBehaviour
             if(QuesMode ==2){
             //正解数を追加
             GameManager.instance.AcorrectCount++;
-            Debug.Log("seikai"+ GameManager.instance.AcorrectCount);
+            //Debug.Log("seikai"+ GameManager.instance.AcorrectCount);
             QuesManager.instance.StopYomiage();
             maruImage.SetActive(true);
-            Debug.Log("maru");}
+            //Debug.Log("maru");
+            }
             //50音の出題の時
             else{
                 //50音出題の時の時
             GameManager.instance.HcorrectCount++;
-            Debug.Log("Hseikai"+ GameManager.instance.HcorrectCount);
+            //Debug.Log("Hseikai"+ GameManager.instance.HcorrectCount);
             QuesManager.instance.Stop46Yomiage();
             maru1Image.SetActive(true);
-            Debug.Log("正解");}
+            //Debug.Log("正解");
+            }
             iNum = QuesManager.instance.b;
             StartCoroutine(MaruButton());
             //SoundManager.instance.PlaySE(iNum);
         }
         else{
-            Debug.Log("間違い");
+            //Debug.Log("間違い");
             //isPressed = true;
             //1不正解音
             SoundManager.instance.PlaySousaSE(3);
@@ -109,9 +111,11 @@ public class CheckButton : MonoBehaviour
     {  yield return new WaitForSeconds(0.6f);
             if(QuesMode ==2){
             maruImage.SetActive(false);
-            Debug.Log("maru");}
+            //Debug.Log("maru");
+            }
             else{maru1Image.SetActive(false);
-            Debug.Log("正解");}
+            //Debug.Log("正解");
+            }
       
         QuesManager.instance.RomajiQues();
     }
@@ -124,10 +128,12 @@ public class CheckButton : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
             if(QuesMode ==2){
             batsuImage.SetActive(false);
-            Debug.Log("バツ");}
+            //Debug.Log("バツ");
+            }
             else{
                 batsu1Image.SetActive(false);
-            Debug.Log("バツ1");}
+            //Debug.Log("バツ1");
+            }
         yield return new WaitForSeconds(0.1f);
         QuesManager.instance.RomajiQues();
     }

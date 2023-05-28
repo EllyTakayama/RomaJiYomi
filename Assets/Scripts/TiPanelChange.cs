@@ -188,6 +188,7 @@ public class TiPanelChange : MonoBehaviour
     }
     //左へスワイプスする右へ移動する　LeftMuki=true
     public void SwipeLeft(){  
+        SoundManager.instance.StopSE(); 
         Debug.Log("左スワイプで右移動"+LeftMuki);
     if(currentPanel == Panel.mPanel1 ){
         ShowTikaraPanel1(Panel.mPanel2);
@@ -197,9 +198,11 @@ public class TiPanelChange : MonoBehaviour
         ShowTikaraPanel1(Panel.mPanel1);
         //Debug.Log("3");
         }
+        SoundManager.instance.PlaySousaSE(1);
     }
     //みぎ方向へスワイプ左へへ移動する
     public void SwipeRight(){
+        SoundManager.instance.StopSE(); 
         Debug.Log("右スワイプで左移動"+LeftMuki);
         if(currentPanel == Panel.mPanel1 ){
         ShowTikaraPanel1(Panel.mPanel2);
@@ -209,6 +212,7 @@ public class TiPanelChange : MonoBehaviour
         ShowTikaraPanel1(Panel.mPanel1);
         //Debug.Log("1");
         }
+        SoundManager.instance.PlaySousaSE(1);
     }
 
 }

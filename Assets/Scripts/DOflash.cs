@@ -23,7 +23,7 @@ public class DOflash : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo)
         .SetLink(gameObject)
         .SetId("idFlash18");
-        Debug.Log("idFlash18");
+        //Debug.Log("idFlash18");
         ;  
         
     }
@@ -32,7 +32,7 @@ public class DOflash : MonoBehaviour
         RotateMode.FastBeyond360)
         .SetLink(gameObject)
         .SetDelay(0.2f);  
-        Debug.Log("flash");
+        //Debug.Log("flash");
     }
 
 }

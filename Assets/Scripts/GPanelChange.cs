@@ -208,8 +208,9 @@ public class GPanelChange : MonoBehaviour
         }
     }
     //左へスワイプスする右へ移動する　LeftMuki=true
-    public void SwipeLeft(){  
-        Debug.Log("左スワイプで右移動"+LeftMuki);
+    public void SwipeLeft(){ 
+        SoundManager.instance.StopSE(); 
+        //Debug.Log("左スワイプで右移動"+LeftMuki);
     if(currentPanel == Panel.gachaPanel ){
         ShowGachaPanel1(Panel.Panel1chara);
         //Debug.Log("2");
@@ -231,6 +232,7 @@ public class GPanelChange : MonoBehaviour
         ShowGachaPanel1(Panel.gachaPanel);
         //Debug.Log("3");
         }
+        SoundManager.instance.PlaySousaSE(1);
     }
 
     public void OnLeftButton(){
@@ -259,7 +261,8 @@ public class GPanelChange : MonoBehaviour
     }
     //みぎ方向へスワイプ左へへ移動する
     public void SwipeRight(){
-        Debug.Log("右スワイプで左移動"+LeftMuki);
+        SoundManager.instance.StopSE(); 
+        //Debug.Log("右スワイプで左移動"+LeftMuki);
         if(currentPanel == Panel.Panel4item ){
         ShowGachaPanel1(Panel.Panel3item);
         //Debug.Log("2");
@@ -281,6 +284,7 @@ public class GPanelChange : MonoBehaviour
         ShowGachaPanel1(Panel.Panel4item);
         //Debug.Log("5");
         }
+        SoundManager.instance.PlaySousaSE(1);
     }
 
 }

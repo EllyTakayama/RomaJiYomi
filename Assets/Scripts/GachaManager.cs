@@ -53,11 +53,12 @@ public class GachaManager : MonoBehaviour
 	public GameObject rewardText0;//コインが足りませんテキスト
     [SerializeField] private GameObject AdMobManager;
 	[SerializeField] private GameObject afterAdPanel;
-	public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
+	//public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
 	GameManager GachaGameManager => GameManager.instance;
 	[SerializeField] AdMobReward GachaAdReward;
 	[SerializeField] private Text afterRewardText;
 	[SerializeField] private GameObject afterFlashImage;
+	[SerializeField] private GPanelChange gPanelChange;//スワイプスクリプト一時停止のため
 	//Debug用
 	//public int itemID =1;
 	
@@ -109,7 +110,7 @@ public class GachaManager : MonoBehaviour
         GachaGameManager.SceneCount==80||GachaGameManager.SceneCount==150){
             GachaGameManager.RequestReview();
         }
-		PanelParent.GetComponent<GPanelChange>().enabled = true;
+		gPanelChange.enabled = true;
 	}
 	void DebugNames()
     {
@@ -157,14 +158,14 @@ public class GachaManager : MonoBehaviour
 		PanelAd.SetActive(false);
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
-		PanelParent.GetComponent<GPanelChange>().enabled = true;
+		gPanelChange.enabled = true;
 	}
 
     //ガチャのGetNekoPanelないのガチャ終了後のOKボタン
 	public void OkButton(){
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
-		PanelParent.GetComponent<GPanelChange>().enabled = true;
+		gPanelChange.enabled = true;
 		closeButton.SetActive(false);
 		SoundManager.instance.PlaySousaSE(5);
 		NekoitemPanel.SetActive(false);
@@ -204,7 +205,7 @@ public class GachaManager : MonoBehaviour
 		SoundManager.instance.PlaySousaSE(2);
 		RightButton.SetActive(false);
 		LeftButton.SetActive(false);
-		PanelParent.GetComponent<GPanelChange>().enabled = false;
+		gPanelChange.enabled = false;
 		//Invoke("GachaRewardLoad",1.5f);
 	}
 
@@ -241,7 +242,7 @@ public class GachaManager : MonoBehaviour
 		//画面遷移までガチャボタン押せなくなる
 		gachaButton.enabled = false;
 		//画面遷移までスワイプできなくなる
-		PanelParent.GetComponent<GPanelChange>().enabled = false;
+		gPanelChange.enabled = false;
 		//コインから保存する
 		GameManager.instance.totalCoin -= 150;
 		GameManager.instance.SaveCoinGoukei();
@@ -266,8 +267,8 @@ public class GachaManager : MonoBehaviour
 		  //nekoNum = itemID;//Debug
 		  string itemName = itemInfo[itemId];
 			//nameText.text = itemName + "\n をゲット!";
-			Debug.Log(itemName + " をゲット!");
-			Debug.Log("nekoNum"+nekoNum);
+			//Debug.Log(itemName + " をゲット!");
+			//Debug.Log("nekoNum"+nekoNum);
 		
 		int ringiNum = GachaNum[nekoNum];
 		//Debug表示用
@@ -281,10 +282,10 @@ public class GachaManager : MonoBehaviour
 
 		ringiNum++;
 		GachaNum[nekoNum] = ringiNum;
-		Debug.Log(GachaNum[nekoNum]);
+		//Debug.Log(GachaNum[nekoNum]);
 		SetChara();
 		ES3.Save("GachaNum",GachaNum,"GachaNum.es3" );
-		Debug.Log(GachaNum[nekoNum]);
+		//Debug.Log(GachaNum[nekoNum]);
 
         // Debugで確率を確認したい時のスクリプトここから確認用
 		/*for (int i = 0 ; i < rollNum; i++){
