@@ -78,6 +78,7 @@ public class DOafterRewardPanel : MonoBehaviour
 
     }
     public void CloseAdPanel(){
+        
         if(RewardflashImage.activeSelf){
         DOTween.TweensById("idFlash18").ForEach((tween) =>
         {

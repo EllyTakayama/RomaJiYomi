@@ -56,6 +56,8 @@ public class GachaManager : MonoBehaviour
 	public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
 	GameManager GachaGameManager => GameManager.instance;
 	[SerializeField] AdMobReward GachaAdReward;
+	[SerializeField] private Text afterRewardText;
+	[SerializeField] private GameObject afterFlashImage;
 	//Debug用
 	//public int itemID =1;
 	
@@ -135,6 +137,8 @@ public class GachaManager : MonoBehaviour
             });*/
 		PanelAd.SetActive(false);
 		afterAdPanel.SetActive(true);
+		afterRewardText.text = "Loadingにゃん";
+		afterFlashImage.SetActive(false);
 		GachaAdReward.ShowAdMobReward();
 		
 	}
