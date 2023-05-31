@@ -3,21 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ContactOnOff : MonoBehaviour
+public class StoreLinkOnOff : MonoBehaviour
 {
     [SerializeField] private GameObject contactText;
     [SerializeField] private GameObject storeLinkText;
 
-    public void ContactTex()
+    public void StoreTex()
     {
-        if (contactText.activeSelf)
+        if (storeLinkText.activeSelf)
         {
-            contactText.SetActive(false);
+            storeLinkText.SetActive(false);
         }
         else
         {
-            contactText.SetActive(true);
-            storeLinkText.SetActive(false);
+            storeLinkText.SetActive(true);
+            contactText.SetActive(false);
         }
     }
+
 }

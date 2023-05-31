@@ -12,6 +12,6 @@ public class ProductLink : MonoBehaviour
 
         //Twitter投稿画面の起動
         Application.OpenURL(url);
-        print("InfoLink");
+        //print("InfoLink");
     }
 }

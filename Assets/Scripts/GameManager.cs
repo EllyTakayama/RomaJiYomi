@@ -157,7 +157,7 @@ public void SaveGbgm(){
 #if UNITY_IOS
         UnityEngine.iOS.Device.RequestStoreReview();
 #elif UNITY_ANDROID
-        StartCoroutine(RequestReviewAndroid());
+        //StartCoroutine(RequestReviewAndroid());
 #elif UNITY_EDITOR
 print("エディターレビュー呼び出し");
 #else
@@ -165,12 +165,15 @@ print("エディターレビュー呼び出し");
 #endif
     Debug.Log("レビューリクエスト呼び出し");
     }
+    /*
 
     private IEnumerator RequestReviewAndroid()
     {
+        
         var reviewManager = new Google.Play.Review.ReviewManager();
         var requestFlowOperation = reviewManager.RequestReviewFlow();
         yield return requestFlowOperation;
+        
         if (requestFlowOperation.Error != Google.Play.Review.ReviewErrorCode.NoError)
         {
             // Log error. For example, using requestFlowOperation.Error.ToString().
@@ -180,11 +183,13 @@ print("エディターレビュー呼び出し");
         var launchFlowOperation = reviewManager.LaunchReviewFlow(playReviewInfo);
         yield return launchFlowOperation;
         playReviewInfo = null; // Reset the object
+        
         if (launchFlowOperation.Error != Google.Play.Review.ReviewErrorCode.NoError)
         {
             // Log error. For example, using requestFlowOperation.Error.ToString().
             yield break;
         }
     }
+    */
 
 }

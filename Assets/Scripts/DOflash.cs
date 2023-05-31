@@ -7,26 +7,24 @@ using System;//0416更新
 
 public class DOflash : MonoBehaviour
 {
+    //[SerializeField] private Transform target;
+    private Sequence sequence;
     // Start is called before the first frame update
-    /*
-    void Start()
-    {
-        Flash18();
+    
+    void Awake(){
+        sequence = DOTween.Sequence()
+            // Tweenを追加
+            .Append(transform.DOLocalRotate(new Vector3(0, 0, 360f), 6f,
+        RotateMode.FastBeyond360)) 
+            .Pause()
+            .SetAutoKill(false)
+            .SetLink(gameObject);
     }
-    */
 
     public void Flash18(){
-        transform.eulerAngles = new Vector3(0, 0, 0);
-        transform.DOLocalRotate(new Vector3(0, 0, 360f), 6f,
-        RotateMode.FastBeyond360)
-        .SetDelay(0.2f)
-        .SetLoops(-1, LoopType.Yoyo)
-        .SetLink(gameObject)
-        .SetId("idFlash18");
-        //Debug.Log("idFlash18");
-        ;  
-        
+        sequence.Restart();
     }
+
     public void Flash360(){
         transform.DOLocalRotate(new Vector3(0, 0, 360f), 1.8f,
         RotateMode.FastBeyond360)

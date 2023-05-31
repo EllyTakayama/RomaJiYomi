@@ -165,19 +165,19 @@ public class DoTigrade : MonoBehaviour
             TiTypingManager.instance.Output();
             
         }
-        
            afterAdPanel.SetActive(false);
            TigradePanel.SetActive(false);
     }
     public void TiRewardButton(){
+        /*
         DOTween.TweensById("idBigScale2").ForEach((tween) =>
         {
             tween.Kill();
             Debug.Log("IDKill");
-            });
-
+            });*/
         afterAdPanel.SetActive(true);
-        afterAdText.text = "Loadingにゃん";   
+        afterAdText.text = "Loadingにゃん";
+        flashImage.SetActive(false);   
         AdMobManager.GetComponent<AdMobReward>().ShowAdMobReward();
           
     }
