@@ -16,7 +16,6 @@ public class TipsPush : MonoBehaviour
     //18：00の理由
     //→夕食前のスキマ時間に少し触ってもらうイメージ
 
-
     private string channelId = "romaji_localpush_channel";//通知チャンネルIDの設定
 
     private string pushTitle = "ローマ字";

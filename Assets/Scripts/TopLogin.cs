@@ -5,8 +5,6 @@ using System;
 using DG.Tweening;
 using UnityEngine.UI;
 
-//6月29日更新
-
 public class TopLogin : MonoBehaviour
 {
     private enum LOGIN_TYPE
@@ -17,7 +15,7 @@ public class TopLogin : MonoBehaviour
         ERROR_LOGIN       //不正ログイン
     }
     public GameObject loginBonusPanel;
-    public Text coinText;//coinAddImageのtext
+    public Text coinText; //coinAddImageのtext
     private int todayDate = 0;
     private int lastDate;
     private LOGIN_TYPE judge_type;
@@ -25,58 +23,62 @@ public class TopLogin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        DateTime now = DateTime.Now;//端末の現在時刻の取得        
+        DateTime now = DateTime.Now; //端末の現在時刻の取得        
         todayDate = now.Year * 10000 + now.Month * 100 + now.Day;
-        //日付を数値化　2020年9月1日だと20200901になる
         
-        lastDate = ES3.Load<int>("lastDate","lastDate.es3",0 );
+        lastDate = ES3.Load<int>("lastDate", "lastDate.es3", 0);
 
-        //前回と今回の日付データ比較
-        
-        if (lastDate < todayDate)//日付が進んでいる場合
+        if (lastDate < todayDate) //日付が進んでいる場合
         {
             judge_type = LOGIN_TYPE.TODAY_LOGIN;
         }        
-        else if (lastDate == todayDate)//日付が進んでいない場合
+        else if (lastDate == todayDate) //日付が進んでいない場合
         {
             judge_type = LOGIN_TYPE.ALREADY_LOGIN;
         }
-        else if (lastDate > todayDate)//日付が逆転している場合
+        else if (lastDate > todayDate) //日付が逆転している場合
         {
             judge_type = LOGIN_TYPE.ERROR_LOGIN;
         }
+        
         switch (judge_type)
         {
-            //ログインボーナス
             case LOGIN_TYPE.TODAY_LOGIN:
-            if (lastDate == 0)
+                if (lastDate == 0)
                 {
                     print("初回ログイン");
-                }else{
+                }
+                else
+                {
                     GameManager.instance.LoadCoinGoukei();
                     GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
                     GameManager.instance.totalCoin += 150;
                     GameManager.instance.SaveCoinGoukei();
-                    loginBonusPanel.SetActive(true);
-                    coinText.GetComponent<DOCounter>().CountCoin1();
-                    print("今日のログボ"+todayDate);
+
+                    // 1秒後にボーナス表示を行うためにコルーチンを開始
+                    StartCoroutine(ShowLoginBonusAfterDelay());
+                    print("今日のログボ" + todayDate);
                 }
-            
                 break;
 
-            //すでにログイン済み
             case LOGIN_TYPE.ALREADY_LOGIN:
-                //なにもしない
+                // なにもしない
                 break;
 
-            //不正ログイン
             case LOGIN_TYPE.ERROR_LOGIN:
-                //不正ログイン時の処理
+                // 不正ログイン時の処理
                 break;
         }
 
+        ES3.Save<int>("lastDate", todayDate, "lastDate.es3");
+        Debug.Log("lastDate" + lastDate);  
+    }
 
-        ES3.Save<int>("lastDate",todayDate,"lastDate.es3" );
-        Debug.Log("lastDate"+lastDate);  
+    // 1秒遅延させてボーナス表示を行うコルーチン
+    private IEnumerator ShowLoginBonusAfterDelay()
+    {
+        yield return new WaitForSeconds(1f); // 1秒待機
+        loginBonusPanel.SetActive(true);
+        coinText.GetComponent<DOCounter>().CountCoin1();
     }
 }

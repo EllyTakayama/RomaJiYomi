@@ -30,6 +30,6 @@ public class DOCounter : MonoBehaviour
         //int totalCoin = GameManager.instance.totalCoin;
         coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,0.7f)
         .SetId("idFCounterCoin1");
-        //Debug.Log("DOCounter1");
+        Debug.Log("DOCounter1");
     }
 }

@@ -7,14 +7,21 @@ using UnityEngine.SceneManagement;
 
 public class AdMobBanner : MonoBehaviour
 {
-    //やること
-    //1.バナー広告IDを入力
-    //2.バナーの表示位置(現状表示位置は下になっています。)
-    //3.バナー表示のタイミング (現状 起動直後になっています。)
 
+#if UNITY_ANDROID
+        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
+        string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
+
+#elif UNITY_IPHONE
+    //string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
+    string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
+
+#else
+        string adUnitId = "unexpected_platform";
+#endif
+    
     private BannerView _bannerView;//BannerView型の変数bannerViewを宣言この中にバナー広告の情報が入る
-
-
+    
     //シーン読み込み時からバナーを表示する
     //最初からバナーを表示したくない場合はこの関数を消してください。
     private void Start()
@@ -22,15 +29,12 @@ public class AdMobBanner : MonoBehaviour
         RequestBanner();//アダプティブバナーを表示する関数 呼び出し
 
     }
-
-
     //ボタン等に割り付けて使用
     //バナーを表示する関数
     public void BannerStart()
     {
         RequestBanner();//アダプティブバナーを表示する関数 呼び出し       
     }
-
     //ボタン等に割り付けて使用
     //バナーを削除する関数
     public void BannerDestroy()
@@ -40,24 +44,7 @@ public class AdMobBanner : MonoBehaviour
 
     //アダプティブバナーを表示する関数
     public void RequestBanner()
-    {
-        //AndroidとiOSで広告IDが違うのでプラットフォームで処理を分けます。
-        // 参考
-        //【Unity】AndroidとiOSで処理を分ける方法
-        // https://marumaro7.hatenablog.com/entry/platformsyoriwakeru
-
-#if UNITY_ANDROID
-        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
-        string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
-
-#elif UNITY_IPHONE
-        //string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
-        string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
-
-#else
-        string adUnitId = "unexpected_platform";
-#endif
-
+    { 
         // 新しい広告を表示する前にバナーを削除
         if (_bannerView != null)//もし変数bannerViewの中にバナーの情報が入っていたら
         {
