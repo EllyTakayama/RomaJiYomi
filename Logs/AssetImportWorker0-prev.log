@@ -2,14 +2,13 @@ Unity Editor version:    2023.2.16f1 (7f45223012db)
 Branch:                  2023.2/staging
 Build type:              Release
 Batch mode:              YES
-macOS version:           Version 14.4.1 (Build 23E224)
-Darwin version:          23.4.0
+macOS version:           Version 15.1 (Build 24B83)
+Darwin version:          24.1.0
 Architecture:            arm64
 Running under Rosetta:   NO
 Available memory:        24576 MB
 Using pre-set license
 Pro License: YES
-2024-11-06 18:11:17.395 Unity[4656:169584] WARNING: Secure coding is not enabled for restorable state! Enable secure coding by implementing NSApplicationDelegate.applicationSupportsSecureRestorableState: and returning YES.
 
 COMMAND LINE ARGUMENTS:
 /Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/MacOS/Unity
@@ -23,7 +22,7 @@ AssetImportWorker0
 -logFile
 Logs/AssetImportWorker0.log
 -srvPort
-51890
+49840
 -job-worker-count
 3
 -background-job-worker-count
@@ -66,12 +65,12 @@ Successfully changed project path to: /Users/rietakayama/RomaJiOS0718
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gi-baking-worker=262144"
     "memorysetup-temp-allocator-size-gfx=262144"
-Player connection [8474114752] Host "[IP] 192.168.3.16 [Port] 0 [Flags] 2 [Guid] 646662140 [EditorId] 646662140 [Version] 1048832 [Id] OSXEditor(0,RienoMacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
-Player connection [8474114752] Host "[IP] 192.168.3.16 [Port] 0 [Flags] 2 [Guid] 646662140 [EditorId] 646662140 [Version] 1048832 [Id] OSXEditor(0,RienoMacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
+Player connection [8491415616] Host "[IP] 192.168.3.35 [Port] 0 [Flags] 2 [Guid] 3550098269 [EditorId] 3550098269 [Version] 1048832 [Id] OSXEditor(0,RienoMacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined multi-casting on [225.0.0.222:54997]...
+Player connection [8491415616] Host "[IP] 192.168.3.35 [Port] 0 [Flags] 2 [Guid] 3550098269 [EditorId] 3550098269 [Version] 1048832 [Id] OSXEditor(0,RienoMacBook-Pro.local) [Debug] 1 [PackageName] OSXEditor [ProjectName] Editor" joined alternative multi-casting on [225.0.0.222:34997]...
 JobSystem: Creating JobQueue using job-worker-count value 3
 [Physics::Module] Initialized MultithreadedJobDispatcher with 3 workers.
 Library Redirect Path: Library/
-Refreshing native plugins compatible for Editor in 4.72 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 19.27 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2023.2.16f1 (7f45223012db)
 [Subsystems] Discovering subsystems at path /Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/Resources/UnitySubsystems
@@ -86,7 +85,7 @@ Initialize mono
 Mono path[0] = '/Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/Managed'
 Mono path[1] = '/Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/MonoBleedingEdge/lib/mono/unityjit-macos'
 Mono config path = '/Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56656
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56441
 Begin MonoManager ReloadAssembly
 icall.c:1842:
 icall.c:1842:
@@ -102,47 +101,47 @@ Registering precompiled unity dll's ...
 Register platform support module: /Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll
 Register platform support module: /Applications/Unity/Hub/Editor/2023.2.16f1/PlaybackEngines/AndroidPlayer/UnityEditor.Android.Extensions.dll
 Register platform support module: /Applications/Unity/Hub/Editor/2023.2.16f1/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.dll
-Registered in 0.002292 seconds.
-- Loaded All Assemblies, in  0.551 seconds
+Registered in 0.004815 seconds.
+- Loaded All Assemblies, in  0.395 seconds
 [usbmuxd] Start listen thread
 [usbmuxd] Listen thread started
 [usbmuxd] Send listen message
 Native extension for iOS target not found
 Native extension for Android target not found
-Android Extension - Scanning For ADB Devices 108 ms
+Android Extension - Scanning For ADB Devices 96 ms
 Native extension for OSXStandalone target not found
 Mono: successfully reloaded assembly
 icall.c:1842:
 icall.c:1842:
-- Finished resetting the current domain, in  0.698 seconds
-Domain Reload Profiling: 1250ms
-	BeginReloadAssembly (155ms)
+- Finished resetting the current domain, in  0.523 seconds
+Domain Reload Profiling: 918ms
+	BeginReloadAssembly (115ms)
 		ExecutionOrderSort (0ms)
 		DisableScriptedObjects (0ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
 		CreateAndSetChildDomain (1ms)
-	RebuildCommonClasses (59ms)
-	RebuildNativeTypeToScriptingClass (24ms)
-	initialDomainReloadingComplete (72ms)
-	LoadAllAssembliesAndSetupDomain (240ms)
-		LoadAssemblies (156ms)
+	RebuildCommonClasses (40ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (46ms)
+	LoadAllAssembliesAndSetupDomain (180ms)
+		LoadAssemblies (115ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (235ms)
-			TypeCache.Refresh (233ms)
-				TypeCache.ScanAssembly (214ms)
+		AnalyzeDomain (176ms)
+			TypeCache.Refresh (175ms)
+				TypeCache.ScanAssembly (160ms)
 			BuildScriptInfoCaches (0ms)
-			ResolveRequiredComponents (1ms)
-	FinalizeReload (699ms)
+			ResolveRequiredComponents (0ms)
+	FinalizeReload (523ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (619ms)
+		SetupLoadedEditorAssemblies (471ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (334ms)
-			SetLoadedEditorAssemblies (5ms)
-			BeforeProcessingInitializeOnLoad (5ms)
-			ProcessInitializeOnLoadAttributes (192ms)
-			ProcessInitializeOnLoadMethodAttributes (81ms)
+			InitializePlatformSupportModulesInManaged (272ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (4ms)
+			ProcessInitializeOnLoadAttributes (141ms)
+			ProcessInitializeOnLoadMethodAttributes (50ms)
 			AfterProcessingInitializeOnLoad (0ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
@@ -163,250 +162,190 @@ icall.c:1842:
 icall.c:1842:
 icall.c:1842:
 icall.c:1842:
-- Loaded All Assemblies, in  1.285 seconds
+- Loaded All Assemblies, in  0.862 seconds
 icall.c:1842:
-Refreshing native plugins compatible for Editor in 5.04 ms, found 3 plugins.
-icall.c:1842:
-Native extension for iOS target not found
-Native extension for Android target not found
-Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 4.07 ms, found 3 plugins.
-Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.685 seconds
-Domain Reload Profiling: 2970ms
-	BeginReloadAssembly (454ms)
-		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (9ms)
-		BackupInstance (0ms)
-		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (96ms)
-	RebuildCommonClasses (81ms)
-	RebuildNativeTypeToScriptingClass (24ms)
-	initialDomainReloadingComplete (59ms)
-	LoadAllAssembliesAndSetupDomain (666ms)
-		LoadAssemblies (436ms)
-		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (318ms)
-			TypeCache.Refresh (268ms)
-				TypeCache.ScanAssembly (232ms)
-			BuildScriptInfoCaches (37ms)
-			ResolveRequiredComponents (10ms)
-	FinalizeReload (1686ms)
-		ReleaseScriptCaches (0ms)
-		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (1443ms)
-			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (35ms)
-			SetLoadedEditorAssemblies (6ms)
-			BeforeProcessingInitializeOnLoad (56ms)
-			ProcessInitializeOnLoadAttributes (1305ms)
-			ProcessInitializeOnLoadMethodAttributes (40ms)
-			AfterProcessingInitializeOnLoad (1ms)
-			EditorAssembliesLoaded (0ms)
-		ExecutionOrderSort2 (0ms)
-		AwakeInstancesAfterBackupRestoration (10ms)
-Launching external process: /Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/Tools/UnityShaderCompiler
-Launched and connected shader compiler UnityShaderCompiler after 0.05 seconds
-Refreshing native plugins compatible for Editor in 3.80 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 84 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3616 unused Assets / (3.2 MB). Loaded Objects now: 4150.
-Memory consumption went from 142.6 MB to 139.4 MB.
-Total: 8.658833 ms (FindLiveObjects: 0.368292 ms CreateObjectMapping: 0.214000 ms MarkObjects: 6.786125 ms  DeleteObjects: 1.289709 ms)
-
-========================================================================
-Received Import Request.
-  Time since last request: 22090.293998 seconds.
-  path: Assets/Scripts/PlayFabLoginManager.cs
-  artifactKey: Guid(d24d92d9635224d95b039fa899a46b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayFabLoginManager.cs using Guid(d24d92d9635224d95b039fa899a46b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '7598d780a827edf6be306fdfe365307f') in 0.004332458 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-Begin MonoManager ReloadAssembly
-Thread 0x32b793000 may have been prematurely finalized
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-icall.c:1842:
-- Loaded All Assemblies, in  0.594 seconds
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 2.94 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.66 ms, found 3 plugins.
 icall.c:1842:
 Native extension for iOS target not found
 Native extension for Android target not found
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 3.05 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.68 ms, found 3 plugins.
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.040 seconds
-Domain Reload Profiling: 1636ms
-	BeginReloadAssembly (150ms)
+- Finished resetting the current domain, in  1.050 seconds
+Domain Reload Profiling: 1910ms
+	BeginReloadAssembly (253ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (10ms)
+		DisableScriptedObjects (5ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (64ms)
+		CreateAndSetChildDomain (39ms)
 	RebuildCommonClasses (39ms)
 	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (23ms)
-	LoadAllAssembliesAndSetupDomain (368ms)
-		LoadAssemblies (260ms)
+	initialDomainReloadingComplete (37ms)
+	LoadAllAssembliesAndSetupDomain (516ms)
+		LoadAssemblies (358ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (153ms)
-			TypeCache.Refresh (13ms)
-				TypeCache.ScanAssembly (2ms)
-			BuildScriptInfoCaches (131ms)
+		AnalyzeDomain (213ms)
+			TypeCache.Refresh (182ms)
+				TypeCache.ScanAssembly (158ms)
+			BuildScriptInfoCaches (23ms)
 			ResolveRequiredComponents (6ms)
-	FinalizeReload (1041ms)
+	FinalizeReload (1050ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (844ms)
+		SetupLoadedEditorAssemblies (863ms)
 			LogAssemblyErrors (0ms)
 			InitializePlatformSupportModulesInManaged (24ms)
 			SetLoadedEditorAssemblies (4ms)
-			BeforeProcessingInitializeOnLoad (35ms)
-			ProcessInitializeOnLoadAttributes (756ms)
+			BeforeProcessingInitializeOnLoad (34ms)
+			ProcessInitializeOnLoadAttributes (775ms)
+			ProcessInitializeOnLoadMethodAttributes (25ms)
+			AfterProcessingInitializeOnLoad (1ms)
+			EditorAssembliesLoaded (0ms)
+		ExecutionOrderSort2 (0ms)
+		AwakeInstancesAfterBackupRestoration (5ms)
+Launching external process: /Applications/Unity/Hub/Editor/2023.2.16f1/Unity.app/Contents/Tools/UnityShaderCompiler
+Launched and connected shader compiler UnityShaderCompiler after 0.08 seconds
+Refreshing native plugins compatible for Editor in 3.64 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 84 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3655 unused Assets / (3.3 MB). Loaded Objects now: 4184.
+Memory consumption went from 142.8 MB to 139.5 MB.
+Total: 7.773542 ms (FindLiveObjects: 0.442750 ms CreateObjectMapping: 0.166667 ms MarkObjects: 6.026334 ms  DeleteObjects: 1.137167 ms)
+
+========================================================================
+Received Import Request.
+  Time since last request: 13962.825621 seconds.
+  path: Assets/GoogleMobileAds/Resources/GoogleMobileAdsSettings.asset
+  artifactKey: Guid(2c966c19addc54654939568a3220952e) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/GoogleMobileAds/Resources/GoogleMobileAdsSettings.asset using Guid(2c966c19addc54654939568a3220952e) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '6a3dad1f23cde852720cb386de8893d9') in 0.016296208 seconds
+Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 1
+
+========================================================================
+Received Prepare
+icall.c:1842:
+Refreshing native plugins compatible for Editor in 4.20 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3555 unused Assets / (2.9 MB). Loaded Objects now: 4187.
+Memory consumption went from 125.0 MB to 122.1 MB.
+Total: 7.998875 ms (FindLiveObjects: 0.255834 ms CreateObjectMapping: 0.173583 ms MarkObjects: 6.586917 ms  DeleteObjects: 0.982000 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+icall.c:1842:
+Refreshing native plugins compatible for Editor in 3.92 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3555 unused Assets / (3.0 MB). Loaded Objects now: 4187.
+Memory consumption went from 125.0 MB to 122.0 MB.
+Total: 7.770166 ms (FindLiveObjects: 0.233167 ms CreateObjectMapping: 0.165500 ms MarkObjects: 6.447625 ms  DeleteObjects: 0.923416 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+icall.c:1842:
+Refreshing native plugins compatible for Editor in 3.76 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
+Unloading 3555 unused Assets / (3.0 MB). Loaded Objects now: 4187.
+Memory consumption went from 125.0 MB to 122.0 MB.
+Total: 7.628417 ms (FindLiveObjects: 0.234416 ms CreateObjectMapping: 0.165625 ms MarkObjects: 6.320917 ms  DeleteObjects: 0.906708 ms)
+
+Prepare: number of updated asset objects reloaded= 0
+========================================================================
+Received Prepare
+Begin MonoManager ReloadAssembly
+Thread 0x31bd87000 may have been prematurely finalized
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+icall.c:1842:
+- Loaded All Assemblies, in  0.648 seconds
+icall.c:1842:
+Refreshing native plugins compatible for Editor in 5.24 ms, found 3 plugins.
+icall.c:1842:
+Native extension for iOS target not found
+Native extension for Android target not found
+Native extension for OSXStandalone target not found
+Refreshing native plugins compatible for Editor in 3.83 ms, found 3 plugins.
+Mono: successfully reloaded assembly
+- Finished resetting the current domain, in  1.077 seconds
+Domain Reload Profiling: 1727ms
+	BeginReloadAssembly (177ms)
+		ExecutionOrderSort (0ms)
+		DisableScriptedObjects (11ms)
+		BackupInstance (0ms)
+		ReleaseScriptingObjects (0ms)
+		CreateAndSetChildDomain (81ms)
+	RebuildCommonClasses (39ms)
+	RebuildNativeTypeToScriptingClass (15ms)
+	initialDomainReloadingComplete (23ms)
+	LoadAllAssembliesAndSetupDomain (394ms)
+		LoadAssemblies (292ms)
+		RebuildTransferFunctionScriptingTraits (0ms)
+		AnalyzeDomain (156ms)
+			TypeCache.Refresh (14ms)
+				TypeCache.ScanAssembly (2ms)
+			BuildScriptInfoCaches (133ms)
+			ResolveRequiredComponents (6ms)
+	FinalizeReload (1078ms)
+		ReleaseScriptCaches (0ms)
+		RebuildScriptCaches (0ms)
+		SetupLoadedEditorAssemblies (885ms)
+			LogAssemblyErrors (0ms)
+			InitializePlatformSupportModulesInManaged (66ms)
+			SetLoadedEditorAssemblies (4ms)
+			BeforeProcessingInitializeOnLoad (33ms)
+			ProcessInitializeOnLoadAttributes (757ms)
 			ProcessInitializeOnLoadMethodAttributes (23ms)
 			AfterProcessingInitializeOnLoad (1ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (10ms)
-Refreshing native plugins compatible for Editor in 3.00 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.76 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 15 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3614 unused Assets / (3.1 MB). Loaded Objects now: 4154.
-Memory consumption went from 141.2 MB to 138.1 MB.
-Total: 7.244083 ms (FindLiveObjects: 0.239625 ms CreateObjectMapping: 0.158583 ms MarkObjects: 5.881750 ms  DeleteObjects: 0.963583 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 6.380320 seconds.
-  path: Assets/Scripts/PlayFabLoginManager.cs
-  artifactKey: Guid(d24d92d9635224d95b039fa899a46b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayFabLoginManager.cs using Guid(d24d92d9635224d95b039fa899a46b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: '163587732f4818f31bc0f6f813023b51') in 0.001226458 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 5.60 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (1.8 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 126.7 MB.
-Total: 14.125708 ms (FindLiveObjects: 0.402000 ms CreateObjectMapping: 0.296541 ms MarkObjects: 12.094167 ms  DeleteObjects: 1.332209 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Import Request.
-  Time since last request: 25.451006 seconds.
-  path: Assets/Scripts/PlayFabLoginManager.cs
-  artifactKey: Guid(d24d92d9635224d95b039fa899a46b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
-Start importing Assets/Scripts/PlayFabLoginManager.cs using Guid(d24d92d9635224d95b039fa899a46b12) Importer(815301076,1909f56bfc062723c751e8b465ee728b) (PreviewImporter) -> (artifact id: 'dc50d7993659b5390547712d4c5ab717') in 0.000586791 seconds
-Number of updated asset objects reloaded before import = 0Number of asset objects unloaded after import = 0
-
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 3.04 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (2.6 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 125.9 MB.
-Total: 7.281583 ms (FindLiveObjects: 0.241250 ms CreateObjectMapping: 0.158334 ms MarkObjects: 5.992209 ms  DeleteObjects: 0.889167 ms)
+Unloading 3653 unused Assets / (3.2 MB). Loaded Objects now: 4189.
+Memory consumption went from 141.4 MB to 138.2 MB.
+Total: 7.268709 ms (FindLiveObjects: 0.258167 ms CreateObjectMapping: 0.151625 ms MarkObjects: 5.879791 ms  DeleteObjects: 0.978667 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 icall.c:1842:
-Refreshing native plugins compatible for Editor in 3.11 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 5.08 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (2.9 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 125.6 MB.
-Total: 7.484666 ms (FindLiveObjects: 0.268875 ms CreateObjectMapping: 0.185542 ms MarkObjects: 6.076417 ms  DeleteObjects: 0.953292 ms)
+Unloading 3555 unused Assets / (2.1 MB). Loaded Objects now: 4189.
+Memory consumption went from 129.1 MB to 126.9 MB.
+Total: 12.123458 ms (FindLiveObjects: 0.302333 ms CreateObjectMapping: 0.231333 ms MarkObjects: 10.155667 ms  DeleteObjects: 1.433542 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 icall.c:1842:
-Refreshing native plugins compatible for Editor in 4.86 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.63 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (1.8 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 126.7 MB.
-Total: 16.396417 ms (FindLiveObjects: 0.329541 ms CreateObjectMapping: 0.236459 ms MarkObjects: 13.931666 ms  DeleteObjects: 1.897625 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 2.99 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (2.9 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 125.6 MB.
-Total: 7.301917 ms (FindLiveObjects: 0.237209 ms CreateObjectMapping: 0.168166 ms MarkObjects: 5.898333 ms  DeleteObjects: 0.997625 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 3.10 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (2.3 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 126.2 MB.
-Total: 13.874250 ms (FindLiveObjects: 0.331500 ms CreateObjectMapping: 0.172459 ms MarkObjects: 12.426958 ms  DeleteObjects: 0.942833 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 2.96 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (3.0 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 125.5 MB.
-Total: 7.290583 ms (FindLiveObjects: 0.230917 ms CreateObjectMapping: 0.160416 ms MarkObjects: 5.988917 ms  DeleteObjects: 0.909875 ms)
-
-Prepare: number of updated asset objects reloaded= 1
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 3.64 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (2.1 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 126.4 MB.
-Total: 10.689208 ms (FindLiveObjects: 0.261000 ms CreateObjectMapping: 0.193792 ms MarkObjects: 9.195000 ms  DeleteObjects: 1.038708 ms)
-
-Prepare: number of updated asset objects reloaded= 0
-========================================================================
-Received Prepare
-icall.c:1842:
-Refreshing native plugins compatible for Editor in 3.06 ms, found 3 plugins.
-Preloading 0 native plugins for Editor in 0.00 ms.
-Unloading 13 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3521 unused Assets / (2.8 MB). Loaded Objects now: 4154.
-Memory consumption went from 128.5 MB to 125.7 MB.
-Total: 7.674000 ms (FindLiveObjects: 0.294583 ms CreateObjectMapping: 0.224167 ms MarkObjects: 6.167625 ms  DeleteObjects: 0.986958 ms)
+Unloading 3555 unused Assets / (2.9 MB). Loaded Objects now: 4189.
+Memory consumption went from 129.1 MB to 126.1 MB.
+Total: 15.504000 ms (FindLiveObjects: 0.291042 ms CreateObjectMapping: 0.160083 ms MarkObjects: 14.126833 ms  DeleteObjects: 0.925500 ms)
 
 Prepare: number of updated asset objects reloaded= 0
 ========================================================================
 Received Prepare
 Begin MonoManager ReloadAssembly
-Thread 0x32c087000 may have been prematurely finalized
+Thread 0x306797000 may have been prematurely finalized
 icall.c:1842:
 icall.c:1842:
 icall.c:1842:
@@ -419,53 +358,53 @@ icall.c:1842:
 icall.c:1842:
 icall.c:1842:
 icall.c:1842:
-- Loaded All Assemblies, in  0.691 seconds
+- Loaded All Assemblies, in  0.686 seconds
 icall.c:1842:
-Refreshing native plugins compatible for Editor in 3.17 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 4.91 ms, found 3 plugins.
 icall.c:1842:
 Native extension for iOS target not found
 Native extension for Android target not found
 Native extension for OSXStandalone target not found
-Refreshing native plugins compatible for Editor in 3.05 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 4.12 ms, found 3 plugins.
 Mono: successfully reloaded assembly
-- Finished resetting the current domain, in  1.047 seconds
-Domain Reload Profiling: 1740ms
-	BeginReloadAssembly (193ms)
+- Finished resetting the current domain, in  1.021 seconds
+Domain Reload Profiling: 1708ms
+	BeginReloadAssembly (185ms)
 		ExecutionOrderSort (0ms)
-		DisableScriptedObjects (12ms)
+		DisableScriptedObjects (13ms)
 		BackupInstance (0ms)
 		ReleaseScriptingObjects (0ms)
-		CreateAndSetChildDomain (94ms)
-	RebuildCommonClasses (40ms)
+		CreateAndSetChildDomain (84ms)
+	RebuildCommonClasses (39ms)
 	RebuildNativeTypeToScriptingClass (15ms)
-	initialDomainReloadingComplete (24ms)
-	LoadAllAssembliesAndSetupDomain (420ms)
-		LoadAssemblies (312ms)
+	initialDomainReloadingComplete (25ms)
+	LoadAllAssembliesAndSetupDomain (423ms)
+		LoadAssemblies (319ms)
 		RebuildTransferFunctionScriptingTraits (0ms)
-		AnalyzeDomain (161ms)
+		AnalyzeDomain (159ms)
 			TypeCache.Refresh (15ms)
 				TypeCache.ScanAssembly (2ms)
-			BuildScriptInfoCaches (137ms)
+			BuildScriptInfoCaches (136ms)
 			ResolveRequiredComponents (6ms)
-	FinalizeReload (1047ms)
+	FinalizeReload (1021ms)
 		ReleaseScriptCaches (0ms)
 		RebuildScriptCaches (0ms)
-		SetupLoadedEditorAssemblies (855ms)
+		SetupLoadedEditorAssemblies (827ms)
 			LogAssemblyErrors (0ms)
-			InitializePlatformSupportModulesInManaged (24ms)
+			InitializePlatformSupportModulesInManaged (26ms)
 			SetLoadedEditorAssemblies (4ms)
-			BeforeProcessingInitializeOnLoad (37ms)
-			ProcessInitializeOnLoadAttributes (767ms)
+			BeforeProcessingInitializeOnLoad (33ms)
+			ProcessInitializeOnLoadAttributes (740ms)
 			ProcessInitializeOnLoadMethodAttributes (23ms)
 			AfterProcessingInitializeOnLoad (1ms)
 			EditorAssembliesLoaded (0ms)
 		ExecutionOrderSort2 (0ms)
 		AwakeInstancesAfterBackupRestoration (11ms)
-Refreshing native plugins compatible for Editor in 2.98 ms, found 3 plugins.
+Refreshing native plugins compatible for Editor in 3.63 ms, found 3 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Unloading 15 Unused Serialized files (Serialized files now loaded: 0)
-Unloading 3614 unused Assets / (3.1 MB). Loaded Objects now: 4155.
-Memory consumption went from 143.1 MB to 140.0 MB.
-Total: 7.358833 ms (FindLiveObjects: 0.232958 ms CreateObjectMapping: 0.155375 ms MarkObjects: 5.993166 ms  DeleteObjects: 0.976875 ms)
+Unloading 3653 unused Assets / (3.2 MB). Loaded Objects now: 4190.
+Memory consumption went from 143.3 MB to 140.1 MB.
+Total: 7.212375 ms (FindLiveObjects: 0.247625 ms CreateObjectMapping: 0.166167 ms MarkObjects: 5.814792 ms  DeleteObjects: 0.983208 ms)
 
 Prepare: number of updated asset objects reloaded= 0

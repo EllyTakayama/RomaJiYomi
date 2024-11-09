@@ -9,31 +9,42 @@ public class AdMobBanner : MonoBehaviour
 {
 
 #if UNITY_ANDROID
-        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
-        string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
+        string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
+        //string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
 
 #elif UNITY_IPHONE
-    //string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
-    string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
+    string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID
+    //string adUnitId = "ca-app-pub-7439888210247528/1668674814";//ここにiOSのバナーIDを入力
 
 #else
         string adUnitId = "unexpected_platform";
 #endif
     
     private BannerView _bannerView;//BannerView型の変数bannerViewを宣言この中にバナー広告の情報が入る
+    private bool isBannerAdsRemoved;
     
     //シーン読み込み時からバナーを表示する
     //最初からバナーを表示したくない場合はこの関数を消してください。
     private void Start()
     {
-        RequestBanner();//アダプティブバナーを表示する関数 呼び出し
+        // 課金状態の読み込み
+        isBannerAdsRemoved = ES3.KeyExists("isBannerAdsRemoved") && ES3.Load<bool>("isBannerAdsRemoved");
 
+        if (!isBannerAdsRemoved)
+        {
+            RequestBanner();
+        }
+        //RequestBanner();//アダプティブバナーを表示する関数 呼び出し
     }
     //ボタン等に割り付けて使用
     //バナーを表示する関数
     public void BannerStart()
     {
-        RequestBanner();//アダプティブバナーを表示する関数 呼び出し       
+        // 課金されていない場合のみバナー広告を表示
+        if (!isBannerAdsRemoved)
+        {
+            RequestBanner();
+        }      
     }
     //ボタン等に割り付けて使用
     //バナーを削除する関数
@@ -91,11 +102,17 @@ public class AdMobBanner : MonoBehaviour
     {
     if (_bannerView != null)
     {
-        
         //Debug.Log("Destroying banner ad.");
         _bannerView.Destroy();
         _bannerView = null;//リソースの解放
     }
+    }
+    // バナー広告の課金完了後に非表示にするメソッド
+    public void OnBannerPurchaseCompleted()
+    {
+        isBannerAdsRemoved = true;
+        ES3.Save("isBannerAdsRemoved", isBannerAdsRemoved); // 課金状態を保存
+        BannerDestroy(); // 表示中のバナーを削除
     }
 
 }

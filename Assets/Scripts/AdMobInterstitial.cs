@@ -16,11 +16,29 @@ public class AdMobInterstitial : MonoBehaviour
     //public GameObject AdMobManager;//各SceneのアドモブManager
     //public GameObject SpinnerPanel;//シーン移動の間を持たせるようのPanel
     private InterstitialAd interstitialAd;//InterstitialAd型の変数interstitialを宣言　この中にインタースティシャル広告の情報が入る
+    private bool isInterstitialAdsRemoved; // 課金フラグ
+#if UNITY_ANDROID
+    string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
+    //string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
 
+#elif UNITY_IPHONE
+        string adUnitId = "ca-app-pub-3940256099942544/4411468910";//TestiOSのインタースティシャル広告ID
+        //string adUnitId = "ca-app-pub-7439888210247528/6549466402";//ここにiOSのインタースティシャル広告IDを入力
+
+#else
+        string adUnitId = "unexpected_platform";
+#endif
     private void Start()
     {  MobileAds.RaiseAdEventsOnUnityMainThread = true;
-        RequestInterstitial();//読み込み
+        //RequestInterstitial();//読み込み
         MobileAds.SetiOSAppPauseOnBackground(true);
+        // 課金状態の読み込み
+        isInterstitialAdsRemoved = ES3.KeyExists("isInterstitialAdsRemoved") && ES3.Load<bool>("isInterstitialAdsRemoved");
+
+        if (!isInterstitialAdsRemoved)
+        {
+            RequestInterstitial(); // インタースティシャル広告の読み込み
+        }
        //AdSceneName = SceneManager.GetActiveScene().name;
 
     }
@@ -80,6 +98,11 @@ public class AdMobInterstitial : MonoBehaviour
     //ボタンなどに割付けして使用
     public void ShowAdMobInterstitial()
     {
+        if (isInterstitialAdsRemoved)
+        {
+            SceneManager.LoadScene(AdSceneName);
+            return;
+        }
         if (interstitialAd != null && interstitialAd.CanShowAd())
     {
         interstitialAd.Show();
@@ -95,17 +118,7 @@ public class AdMobInterstitial : MonoBehaviour
     //インタースティシャル広告を読み込む関数
     public void RequestInterstitial()
     {
-#if UNITY_ANDROID
-        //string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
-        string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
 
-#elif UNITY_IPHONE
-        //string adUnitId = "ca-app-pub-3940256099942544/4411468910";//TestiOSのインタースティシャル広告ID
-        string adUnitId = "ca-app-pub-7439888210247528/6549466402";//ここにiOSのインタースティシャル広告IDを入力
-
-#else
-        string adUnitId = "unexpected_platform";
-#endif
         if (interstitialAd != null)
       {
             interstitialAd.Destroy();
@@ -174,6 +187,13 @@ public class AdMobInterstitial : MonoBehaviour
         interstitialAd.Destroy();
         interstitialAd = null;//リソースの解放
     }
+    }
+    // インタースティシャル広告の課金完了後に非表示にするメソッド
+    public void OnInterstitialPurchaseCompleted()
+    {
+        isInterstitialAdsRemoved = true;
+        ES3.Save("isInterstitialAdsRemoved", isInterstitialAdsRemoved); // 課金状態を保存
+        DestroyInterstitialAd(); // 表示中の広告を削除
     }
 }
 
