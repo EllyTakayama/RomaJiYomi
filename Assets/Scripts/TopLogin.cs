@@ -57,7 +57,7 @@ public class TopLogin : MonoBehaviour
 
                     // 1秒後にボーナス表示を行うためにコルーチンを開始
                     StartCoroutine(ShowLoginBonusAfterDelay());
-                    print("今日のログボ" + todayDate);
+                    //print("今日のログボ" + todayDate);
                 }
                 break;
 
@@ -71,7 +71,7 @@ public class TopLogin : MonoBehaviour
         }
 
         ES3.Save<int>("lastDate", todayDate, "lastDate.es3");
-        Debug.Log("lastDate" + lastDate);  
+        //Debug.Log("lastDate" + lastDate);  
     }
 
     // 1秒遅延させてボーナス表示を行うコルーチン

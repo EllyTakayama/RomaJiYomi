@@ -86,12 +86,12 @@ public class TipsPush : MonoBehaviour
         //プッシュ通知を送りたい日時までの時間差を求める
         SetTargetTimeSpan();
 
-        //デバッグ用 通知までの時間を表示
+        /*デバッグ用 通知までの時間を表示
         for (int i = 0; i < targetTimeSpans.Length; i++)
         {
             Debug.Log("通知順" + i + " 通知までの秒数=" + (int)targetTimeSpans[i].TotalSeconds);
         }
-
+        */
         //小技プッシュ通知の設定
         SetUpTipsPush();
     }
@@ -133,7 +133,7 @@ public class TipsPush : MonoBehaviour
         //LocalPushNotification.AddNotification(pushTitle, pushTextList[5].ToString(), 6, (int)targetTimeSpans[5].TotalSeconds, channelId, notificationIds[5]);
         //LocalPushNotification.AddNotification(pushTitle, pushTextList[6].ToString(), 7, (int)targetTimeSpans[6].TotalSeconds, channelId, notificationIds[6]);
 
-        print("SetUpTipsPush");
+        //print("SetUpTipsPush");
         /* ↑をfor文にするなら
         for (int i = 0; i < notificationSetNumber; i++)
         {
