@@ -31,8 +31,11 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         
         if(IScount>0 && IScount%3 ==0){
-            pAdInterstitial.ShowAdMobInterstitial();
-            return;
+            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            {
+                pAdInterstitial.ShowAdMobInterstitial();
+                return;
+            }
         }
         SoundManager.instance.PlaySousaSE(2);
         pAdInterstitial.DestroyInterstitialAd();
@@ -57,10 +60,14 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
 
-        if(IScount>0 && IScount%3 ==0){
-             pAdInterstitial.ShowAdMobInterstitial();
-            return;
+        if (IScount > 0 && IScount % 3 == 0)
+        {
+            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            {
+                pAdInterstitial.ShowAdMobInterstitial();
+                return;
             }
+        }
 
         pAdInterstitial.DestroyInterstitialAd();   
         SoundManager.instance.PlaySousaSE(2);  
@@ -86,8 +93,11 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         
         if(IScount>0 && IScount%3 ==0){
-            pAdInterstitial.ShowAdMobInterstitial();
-            return;
+            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            {
+                pAdInterstitial.ShowAdMobInterstitial();
+                return;
+            }
             }
         pAdInterstitial.DestroyInterstitialAd();   
         SoundManager.instance.PlaySousaSE(2);
@@ -113,10 +123,12 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
 
         if(IScount>0 && IScount%3 ==0){
-            pAdInterstitial.ShowAdMobInterstitial();
-            return;
+            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            {
+                pAdInterstitial.ShowAdMobInterstitial();
+                return;
+            }
         }
-        
         SoundManager.instance.PlaySousaSE(2);
         pAdInterstitial.DestroyInterstitialAd();   
         SceneManager.LoadScene("TikaraScene");
@@ -141,8 +153,11 @@ public class PanelManager : MonoBehaviour
         pAdInterstitial.AdSceneName = "GachaScene";
 
         if(IScount>0 && IScount%3 ==0){
-            pAdInterstitial.ShowAdMobInterstitial();
-            return;
+            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            {
+                pAdInterstitial.ShowAdMobInterstitial();
+                return;
+            }
         }
         
         SoundManager.instance.PlaySousaSE(2);

@@ -325,9 +325,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         //→失敗すると関数 OnInitializeFailed が呼ばれます。
         UnityPurchasing.Initialize(this, builder);
     }
-
     
-
     //UnityIAPの初期化に成功した時に呼ばれる関数(初期化が成功した時点で購入処理を行えるようになります。)
     public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
     {
@@ -459,8 +457,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
     {
         get => storeController != null && extensionProvider != null && Catalog != null;
     }
-
-
+    
 
     //==========================================================================
     //課金処理の実行 
@@ -480,8 +477,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         //→購入失敗　関数OnPurchaseFailed が呼ばれます。
         storeController.InitiatePurchase(productId);
     }
-
-
+    
     //==========================================================================
     //課金購入の結果を受けとる
     //https://docs.unity3d.com/ja/current/Manual/UnityIAPProcessingPurchases.html
@@ -501,7 +497,33 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
             Debug.LogWarning("Attempted to process purchase with unknown product. Ignoring");
             return PurchaseProcessingResult.Complete;//購入処理を即座に終了
         }
+        string itemId = e.purchasedProduct.definition.id;
+        string transactionId = e.purchasedProduct.transactionID;
+        string platform = Application.platform == RuntimePlatform.IPhonePlayer ? "iOS" : 
+            Application.platform == RuntimePlatform.Android ? "Android" : "Editor";
+        
+        Debug.Log("購入処理中: " + transactionId);
+        
+        // GameManagerを介して課金状態を保存
+        switch (e.purchasedProduct.definition.id)
+        {
+            case "romaji_banneroff_120jpy":
+                GameManager.instance.SavePurchaseState("isBannerAdsRemoved", true);
+                break;
 
+            case "interoff_sub160jpy":
+                GameManager.instance.SavePurchaseState("isInterstitialAdsRemoved", true);
+                break;
+
+            case "romajioff_480jpy":
+                GameManager.instance.SavePurchaseState("isPermanentAdsRemoved", true);
+                break;
+
+            default:
+                Debug.LogWarning($"未知のアイテムID: {e.purchasedProduct.definition.id}");
+                break;
+        }
+        
         // レシートがない時
         if (string.IsNullOrEmpty(e.purchasedProduct.receipt))
         {
@@ -511,28 +533,35 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         }
 
         Debug.Log("Processing transaction: " + e.purchasedProduct.transactionID);
-
         
 
         //------------ここからレシート検証---------------
 
-#if UNITY_IOS
+#if UNITY_IOS||UNITY_ANDROID
         //iOSのレシート検証＆アイテム付与
         ValidateIosPurchase(e.purchasedProduct);
-              
-
-#elif UNITY_ANDROID
-        //Androidのレシート検証＆アイテム付与
-        ValidateAndroidPurchase(e.purchasedProduct);
-
+        
 #endif
-
         //アプリが途中で停止された時や、レシート検証がうまくいかなかった場合、アプリ開始時にレシート検証を処理します。
         //参考 https://docs.unity3d.com/ja/current/Manual/UnityIAPProcessingPurchases.html        
         return PurchaseProcessingResult.Pending;           
     }
+    
+    //PlayFabにデータをセーブする
+    private void SavePurchaseToPlayFab(string itemId)
+    {
+        var data = new Dictionary<string, string>
+        {
+            { itemId, DateTime.UtcNow.ToString("o") } // ISO 8601形式の日付
+        };
 
-
+        PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest
+            {
+                Data = data
+            },
+            result => Debug.Log($"PlayFabに課金データを保存しました: {itemId}"),
+            error => Debug.LogError($"PlayFabに課金データを保存できませんでした: {error.GenerateErrorReport()}"));
+    }
 
     //==========================================================================
     //iOSのレシート検証＆アイテム付与
@@ -665,16 +694,16 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         //アイテムIDによって処理を変更
         switch (setedPurchasedProductId)
         {
-            case "syouhi_jpy120a":
-                consumableText.text = "購入されました。";
+            case "romaji_banneroff_120jpy":
+                consumableText.text = "バナー広告削除購入されました";
                 break;
 
-            case "hisyouhi_jpy250a":
-                nonConsumableText.text = "購入されています。";
+            case "interoff_sub160jpy":
+                nonConsumableText.text = "動画広告削除購入されました";
                 break;
 
-            case "getugaku_jpy300a":
-                subscriptionText.text = "購入されています。";
+            case "romajioff_480jpy":
+                subscriptionText.text = "永久広告削除購入されました";
                 break;
         }
     }

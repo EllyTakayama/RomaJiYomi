@@ -33,6 +33,38 @@ public class GameManager : MonoBehaviour
    public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
    public int SceneCount;//インタースティシャル広告表示のためにScene表示をカウントしていきます
    
+   public AdMobBanner adMobBanner; // AdMobBannerスクリプトをアタッチする
+   public AdMobInterstitial adMobInterstitial; // AdMobInterstitialスクリプトをアタッチする
+   // 課金状態フラグ（広告のサブスク状態を管理）
+   public bool IsBannerAdsRemoved
+   {
+       get => LoadPurchaseState("isBannerAdsRemoved");
+       set
+       {
+           SavePurchaseState("isBannerAdsRemoved", value);
+           UpdateAdState();
+       }
+   }
+
+   public bool IsInterstitialAdsRemoved
+   {
+       get => LoadPurchaseState("isInterstitialAdsRemoved");
+       set
+       {
+           SavePurchaseState("isInterstitialAdsRemoved", value);
+           UpdateAdState();
+       }
+   }
+
+   public bool IsPermanentAdsRemoved
+   {
+       get => LoadPurchaseState("isPermanentAdsRemoved");
+       set
+       {
+           SavePurchaseState("isPermanentAdsRemoved", value);
+           UpdateAdState();
+       }
+   }
     private void Awake()
     {
         if (instance == null)
@@ -44,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        
     }
     //--シングルトン終わり--
 
@@ -58,7 +91,70 @@ public class GameManager : MonoBehaviour
        //SceneCount = 0;
        LoadSceneCount();
        //RequestReview();
-       Debug.Log("Sceneカウント"+SceneCount);
+       //Debug.Log("Sceneカウント"+SceneCount);
+       // 課金データを読み込み、広告を非表示に設定
+// 課金状態を読み込み、広告を非表示に設定
+       if (LoadPurchaseState("isBannerAdsRemoved"))
+       {
+           adMobBanner?.OnBannerPurchaseCompleted();
+       }
+
+       if (LoadPurchaseState("isInterstitialAdsRemoved"))
+       {
+           adMobInterstitial?.OnInterstitialPurchaseCompleted();
+       }
+
+       if (LoadPurchaseState("isPermanentAdsRemoved"))
+       {
+           // 永久的な広告非表示を設定（全ての広告を非表示）
+           adMobBanner?.OnBannerPurchaseCompleted();
+           adMobInterstitial?.OnInterstitialPurchaseCompleted();
+       }
+
+       Debug.Log("Sceneカウント" + SceneCount);
+    }
+    
+    public void SavePurchaseState(string key, bool value)
+    {
+        ES3.Save<bool>(key, value, $"{key}.es3");
+        Debug.Log($"課金データ保存: {key} = {value}");
+    }
+
+    public bool LoadPurchaseState(string key, bool defaultValue = false)
+    {
+        string filePath = $"{key}.es3"; // 読み込み元のファイル名
+        if (ES3.KeyExists(key,filePath))
+        {
+            bool value = ES3.Load<bool>(key, $"{key}.es3", defaultValue);
+            Debug.Log($"課金データ読み込み: {key} = {value}");
+            return value;
+        }
+        else
+        {
+            Debug.Log($"課金データが存在しない: {key}, デフォルト値: {defaultValue}");
+            return defaultValue;
+        }
+    }
+    // 広告状態を更新（広告非表示の処理）
+    private void UpdateAdState()
+    {
+        // 永久広告削除フラグが有効な場合は全ての広告を非表示にする
+        if (IsPermanentAdsRemoved)
+        {
+            adMobBanner?.OnBannerPurchaseCompleted();
+            adMobInterstitial?.OnInterstitialPurchaseCompleted();
+        }
+        else
+        {
+            if (!IsBannerAdsRemoved)
+            {
+                adMobBanner?.BannerStart();
+            }
+            if (!IsInterstitialAdsRemoved)
+            {
+                adMobInterstitial?.RequestInterstitial();
+            }
+        }
     }
     public void SaveSceneCount(){
         //isGfontsize = SettingManager.instance.isfontSize;

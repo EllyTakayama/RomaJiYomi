@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections;
 using GoogleMobileAds.Api;
 using GoogleMobileAds;
 using UnityEngine.SceneManagement;
@@ -22,11 +23,31 @@ public class AdMobBanner : MonoBehaviour
     
     private BannerView _bannerView;//BannerView型の変数bannerViewを宣言この中にバナー広告の情報が入る
     private bool isBannerAdsRemoved;
-    
     //シーン読み込み時からバナーを表示する
     //最初からバナーを表示したくない場合はこの関数を消してください。
+    private IEnumerator WaitForGameManager()
+    {
+        while (GameManager.instance == null)
+        {
+            yield return null; // 次のフレームまで待機
+        }
+
+        InitializeAdMobBanner();
+    }
+    //GameManagerからisBannerAdsRemovedを取得してからバナーの表示を呼び出す
+    private void InitializeAdMobBanner()
+    {
+        isBannerAdsRemoved = GameManager.instance.LoadPurchaseState("isBannerAdsRemoved");
+
+        if (!isBannerAdsRemoved)
+        {
+            RequestBanner();
+        }
+    }
     private void Start()
     {
+        StartCoroutine(WaitForGameManager());
+        /*
         // 課金状態の読み込み
         isBannerAdsRemoved = ES3.KeyExists("isBannerAdsRemoved") && ES3.Load<bool>("isBannerAdsRemoved");
 
@@ -35,7 +56,9 @@ public class AdMobBanner : MonoBehaviour
             RequestBanner();
         }
         //RequestBanner();//アダプティブバナーを表示する関数 呼び出し
+        */
     }
+    
     //ボタン等に割り付けて使用
     //バナーを表示する関数
     public void BannerStart()
