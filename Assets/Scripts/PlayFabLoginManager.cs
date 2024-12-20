@@ -288,7 +288,39 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         ProcessText.text = "カタログデータ取得失敗";
     }
 
-    
+    public void FetchPlayFabSubscriptionStatus(string itemId, string flagKey)
+    {
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
+            {
+                if (result.Data != null && result.Data.ContainsKey($"{itemId}_purchaseDate"))
+                {
+                    int serverTimestamp = int.Parse(result.Data[$"{itemId}_purchaseDate"].Value);
+
+                    GameManager.instance.SavePurchaseDate(itemId, serverTimestamp.ToString());
+
+                    if (serverTimestamp > DateTimeOffset.UtcNow.ToUnixTimeSeconds())
+                    {
+                        GameManager.instance.SavePurchaseState(flagKey, true);
+                        Debug.Log($"{itemId}: サブスクリプションが更新されました。");
+                    }
+                    else
+                    {
+                        GameManager.instance.SavePurchaseState(flagKey, false);
+                        Debug.Log($"{itemId}: サブスクリプションが無効です。");
+                    }
+                }
+                else
+                {
+                    GameManager.instance.SavePurchaseState(flagKey, false);
+                    Debug.LogWarning($"{itemId}: PlayFabに更新データが見つかりませんでした。");
+                }
+            },
+            error =>
+            {
+                Debug.LogError($"PlayFabからデータを取得できませんでした: {error.GenerateErrorReport()}");
+            });
+    }
+
 
     //=================================================================================================
     //UnityIAPの初期化     参考 https://docs.unity3d.com/ja/2019.3/Manual/UnityIAPInitialization.html
@@ -503,7 +535,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
             Application.platform == RuntimePlatform.Android ? "Android" : "Editor";
         
         Debug.Log("購入処理中: " + transactionId);
-        
+        /*
         // GameManagerを介して課金状態を保存
         switch (e.purchasedProduct.definition.id)
         {
@@ -522,7 +554,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
             default:
                 Debug.LogWarning($"未知のアイテムID: {e.purchasedProduct.definition.id}");
                 break;
-        }
+        }*/
         
         // レシートがない時
         if (string.IsNullOrEmpty(e.purchasedProduct.receipt))
@@ -537,11 +569,19 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
 
         //------------ここからレシート検証---------------
 
-#if UNITY_IOS||UNITY_ANDROID
-        //iOSのレシート検証＆アイテム付与
-        ValidateIosPurchase(e.purchasedProduct);
-        
+#if UNITY_EDITOR
+        Debug.Log("Unity Editorのため、レシート検証をスキップしPlayFabに直接保存します。");
+        SavePurchaseToPlayFab(itemId);
+        GameManager.instance.SavePurchaseState(itemId, true); // ローカルにも保存
+        GameManager.instance.SavePurchaseDate(itemId, DateTime.UtcNow.ToString("yyyy-MM-dd"));
+        return PurchaseProcessingResult.Complete;
 #endif
+        #if UNITY_IOS
+        ValidateIosPurchase(e.purchasedProduct);
+#elif UNITY_ANDROID
+        ValidateAndroidPurchase(e.purchasedProduct);
+#endif
+        
         //アプリが途中で停止された時や、レシート検証がうまくいかなかった場合、アプリ開始時にレシート検証を処理します。
         //参考 https://docs.unity3d.com/ja/current/Manual/UnityIAPProcessingPurchases.html        
         return PurchaseProcessingResult.Pending;           
@@ -552,7 +592,9 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
     {
         var data = new Dictionary<string, string>
         {
-            { itemId, DateTime.UtcNow.ToString("o") } // ISO 8601形式の日付
+            { itemId, "true" },
+            { $"purchaseDate_{itemId}", DateTime.UtcNow.ToString("yyyy-MM-dd") },
+            { "lastValidationDate", DateTime.UtcNow.ToString("yyyy-MM-dd") }
         };
 
         PlayFabClientAPI.UpdateUserData(new UpdateUserDataRequest
@@ -597,6 +639,14 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
 
             //******ここに課金対象のアイテム付与などの処理を追加*****
             ChangeText();//購入後の処理
+            
+            string itemId = purchasedProduct.definition.id;
+            // PlayFabに購入データを保存
+            SavePurchaseToPlayFab(itemId);
+
+            // GameManagerで購入状態を保存
+            GameManager.instance.SavePurchaseState(itemId, true);
+            GameManager.instance.SavePurchaseDate(itemId, DateTime.UtcNow.ToString("yyyy-MM-dd"));
 
             //購入処理が完了したものとする
             storeController.ConfirmPendingPurchase(purchasedProduct);          
@@ -617,8 +667,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         );
     }
 #endif
-
-
+    
     //==========================================================================
     //Androidのレシート検証＆アイテム付与
     //==========================================================================
@@ -652,7 +701,14 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
 
             //******ここに課金対象のアイテム付与などの処理を追加*****
             ChangeText();//購入後の処理
+string itemId = purchasedProduct.definition.id;
 
+        // PlayFabに購入データを保存
+        SavePurchaseToPlayFab(itemId);
+GameManager.instance.SavePurchaseDate(itemId, DateTime.UtcNow.ToString("yyyy-MM-dd"));
+
+        // GameManagerで購入状態を保存
+        GameManager.instance.SavePurchaseState(itemId, true);
             //購入処理が完了したものとする
             storeController.ConfirmPendingPurchase(purchasedProduct);
         },

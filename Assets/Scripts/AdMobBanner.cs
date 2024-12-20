@@ -64,7 +64,7 @@ public class AdMobBanner : MonoBehaviour
     public void BannerStart()
     {
         // 課金されていない場合のみバナー広告を表示
-        if (!isBannerAdsRemoved)
+        if (!GameManager.instance.isBannerAdsRemoved)
         {
             RequestBanner();
         }      
@@ -73,7 +73,16 @@ public class AdMobBanner : MonoBehaviour
     //バナーを削除する関数
     public void BannerDestroy()
     {
-        _bannerView.Destroy();//バナー削除
+        if (_bannerView != null)
+        {
+            Debug.Log("Destroying banner ad.");
+            _bannerView.Destroy(); // バナー削除
+            _bannerView = null;    // リソースの解放
+        }
+        else
+        {
+            Debug.LogWarning("BannerDestroy called, but _bannerView is already null.");
+        }
     }
 
     //アダプティブバナーを表示する関数
@@ -83,6 +92,7 @@ public class AdMobBanner : MonoBehaviour
         if (_bannerView != null)//もし変数bannerViewの中にバナーの情報が入っていたら
         {
             _bannerView.Destroy();//バナー削除
+            _bannerView = null;    // リソースの解放
         }
 
         //現在の画面の向き横幅を取得しバナーサイズを決定

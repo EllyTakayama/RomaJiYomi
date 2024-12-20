@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 #if UNITY_ANDROID
 using Google.Play.Review;
 #endif
@@ -36,7 +37,16 @@ public class GameManager : MonoBehaviour
    public AdMobBanner adMobBanner; // AdMobBannerスクリプトをアタッチする
    public AdMobInterstitial adMobInterstitial; // AdMobInterstitialスクリプトをアタッチする
    // 課金状態フラグ（広告のサブスク状態を管理）
-   public bool IsBannerAdsRemoved
+   // 購入フラグ
+   public bool isBannerAdsRemoved;
+   public bool isInterstitialAdsRemoved;
+   public bool isPermanentAdsRemoved;
+   
+   // サブスクリプションの次回確認フラグ
+   private bool isSubscriptionCheckedForBanner = false;
+   private bool isSubscriptionCheckedForInterstitial = false;
+   
+  /* public bool IsBannerAdsRemoved
    {
        get => LoadPurchaseState("isBannerAdsRemoved");
        set
@@ -65,6 +75,7 @@ public class GameManager : MonoBehaviour
            UpdateAdState();
        }
    }
+   */
     private void Awake()
     {
         if (instance == null)
@@ -114,10 +125,133 @@ public class GameManager : MonoBehaviour
        Debug.Log("Sceneカウント" + SceneCount);
     }
     
+    public void CheckSubscriptionLocally(string itemId, string flagKey)
+    {
+        int localTimestamp = LoadPurchaseDate($"{itemId}_purchaseDate");
+
+        if (localTimestamp == 0)
+        {
+            Debug.LogWarning($"ローカルに購入日付が保存されていません: {itemId}");
+            SavePurchaseState(flagKey, false);
+            return;
+        }
+
+        DateTime localDate = ConvertUnixTimestampToDateTime(localTimestamp);
+        DateTime nextUpdateDate = CalculateNextUpdateDate(localDate);
+
+        if (DateTime.UtcNow < nextUpdateDate)
+        {
+            Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate}");
+            SavePurchaseState(flagKey, true);
+        }
+        else
+        {
+            Debug.Log($"{itemId}: 次回更新日を超えています。PlayFabで更新を確認します。");
+            PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
+        }
+    }
+    
+    private DateTime ConvertUnixTimestampToDateTime(int timestamp)
+    {
+        return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
+    }
+
+    //更新日の日付を取得する
+    private DateTime CalculateNextUpdateDate(DateTime purchaseDate)
+    {
+// 購入日末尾の「日」を取得
+        int purchaseDay = purchaseDate.Day;
+
+        // 次回更新月の日数を取得
+        DateTime nextDate = purchaseDate.AddMonths(1);
+        int daysInMonth = DateTime.DaysInMonth(nextDate.Year, nextDate.Month);
+
+        // 購入日が次回更新月に存在する場合
+        if (purchaseDay <= daysInMonth)
+        {
+            nextDate = new DateTime(nextDate.Year, nextDate.Month, purchaseDay);
+        }
+        else
+        {
+            // 月末の処理
+            // 現在のプラットフォームを判定
+            if (Application.platform == RuntimePlatform.Android)
+            {
+                // Android: 購入日が月末の場合、次回更新日は30日に固定
+                nextDate = new DateTime(nextDate.Year, nextDate.Month, Math.Min(30, DateTime.DaysInMonth(nextDate.Year, nextDate.Month)));
+            }
+            else if (Application.platform == RuntimePlatform.IPhonePlayer)
+            {
+                // iOS: 購入日が月末の場合、その月の最終日を次回更新日に設定
+                nextDate = new DateTime(nextDate.Year, nextDate.Month, DateTime.DaysInMonth(nextDate.Year, nextDate.Month));
+            }
+        }
+        return nextDate;
+    }
+
+
+    
     public void SavePurchaseState(string key, bool value)
     {
+        // フラグを更新
+        switch (key)
+        {
+            case "romaji_banneroff_120jpy":
+                isBannerAdsRemoved = value;
+                ES3.Save<bool>("isBannerAdsRemoved", value, "isBannerAdsRemoved.es3");
+                break;
+
+            case "interoff_sub160jpy":
+                isInterstitialAdsRemoved = value;
+                ES3.Save<bool>("isInterstitialAdsRemoved", value, "isInterstitialAdsRemoved.es3");
+                break;
+
+            case "romajioff_480jpy":
+                isPermanentAdsRemoved = value;
+                ES3.Save<bool>("isPermanentAdsRemoved", value, "isPermanentAdsRemoved.es3");
+                break;
+
+            default:
+                Debug.LogWarning($"未知のアイテムID: {key}");
+                break;
+        }
         ES3.Save<bool>(key, value, $"{key}.es3");
         Debug.Log($"課金データ保存: {key} = {value}");
+        UpdateAdState();
+    }
+    public void SavePurchaseDate(string itemId, string purchaseDate)
+    {
+        // purchaseDate を DateTime に変換
+        DateTime parsedDate;
+        if (!DateTime.TryParse(purchaseDate, out parsedDate))
+        {
+            Debug.LogError($"購入日付のパースに失敗しました: {purchaseDate}");
+            return;
+        }
+
+        // Unixタイムスタンプに変換
+        int unixTimestamp = (int)(parsedDate.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
+
+        // ローカルに保存 (Easy Save 3 を使用)
+        ES3.Save<int>($"{itemId}_purchaseDate", unixTimestamp, $"{itemId}_purchaseDate.es3");
+        Debug.Log($"購入日付をローカルに保存: {itemId}_purchaseDate = {unixTimestamp}");
+    }
+    public int LoadPurchaseDate(string itemId)
+    {
+        string key = $"{itemId}_purchaseDate";
+        string filePath = $"{itemId}_purchaseDate.es3";
+
+        if (ES3.KeyExists(key, filePath))
+        {
+            int unixTimestamp = ES3.Load<int>(key, filePath);
+            Debug.Log($"購入日付をローカルから読み込み: {itemId}_purchaseDate = {unixTimestamp}");
+            return unixTimestamp;
+        }
+        else
+        {
+            Debug.LogWarning($"購入日付が見つかりません: {itemId}");
+            return 0; // デフォルト値として 0 を返す
+        }
     }
 
     public bool LoadPurchaseState(string key, bool defaultValue = false)
@@ -139,18 +273,18 @@ public class GameManager : MonoBehaviour
     private void UpdateAdState()
     {
         // 永久広告削除フラグが有効な場合は全ての広告を非表示にする
-        if (IsPermanentAdsRemoved)
+        if (isPermanentAdsRemoved)
         {
             adMobBanner?.OnBannerPurchaseCompleted();
             adMobInterstitial?.OnInterstitialPurchaseCompleted();
         }
         else
         {
-            if (!IsBannerAdsRemoved)
+            if (!isBannerAdsRemoved)
             {
                 adMobBanner?.BannerStart();
             }
-            if (!IsInterstitialAdsRemoved)
+            if (!isInterstitialAdsRemoved)
             {
                 adMobInterstitial?.RequestInterstitial();
             }

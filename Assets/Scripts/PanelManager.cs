@@ -31,7 +31,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         
         if(IScount>0 && IScount%3 ==0){
-            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
                 return;
@@ -62,7 +62,7 @@ public class PanelManager : MonoBehaviour
 
         if (IScount > 0 && IScount % 3 == 0)
         {
-            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
                 return;
@@ -93,7 +93,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         
         if(IScount>0 && IScount%3 ==0){
-            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
                 return;
@@ -123,7 +123,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
 
         if(IScount>0 && IScount%3 ==0){
-            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
                 return;
@@ -153,7 +153,7 @@ public class PanelManager : MonoBehaviour
         pAdInterstitial.AdSceneName = "GachaScene";
 
         if(IScount>0 && IScount%3 ==0){
-            if (!GameManager.instance.IsInterstitialAdsRemoved)
+            if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
                 return;
