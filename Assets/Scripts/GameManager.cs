@@ -46,36 +46,6 @@ public class GameManager : MonoBehaviour
    private bool isSubscriptionCheckedForBanner = false;
    private bool isSubscriptionCheckedForInterstitial = false;
    
-  /* public bool IsBannerAdsRemoved
-   {
-       get => LoadPurchaseState("isBannerAdsRemoved");
-       set
-       {
-           SavePurchaseState("isBannerAdsRemoved", value);
-           UpdateAdState();
-       }
-   }
-
-   public bool IsInterstitialAdsRemoved
-   {
-       get => LoadPurchaseState("isInterstitialAdsRemoved");
-       set
-       {
-           SavePurchaseState("isInterstitialAdsRemoved", value);
-           UpdateAdState();
-       }
-   }
-
-   public bool IsPermanentAdsRemoved
-   {
-       get => LoadPurchaseState("isPermanentAdsRemoved");
-       set
-       {
-           SavePurchaseState("isPermanentAdsRemoved", value);
-           UpdateAdState();
-       }
-   }
-   */
     private void Awake()
     {
         if (instance == null)
@@ -94,6 +64,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // 広告の課金状態をローカルデータからチェック
+        CheckSubscriptionLocally("romaji_banneroff_120jpy", "isBannerAdsRemoved");
+        CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
+        CheckSubscriptionLocally("romajioff_480jpy", "isPermanentAdsRemoved");
        //LoadGfontsize();
        //LoadGKunrei();
        //LoadGse();
@@ -101,6 +75,7 @@ public class GameManager : MonoBehaviour
        //Debug.Log("start");
        //SceneCount = 0;
        LoadSceneCount();
+       //Debug.Log("Sceneカウント" + SceneCount);
        //RequestReview();
        //Debug.Log("Sceneカウント"+SceneCount);
        // 課金データを読み込み、広告を非表示に設定
@@ -121,27 +96,62 @@ public class GameManager : MonoBehaviour
            adMobBanner?.OnBannerPurchaseCompleted();
            adMobInterstitial?.OnInterstitialPurchaseCompleted();
        }
-
-       Debug.Log("Sceneカウント" + SceneCount);
+       
     }
-    
+    public DateTime LoadPurchaseDate(string itemId)
+    {
+        string key = $"{itemId}";
+        string filePath = $"{key}.es3";
+
+        if (ES3.KeyExists(key, filePath))
+        {
+            string readableDate = ES3.Load<string>(key, filePath);
+
+            if (DateTime.TryParse(readableDate, out DateTime parsedDate))
+            {
+                Debug.Log($"購入日付を読み込み成功: {key} = {readableDate}");
+                return parsedDate;
+            }
+            else
+            {
+                Debug.LogError($"購入日付のパースに失敗しました: 保存されたデータ = {readableDate}");
+                return DateTime.MinValue;
+            }
+        }
+        else
+        {
+            Debug.LogWarning($"購入日付が見つかりません: {key}");
+            return DateTime.MinValue;
+        }
+    }
     public void CheckSubscriptionLocally(string itemId, string flagKey)
     {
-        int localTimestamp = LoadPurchaseDate($"{itemId}_purchaseDate");
+        Debug.Log($"CheckSubscriptionLocally 開始: itemId = {itemId}, flagKey = {flagKey}");
 
-        if (localTimestamp == 0)
+        // ローカルにキーが保存されているか確認
+        if (!ES3.KeyExists($"{itemId}_purchaseDate",$"{itemId}_purchaseDate.es3"))
         {
             Debug.LogWarning($"ローカルに購入日付が保存されていません: {itemId}");
             SavePurchaseState(flagKey, false);
             return;
         }
 
-        DateTime localDate = ConvertUnixTimestampToDateTime(localTimestamp);
-        DateTime nextUpdateDate = CalculateNextUpdateDate(localDate);
+        DateTime localPurchaseDate = LoadPurchaseDate($"{itemId}_purchaseDate");
+
+        if (localPurchaseDate == DateTime.MinValue)
+        {
+            Debug.LogWarning($"購入日付が正しく読み込まれませんでした: {itemId}");
+            SavePurchaseState(flagKey, false);
+            return;
+        }
+
+        Debug.Log($"ローカルの購入日付: {localPurchaseDate:yyyy-MM-dd HH:mm:ss}");
+
+        DateTime nextUpdateDate = CalculateNextUpdateDate(localPurchaseDate);
 
         if (DateTime.UtcNow < nextUpdateDate)
         {
-            Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate}");
+            Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate:yyyy-MM-dd}");
             SavePurchaseState(flagKey, true);
         }
         else
@@ -188,8 +198,6 @@ public class GameManager : MonoBehaviour
         }
         return nextDate;
     }
-
-
     
     public void SavePurchaseState(string key, bool value)
     {
@@ -221,39 +229,22 @@ public class GameManager : MonoBehaviour
     }
     public void SavePurchaseDate(string itemId, string purchaseDate)
     {
-        // purchaseDate を DateTime に変換
-        DateTime parsedDate;
-        if (!DateTime.TryParse(purchaseDate, out parsedDate))
+// purchaseDate を DateTime に変換
+        if (!DateTime.TryParse(purchaseDate, out DateTime parsedDate))
         {
             Debug.LogError($"購入日付のパースに失敗しました: {purchaseDate}");
             return;
         }
 
-        // Unixタイムスタンプに変換
-        int unixTimestamp = (int)(parsedDate.Subtract(new DateTime(1970, 1, 1))).TotalSeconds;
-
-        // ローカルに保存 (Easy Save 3 を使用)
-        ES3.Save<int>($"{itemId}_purchaseDate", unixTimestamp, $"{itemId}_purchaseDate.es3");
-        Debug.Log($"購入日付をローカルに保存: {itemId}_purchaseDate = {unixTimestamp}");
-    }
-    public int LoadPurchaseDate(string itemId)
-    {
+        // 可読形式で保存 (ISO 8601 に準拠した形式)
+        string readableDate = parsedDate.ToString("yyyy-MM-dd HH:mm:ss");
         string key = $"{itemId}_purchaseDate";
-        string filePath = $"{itemId}_purchaseDate.es3";
+        ES3.Save<string>(key, readableDate, $"{key}.es3");
 
-        if (ES3.KeyExists(key, filePath))
-        {
-            int unixTimestamp = ES3.Load<int>(key, filePath);
-            Debug.Log($"購入日付をローカルから読み込み: {itemId}_purchaseDate = {unixTimestamp}");
-            return unixTimestamp;
-        }
-        else
-        {
-            Debug.LogWarning($"購入日付が見つかりません: {itemId}");
-            return 0; // デフォルト値として 0 を返す
-        }
+        Debug.Log($"購入日付を可読形式でローカルに保存: {key} = {readableDate}");
     }
-
+    
+    
     public bool LoadPurchaseState(string key, bool defaultValue = false)
     {
         string filePath = $"{key}.es3"; // 読み込み元のファイル名
