@@ -66,8 +66,8 @@ public class GameManager : MonoBehaviour
     {
         // 広告の課金状態をローカルデータからチェック
         CheckSubscriptionLocally("romaji_banneroff_120jpy", "isBannerAdsRemoved");
-        CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
-        CheckSubscriptionLocally("romajioff_480jpy", "isPermanentAdsRemoved");
+        //CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
+        //CheckSubscriptionLocally("romajioff_480jpy", "isPermanentAdsRemoved");
        //LoadGfontsize();
        //LoadGKunrei();
        //LoadGse();
@@ -80,6 +80,8 @@ public class GameManager : MonoBehaviour
        //Debug.Log("Sceneカウント"+SceneCount);
        // 課金データを読み込み、広告を非表示に設定
 // 課金状態を読み込み、広告を非表示に設定
+
+/*
        if (LoadPurchaseState("isBannerAdsRemoved"))
        {
            adMobBanner?.OnBannerPurchaseCompleted();
@@ -96,6 +98,7 @@ public class GameManager : MonoBehaviour
            adMobBanner?.OnBannerPurchaseCompleted();
            adMobInterstitial?.OnInterstitialPurchaseCompleted();
        }
+       */
        
     }
     public DateTime LoadPurchaseDate(string itemId)
@@ -126,7 +129,9 @@ public class GameManager : MonoBehaviour
     }
     public void CheckSubscriptionLocally(string itemId, string flagKey)
     {
-        Debug.Log($"CheckSubscriptionLocally 開始: itemId = {itemId}, flagKey = {flagKey}");
+        Debug.Log($"" +
+                  $"CheckSubscriptionLocally" +
+                  $" 開始: itemId = {itemId}, flagKey = {flagKey}");
 
         // ローカルにキーが保存されているか確認
         if (!ES3.KeyExists($"{itemId}_purchaseDate",$"{itemId}_purchaseDate.es3"))
@@ -157,7 +162,23 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log($"{itemId}: 次回更新日を超えています。PlayFabで更新を確認します。");
-            PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
+            //PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
+#if UNITY_IOS
+            Debug.Log($"{itemId}: iOSで復元処理を実行します。");
+            if (RestoringTransaction_iOS.Instance != null)
+            {
+                RestoringTransaction_iOS.Instance.Restore(); // iOS用のリストア処理
+            }
+            else
+            {
+                Debug.LogWarning("RestoringTransaction_iOSのインスタンスが見つかりません。");
+            }
+#elif UNITY_ANDROID
+        Debug.Log($"{itemId}: AndroidでPlayFabによる更新確認を実行します。");
+        PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
+#else
+        Debug.LogWarning($"未対応のプラットフォーム: {Application.platform}");
+#endif
         }
     }
     

@@ -10,6 +10,7 @@ using UnityEngine.Purchasing.Extension;
 using Unity.Services.Core;
 using Unity.Services.Core.Environments;
 using System.Linq;
+using System.Threading.Tasks; // 必須
 
 public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
 {
@@ -49,6 +50,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
     private string setedPurchasedProductId;//購入に使用されたアイテムID取得用
     private IAppleExtensions m_AppleExtensions;//定期購入課金確認用
     
+    private bool isCatalogRetrieved = false; // Tracks whether the catalog is retrieved
 
     //=================================================================================
     //ログイン処理分岐
@@ -59,7 +61,6 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
             try
             {
                 // Unity Gaming Services を初期化
-                
                 var options = new InitializationOptions().SetEnvironmentName(environment);
                 await UnityServices.InitializeAsync(options);
                 Debug.Log("Unity Services 初期化成功");
@@ -81,9 +82,27 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
             {
                 Debug.LogError("Unity Gaming Services 初期化失敗: " + exception.Message);
             }
-            
+            // Initialize Unity IAP directly in case PlayFab catalog fails
+            if (!isCatalogRetrieved)
+            {
+                Debug.Log("PlayFab catalog not retrieved, initializing Unity IAP with default items");
+                InitializePurchasingFallback();
+            }
     }
-    
+    // New fallback method for Unity IAP initialization
+    private void InitializePurchasingFallback()
+    {
+        if (IsInitialized) return; // Avoid re-initialization
+
+        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+
+        // Add fallback items (hardcoded or minimal setup)
+        builder.AddProduct("romaji_banneroff_120jpy", ProductType.Subscription);
+        builder.AddProduct("interoff_sub160jpy", ProductType.Subscription);
+        builder.AddProduct("romajioff_480jpy", ProductType.NonConsumable);
+
+        UnityPurchasing.Initialize(this, builder);
+    }
     //===========================================================================
     //カスタムIDでログイン
     //===========================================================================
@@ -98,7 +117,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         //第一引数は"必要な情報"　第二引数は"成功時に実行する関数"　第三引数は"失敗時に実行する関数"
         PlayFabClientAPI.LoginWithCustomID(request, OnLoginSuccess, OnLoginFailure);
     }
-
+    
     //ログイン成功    
     private void OnLoginSuccess(LoginResult result)
     {
@@ -278,18 +297,30 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         {
             Debug.Log("Catalog[" + i + "] = " + Catalog[i].ItemId);
         }
-
         InitializePurchasing();//UnityIAPを初期化
     }
 
     private void GetCatalogFailure(PlayFabError error)
     {
         Debug.Log("カタログの取得失敗" + error.GenerateErrorReport());
-        ProcessText.text = "カタログデータ取得失敗";
+        ProcessText.text = "PlayFabカタログデータ取得失敗,ローカルデータ対応";
+        InitializePurchasingFallback(); // Initialize Unity IAP with default items
     }
 
-    public void FetchPlayFabSubscriptionStatus(string itemId, string flagKey)
+    public async void FetchPlayFabSubscriptionStatus(string itemId, string flagKey)
     {
+        if (!PlayFabLoginManager.Instance.IsLoggedIn)
+        {
+            Debug.LogWarning("PlayFabにログインしていないため、ログインを試みます...");
+            bool loginSuccess = await PlayFabLoginManager.Instance.LoginWithCustomIDAsync();
+
+            if (!loginSuccess)
+            {
+                Debug.LogError("ログイン失敗: サブスクリプション確認を中止します。");
+                return;
+            }
+
+        }
         PlayFabClientAPI.GetUserData(new GetUserDataRequest(), result =>
             {
                 if (result.Data != null && result.Data.ContainsKey($"{itemId}_purchaseDate"))
@@ -320,7 +351,59 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
                 Debug.LogError($"PlayFabからデータを取得できませんでした: {error.GenerateErrorReport()}");
             });
     }
+    
+    public async Task<bool> LoginWithCustomIDAsync()
+    {
+        _customID = LoadCustomID();
+        var tcs = new TaskCompletionSource<bool>();
 
+        // まず既存アカウントでログインを試みる
+        var request = new LoginWithCustomIDRequest
+        {
+            CustomId = _customID,
+            CreateAccount = false // 新しいアカウントを作成しない
+        };
+
+        PlayFabClientAPI.LoginWithCustomID(request, result =>
+            {
+                _playFabId = result.PlayFabId;
+                IsLoggedIn = true; // ログイン成功を記録
+                Debug.Log("カスタムIDでの既存アカウントログイン成功");
+                tcs.SetResult(true); // 非同期処理を完了
+            },
+            async error =>
+            {
+                if (error.Error == PlayFabErrorCode.AccountNotFound)
+                {
+                    Debug.LogWarning("既存アカウントが見つからないため、新しいアカウントを作成します...");
+                    var createAccountRequest = new LoginWithCustomIDRequest
+                    {
+                        CustomId = _customID,
+                        CreateAccount = true // 新しいアカウントを作成
+                    };
+
+                    PlayFabClientAPI.LoginWithCustomID(createAccountRequest, createResult =>
+                        {
+                            _playFabId = createResult.PlayFabId;
+                            IsLoggedIn = true; // ログイン成功を記録
+                            Debug.Log("新しいアカウントを作成してログイン成功");
+                            tcs.SetResult(true); // 非同期処理を完了
+                        },
+                        createError =>
+                        {
+                            Debug.LogError("新しいアカウントの作成に失敗: " + createError.GenerateErrorReport());
+                            tcs.SetResult(false); // 非同期処理を失敗として完了
+                        });
+                }
+                else
+                {
+                    Debug.LogError("カスタムIDでのログインに失敗: " + error.GenerateErrorReport());
+                    tcs.SetResult(false); // 非同期処理を失敗として完了
+                }
+            });
+
+        return await tcs.Task; // 完了を待機
+    }
 
     //=================================================================================================
     //UnityIAPの初期化     参考 https://docs.unity3d.com/ja/2019.3/Manual/UnityIAPInitialization.html
@@ -593,7 +676,7 @@ public class PlayFabLoginManager : MonoBehaviour, IDetailedStoreListener
         var data = new Dictionary<string, string>
         {
             { itemId, "true" },
-            { $"purchaseDate_{itemId}", DateTime.UtcNow.ToString("yyyy-MM-dd") },
+            { $"{itemId}_purchaseDate", DateTime.UtcNow.ToString("yyyy-MM-dd") },
             { "lastValidationDate", DateTime.UtcNow.ToString("yyyy-MM-dd") }
         };
 
@@ -860,7 +943,4 @@ GameManager.instance.SavePurchaseDate(itemId, DateTime.UtcNow.ToString("yyyy-MM-
         }
     }
     //↑=============================================================================================================================↑
-
-
-
 
