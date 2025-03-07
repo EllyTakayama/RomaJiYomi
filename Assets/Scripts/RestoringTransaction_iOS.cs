@@ -15,7 +15,7 @@ public class RestoringTransaction_iOS : MonoBehaviour, IDetailedStoreListener
     
     private Dictionary<string, ProductType> productCatalog = new Dictionary<string, ProductType>
     {
-        { "romaji_banneroff_120jpy", ProductType.Subscription },
+        { "romaji_banneroff120jpy", ProductType.Subscription },
         { "interoff_sub160jpy", ProductType.Subscription },
         { "romajioff_480jpy", ProductType.NonConsumable }
     };
@@ -42,7 +42,7 @@ public class RestoringTransaction_iOS : MonoBehaviour, IDetailedStoreListener
         }
         void Start()
         {
-            //InitializePurchasing();
+            InitializePurchasing();
         }
 
         void InitializePurchasing()
@@ -115,7 +115,7 @@ public class RestoringTransaction_iOS : MonoBehaviour, IDetailedStoreListener
                 if (isPermanentAdsRemoved)
                 {
                     Debug.Log("永久広告削除が有効です。他の広告状態を無効化します。");
-                    GameManager.instance.SavePurchaseState("romaji_banneroff_120jpy", false);
+                    GameManager.instance.SavePurchaseState("romaji_banneroff120jpy", false);
                     GameManager.instance.SavePurchaseState("interoff_sub160jpy", false);
                 }
             }

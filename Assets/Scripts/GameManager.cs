@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         // 広告の課金状態をローカルデータからチェック
-        CheckSubscriptionLocally("romaji_banneroff_120jpy", "isBannerAdsRemoved");
+        CheckSubscriptionLocally("romaji_banneroff120jpy", "isBannerAdsRemoved");
         //CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
         //CheckSubscriptionLocally("romajioff_480jpy", "isPermanentAdsRemoved");
        //LoadGfontsize();
@@ -137,7 +137,7 @@ public class GameManager : MonoBehaviour
         if (!ES3.KeyExists($"{itemId}_purchaseDate",$"{itemId}_purchaseDate.es3"))
         {
             Debug.LogWarning($"ローカルに購入日付が保存されていません: {itemId}");
-            SavePurchaseState(flagKey, false);
+            SavePurchaseState(itemId, false);
             return;
         }
 
@@ -146,7 +146,7 @@ public class GameManager : MonoBehaviour
         if (localPurchaseDate == DateTime.MinValue)
         {
             Debug.LogWarning($"購入日付が正しく読み込まれませんでした: {itemId}");
-            SavePurchaseState(flagKey, false);
+            SavePurchaseState(itemId, false);
             return;
         }
 
@@ -157,11 +157,11 @@ public class GameManager : MonoBehaviour
         if (DateTime.UtcNow < nextUpdateDate)
         {
             Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate:yyyy-MM-dd}");
-            SavePurchaseState(flagKey, true);
+            SavePurchaseState(itemId, true);
         }
         else
         {
-            Debug.Log($"{itemId}: 次回更新日を超えています。PlayFabで更新を確認します。");
+            Debug.Log($"{itemId}: 次回更新日を超えています。ストアで更新を確認します。");
             //PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
 #if UNITY_IOS
             Debug.Log($"{itemId}: iOSで復元処理を実行します。");
@@ -225,9 +225,14 @@ public class GameManager : MonoBehaviour
         // フラグを更新
         switch (key)
         {
-            case "romaji_banneroff_120jpy":
+            case "romaji_banneroff120jpy":
                 isBannerAdsRemoved = value;
                 ES3.Save<bool>("isBannerAdsRemoved", value, "isBannerAdsRemoved.es3");
+                if (isBannerAdsRemoved)
+                {
+                    Debug.Log("バナー広告を非表示にします。");
+                    adMobBanner?.OnBannerPurchaseCompleted(); // バナー広告を削除
+                }
                 break;
 
             case "interoff_sub160jpy":
@@ -294,11 +299,13 @@ public class GameManager : MonoBehaviour
         {
             if (!isBannerAdsRemoved)
             {
+                
                 adMobBanner?.BannerStart();
             }
             if (!isInterstitialAdsRemoved)
             {
-                adMobInterstitial?.RequestInterstitial();
+                
+                adMobInterstitial?.OnInterstitialPurchaseCompleted();
             }
         }
     }

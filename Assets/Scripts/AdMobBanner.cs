@@ -31,16 +31,20 @@ public class AdMobBanner : MonoBehaviour
         {
             yield return null; // 次のフレームまで待機
         }
-
+        Debug.Log("[AdMobBanner] GameManagerがロードされました。課金状態をチェックします。");
         InitializeAdMobBanner();
     }
     //GameManagerからisBannerAdsRemovedを取得してからバナーの表示を呼び出す
     private void InitializeAdMobBanner()
     {
-        isBannerAdsRemoved = GameManager.instance.LoadPurchaseState("isBannerAdsRemoved");
-
-        if (!isBannerAdsRemoved)
+// GameManagerのフラグを直接使用
+        if (GameManager.instance.isBannerAdsRemoved)
         {
+            Debug.Log("[AdMobBanner] バナー広告は非表示状態です。");
+        }
+        else
+        {
+            Debug.Log("[AdMobBanner] バナー広告を表示します。");
             RequestBanner();
         }
     }
