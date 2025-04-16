@@ -7,7 +7,7 @@ public class KakinLink : MonoBehaviour
         //urlの作成
         string url = "https://funfunnyapp.blog.jp/archives/28023411.html";
 
-        //Twitter投稿画面の起動
+        //Fun and Beyond の課金質問記事の起動
         Application.OpenURL(url);
         print("InfoLink");
     }

@@ -13,14 +13,60 @@ public class PanelManager : MonoBehaviour
     [SerializeField] AdMobBanner pAdMobBanner;
     [SerializeField] AdMobInterstitial pAdInterstitial;
     [SerializeField] AdMobReward pAdReward;
+    [SerializeField] private GameObject SpinnerPanel;
     GameManager PanelGameManager => GameManager.instance;
+    
+    /// <summary>
+    /// スピナーパネルを一度表示してから広告を出す
+    /// </summary>
+    public void ShowInterstitialWithSpinner()
+    {
+        StartCoroutine(ShowSpinnerThenAd());
+    }
+
+    private IEnumerator ShowSpinnerThenAd()
+    {
+        if (SpinnerPanel != null)
+        {
+            yield return new WaitForEndOfFrame();
+            SpinnerPanel.SetActive(true);
+        }
+        pAdInterstitial.ShowAdMobInterstitial(OnInterstitialClosed);
+    }
+
+    private void OnInterstitialClosed()
+    {
+        Debug.Log("PanelManager: インタースティシャル広告が閉じられました");
+    }
+
+    public void LoadSceneWithSpinner(string sceneName)
+    {
+        StartCoroutine(LoadSceneAsync(sceneName));
+    }
+
+    private IEnumerator LoadSceneAsync(string sceneName)
+    {
+        SpinnerPanel.SetActive(true);
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
+        asyncLoad.allowSceneActivation = false;
+
+        while (asyncLoad.progress < 0.9f)
+        {
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(0.5f);
+
+        SpinnerPanel.SetActive(false);
+        asyncLoad.allowSceneActivation = true;
+    }
+
     //各Sceneへ移動する際に2回に一度インタースティシャル広告を呼び出し
     public void TopSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
         SoundManager.instance.PlayBGM("TopScene");
         GameManager.instance.SceneCount++;
-        
         PanelGameManager.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
@@ -30,16 +76,20 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
         
-        if(IScount>0 && IScount%3 ==0){
+        if(IScount>0 && IScount%2 ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial();
+                pAdInterstitial.ShowAdMobInterstitial(() =>
+                {
+                    // 広告終了後、スピナー付きでシーン読み込み
+                    LoadSceneWithSpinner("TopScene");
+                });
                 return;
             }
         }
         SoundManager.instance.PlaySousaSE(2);
         pAdInterstitial.DestroyInterstitialAd();
-        SceneManager.LoadScene("TopScene");
+        LoadSceneWithSpinner("TopScene");
     }
 
     public void KihonSceneMove(){
@@ -60,18 +110,22 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
 
-        if (IScount > 0 && IScount % 3 == 0)
+        if (IScount > 0 && IScount % 1 == 0)
         {
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial();
+                pAdInterstitial.ShowAdMobInterstitial(() =>
+                {
+                    // 広告終了後、スピナー付きでシーン読み込み
+                    LoadSceneWithSpinner("KihonScene");
+                });
                 return;
             }
         }
 
         pAdInterstitial.DestroyInterstitialAd();   
         SoundManager.instance.PlaySousaSE(2);  
-        SceneManager.LoadScene("KihonScene");
+        LoadSceneWithSpinner("KihonScene");
             }
 
     public void RenshuuSceneMove(){
@@ -92,7 +146,7 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
         
-        if(IScount>0 && IScount%3 ==0){
+        if(IScount>0 && IScount%2 ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
@@ -122,7 +176,7 @@ public class PanelManager : MonoBehaviour
         pAdInterstitial.AdSceneName = "TikaraScene";
         pAdReward.DestroyRewardAd();
 
-        if(IScount>0 && IScount%3 ==0){
+        if(IScount>0 && IScount%2 ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();
@@ -152,7 +206,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         pAdInterstitial.AdSceneName = "GachaScene";
 
-        if(IScount>0 && IScount%3 ==0){
+        if(IScount>0 && IScount%2 ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
                 pAdInterstitial.ShowAdMobInterstitial();

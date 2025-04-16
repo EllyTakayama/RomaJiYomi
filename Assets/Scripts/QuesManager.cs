@@ -322,6 +322,7 @@ public class QuesManager : MonoBehaviour
         //表のButtonをクリックする
         void HyouOnClick(int i){
             SoundManager.instance.PlaySE(i);
+            Debug.Log($"表ButtonClick{i}");
             SpawnHyoBaloon(i);
         }
         //Panel4で平仮名をSpawnさせる
@@ -391,36 +392,44 @@ public class QuesManager : MonoBehaviour
     }
 
     public void SetHyou(){
+        Debug.Log("表のひらがな入れ替え");
         for(int i =0; i< HyouButtons.Length; i++){
             if(GameManager.instance.isGKunrei == true){
                 if(GameManager.instance.isGfontsize == true){
                    
-                    setText = hiragana50[i]+"\n"+RomaJi50[i];
+                    //setText = hiragana50[i]+"\n"+RomaJi50[i];
+                    setText = RomaJi50[i];
 
                 }else{
-                    setText = hiragana50[i]+"\n"+romaji50[i];
+                    //setText = hiragana50[i]+"\n"+romaji50[i];
+                    setText = romaji50[i];
                 }
             }else{//ヘボン式の場合は検索する必要がある
             if(GameManager.instance.isGfontsize == true){
             string hebon = RomaJi50[i];
             if(rq.dicHebon.ContainsKey(hebon)){
                         hebon = rq.dicHebon[hebon];
-                        setText = hiragana50[i]+"\n"+hebon;
+                        //setText = hiragana50[i]+"\n"+hebon;
+                        setText = hebon;
             }else{
-                setText = hiragana50[i]+"\n"+RomaJi50[i];
+                //setText = hiragana50[i]+"\n"+RomaJi50[i];
+                setText = RomaJi50[i];
             }
             }else{//ヘボン式かつ小文字の場合
             string hebon = romaji50[i];
             if(rq.dicHebon.ContainsKey(hebon)){
                         hebon = rq.dicHebon[hebon];
-                        setText = hiragana50[i]+"\n"+hebon;
+                        //setText = hiragana50[i]+"\n"+hebon;
+                        setText = hebon;
             }else{
-                setText = hiragana50[i]+"\n"+romaji50[i];
+                //setText = hiragana50[i]+"\n"+romaji50[i];
+                setText = romaji50[i];
                 
             }
             }
             }
             HyouButtons[i].GetComponentInChildren<Text>().text = setText; 
+            Debug.Log($"{i}_{setText}");
             HyoBallonsText.Add(setText);
         }
     }

@@ -432,9 +432,12 @@ public class RouletteController : MonoBehaviour
     }
     IEnumerator RCButton(int bnum)
     {   if(GameManager.instance.isGfontsize== true){
-                    hiraganaImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[bnum]]+" は "+hiragana50[RCNum[bnum]];
-                }else{
-                    hiraganaImage.GetComponentInChildren<Text>().text = romajiRC50[RCNum[bnum]]+" は "+hiragana50[RCNum[bnum]];
+                    //hiraganaImage.GetComponentInChildren<Text>().text = RomaJiRC50[RCNum[bnum]]+" は "+hiragana50[RCNum[bnum]];
+                    hiraganaImage.GetComponentInChildren<Text>().text = hiraganaImage.GetComponentInChildren<Text>().text = $"<size=40>{RomaJiRC50[RCNum[bnum]]}</size> は <size=40>『{hiragana50[RCNum[bnum]]}』</size>";
+        }else{
+                    //hiraganaImage.GetComponentInChildren<Text>().text = $"{romajiRC50[RCNum[bnum]]} <size=28>は</size> {hiragana50[RCNum[bnum]]}";
+                    hiraganaImage.GetComponentInChildren<Text>().text = $"<size=40>{romajiRC50[RCNum[bnum]]}</size> は <size=40>『{hiragana50[RCNum[bnum]]}』</size>";
+
                 }
         
         hiraganaButtons[0].enabled = false;
@@ -448,8 +451,8 @@ public class RouletteController : MonoBehaviour
         hiraganaButtons[2].enabled = true;
         hiraganaButtons[3].enabled = true;
         hiraganaButtons[4].enabled = true;
-        yield return new WaitForSeconds(0.2f);
-        hiraganaImage.GetComponentInChildren<Text>().text = "ふうせんをタッチ!";
+        //yield return new WaitForSeconds(0.2f);
+        //hiraganaImage.GetComponentInChildren<Text>().text = "ふうせんをタッチ!";
     }
     
     string[] romajiRC50 = new string[]{

@@ -6,7 +6,6 @@ public class DictionaryChange : MonoBehaviour
 {// デフォルトの入力方法
     //大文字
     public Dictionary<string, string> dicT = new Dictionary<string, string>() {
-
         {"あ", "A"},{"い", "I"},{"う", "U"},{"え", "E"},{"お", "O"},
         {"か", "KA"},{"き", "KI"},{"く", "KU"},{"け", "KE"},{"こ", "KO"},
         {"さ", "SA"},{"し", "SI"},{"す", "SU"},{"せ", "SE"},{"そ", "SO"},

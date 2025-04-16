@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-//6月16日更新
+//KihonScene内のPanelの移動のスクリプト
 
 public class PanelChange : MonoBehaviour
 {

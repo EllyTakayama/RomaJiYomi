@@ -147,8 +147,6 @@ public class AdMobBanner : MonoBehaviour
     // バナー広告の課金完了後に非表示にするメソッド
     public void OnBannerPurchaseCompleted()
     {
-        isBannerAdsRemoved = true;
-        ES3.Save("isBannerAdsRemoved", isBannerAdsRemoved); // 課金状態を保存
         BannerDestroy(); // 表示中のバナーを削除
     }
 

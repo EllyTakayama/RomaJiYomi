@@ -92,7 +92,7 @@ public class DOaText : MonoBehaviour
     }
     public void SpawnB(int n){
         BallonImage = Instantiate(Ballons[n],
-        new Vector3 (Random.Range(-150f,150f), Random.Range(-100f,50f), 0.0f),//生成時の位置xをランダムするVector3を指定
+        new Vector3 (Random.Range(-350f,350f), Random.Range(-100f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
             transform.rotation);//生成時の向き
         BallonImage.transform.SetParent(ButtonPanel.transform,false);  
     }

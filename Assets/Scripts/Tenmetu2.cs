@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class Tenmetu2 : MonoBehaviour
 {
     public float speed = 2.0f;
+    //speedはinspectorから変更できる。値が小さいほどゆっくり変化する
 
     //private
     private Text text;

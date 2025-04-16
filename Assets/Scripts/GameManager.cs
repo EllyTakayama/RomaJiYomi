@@ -64,9 +64,25 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        // "isPermanentAdsRemoved" キーが存在し、かつ true の場合、広告を即座に非表示
+        if (ES3.KeyExists("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3") && 
+            ES3.Load<bool>("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3")) 
+        {
+            Debug.Log("[GameManager] isPermanentAdsRemoved = true。広告を非表示にします。");
+            isBannerAdsRemoved = true;
+            isInterstitialAdsRemoved = true;
+
+            // フラグを永続化
+            SavePurchaseState("romaji_banneroff120jpy", true);
+            SavePurchaseState("interoff_sub160jpy", true);
+
+            // サブスクリプションの確認はスキップ
+            return;
+        }
+
         // 広告の課金状態をローカルデータからチェック
         CheckSubscriptionLocally("romaji_banneroff120jpy", "isBannerAdsRemoved");
-        //CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
+        CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
         //CheckSubscriptionLocally("romajioff_480jpy", "isPermanentAdsRemoved");
        //LoadGfontsize();
        //LoadGKunrei();
@@ -162,23 +178,16 @@ public class GameManager : MonoBehaviour
         else
         {
             Debug.Log($"{itemId}: 次回更新日を超えています。ストアで更新を確認します。");
-            //PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
-#if UNITY_IOS
-            Debug.Log($"{itemId}: iOSで復元処理を実行します。");
-            if (RestoringTransaction_iOS.Instance != null)
+
+            // InAppPurchaseManager の RestorePurchases() を実行してストアに確認
+            if (FindObjectOfType<InAppPurchaseManager>() != null)
             {
-                RestoringTransaction_iOS.Instance.Restore(); // iOS用のリストア処理
+                FindObjectOfType<InAppPurchaseManager>().RestorePurchases();
             }
             else
             {
-                Debug.LogWarning("RestoringTransaction_iOSのインスタンスが見つかりません。");
+                Debug.LogWarning("[GameManager] InAppPurchaseManager が見つかりません。");
             }
-#elif UNITY_ANDROID
-        Debug.Log($"{itemId}: AndroidでPlayFabによる更新確認を実行します。");
-        PlayFabLoginManager.Instance.FetchPlayFabSubscriptionStatus(itemId, flagKey);
-#else
-        Debug.LogWarning($"未対応のプラットフォーム: {Application.platform}");
-#endif
         }
     }
     
@@ -242,6 +251,8 @@ public class GameManager : MonoBehaviour
 
             case "romajioff_480jpy":
                 isPermanentAdsRemoved = value;
+                //ES3.Save<bool>("isBannerAdsRemoved", value, "isBannerAdsRemoved.es3");
+                //ES3.Save<bool>("isInterstitialAdsRemoved", value, "isInterstitialAdsRemoved.es3");
                 ES3.Save<bool>("isPermanentAdsRemoved", value, "isPermanentAdsRemoved.es3");
                 break;
 
@@ -269,23 +280,52 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"購入日付を可読形式でローカルに保存: {key} = {readableDate}");
     }
-    
-    
+
     public bool LoadPurchaseState(string key, bool defaultValue = false)
     {
         string filePath = $"{key}.es3"; // 読み込み元のファイル名
-        if (ES3.KeyExists(key,filePath))
+        bool value = defaultValue;
+
+        if (ES3.KeyExists(key, filePath))
         {
-            bool value = ES3.Load<bool>(key, $"{key}.es3", defaultValue);
-            Debug.Log($"課金データ読み込み: {key} = {value}");
-            return value;
+            value = ES3.Load<bool>(key, filePath, defaultValue);
         }
         else
         {
             Debug.Log($"課金データが存在しない: {key}, デフォルト値: {defaultValue}");
-            return defaultValue;
         }
+
+        // フラグを復元
+        switch (key)
+        {
+            case "romaji_banneroff120jpy":
+                isBannerAdsRemoved = value;
+                break;
+
+            case "interoff_sub160jpy":
+                isInterstitialAdsRemoved = value;
+                break;
+
+            case "romajioff_480jpy":
+                isPermanentAdsRemoved = value;
+                if (isPermanentAdsRemoved)
+                {
+                    // 永久広告削除の場合、他の広告削除フラグも有効化
+                    isBannerAdsRemoved = true;
+                    isInterstitialAdsRemoved = true;
+                }
+
+                break;
+
+            default:
+                Debug.LogWarning($"未知のアイテムID: {key}");
+                break;
+        }
+
+        Debug.Log($"課金データ読み込み: {key} = {value}");
+        return value;
     }
+
     // 広告状態を更新（広告非表示の処理）
     private void UpdateAdState()
     {

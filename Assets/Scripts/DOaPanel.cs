@@ -14,9 +14,9 @@ public class DOaPanel : MonoBehaviour
     [SerializeField] private GameObject nekoStaImage;
     [SerializeField] private GameObject LeftButton;
      [SerializeField] private GameObject AretryButton;
-    [SerializeField] private GameObject AsonotaButton;
+    //[SerializeField] private GameObject AsonotaButton;
     [SerializeField] private GameObject retryButton;
-    [SerializeField] private GameObject sonotaButton;
+    //[SerializeField] private GameObject sonotaButton;
     public string AhiraganaCorrect;
     [SerializeField] private GameObject hiraGradePanel;
     [SerializeField] private Text yatta2Text;
@@ -38,9 +38,9 @@ public class DOaPanel : MonoBehaviour
         neko1StaImage.SetActive(false);
         LeftButton.SetActive(false);
         retryButton.SetActive(false);
-        sonotaButton.SetActive(false);
+        //sonotaButton.SetActive(false);
         AretryButton.SetActive(false);
-        AsonotaButton.SetActive(false);
+        //AsonotaButton.SetActive(false);
         AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
         HhiraganaCorrect = GameManager.instance.HcorrectCount.ToString();
         //Debug.Log("A"+AhiraganaCorrect);
@@ -52,7 +52,7 @@ public class DOaPanel : MonoBehaviour
         nekoStaImage.SetActive(false);
         LeftButton.SetActive(false);
         AretryButton.SetActive(false);
-        AsonotaButton.SetActive(false);
+        //AsonotaButton.SetActive(false);
         AhiraganaCorrect = GameManager.instance.AcorrectCount.ToString();
         
         StartCoroutine(AgyouPanel());
@@ -98,7 +98,7 @@ public class DOaPanel : MonoBehaviour
         SoundManager.instance.PlaySousaSE(11);
         yield return new WaitForSeconds(0.2f);
         AretryButton.SetActive(true);
-        AsonotaButton.SetActive(true);
+        //AsonotaButton.SetActive(true);
 
     }
 
@@ -110,7 +110,7 @@ public class DOaPanel : MonoBehaviour
         neko1StaImage.SetActive(false);
         LeftButton.SetActive(false);
         retryButton.SetActive(false);
-        sonotaButton.SetActive(false);
+        //sonotaButton.SetActive(false);
 
         StartCoroutine(HiraganaPanel());
     }
@@ -151,7 +151,7 @@ public class DOaPanel : MonoBehaviour
         SoundManager.instance.PlaySousaSE(11);
         yield return new WaitForSeconds(0.2f);
         retryButton.SetActive(true);
-        sonotaButton.SetActive(true);
+        //sonotaButton.SetActive(true);
 
     }
 
