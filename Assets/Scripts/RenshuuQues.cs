@@ -431,6 +431,7 @@ public class RenshuuQues : MonoBehaviour
 
     IEnumerator PlayRenHiragana()
     {
+        SoundManager.instance.StopSE();//読み上げる前に他のSEを止める
         yield return new WaitForSeconds(0.3f);
         SoundManager.instance.PlaySE(b);
         Debug.Log("b"+b);

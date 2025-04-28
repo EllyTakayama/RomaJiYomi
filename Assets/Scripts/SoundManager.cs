@@ -46,8 +46,8 @@ public class SoundManager : MonoBehaviour
                 audioSourceBGM.clip = audioClipsBGM[6];
                 Debug.Log("BGM,GradePanel");
                 break;
-            case "SelectPanel":
-                audioSourceBGM.clip = audioClipsBGM[5];
+            case "SelectPanel"://TikaraSceneでButton選択したバトル用音楽
+                audioSourceBGM.clip = audioClipsBGM[3];
                 Debug.Log("BGM,SelectPanel");
                 break;
             
@@ -77,7 +77,7 @@ public class SoundManager : MonoBehaviour
                 Debug.Log("BGM,RenshuuScene");
                 break;
             case "TikaraScene":
-                audioSourceBGM.clip = audioClipsBGM[3];
+                audioSourceBGM.clip = audioClipsBGM[5];
                 Debug.Log("BGM,TikaraScene");
                 break;
             case "GachaScene":

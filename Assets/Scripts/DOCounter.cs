@@ -9,7 +9,6 @@ public class DOCounter : MonoBehaviour
 {
     public Text coinAddText;
     public GameObject coinAddImage;
-
     /*
     void Start()
     {
@@ -19,17 +18,19 @@ public class DOCounter : MonoBehaviour
     }
     */
 
+    // ReSharper disable Unity.PerformanceAnalysis
     public void CountCoin2(){
         //int beforeCoin = GameManager.instance.beforeTotalCoin;
         //int totalCoin = GameManager.instance.totalCoin;
-        coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,2f);
+        coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,1.6f).SetLink(gameObject);
         //Debug.Log("DOCounter");
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     public void CountCoin1(){
         //int beforeCoin = GameManager.instance.beforeTotalCoin;
         //int totalCoin = GameManager.instance.totalCoin;
         coinAddText.DOCounter(GameManager.instance.beforeTotalCoin,GameManager.instance.totalCoin,0.7f)
-        .SetId("idFCounterCoin1");
+            .SetLink(gameObject);
         Debug.Log("DOCounter1");
     }
 }

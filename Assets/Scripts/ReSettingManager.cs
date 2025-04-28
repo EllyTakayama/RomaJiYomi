@@ -163,7 +163,7 @@ public class ReSettingManager : MonoBehaviour
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
              //SoundManager.instance.PlayBGM("RenshuuScene");
-             SoundManager.instance.PlayPanelBGM("SelectPanel");
+             SoundManager.instance.PlayBGM("TikaraScene");
              }
         else{
             SoundManager.instance.BGMmute();

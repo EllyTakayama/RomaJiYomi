@@ -19,6 +19,10 @@ public class DOafterRewardPanel : MonoBehaviour
     [SerializeField] private GameObject SpinnerPanel;
     [SerializeField] private GameObject RegradePanel;
     [SerializeField] GameObject AdMobManager;
+    [SerializeField] private GameObject rewardButton;//リワード広告を見るボタン
+    //GachaSceneではhomeButton,Renshuu,TikaraではretopButton
+    [SerializeField] private GameObject homeButton;//TopSceneに戻るボタン
+    
 
     public void AfterReward(){
         rewardText.text = "";
@@ -39,12 +43,11 @@ public class DOafterRewardPanel : MonoBehaviour
         yield return new WaitForSeconds(0.8f);
     }
     public void DoRewardText(){
-        rewardText.DOText("\nやったね!\nコインを100枚\nゲットしたよ"
+        rewardText.DOText("\nやったね!\nコインを150枚\nゲットしたよ"
         , 0.5f)
         .OnComplete(Coinhoka)
         ;
         print("rewardText");
-        
     }
     public void Coinhoka(){
         StartCoroutine(CoinMove());
@@ -62,7 +65,7 @@ public class DOafterRewardPanel : MonoBehaviour
        //coinGenerator.GetComponent<CoinGenerator>().SpawnRewardCoin();
        SoundManager.instance.PlaySousaSE(14);
        coinAddText.GetComponent<DOCounter>().CountCoin1();
-       yield return new WaitForSeconds(2.0f);
+       yield return new WaitForSeconds(1.6f);
        SoundManager.instance.StopSE();
        /*
        DOTween.TweensById("idFlash18").ForEach((tween) =>
@@ -74,6 +77,7 @@ public class DOafterRewardPanel : MonoBehaviour
        RewardflashImage.SetActive(false);
        SoundManager.instance.PlaySousaSE(8);
        RewardButton.SetActive(true);
+       homeButton.SetActive(true);
        RewardButton.GetComponent<DOScale>().BigScale2();
 
     }
@@ -93,7 +97,7 @@ public class DOafterRewardPanel : MonoBehaviour
             //Debug.Log("IDBigScale2");
             })};*/
         
-        
+        rewardButton.SetActive(false);
         RewardPanel.SetActive(false);
         /*
         string SceneName =SceneManager.GetActiveScene().name;

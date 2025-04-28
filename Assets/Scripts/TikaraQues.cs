@@ -260,7 +260,7 @@ public class TikaraQues : MonoBehaviour
                 break;
         }
         if(GameManager.instance.isBgmOn == true){
-            SoundManager.instance.PlayBGM("TikaraScene");
+            SoundManager.instance.PlayPanelBGM("SelectPanel");
         }
         
     }

@@ -29,15 +29,15 @@ public class GachaItem : MonoBehaviour
     [SerializeField] TextAsset GcharaKakuritu;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        //SetGachaText();
-        //DebugChara();
-        //DebugSetumei();
+        SetGachaText();
+        DebugChara();
+        DebugSetumei();
         //DebugKKakuritu();
         //DebugKakuritu();
-       
     }
+
     public void SetGachaText(){
         GachaChara = GcharaName.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);
         setumeiText = GcharaSetumei.text.Split(new[] {'\n','\r'},System.StringSplitOptions.RemoveEmptyEntries);

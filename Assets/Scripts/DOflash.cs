@@ -22,7 +22,7 @@ public class DOflash : MonoBehaviour
     }
 
     public void Flash18(){
-        sequence.Restart();
+        sequence.Restart(true);
     }
 
     public void Flash360(){

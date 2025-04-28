@@ -82,7 +82,7 @@ public class DoTigrade : MonoBehaviour
     }
     
     public void YattaneText(){
-        yattaneText.DOText("\n"+TihiraganaCorrect+"問正解！"
+        yattaneText.DOText(TihiraganaCorrect+"問正解！"
         , 0.5f)
         .OnComplete(CoinText);
         print("yattaeText");
@@ -90,16 +90,14 @@ public class DoTigrade : MonoBehaviour
     }
 
     public void CoinText(){
-        coinText.DOText("\nコインを"
+        coinText.DOText("コインを"
         +Tikaracoin+"枚ゲット！"
         , 0.6f)
         .OnComplete(Coinhoka);
-        
         print("coinText");
         print("正解数"+Tikaracoin);
     }
-
-
+    
     public void Coinhoka(){
         StartCoroutine(CoinMove());
     }
@@ -108,8 +106,7 @@ public class DoTigrade : MonoBehaviour
         coinImage.SetActive(true);
         flashImage.SetActive(true);
         flashImage.GetComponent<DOflash>().Flash18();
-        yield return new WaitForSeconds(1.2f);
-        
+        yield return new WaitForSeconds(0.8f);
         if(TikaraQues.instance.isWord == true){
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 
@@ -121,9 +118,11 @@ public class DoTigrade : MonoBehaviour
             GameManager.instance.TyCoin = 0;
         }
         yield return new WaitForSeconds(0.2f);
+        SoundManager.instance.StopSE();//一度操作オン消してから
         SoundManager.instance.PlaySousaSE(14);
         coinAddText.GetComponent<DOCounter>().CountCoin2();
-        yield return new WaitForSeconds(2.2f);
+        yield return new WaitForSeconds(1.8f);
+        //SoundManager.instance.PlaySousaSE(14);
         SoundManager.instance.PlaySousaSE(8);
         coinAddImage.GetComponent<DOScale>().BigScale2();
         coinAddText.GetComponent<DOScale>().BigScale2();

@@ -147,7 +147,7 @@ public class AdMobBanner : MonoBehaviour
     // バナー広告の課金完了後に非表示にするメソッド
     public void OnBannerPurchaseCompleted()
     {
-        BannerDestroy(); // 表示中のバナーを削除
+        DestroyBannerAd(); // 表示中のバナーを削除
     }
 
 }

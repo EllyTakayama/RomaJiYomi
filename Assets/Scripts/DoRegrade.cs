@@ -27,7 +27,6 @@ public class DoRegrade : MonoBehaviour
     
 
     public void RgradePanel(){
-        
         SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
         //renTopButton.SetActive(false);
@@ -60,7 +59,7 @@ public class DoRegrade : MonoBehaviour
     }
     
     public void YattaneText(){
-        yattaneText.DOText("\n"+RhiraganaCorrect+"問正解！"
+        yattaneText.DOText(RhiraganaCorrect+"問正解！"
         , 0.5f)
         .SetLink(gameObject)
         .OnComplete(CoinText);
@@ -69,7 +68,7 @@ public class DoRegrade : MonoBehaviour
     }
 
     public void CoinText(){
-        coinText.DOText("\nコインを"
+        coinText.DOText("コインを"
         +Rcoin+"枚ゲット"
         , 0.6f)
         .SetLink(gameObject)
@@ -87,16 +86,18 @@ public class DoRegrade : MonoBehaviour
         coinImage.SetActive(true);
         flashImage.SetActive(true);
         flashImage.GetComponent<DOflash>().Flash18();
-        yield return new WaitForSeconds(1.2f);
+        SoundManager.instance.PlaySousaSE(14);
+        yield return new WaitForSeconds(0.8f);//短く
         //flashImage.SetActive(false);
         //coinImage.SetActive(false);
        GameManager.instance.RcorrectCount=0;
        RenshuuQues.instance.RenshuuCount = 0;
-       yield return new WaitForSeconds(0.2f);
-       SoundManager.instance.PlaySousaSE(14);
+       yield return new WaitForSeconds(0.1f);
+       //SoundManager.instance.PlaySousaSE(14);
        //coinAddImage.SetActive(true);
        coinAddText.GetComponent<DOCounter>().CountCoin2();
-       yield return new WaitForSeconds(2.2f);
+       yield return new WaitForSeconds(1.8f);
+       SoundManager.instance.StopSE();//一度操作オン消してから
        SoundManager.instance.PlaySousaSE(8);
        coinAddImage.GetComponent<DOScale>().BigScale2();
        coinAddText.GetComponent<DOScale>().BigScale2();

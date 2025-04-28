@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using DG.Tweening;//DoTweenを使用する記述
-
+using System;//Actionのため
 
 public class PanelManager : MonoBehaviour
 {
@@ -15,57 +15,74 @@ public class PanelManager : MonoBehaviour
     [SerializeField] AdMobReward pAdReward;
     [SerializeField] private GameObject SpinnerPanel;
     GameManager PanelGameManager => GameManager.instance;
-    
+    private const int InterstitialAdInterval = 1;//インタースティシャル広告の表示間隔
+    private bool isLoadingScene = false;//重複してシーンの読み込みを実行しないためのフラグ
+    private bool isShowingAd = false;    //広告表示中かを管理するフラグ
     /// <summary>
     /// スピナーパネルを一度表示してから広告を出す
     /// </summary>
-    public void ShowInterstitialWithSpinner()
-    {
-        StartCoroutine(ShowSpinnerThenAd());
-    }
-
-    private IEnumerator ShowSpinnerThenAd()
-    {
-        if (SpinnerPanel != null)
-        {
-            yield return new WaitForEndOfFrame();
-            SpinnerPanel.SetActive(true);
-        }
-        pAdInterstitial.ShowAdMobInterstitial(OnInterstitialClosed);
-    }
-
     private void OnInterstitialClosed()
     {
         Debug.Log("PanelManager: インタースティシャル広告が閉じられました");
     }
-
-    public void LoadSceneWithSpinner(string sceneName)
+    
+    // スピナーを事前に表示してから広告を見せ、その後の処理を行うコルーチン20250425
+    private IEnumerator ShowInterstitialWithSpinner(Action afterAdAction)
     {
-        StartCoroutine(LoadSceneAsync(sceneName));
+        if (SpinnerPanel != null)
+        {
+            SpinnerPanel.SetActive(true); // Spinnerを表示
+            yield return new WaitForSeconds(0.2f); // 少し待つことで見た目上スムーズに
+        }
+        isShowingAd = true; // ★広告表示中フラグを立てる
+        
+        // 広告を表示し、閉じたら後処理を呼ぶ
+        pAdInterstitial.ShowAdMobInterstitial(() =>
+        {
+            isShowingAd = false; // ★広告閉じたらフラグを下ろす
+            afterAdAction?.Invoke();
+        });
+
     }
 
-    private IEnumerator LoadSceneAsync(string sceneName)
+    // ReSharper disable Unity.PerformanceAnalysis
+    private IEnumerator LoadSceneAsync(string sceneName, bool showSpinner)
     {
-        SpinnerPanel.SetActive(true);
+        if (isLoadingScene)
+        {
+            yield break; // すでにロード中の場合は処理を中断
+        }
+        isLoadingScene = true; // ロード開始
+        
+        // ★広告中なら広告が終わるまで待つ
+        while (isShowingAd)
+        {
+            yield return null;
+        }
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName);
         asyncLoad.allowSceneActivation = false;
-
         while (asyncLoad.progress < 0.9f)
         {
             yield return null;
         }
+        yield return new WaitForSeconds(0.3f);
 
-        yield return new WaitForSeconds(0.5f);
-
-        SpinnerPanel.SetActive(false);
+        //SpinnerPanel.SetActive(false);
         asyncLoad.allowSceneActivation = true;
+        // シーン遷移完了まで待機
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+        // 🎵 シーン遷移後にBGMを切り替える！
+        SoundManager.instance.PlayBGM(sceneName);
     }
 
     //各Sceneへ移動する際に2回に一度インタースティシャル広告を呼び出し
     public void TopSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        SoundManager.instance.PlayBGM("TopScene");
+        
         GameManager.instance.SceneCount++;
         PanelGameManager.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
@@ -76,31 +93,32 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
         
-        if(IScount>0 && IScount%2 ==0){
+        if(IScount>0 && IScount % InterstitialAdInterval ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial(() =>
+                StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {
-                    // 広告終了後、スピナー付きでシーン読み込み
-                    LoadSceneWithSpinner("TopScene");
-                });
+                    // 広告終了後、シーン遷移
+                    StartCoroutine(LoadSceneAsync("TopScene",true)); // ← 非同期ロードで改善
+                }));
                 return;
             }
         }
         SoundManager.instance.PlaySousaSE(2);
         pAdInterstitial.DestroyInterstitialAd();
-        LoadSceneWithSpinner("TopScene");
+        StartCoroutine(LoadSceneAsync("TopScene", false));
+        //SoundManager.instance.PlayBGM("TopScene");
+        //SceneManager.LoadScene("TopScene");
     }
 
     public void KihonSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        SoundManager.instance.PlayBGM("KihonScene");
+        //SoundManager.instance.PlayBGM("KihonScene");
         //.GetComponent<AdMobInterstitial>().name = "KihonScene";
         //string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
         GameManager.instance.SceneCount++;
-        
         GameManager.instance.SaveSceneCount();
         int IScount = GameManager.instance.SceneCount;
         Debug.Log("SceneCount,"+GameManager.instance.SceneCount);
@@ -110,28 +128,29 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
 
-        if (IScount > 0 && IScount % 1 == 0)
+        if (IScount > 0 && IScount % InterstitialAdInterval == 0)
         {
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial(() =>
+                StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {
-                    // 広告終了後、スピナー付きでシーン読み込み
-                    LoadSceneWithSpinner("KihonScene");
-                });
+                    // 広告終了後、シーン遷移
+                    StartCoroutine(LoadSceneAsync("KihonScene",true));
+                }));
                 return;
             }
         }
-
         pAdInterstitial.DestroyInterstitialAd();   
-        SoundManager.instance.PlaySousaSE(2);  
-        LoadSceneWithSpinner("KihonScene");
+        StartCoroutine(LoadSceneAsync("KihonScene",false));
+        //SoundManager.instance.PlaySousaSE(2);  
+        //SceneManager.LoadScene("KihonScene");
+      
             }
 
     public void RenshuuSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        SoundManager.instance.PlayBGM("RenshuuScene");
+        //SoundManager.instance.PlayBGM("RenshuuScene");
         //AdMobManager.GetComponent<AdMobInterstitial>().name = "RenshuuScene";
         //string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
@@ -146,22 +165,27 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
         
-        if(IScount>0 && IScount%2 ==0){
+        if(IScount>0 && IScount % InterstitialAdInterval ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial();
-                return;
+                StartCoroutine(ShowInterstitialWithSpinner(() =>
+                {
+                    // 広告終了後、シーン遷移
+                    StartCoroutine(LoadSceneAsync("RenshuuScene",true));
+                    //SceneManager.LoadScene("RenshuuScene");
+                }));
             }
-            }
+        }
         pAdInterstitial.DestroyInterstitialAd();   
         SoundManager.instance.PlaySousaSE(2);
-        SceneManager.LoadScene("RenshuuScene");
+        //SceneManager.LoadScene("RenshuuScene");
+        StartCoroutine(LoadSceneAsync("RenshuuScene",false));
         
     }
     public void TikaraSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        SoundManager.instance.PlayPanelBGM("SelectPanel");
+        //SoundManager.instance.PlayBGM("TikaraPanel");
         //AdMobManager.GetComponent<AdMobInterstitial>().name = "TikaraScene";
         //string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
@@ -176,22 +200,27 @@ public class PanelManager : MonoBehaviour
         pAdInterstitial.AdSceneName = "TikaraScene";
         pAdReward.DestroyRewardAd();
 
-        if(IScount>0 && IScount%2 ==0){
+        if(IScount>0 && IScount% InterstitialAdInterval ==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial();
+                StartCoroutine(ShowInterstitialWithSpinner(() =>
+                {
+                    // 広告終了後、シーン遷移
+                    StartCoroutine(LoadSceneAsync("TikaraScene",true));
+                    //SceneManager.LoadScene("TikaraScene");
+                }));
                 return;
             }
         }
         SoundManager.instance.PlaySousaSE(2);
-        pAdInterstitial.DestroyInterstitialAd();   
-        SceneManager.LoadScene("TikaraScene");
-       
+        pAdInterstitial.DestroyInterstitialAd(); 
+        StartCoroutine(LoadSceneAsync("TikaraScene",false));
+        //SceneManager.LoadScene("TikaraScene");
     }
     public void GachaSceneMove(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
-        SoundManager.instance.PlayBGM("GachaScene");
+        //SoundManager.instance.PlayBGM("GachaScene");
         //AdMobManager.GetComponent<AdMobInterstitial>().name = "GachaScene";
         //string name =AdMobManager.GetComponent<AdMobInterstitial>().name;
         print("name,"+name);
@@ -206,14 +235,17 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         pAdInterstitial.AdSceneName = "GachaScene";
 
-        if(IScount>0 && IScount%2 ==0){
+        if(IScount>0 && IScount % InterstitialAdInterval==0){
             if (!GameManager.instance.isInterstitialAdsRemoved)
             {
-                pAdInterstitial.ShowAdMobInterstitial();
+                StartCoroutine(ShowInterstitialWithSpinner(() =>
+                {
+                    // 広告終了後、シーン遷移
+                    SceneManager.LoadScene("GachaScene");
+                }));
                 return;
             }
         }
-        
         SoundManager.instance.PlaySousaSE(2);
         pAdInterstitial.DestroyInterstitialAd();   
         SceneManager.LoadScene("GachaScene");
@@ -249,6 +281,7 @@ public class PanelManager : MonoBehaviour
         //Panel0.SetActive(true);
     }
 
+    //初期画面からの移動は広告にはカウントしない
     public void TopSceneMoveTitle(){
         SoundManager.instance.StopSE();
         //DOTween.KillAll();
@@ -288,7 +321,7 @@ public class PanelManager : MonoBehaviour
         pAdMobBanner.DestroyBannerAd();
         pAdReward.DestroyRewardAd();
         pAdInterstitial.DestroyInterstitialAd();   
-        SoundManager.instance.PlayPanelBGM("SelectPanel");
+        SoundManager.instance.PlayBGM("TikaraScene");
         SoundManager.instance.PlaySousaSE(2);
         SceneManager.LoadScene("TikaraScene");
        

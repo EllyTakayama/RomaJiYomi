@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 //5月19日更新
 
 public class AdMobReward : MonoBehaviour
-{
+{//AdMobRewardが報酬をえた時にコールバックを起こせるように変更。受けてはAdReward.cs
     private bool rewardeFlag = false;//リワード広告の報酬付与用　初期値はfalse
     private bool rewardeFlag1 = false;//リワード広告の報酬付与用　初期値はfalse
     private bool SpinnerFlag = false;//Spinnerパネル表示用　初期値はfalse
@@ -16,7 +16,11 @@ public class AdMobReward : MonoBehaviour
     private bool NoShowFlag = false;//リワード広告が読み込めていなかった場合　初期値はfalse
 
     private RewardedAd rewardedAd;//RewardedAd型の変数 rewardedAdを宣言 この中にリワード広告の情報が入る
-
+    
+    // Actionコールバック
+    private Action onRewardEarned;// 広告が報酬を獲得しが閉じられたあとに実行する処理（必要に応じて代入）
+    private Action onAdFailed; // 広告が失敗した際に実行する処理（Spinner非表示用）
+    private Action onAdOpened;//広告が開いた時のコールバック
     
 #if UNITY_ANDROID
     string adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
@@ -39,6 +43,7 @@ public class AdMobReward : MonoBehaviour
         #endif   
         //CreateAndLoadRewardedAd();
     }
+    /*
     private void Update()
     {
         //広告がダウンロード失敗して表示されない場合
@@ -85,8 +90,7 @@ public class AdMobReward : MonoBehaviour
             //Debug.Log("リワードOpenRewardFlag" + OpenRewardFlag);
         }
 
-    }
-
+    }*/
     //リワード広告読み込む関数
     public void CreateAndLoadRewardedAd()
     {
@@ -133,8 +137,7 @@ public class AdMobReward : MonoBehaviour
     ad.OnAdImpressionRecorded += () =>
     {
         rewardeFlag = true;
-        //Debug.Log("リワードrewardFlag" + rewardeFlag);
-        //Debug.Log("Rewarded ad recorded an impression.");
+        Debug.Log("広告インプレッションが記録されました。");
     };
     // Raised when an ad opened full screen content.
     ad.OnAdFullScreenContentOpened += () =>
@@ -155,9 +158,8 @@ public class AdMobReward : MonoBehaviour
     // Raised when the ad failed to open full screen content.
     ad.OnAdFullScreenContentFailed += (AdError error) =>
     {
-        Debug.LogError("Rewarded ad failed to open full screen content " +
-                       "with error : " + error);
-        //Debug.Log("読み込みエラー");
+        Debug.LogError("広告表示中にエラーが発生しました: " + error);
+        onAdFailed?.Invoke(); // 失敗した場合にSpinnerを非表示にする処理
         CreateAndLoadRewardedAd();
     };
           });
@@ -168,13 +170,16 @@ public class AdMobReward : MonoBehaviour
     {
         const string rewardMsg =
         "Rewarded ad rewarded the user. Type: {0}, amount: {1}.";
+        // Spinner表示（広告表示準備）
 
     if (rewardedAd != null && rewardedAd.CanShowAd())
     {
         rewardedAd.Show((Reward reward) =>
         {
-            // TODO: Reward the user.
-            Debug.Log(String.Format(rewardMsg, reward.Type, reward.Amount));
+            Debug.Log($"ユーザーが報酬を獲得: {reward.Type}, {reward.Amount}");
+
+            // ここで報酬処理を呼び出す
+            onRewardEarned?.Invoke();
         });
     }
     else{
@@ -184,6 +189,22 @@ public class AdMobReward : MonoBehaviour
      
     }
   
+    // ------------------------------
+    // コールバックを登録  メソッドはAdRewardManager.csで準備
+    // ------------------------------
+    public void SetOnAdOpenedCallback(Action callback)
+    {
+        onAdOpened = callback;
+    }
+    // 広告が失敗した際のコールバック設定
+    public void SetOnAdFailedCallback(Action callback)
+    {
+        onAdFailed = callback;
+    }
+    public void SetOnRewardEarnedCallback(Action callback)
+    {
+        onRewardEarned = callback;
+    }
     //Rewardの破棄とメモリリリース
     public void DestroyRewardAd()
     {

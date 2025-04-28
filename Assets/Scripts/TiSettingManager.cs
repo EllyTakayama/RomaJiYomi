@@ -29,7 +29,7 @@ public class TiSettingManager : MonoBehaviour
         Debug.Log("スタートロード");
         string SceneName =SceneManager.GetActiveScene().name;
         if(SceneName =="TikaraScene"){
-            SoundManager.instance.PlayPanelBGM("SelectPanel");
+            SoundManager.instance.PlayBGM("TikaraScene");
         }
         if(SceneName =="KihonScene"){
             SoundManager.instance.PlayBGM("KihonScene");
@@ -169,7 +169,7 @@ public class TiSettingManager : MonoBehaviour
       if (bgmToggle.isOn ==true){
              SoundManager.instance.UnmuteBGM();
              //SoundManager.instance.PlayPanelBGM("SelectPanel");
-             //SoundManager.instance.PlayBGM("TikaraScene");
+             SoundManager.instance.PlayBGM("TikaraScene");
              }
         else{
             SoundManager.instance.BGMmute();

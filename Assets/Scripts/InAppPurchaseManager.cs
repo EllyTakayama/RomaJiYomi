@@ -3,6 +3,9 @@ using UnityEngine;
 using UnityEngine.Purchasing;
 using UnityEngine.Purchasing.Extension;
 using UnityEngine.UI;
+using Unity.Services.Core;
+using System;
+using System.Globalization;
 
 public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
 {
@@ -23,6 +26,13 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         { "romajioff_480jpy", ProductType.NonConsumable }          // 広告削除完全版（買い切り）
     };
 
+    private async void Awake()
+    {
+        if (UnityServices.State != ServicesInitializationState.Initialized)
+        {
+            await UnityServices.InitializeAsync();
+        }
+    }
     private void Start()
     {
         if (storeController == null)
@@ -57,7 +67,19 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
             {
                 if (success)
                 {
-                    ApplyPurchaseStatus(); // 成功したら購入反映
+                    Debug.Log("Restore succeeded: " + message);
+
+                    // ストア内の全ての製品を確認
+                    foreach (var product in storeController.products.all)
+                    {
+                        // レシート（購入履歴）が存在するかつ、対象商品ID（広告削除）と一致する場合
+                        if (product.hasReceipt && !string.IsNullOrEmpty(product.definition.id))
+                        {
+                            // 購入済みとしてローカル状態を保存（Easy Save 3）
+                            GameManager.instance.SavePurchaseState(product.definition.id, true);
+                            GameManager.instance.SavePurchaseDate(product.definition.id, DateTime.Now.ToString());
+                        }
+                    }
                 }
                 else
                 {
