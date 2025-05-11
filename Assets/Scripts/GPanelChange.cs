@@ -180,11 +180,12 @@ public class GPanelChange : MonoBehaviour
         }
     }
     public void ButtonLR(){
+        SoundManager.instance.StopSE();//SEをストップしてから再生
         SoundManager.instance.PlaySousaSE(1);
     }
 
     public void OnRightButton(){
-        
+        ButtonLR();//効果音を再生
     if(currentPanel == Panel.gachaPanel ){
         ShowGachaPanel(Panel.Panel1chara);
         //Debug.Log("2");
@@ -236,7 +237,7 @@ public class GPanelChange : MonoBehaviour
     }
 
     public void OnLeftButton(){
-        
+        ButtonLR();//効果音を再生
         if(currentPanel == Panel.Panel4item ){
         ShowGachaPanel(Panel.Panel3item);
         //Debug.Log("2");

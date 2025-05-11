@@ -12,9 +12,16 @@ public class DONekoMover : MonoBehaviour
     //public float endOffsetFactor = 1.3f; // どの位置で終わるか（パネル幅の倍率）
 
     private Tween moveTween; // DOTween の Tween 参照
+    
+    private float startX;           // 初期X位置（右端）
+    private float startY;           // 初期Y位置（上下リセット時に使う）
+    private float endX;             // 終了X位置（左端）
 
     void Start()
     {
+        // 初期位置（Y軸）を保存
+        startY = nekoImage.anchoredPosition.y;
+        startX = nekoImage.anchoredPosition.x;
         StartNekoLoop();
     }
 
@@ -43,6 +50,19 @@ public class DONekoMover : MonoBehaviour
                 StartNekoLoop();
             })
             .SetLink(gameObject); // GameObject が破棄されたら Tween も自動停止
+    }
+    
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("LeftBoundary"))
+        {
+            // 左端にぶつかったら、右端に戻す
+            float panelWidth = panel.rect.width;
+            float newX = panelWidth + 30;
+
+            // Y位置はカメラ範囲内（初期Y）に戻す
+            nekoImage.anchoredPosition = new Vector2(newX, startY);
+        }
     }
 
     void OnDestroy()

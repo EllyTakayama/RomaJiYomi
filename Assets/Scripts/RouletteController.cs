@@ -33,7 +33,28 @@ public class RouletteController : MonoBehaviour
     [SerializeField] private GameObject hiraganaImage;
     public List<int> RCNum = new List<int>();
     private HiraDictionary cd;
-
+    // ローマ字Tipsをランダム表示
+    private string[] tips = new string[]
+    {
+        "あ行の母音5つをおぼえよう！\n小文字だとa,i,u,e,o",
+        "あ行の母音5つをおぼえよう！\n小文字だとA,I,U,E,O",
+        "ローマ字は子音と母音の組み合わせで読もう！",
+        "小さい『ゃ・ゅ・ょ』に注意！\n→ 『きゃ』はkya、『しゅ』はshuだよ！",
+        "促音『っ』は子音を重ねて！\n→ 『かっこ』はkakko！",
+        "ローマ字は子音と母音の組み合わせで読もう！",
+        "『し』は訓令式だとsi、\nヘボン式だとshiと書くよ！",
+        "『ち』は訓令式ではti、\nヘボン式ではchiになるよ！",
+        "『つ』は訓令式ではtu、\nヘボン式ではtsuと書くよ！",
+        "『ふ』は訓令式ではhu、\nヘボン式ではfuと書くんだ！",
+        "小学校では訓令式をならうよ！",
+        "ヘボン式は中学校やパスポートなど生活で使われる書式",
+        "声に出すと覚えやすくなるよ！",
+        "くり返す音『っ』は子音を2回！\n→『コップ』はkoppu！",
+        "『し』はパスポートなどではヘボン式で「shi」って書くよ！",
+        "駅の名前はヘボン式\n（「しぶや」はShibuya！）",
+        "駅のローマ字はヘボン式！\nしぶや → Shibuya、ふなばし → Funabashi！",
+        "ヘボン式は、外国の人にも読みやすくする書き方！",
+    };
     void Start(){
         //Debug.Log("vo"+romajiRC50[111]);
         //Debug.Log("romajiRC50"+romajiRC50.Length);
@@ -77,6 +98,9 @@ public class RouletteController : MonoBehaviour
         hiraganaImage.gameObject.SetActive (false);  
         startButton.gameObject.SetActive (false);
         SoundManager.instance.PlaySousaSE(7);
+        string randomTip = tips[Random.Range(0, tips.Length)];
+        hiraganaImage.GetComponentInChildren<Text>().text = randomTip;
+        //hiraganaImage.GetComponentInChildren<Text>().text = "ローマ字表示の切り替えは\n『設定』から変更できます";
         Invoke ("ShowStopButton", 0.2f);
         isPlaying = true;
     }
@@ -313,7 +337,6 @@ public class RouletteController : MonoBehaviour
             
             }
         if(isGomoji == true){//5文字の場合の分岐
-           
             for(int i = 0; i<hiraganaButtons.Length; i++){
                  RCNum.Add(j);
                 //5文字で大文字の場合の分岐

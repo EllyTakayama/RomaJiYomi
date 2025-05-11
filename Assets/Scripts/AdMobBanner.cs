@@ -4,7 +4,7 @@ using System.Collections;
 using GoogleMobileAds.Api;
 using GoogleMobileAds;
 using UnityEngine.SceneManagement;
-//7月17日更新
+//20250429日更新_10.0ver
 
 public class AdMobBanner : MonoBehaviour
 {
@@ -22,14 +22,21 @@ public class AdMobBanner : MonoBehaviour
 #endif
     
     private BannerView _bannerView;//BannerView型の変数bannerViewを宣言この中にバナー広告の情報が入る
-    private bool isBannerAdsRemoved;
+
     //シーン読み込み時からバナーを表示する
     //最初からバナーを表示したくない場合はこの関数を消してください。
     private IEnumerator WaitForGameManager()
     {
+        // GameManager が生成されるまで待機
         while (GameManager.instance == null)
         {
-            yield return null; // 次のフレームまで待機
+            yield return null;
+        }
+
+        // 課金状態が読み込まれるまで待機
+        while (!GameManager.instance.isPurchaseStateLoaded)
+        {
+            yield return null;
         }
         Debug.Log("[AdMobBanner] GameManagerがロードされました。課金状態をチェックします。");
         InitializeAdMobBanner();
@@ -38,7 +45,7 @@ public class AdMobBanner : MonoBehaviour
     private void InitializeAdMobBanner()
     {
 // GameManagerのフラグを直接使用
-        if (GameManager.instance.isBannerAdsRemoved)
+        if (GameManager.instance.AreAdsRemoved())
         {
             Debug.Log("[AdMobBanner] バナー広告は非表示状態です。");
         }
@@ -51,16 +58,6 @@ public class AdMobBanner : MonoBehaviour
     private void Start()
     {
         StartCoroutine(WaitForGameManager());
-        /*
-        // 課金状態の読み込み
-        isBannerAdsRemoved = ES3.KeyExists("isBannerAdsRemoved") && ES3.Load<bool>("isBannerAdsRemoved");
-
-        if (!isBannerAdsRemoved)
-        {
-            RequestBanner();
-        }
-        //RequestBanner();//アダプティブバナーを表示する関数 呼び出し
-        */
     }
     
     //ボタン等に割り付けて使用
@@ -68,7 +65,7 @@ public class AdMobBanner : MonoBehaviour
     public void BannerStart()
     {
         // 課金されていない場合のみバナー広告を表示
-        if (!GameManager.instance.isBannerAdsRemoved)
+        if (!GameManager.instance.AreAdsRemoved())
         {
             RequestBanner();
         }      
@@ -92,27 +89,25 @@ public class AdMobBanner : MonoBehaviour
     //アダプティブバナーを表示する関数
     public void RequestBanner()
     { 
-        // 新しい広告を表示する前にバナーを削除
-        if (_bannerView != null)//もし変数bannerViewの中にバナーの情報が入っていたら
+        if (_bannerView != null)
         {
-            _bannerView.Destroy();//バナー削除
+            _bannerView.Destroy(); // バナー削除
             _bannerView = null;    // リソースの解放
         }
 
-        //現在の画面の向き横幅を取得しバナーサイズを決定
-        AdSize adaptiveSize =
-                AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
+        // 現在の画面の向き横幅を取得しバナーサイズを決定
+        AdSize adaptiveSize = AdSize.GetCurrentOrientationAnchoredAdaptiveBannerAdSizeWithWidth(AdSize.FullWidth);
 
+        // バナーを生成 new BannerView(バナーID,バナーサイズ,バナー表示位置)
+        _bannerView = new BannerView(adUnitId, adaptiveSize, AdPosition.Bottom);
 
-        //バナーを生成 new BannerView(バナーID,バナーサイズ,バナー表示位置)
-        _bannerView = new BannerView(adUnitId, adaptiveSize, AdPosition.Bottom);//バナー表示位置は
-    
-        //BannerView型の変数 bannerViewの各種状態 に関数を登録
+        // BannerView型の変数 bannerViewの各種状態に関数を登録
         ListenToAdEvents();
-        //リクエストを生成
-        var adRequest = new AdRequest.Builder().Build();
 
-        //広告表示
+        // リクエストを生成
+        var adRequest = new AdRequest();
+
+        // 広告表示
         _bannerView.LoadAd(adRequest);
     }
     private void ListenToAdEvents()

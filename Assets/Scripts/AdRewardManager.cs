@@ -1,12 +1,14 @@
 using UnityEngine;
 using UnityEngine.Serialization;
-
+using System.Collections;//Coroutineのために必要
+using UnityEngine.SceneManagement;
 public class AdRewardManager : MonoBehaviour
 {
     [SerializeField] private GameObject afterAdPanel;
     [SerializeField] private GameObject SpinnerPanel;
     [SerializeField] private DOafterRewardPanel dOafterRewardPanel;//リワード呼び出し後のスクリプト取得
 
+    private string _sceneName;//現在のシーンの名前を取得する
     // AdMobRewardはInspectorからアタッチ
     [SerializeField] private AdMobReward adMobReward;
     
@@ -15,35 +17,57 @@ public class AdRewardManager : MonoBehaviour
         if (adMobReward != null)
         {
             // 広告から報酬を受け取った際のコールバックを登録
-            adMobReward.SetOnRewardEarnedCallback(ExecuteReward);
-            // 広告失敗時のコールバックを登録（Spinner非表示）
+            // リワード取得時にコルーチンで処理
+            adMobReward.SetOnRewardEarnedCallback(() => StartCoroutine(RewardCoroutine()));
+            // 広告失敗時
             adMobReward.SetOnAdFailedCallback(HideSpinner);
-            //広告が起動した時にSpinner Panelを表示しておく
-            adMobReward.SetOnAdOpenedCallback(ShowSpinner); 
         }
     }
-    // 実際の報酬処理
-    private void ExecuteReward()
+
+    void Start()
     {
-        Debug.Log("RewardManager: 報酬を実行中");
+        // 3. 現在のシーン名に応じてBGM再生
+        _sceneName = SceneManager.GetActiveScene().name;
+        
+    }
+    /// <summary>
+    /// 広告報酬受け取り後に少し待ってから処理するコルーチン
+    /// </summary>
+    private IEnumerator RewardCoroutine()
+    {
+        yield return null; // 1フレーム待つ
+        // 1. オーディオシステムをリセット（iOS広告後の無音対策）
+        AudioSettings.Reset(AudioSettings.GetConfiguration());
+
+        // 2. 少し待ってから再生（リセット後の安定化）
+        yield return new WaitForSeconds(0.1f);
+        if (_sceneName == "TikaraScene" || _sceneName == "RenshuuScene")
+        {
+            SoundManager.instance.PlayPanelBGM("GradePanel");
+        }
+        else
+        {
+            SoundManager.instance.PlayBGM(_sceneName);
+        }
+        // 数フレーム待機（描画/音声/UI安定待ち）
+       
+        yield return null; // さらに1フレーム（合計2フレーム）
+
         // コイン加算処理
         GameManager.instance.LoadCoinGoukei();
         GameManager.instance.beforeTotalCoin = GameManager.instance.totalCoin;
         GameManager.instance.totalCoin += 150;
         GameManager.instance.SaveCoinGoukei();
-        // UI更新
+
+        // UI表示とアクション呼び出し
         if (afterAdPanel != null)
         {
             afterAdPanel.SetActive(true);
-            //DOafterRewardPanel rewardPanel = afterAdPanel.GetComponent<DOafterRewardPanel>();
-            //rewardPanel?.AfterReward();
-            dOafterRewardPanel.AfterReward();//リワード取得後のメソッド呼び出し
-        }
-        if (SpinnerPanel != null)
-        {
-            SpinnerPanel.SetActive(false);
+            if (dOafterRewardPanel != null)
+                dOafterRewardPanel.AfterReward();
         }
     }
+
     // 広告失敗時のSpinner非表示処理
     private void HideSpinner()
     {
@@ -52,13 +76,6 @@ public class AdRewardManager : MonoBehaviour
             SpinnerPanel.SetActive(false);
         }
     }
-    // Spinner表示処理（広告が開かれたタイミングで実行）
-    private void ShowSpinner()
-    {
-        if (SpinnerPanel != null)
-        {
-            SpinnerPanel.SetActive(true);
-        }
+
     }
 
-}

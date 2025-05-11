@@ -6,6 +6,7 @@ public class SceneLoader : MonoBehaviour
 {
 [SerializeField] private GameObject loadingPanel; // ローディングパネル
     public static bool IsSceneLoaded { get; private set; } = false; // シーンロード完了フラグ
+    [SerializeField] private AdMobReward adMobReward; // AdMobReward参照
 
     private void Start()
     {
@@ -15,8 +16,14 @@ public class SceneLoader : MonoBehaviour
         {
             loadingPanel.SetActive(true);
         }
+        IsSceneLoaded = true;
+        Debug.Log("シーンのロード完了！");
 
-        StartCoroutine(WaitForSceneLoad());
+        // GachaSceneだった場合のみ広告ロード監視を開始
+        if (SceneManager.GetActiveScene().name == "GachaScene" && adMobReward != null)
+        {
+            StartCoroutine(WaitUntilRewardAdLoaded());
+        }
     }
 
     private IEnumerator WaitForSceneLoad()
@@ -35,5 +42,16 @@ public class SceneLoader : MonoBehaviour
 
         IsSceneLoaded = true;
         Debug.Log("シーンのロード完了！");
+    }
+    
+    private IEnumerator WaitUntilRewardAdLoaded()
+    {
+        if (loadingPanel == null || adMobReward == null)
+            yield break;
+
+        yield return new WaitUntil(() => adMobReward.IsRewardedAdLoaded);
+
+        loadingPanel.SetActive(false);
+        Debug.Log("Reward広告がロードされたためSpinnerPanelを非表示にしました。");
     }
 }

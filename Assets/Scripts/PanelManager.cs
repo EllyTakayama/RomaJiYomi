@@ -94,7 +94,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         
         if(IScount>0 && IScount % InterstitialAdInterval ==0){
-            if (!GameManager.instance.isInterstitialAdsRemoved)
+            if (!GameManager.instance.AreAdsRemoved())
             {
                 StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {
@@ -130,7 +130,7 @@ public class PanelManager : MonoBehaviour
 
         if (IScount > 0 && IScount % InterstitialAdInterval == 0)
         {
-            if (!GameManager.instance.isInterstitialAdsRemoved)
+            if (!GameManager.instance.AreAdsRemoved())
             {
                 StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {
@@ -166,7 +166,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
         
         if(IScount>0 && IScount % InterstitialAdInterval ==0){
-            if (!GameManager.instance.isInterstitialAdsRemoved)
+            if (!GameManager.instance.AreAdsRemoved())
             {
                 StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {
@@ -201,7 +201,7 @@ public class PanelManager : MonoBehaviour
         pAdReward.DestroyRewardAd();
 
         if(IScount>0 && IScount% InterstitialAdInterval ==0){
-            if (!GameManager.instance.isInterstitialAdsRemoved)
+            if (!GameManager.instance.AreAdsRemoved())
             {
                 StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {
@@ -236,7 +236,7 @@ public class PanelManager : MonoBehaviour
         pAdInterstitial.AdSceneName = "GachaScene";
 
         if(IScount>0 && IScount % InterstitialAdInterval==0){
-            if (!GameManager.instance.isInterstitialAdsRemoved)
+            if (!GameManager.instance.AreAdsRemoved())
             {
                 StartCoroutine(ShowInterstitialWithSpinner(() =>
                 {

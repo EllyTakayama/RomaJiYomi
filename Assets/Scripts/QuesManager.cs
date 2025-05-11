@@ -24,6 +24,7 @@ public class QuesManager : MonoBehaviour
     [SerializeField] private Dropdown dropdown50;
     [SerializeField] private Dropdown dropdownHoka;
     [SerializeField] private string setText;
+    [SerializeField] private string ballonText;//ballonTextに代入するようのtext
     [SerializeField] private Toggle[] HyoToggles;
     [SerializeField] private GameObject hButtonPanel;
     [SerializeField] private GameObject hokaButtonPanel;
@@ -265,7 +266,6 @@ public class QuesManager : MonoBehaviour
     {
        MakeInstance();
     }
-
      void MakeInstance()
     {
         if (instance == null)
@@ -273,8 +273,7 @@ public class QuesManager : MonoBehaviour
             instance = this;
         }
     }
-
-
+    
     void Start()
     {
         Debug.Log("start");
@@ -379,7 +378,7 @@ public class QuesManager : MonoBehaviour
         Debug.Log("i,"+i);
         Debug.Log("n,"+n);
         GameObject Ballon = Instantiate(HyoBallons[BallonPre],
-        new Vector3 (UnityEngine.Random.Range(-250f,100f), UnityEngine.Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
+        new Vector3 (UnityEngine.Random.Range(-200f,100f), UnityEngine.Random.Range(-200f,100f), 0.0f),//生成時の位置xをランダムするVector3を指定
             transform.rotation);//生成時の向き
             if(HyoToggles[0].isOn == true){
                 Ballon.transform.SetParent(hButtonPanel.transform,false); 
@@ -397,40 +396,40 @@ public class QuesManager : MonoBehaviour
             if(GameManager.instance.isGKunrei == true){
                 if(GameManager.instance.isGfontsize == true){
                    
-                    //setText = hiragana50[i]+"\n"+RomaJi50[i];
-                    setText = RomaJi50[i];
+                    setText = hiragana50[i]+"\n"+RomaJi50[i];
+                    ballonText = RomaJi50[i];
 
                 }else{
-                    //setText = hiragana50[i]+"\n"+romaji50[i];
-                    setText = romaji50[i];
+                    setText = hiragana50[i]+"\n"+romaji50[i];
+                    ballonText = romaji50[i];
                 }
             }else{//ヘボン式の場合は検索する必要がある
             if(GameManager.instance.isGfontsize == true){
             string hebon = RomaJi50[i];
             if(rq.dicHebon.ContainsKey(hebon)){
                         hebon = rq.dicHebon[hebon];
-                        //setText = hiragana50[i]+"\n"+hebon;
-                        setText = hebon;
+                        setText = hiragana50[i]+"\n"+hebon;
+                        ballonText = hebon;
             }else{
-                //setText = hiragana50[i]+"\n"+RomaJi50[i];
-                setText = RomaJi50[i];
+                setText = hiragana50[i]+"\n"+RomaJi50[i];
+                ballonText = RomaJi50[i];
             }
             }else{//ヘボン式かつ小文字の場合
             string hebon = romaji50[i];
             if(rq.dicHebon.ContainsKey(hebon)){
                         hebon = rq.dicHebon[hebon];
-                        //setText = hiragana50[i]+"\n"+hebon;
-                        setText = hebon;
+                        setText = hiragana50[i]+"\n"+hebon;
+                        ballonText = hebon;
             }else{
-                //setText = hiragana50[i]+"\n"+romaji50[i];
-                setText = romaji50[i];
+                setText = hiragana50[i]+"\n"+romaji50[i];
+                ballonText = romaji50[i];
                 
             }
             }
             }
             HyouButtons[i].GetComponentInChildren<Text>().text = setText; 
-            Debug.Log($"{i}_{setText}");
-            HyoBallonsText.Add(setText);
+            //Debug.Log($"{i}_{setText}");
+            HyoBallonsText.Add(ballonText);
         }
     }
 

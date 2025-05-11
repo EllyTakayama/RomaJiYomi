@@ -4,22 +4,15 @@ using System;
 using GoogleMobileAds;
 using UnityEngine.SceneManagement;
 using GoogleMobileAds.Common;
-
+//20250502_10.0ver
 public class AdMobInterstitial : MonoBehaviour
 {
     //Button押した時にブール取得　Home false Return trueで行き先のシーンを取得する
     public string AdSceneName;//ホームへ移動する
-    private bool rewardeFlag = false;//リワード広告の報酬付与用　初期値はfalse
-    private bool SpinnerFlag = false;//Spinnerパネル表示よう　初期値はfalse
-    private bool OpenInterAdFlag = false;//リワード広告全面表示　初期値はfalse
-    //private bool CloseInterAdFlag = false;//リワード広告全面表示　初期値はfalse
-    //public GameObject AdMobManager;//各SceneのアドモブManager
-    //public GameObject SpinnerPanel;//シーン移動の間を持たせるようのPanel
     private InterstitialAd interstitialAd;//InterstitialAd型の変数interstitialを宣言　この中にインタースティシャル広告の情報が入る
     //private bool isInterstitialAdsRemoved; // 課金フラグ
     private Action onAdClosed; // 広告終了後に呼び出す処理
-    private bool isAdShowing = false; //インタースティシャル広告表示中フラグ
-    public bool IsAdShowing { get; private set; } //広告が現在表示中か？を外部参照できるプロパティ
+    public bool IsAdShowing { get; private set; } = false;//広告が現在表示中か？を外部参照できるプロパティ
 #if UNITY_ANDROID
     string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
     //string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
@@ -37,7 +30,7 @@ public class AdMobInterstitial : MonoBehaviour
         MobileAds.SetiOSAppPauseOnBackground(true);
         // 他の初期化処理...
         //isInterstitialAdsRemoved = ES3.KeyExists("isInterstitialAdsRemoved") && ES3.Load<bool>("isInterstitialAdsRemoved");
-        if (!GameManager.instance.isInterstitialAdsRemoved)
+        if (!GameManager.instance.AreAdsRemoved())
         {
             // 課金状態の読み込み
             RequestInterstitial(); // インタースティシャル広告の読み込み
@@ -50,7 +43,7 @@ public class AdMobInterstitial : MonoBehaviour
     public void ShowAdMobInterstitial(Action onClosed = null)
     {
         onAdClosed = onClosed; //追加！
-        if (GameManager.instance.isInterstitialAdsRemoved)
+        if (GameManager.instance.isRomajiSubRemoved)
         {
             // 課金済みの場合、広告スキップして直接処理を実行
             onClosed?.Invoke();
@@ -73,29 +66,6 @@ public class AdMobInterstitial : MonoBehaviour
             onAdClosed?.Invoke(); // 広告未準備でもコールバック実行   
         }
     }
-
-    //インタースティシャル広告を表示する関数
-    //ボタンなどに割付けして使用
-    /*
-    public void ShowAdMobInterstitial()
-    {
-        if (GameManager.instance.isInterstitialAdsRemoved)
-        {
-            SceneManager.LoadScene(AdSceneName);
-            return;
-        }
-        if (interstitialAd != null && interstitialAd.CanShowAd())
-    {
-        interstitialAd.Show();
-        //Debug.Log("インタースティシャル広告表示");
-    }
-    else
-    {
-        SceneManager.LoadScene(AdSceneName);
-   
-    }
-}*/
-       
     //インタースティシャル広告を読み込む関数
     public void RequestInterstitial()
     {
@@ -105,9 +75,7 @@ public class AdMobInterstitial : MonoBehaviour
             interstitialAd = null;
         }
 
-        var adRequest = new AdRequest.Builder()
-            .AddKeyword("AdmobInterstitial")
-            .Build();
+        var adRequest = new AdRequest();
 
         InterstitialAd.Load(adUnitId, adRequest, (InterstitialAd ad, LoadAdError error) =>
         {
@@ -116,37 +84,43 @@ public class AdMobInterstitial : MonoBehaviour
                 Debug.LogError("Interstitial failed to load: " + error);
                 return;
             }
-
             interstitialAd = ad;
+            RegisterAdEvents(ad);
 
-            // 🔸イベント設定
-            ad.OnAdFullScreenContentOpened += () =>
-            {
-                OpenInterAdFlag = true;
-                SpinnerFlag = true;
-                Debug.Log("Interstitial opened");
-            };
-
-            ad.OnAdFullScreenContentClosed += () =>
-            {
-                Debug.Log("Interstitial closed");
-
-                rewardeFlag = true; // Update() 内でシーン遷移をトリガー
-
-                interstitialAd.Destroy(); // 使い捨て
-                RequestInterstitial();     // 再読み込み
-                onAdClosed?.Invoke(); // 終了後の処理を呼ぶ
-                IsAdShowing = false; //広告表示完了 → フラグOFF
-            };
-
-            ad.OnAdFullScreenContentFailed += (AdError error) =>
-            {
-                Debug.LogError("Interstitial failed to open: " + error);
-                RequestInterstitial();
-            };
+            Debug.Log("Interstitial loaded successfully.");
         });
     }
+    
+    /// <summary>
+    /// 広告イベント登録
+    /// </summary>
+    private void RegisterAdEvents(InterstitialAd ad)
+    {
+        ad.OnAdFullScreenContentOpened += () =>
+        {
+            Debug.Log("Interstitial opened.");
+        };
+        //成功した時
+        ad.OnAdFullScreenContentClosed += () =>
+        {
+            Debug.Log("Interstitial closed.");
+            IsAdShowing = false;
 
+            onAdClosed?.Invoke();
+            onAdClosed = null; // 再実行防止
+
+            DestroyInterstitialAd();
+            RequestInterstitial(); // 次の広告を事前ロード
+        };
+        //失敗した時
+        ad.OnAdFullScreenContentFailed += (AdError error) =>
+        {
+            Debug.LogError("Interstitial failed to open: " + error);
+            IsAdShowing = false;
+            DestroyInterstitialAd();
+            RequestInterstitial();
+        };
+    }
     //インタースティシャルの破棄とメモリリリース
     public void DestroyInterstitialAd()
     {

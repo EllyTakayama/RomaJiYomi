@@ -184,7 +184,46 @@ public class BDest : MonoBehaviour
                     b++;
                 }
                 } 
-            else if(b>1){
+            else if (b == 2)
+            {
+                bPrefabs1[num].GetComponentInChildren<Text>().text =  hiragana50[BallonNumber];
+                b++;
+            }
+            else if(b>2){
+                if(GameManager.instance.isGfontsize==true){
+                    //大文字でヘボン式の分岐
+                    if(GameManager.instance.isGKunrei == false){
+                        string c = RomaJi50[BallonNumber];
+                        //Debug.Log("c"+c);
+                        if(cd.dicHebon.ContainsKey(c)){
+                            c = cd.dicHebon[c];
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                        else{
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber];
+                        }
+                    }else{//大文字で訓令式の分岐
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber];
+                    }
+                    //Debug.Log("大文字ひらがなb"+b);
+                    b++;}
+                else{//小文字の場合の分岐
+                    //小文字でヘボン式の場合の分岐
+                    if(GameManager.instance.isGKunrei == false){
+                        string c = RomaJi50[BallonNumber].ToLower();
+                        if(cd.dicHebon.ContainsKey(c)){
+                            c = cd.dicHebon[c];
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = c;
+                        }
+                        else{
+                            bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber].ToLower();
+                        }
+                    }else{//小文字で訓令式の分岐
+                        bPrefabs1[num].GetComponentInChildren<Text>().text = RomaJi50[BallonNumber].ToLower();
+                    }
+                    //Debug.Log("小文字ひらがなb"+b);
+                    b++;
+                }
                 bPrefabs1[num].sprite = BrokenBallon[num];
                 bPrefabs1[num].GetComponent<DOScale>().BallonScale();
                 SoundManager.instance.PlaySousaSE(17);

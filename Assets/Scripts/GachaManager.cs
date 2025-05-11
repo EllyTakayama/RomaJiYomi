@@ -72,7 +72,6 @@ public class GachaManager : MonoBehaviour
 		// SceneLoader のロード完了待ち
 		yield return new WaitUntil(() => SceneLoader.IsSceneLoaded);
 		Debug.Log("GachaManager: シーンの初期化OK");
-		
 		GachaAdReward.CreateAndLoadRewardedAd();
 		GachaGameManager.LoadCoinGoukei();
 		coinText.text = GachaGameManager.totalCoin.ToString();
@@ -93,7 +92,8 @@ public class GachaManager : MonoBehaviour
 		//Debug.Log(GachaNum.Count);
 		SetChara();
 		InitializeDicts();//GachaItem.csのアイテム名、確率を取得する
-		
+		// リワード広告がロード完了するまで待つ
+		yield return new WaitUntil(() => GachaAdReward.IsRewardedAdLoaded);
 		loadingPanel.SetActive(false);
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
@@ -112,7 +112,6 @@ public class GachaManager : MonoBehaviour
 		coinText.text = GachaGameManager.totalCoin.ToString();
 
 		//InitializeDicts();
-		
 		/*
 		names = GachaObject.GetComponent<GachaItem>().GachaChara;
 		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;

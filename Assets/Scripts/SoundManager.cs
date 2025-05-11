@@ -6,7 +6,7 @@ using UnityEngine;
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
-
+    public bool IsInitialized { get; private set; }
     private void Awake()
     {
         if (instance == null)
@@ -18,6 +18,7 @@ public class SoundManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+        IsInitialized = true;//初期化フラグをtrueにする
     }
     //--シングルトン終わり--
 

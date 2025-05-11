@@ -21,8 +21,7 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     // 商品IDとタイプの定義（定期購読・非消耗型など）
     private Dictionary<string, ProductType> productCatalog = new Dictionary<string, ProductType>
     {
-        { "romaji_banneroff120jpy", ProductType.Subscription },    // バナー広告非表示サブスク
-        { "interoff_sub160jpy", ProductType.Subscription },         // 動画広告非表示サブスク
+        { "romaji_suboff_160jpy", ProductType.Subscription }, //サブスク広告一括オフ
         { "romajioff_480jpy", ProductType.NonConsumable }          // 広告削除完全版（買い切り）
     };
 
@@ -61,6 +60,75 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     public void RestorePurchases()
     {
 #if UNITY_IOS
+        if (storeController == null)
+        {
+            Debug.LogWarning("RestorePurchases called but storeController is null.");
+            return;
+        }
+        try
+        {
+            if (appleExtensions != null)
+            {
+                appleExtensions.RestoreTransactions((success, message) =>
+                {
+                    if (success)
+                    {
+                        Debug.Log("Restore succeeded: " + message);
+
+                        foreach (var product in storeController.products.all)
+                        {
+                            if (product.hasReceipt && !string.IsNullOrEmpty(product.definition.id))
+                            {
+                                GameManager.instance.SavePurchaseState(product.definition.id, true);
+                                GameManager.instance.SavePurchaseDate(product.definition.id, DateTime.Now.ToString());
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Restore failed or canceled: " + message);
+                    }
+                });
+            }
+            else
+            {
+                Debug.LogWarning("appleExtensions is null. Restore not supported.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Exception during RestorePurchases: " + ex.Message);
+            if (KakinResultPanel != null && KakinResultText != null)
+            {
+                KakinResultPanel.SetActive(true);
+                KakinResultText.text = "復元処理中にエラーが発生しました。\nインターネット接続を確認してください。";
+            }
+        }
+#elif UNITY_ANDROID
+    try
+    {
+        ApplyPurchaseStatus();
+    }
+    catch (Exception ex)
+    {
+        Debug.LogError("Exception during Android restore simulation: " + ex.Message);
+        if (KakinResultPanel != null && KakinResultText != null)
+        {
+            KakinResultPanel.SetActive(true);
+            KakinResultText.text = "復元処理中にエラーが発生しました。\nインターネット接続を確認してください。";
+        }
+    }
+#endif
+    }
+    /*
+    public void RestorePurchases()
+    {
+#if UNITY_IOS
+        if (storeController == null)
+        {
+            Debug.LogWarning("RestorePurchases called but storeController is null.");
+            return;
+        }
         if (appleExtensions != null)
         {
             appleExtensions.RestoreTransactions((success, message) =>
@@ -91,7 +159,7 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         // Androidでは特別な処理なしで状態を復元
         ApplyPurchaseStatus();
 #endif
-    }
+    }*/
 
     // 購入状況に応じた説明テキストを表示
     private void ApplyPurchaseStatus()
@@ -99,24 +167,29 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         if (GameManager.instance == null || storeController == null) return;
 
         string resultMessage = "";
-        bool hasPermanentAdRemoval = GameManager.instance.LoadPurchaseState("romajioff_480jpy");
-
-        if (hasPermanentAdRemoval)
+        // 永続広告非表示が最優先
+        if (GameManager.instance.isPermanentAdsRemoved)
         {
-            resultMessage = "広告削除完全版を購入すみです\nバナー広告とシーン移動時の動画広告は表示されません";
+            resultMessage = "【広告削除完全版を購入済みです】\n" +
+                            "バナー広告とシーン移動時の動画広告は今後表示されません。\n" +
+                            "※リワード広告（任意で視聴する広告）は対象外です。\n\n" +
+                            "購入情報は自動的に保存され、同じApple ID/Googleアカウントを使えば復元可能です。";
         }
+        // サブスクリプションが有効
+        else if (GameManager.instance.isRomajiSubRemoved)
+        {
+            resultMessage = "【広告一括オフ（サブスクリプション）を購入済みです】\n" +
+                            "バナー広告とシーン移動時の動画広告は契約期間中、表示されません。\n" +
+                            "※本サブスクリプションは1ヶ月ごとに自動更新されます。\n" +
+                            "※リワード広告（任意で視聴する広告）は対象外です。\n\n" +
+                            "契約内容や自動更新の停止は、App StoreまたはGoogle Playのサブスクリプション設定からいつでも変更できます。";
+        }
+        // どちらも無効
         else
         {
-            if (GameManager.instance.LoadPurchaseState("romaji_banneroff120jpy"))
-            {
-                resultMessage += "\nバナー広告非表示のサブスクリプションが契約期間中です";
-            }
-            if (GameManager.instance.LoadPurchaseState("interoff_sub160jpy"))
-            {
-                resultMessage += "\nシーン移動時に表示される動画広告非表示のサブスクリプションが契約期間中です";
-            }
+            resultMessage = "現在広告削除は購入されていません";
         }
-
+        
         if (KakinResultPanel != null)
         {
             KakinResultPanel.SetActive(true);
@@ -174,15 +247,18 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
 
         if (productId == "romajioff_480jpy")
         {
-            resultMessage = "広告削除完全版を購入すみです\nバナー広告とシーン移動時の動画広告は表示されません";
+            resultMessage = "【広告削除完全版を購入済みです】\n" +
+                            "バナー広告とシーン移動時の動画広告は今後表示されません。\n" +
+                            "※リワード広告（任意で視聴する広告）は対象外です。\n\n" +
+                            "購入情報はストアに自動的に保存され、同じApple ID/Googleアカウントを使えば復元可能です。";
         }
-        else if (productId == "romaji_banneroff120jpy")
+        else if (productId == "romaji_suboff_160jpy")
         {
-            resultMessage = "\nバナー広告非表示のサブスクリプションが契約期間中です";
-        }
-        else if (productId == "interoff_sub160jpy")
-        {
-            resultMessage = "\nシーン移動時に表示される動画広告非表示のサブスクリプションが契約期間中です";
+            resultMessage = "【広告一括オフ（サブスクリプション）を購入済みです】\n" +
+                            "バナー広告とシーン移動時の動画広告は契約期間中、表示されません。\n" +
+                            "※本サブスクリプションは1ヶ月ごとに自動更新されます。\n" +
+                            "※リワード広告（任意で視聴する広告）は対象外です。\n\n" +
+                            "自動更新の停止は、App StoreまたはGoogle Playのサブスクリプション設定からいつでも変更できます。";
         }
 
         if (KakinResultPanel != null)

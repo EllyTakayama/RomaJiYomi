@@ -32,8 +32,8 @@ public class GachaItem : MonoBehaviour
     void Awake()
     {
         SetGachaText();
-        DebugChara();
-        DebugSetumei();
+        //DebugChara();
+        //DebugSetumei();
         //DebugKKakuritu();
         //DebugKakuritu();
     }

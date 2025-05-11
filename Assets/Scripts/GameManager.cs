@@ -38,13 +38,16 @@ public class GameManager : MonoBehaviour
    public AdMobInterstitial adMobInterstitial; // AdMobInterstitialスクリプトをアタッチする
    // 課金状態フラグ（広告のサブスク状態を管理）
    // 購入フラグ
-   public bool isBannerAdsRemoved;
-   public bool isInterstitialAdsRemoved;
-   public bool isPermanentAdsRemoved;
-   
+   public bool isPermanentAdsRemoved;//永久課金購入フラグ
+   public bool isRomajiSubRemoved; // 広告全体オフのサブスクリプション対応
+   // 購入フラグを共通化広告非表示判定
+   public bool AreAdsRemoved()
+   {
+       return isRomajiSubRemoved || isPermanentAdsRemoved;
+   }
    // サブスクリプションの次回確認フラグ
-   private bool isSubscriptionCheckedForBanner = false;
-   private bool isSubscriptionCheckedForInterstitial = false;
+   //private bool isSubscriptionCheckedForRomaji = false; //広告サブスクリプションオフ
+   public bool isPurchaseStateLoaded = false;//課金のロード確認中
    
     private void Awake()
     {
@@ -64,58 +67,34 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        LoadSceneCount();
         // "isPermanentAdsRemoved" キーが存在し、かつ true の場合、広告を即座に非表示
-        if (ES3.KeyExists("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3") && 
-            ES3.Load<bool>("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3")) 
+        // 永続的な広告削除フラグの読み込み
+        if (ES3.KeyExists("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3"))
         {
-            Debug.Log("[GameManager] isPermanentAdsRemoved = true。広告を非表示にします。");
-            isBannerAdsRemoved = true;
-            isInterstitialAdsRemoved = true;
-
-            // フラグを永続化
-            SavePurchaseState("romaji_banneroff120jpy", true);
-            SavePurchaseState("interoff_sub160jpy", true);
-
-            // サブスクリプションの確認はスキップ
-            return;
+            isPermanentAdsRemoved = ES3.Load<bool>("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3");
+            Debug.Log("isPermanentAdsRemoved_"+isPermanentAdsRemoved);
         }
 
+        if (AreAdsRemoved())
+        {
+            Debug.Log("[GameManager] isPermanentAdsRemoved = true。広告を非表示にします。");
+            isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
+            // サブスクリプションの確認などをスキップ
+            return;
+        }
         // 広告の課金状態をローカルデータからチェック
-        CheckSubscriptionLocally("romaji_banneroff120jpy", "isBannerAdsRemoved");
-        CheckSubscriptionLocally("interoff_sub160jpy", "isInterstitialAdsRemoved");
-        //CheckSubscriptionLocally("romajioff_480jpy", "isPermanentAdsRemoved");
+        CheckSubscriptionLocally("romaji_suboff_160jpy", "isRomajiSubRemoved"); //広告全体オフ確認
        //LoadGfontsize();
        //LoadGKunrei();
        //LoadGse();
        //LoadGbgm();
        //Debug.Log("start");
        //SceneCount = 0;
-       LoadSceneCount();
+
        //Debug.Log("Sceneカウント" + SceneCount);
        //RequestReview();
        //Debug.Log("Sceneカウント"+SceneCount);
-       // 課金データを読み込み、広告を非表示に設定
-// 課金状態を読み込み、広告を非表示に設定
-
-/*
-       if (LoadPurchaseState("isBannerAdsRemoved"))
-       {
-           adMobBanner?.OnBannerPurchaseCompleted();
-       }
-
-       if (LoadPurchaseState("isInterstitialAdsRemoved"))
-       {
-           adMobInterstitial?.OnInterstitialPurchaseCompleted();
-       }
-
-       if (LoadPurchaseState("isPermanentAdsRemoved"))
-       {
-           // 永久的な広告非表示を設定（全ての広告を非表示）
-           adMobBanner?.OnBannerPurchaseCompleted();
-           adMobInterstitial?.OnInterstitialPurchaseCompleted();
-       }
-       */
-       
     }
     public DateTime LoadPurchaseDate(string itemId)
     {
@@ -234,28 +213,22 @@ public class GameManager : MonoBehaviour
         // フラグを更新
         switch (key)
         {
-            case "romaji_banneroff120jpy":
-                isBannerAdsRemoved = value;
-                ES3.Save<bool>("isBannerAdsRemoved", value, "isBannerAdsRemoved.es3");
-                if (isBannerAdsRemoved)
+            case "romaji_suboff_160jpy":
+                isRomajiSubRemoved = value;
+                ES3.Save<bool>("isRomajiSubRemoved", value, "isRomajiSubRemoved.es3");
+                if (isRomajiSubRemoved)
                 {
-                    Debug.Log("バナー広告を非表示にします。");
+                    Debug.Log("永久広告削除");
                     adMobBanner?.OnBannerPurchaseCompleted(); // バナー広告を削除
+                    adMobInterstitial?.OnInterstitialPurchaseCompleted();
                 }
                 break;
-
-            case "interoff_sub160jpy":
-                isInterstitialAdsRemoved = value;
-                ES3.Save<bool>("isInterstitialAdsRemoved", value, "isInterstitialAdsRemoved.es3");
-                break;
-
             case "romajioff_480jpy":
                 isPermanentAdsRemoved = value;
-                //ES3.Save<bool>("isBannerAdsRemoved", value, "isBannerAdsRemoved.es3");
-                //ES3.Save<bool>("isInterstitialAdsRemoved", value, "isInterstitialAdsRemoved.es3");
                 ES3.Save<bool>("isPermanentAdsRemoved", value, "isPermanentAdsRemoved.es3");
+                adMobBanner?.OnBannerPurchaseCompleted(); // バナー広告を削除
+                adMobInterstitial?.OnInterstitialPurchaseCompleted();
                 break;
-
             default:
                 Debug.LogWarning($"未知のアイテムID: {key}");
                 break;
@@ -298,23 +271,12 @@ public class GameManager : MonoBehaviour
         // フラグを復元
         switch (key)
         {
-            case "romaji_banneroff120jpy":
-                isBannerAdsRemoved = value;
-                break;
-
-            case "interoff_sub160jpy":
-                isInterstitialAdsRemoved = value;
+            case "romaji_suboff_160jpy":
+                isRomajiSubRemoved = value;
                 break;
 
             case "romajioff_480jpy":
                 isPermanentAdsRemoved = value;
-                if (isPermanentAdsRemoved)
-                {
-                    // 永久広告削除の場合、他の広告削除フラグも有効化
-                    isBannerAdsRemoved = true;
-                    isInterstitialAdsRemoved = true;
-                }
-
                 break;
 
             default:
@@ -324,29 +286,16 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"課金データ読み込み: {key} = {value}");
         return value;
-    }
-
+    } 
     // 広告状態を更新（広告非表示の処理）
     private void UpdateAdState()
     {
-        // 永久広告削除フラグが有効な場合は全ての広告を非表示にする
-        if (isPermanentAdsRemoved)
+        // 一体型広告非表示フラグが有効な場合は全ての広告を非表示にする
+        if (AreAdsRemoved())
         {
+            // サブスク中 または 永久購入済み → 広告を非表示
             adMobBanner?.OnBannerPurchaseCompleted();
             adMobInterstitial?.OnInterstitialPurchaseCompleted();
-        }
-        else
-        {
-            if (!isBannerAdsRemoved)
-            {
-                
-                adMobBanner?.BannerStart();
-            }
-            if (!isInterstitialAdsRemoved)
-            {
-                
-                adMobInterstitial?.OnInterstitialPurchaseCompleted();
-            }
         }
     }
     public void SaveSceneCount(){

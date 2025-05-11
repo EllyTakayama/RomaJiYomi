@@ -20,6 +20,8 @@ public class DONekoTouch : MonoBehaviour
     private Vector3 originalRotation;
     [SerializeField] private RectTransform nekoRect;
 
+    private int beforeAction = 0;//SmallDownを連続させないための変数
+
     void Start()
     {
         // RectTransform を使用して初期位置を取得
@@ -34,17 +36,29 @@ public class DONekoTouch : MonoBehaviour
     /// </summary>
     public void OnNekoClick()
     {
-        int actionIndex = Random.Range(1, 4); // 1〜3 のランダム値を生成
-
+        int actionIndex;
+        // 直前が SmallDown（3）だった場合、1 or 2 に限定
+        if (beforeAction == 3)
+        {
+            actionIndex = Random.Range(1, 3); // 1 か 2
+        }
+        else
+        {
+            actionIndex = Random.Range(1, 4); // 1〜3
+        }
+        beforeAction = actionIndex; // 今回の結果を保存
+        Debug.Log($"beforeAction_"+beforeAction);
         switch (actionIndex)
         {
             case 1:
                 SmallJump();
-                break;
-            case 2:
-                SmallDown();
+                PlayRandomCatSound();
                 break;
             case 3:
+                SmallDown();
+                PlayRandomCatSound();
+                break;
+            case 2:
                 PlayRandomCatSound();
                 break;
         }
