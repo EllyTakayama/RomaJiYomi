@@ -9,46 +9,53 @@ using Google.Play.Review;
 
 public class GameManager : MonoBehaviour
 {
-   public static GameManager instance;
-   public bool isGfontsize;//Setting画面での大文字小文字のbool
-   public bool isGKunrei;
-   //public bool isGfontSize;
-   public bool isSEOn;//SEオンオフ
-   public bool isBgmOn;//BGMオンオフ
-   public int AcorrectCount;//kihonSceneのあ行スコア
-   public int HcorrectCount;//kihonSceneのほかの行のスコア
-   public int TiTangoCount;//TikaraSceneの単語ごと解答のスコア
-   public int TyHiraganaCount;//TikaraSceneの1文字ずつ解答のスコア
-   public int RcorrectCount;//RenshuuSceneスコア
-   public int AcorrectTotal;//kihonSceneのあ行スコア保存
-   public int HcorrectTotal;//kihonSceneのほかの行のスコア保存
-   public int TiTangoTotal;//TikaraSceneの単語ごと解答のスコア保存
-   public int TyHiraganaTotal;//TikaraSceneの1文字ずつ解答のスコア保存
-   public int RcorrectTotal;//RenshuuSceneスコア保存
-   public bool isTiWord;//TikaraSceneの解答分岐のbool
-   public int RCoin;//RenshuuSceneの正解数に応じたコイン枚数
-   public int TiCoin;//TikaraSceneの単語問題の正解数に応じたコイン枚数
-   public int TyCoin;//TikaraSceneの1文字問題の正解数に応じたコイン枚数
-   public int beforeTotalCoin;//追加する前のコイン枚数　DOTweenのDOCountに使用
-   public int totalCoin;//各Sceneのコイン枚数はこちらに追加していく
-   public List<int> RoulletteNum = new List<int>();//ルーレットの風船の変数の保持
-   public int SceneCount;//インタースティシャル広告表示のためにScene表示をカウントしていきます
-   
-   public AdMobBanner adMobBanner; // AdMobBannerスクリプトをアタッチする
-   public AdMobInterstitial adMobInterstitial; // AdMobInterstitialスクリプトをアタッチする
-   // 課金状態フラグ（広告のサブスク状態を管理）
-   // 購入フラグ
-   public bool isPermanentAdsRemoved;//永久課金購入フラグ
-   public bool isRomajiSubRemoved; // 広告全体オフのサブスクリプション対応
-   // 購入フラグを共通化広告非表示判定
-   public bool AreAdsRemoved()
-   {
-       return isRomajiSubRemoved || isPermanentAdsRemoved;
-   }
-   // サブスクリプションの次回確認フラグ
-   //private bool isSubscriptionCheckedForRomaji = false; //広告サブスクリプションオフ
-   public bool isPurchaseStateLoaded = false;//課金のロード確認中
-   
+    public static GameManager instance;
+    public bool isGfontsize; //Setting画面での大文字小文字のbool
+
+    public bool isGKunrei;
+
+    //public bool isGfontSize;
+    public bool isSEOn; //SEオンオフ
+    public bool isBgmOn; //BGMオンオフ
+    public int AcorrectCount; //kihonSceneのあ行スコア
+    public int HcorrectCount; //kihonSceneのほかの行のスコア
+    public int TiTangoCount; //TikaraSceneの単語ごと解答のスコア
+    public int TyHiraganaCount; //TikaraSceneの1文字ずつ解答のスコア
+    public int RcorrectCount; //RenshuuSceneスコア
+    public int AcorrectTotal; //kihonSceneのあ行スコア保存
+    public int HcorrectTotal; //kihonSceneのほかの行のスコア保存
+    public int TiTangoTotal; //TikaraSceneの単語ごと解答のスコア保存
+    public int TyHiraganaTotal; //TikaraSceneの1文字ずつ解答のスコア保存
+    public int RcorrectTotal; //RenshuuSceneスコア保存
+    public bool isTiWord; //TikaraSceneの解答分岐のbool
+    public int RCoin; //RenshuuSceneの正解数に応じたコイン枚数
+    public int TiCoin; //TikaraSceneの単語問題の正解数に応じたコイン枚数
+    public int TyCoin; //TikaraSceneの1文字問題の正解数に応じたコイン枚数
+    public int beforeTotalCoin; //追加する前のコイン枚数　DOTweenのDOCountに使用
+    public int totalCoin; //各Sceneのコイン枚数はこちらに追加していく
+    public List<int> RoulletteNum = new List<int>(); //ルーレットの風船の変数の保持
+    public int SceneCount; //インタースティシャル広告表示のためにScene表示をカウントしていきます
+
+    public AdMobBanner adMobBanner; // AdMobBannerスクリプトをアタッチする
+
+    public AdMobInterstitial adMobInterstitial; // AdMobInterstitialスクリプトをアタッチする
+
+    // 課金状態フラグ（広告のサブスク状態を管理）
+    // 購入フラグ
+    public bool isPermanentAdsRemoved; //永久課金購入フラグ
+
+    public bool isRomajiSubRemoved; // 広告全体オフのサブスクリプション対応
+
+    // 購入フラグを共通化広告非表示判定
+    public bool AreAdsRemoved()
+    {
+        return isRomajiSubRemoved || isPermanentAdsRemoved;
+    }
+
+    // サブスクリプションの次回確認フラグ
+    //private bool isSubscriptionCheckedForRomaji = false; //広告サブスクリプションオフ
+    public bool isPurchaseStateLoaded = false; //課金のロード確認中
+
     private void Awake()
     {
         if (instance == null)
@@ -60,7 +67,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        
+
     }
     //--シングルトン終わり--
 
@@ -70,12 +77,12 @@ public class GameManager : MonoBehaviour
         LoadSceneCount();
         // "isPermanentAdsRemoved" キーが存在し、かつ true の場合、広告を即座に非表示
         // 永続的な広告削除フラグの読み込み
-        if (ES3.KeyExists("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3"))
+        /*if (ES3.KeyExists("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3"))
         {
             isPermanentAdsRemoved = ES3.Load<bool>("isPermanentAdsRemoved", "isPermanentAdsRemoved.es3");
             Debug.Log("isPermanentAdsRemoved_"+isPermanentAdsRemoved);
-        }
-
+        }*/
+        LoadPurchaseState("romajioff_480jpy");
         if (AreAdsRemoved())
         {
             Debug.Log("[GameManager] isPermanentAdsRemoved = true。広告を非表示にします。");
@@ -83,21 +90,55 @@ public class GameManager : MonoBehaviour
             // サブスクリプションの確認などをスキップ
             return;
         }
+
         // 広告の課金状態をローカルデータからチェック
         CheckSubscriptionLocally("romaji_suboff_160jpy", "isRomajiSubRemoved"); //広告全体オフ確認
-       //LoadGfontsize();
-       //LoadGKunrei();
-       //LoadGse();
-       //LoadGbgm();
-       //Debug.Log("start");
-       //SceneCount = 0;
+        //LoadGfontsize();
+        //LoadGKunrei();
+        //LoadGse();
+        //LoadGbgm();
+        //Debug.Log("start");
+        //SceneCount = 0;
 
-       //Debug.Log("Sceneカウント" + SceneCount);
-       //RequestReview();
-       //Debug.Log("Sceneカウント"+SceneCount);
+        //Debug.Log("Sceneカウント" + SceneCount);
+        //RequestReview();
+        //Debug.Log("Sceneカウント"+SceneCount);
     }
+
     public DateTime LoadPurchaseDate(string itemId)
     {
+        string key = $"{itemId}_purchaseDate";
+        string filePath = $"{key}.es3";
+
+        Debug.Log($"[GameManager] LoadPurchaseDate 呼び出し: {itemId}");
+
+        if (ES3.KeyExists(key, filePath))
+        {
+            Debug.Log($"[GameManager] 購入日が存在します: {key}");
+
+            string obfuscatedDate = ES3.Load<string>(key, filePath);
+            Debug.Log($"[GameManager] 読み込んだ暗号化された日付: {obfuscatedDate}");
+
+            string decryptedDate = ObfuscationUtil.Deobfuscate(obfuscatedDate);
+            Debug.Log($"[GameManager] 復号化された日付: {decryptedDate}");
+
+            if (DateTime.TryParse(decryptedDate, out DateTime parsedDate))
+            {
+                Debug.Log($"[GameManager] 購入日を読み込みました: {key} = {parsedDate}");
+                return parsedDate;
+            }
+            else
+            {
+                Debug.LogError($"[GameManager] 購入日付のパースに失敗しました: {decryptedDate}");
+                return DateTime.MinValue;
+            }
+        }
+
+        // ← これを追加
+        Debug.LogWarning($"[GameManager] 購入日が存在しません: {key}");
+        return DateTime.MinValue;
+
+        /*
         string key = $"{itemId}";
         string filePath = $"{key}.es3";
 
@@ -120,25 +161,34 @@ public class GameManager : MonoBehaviour
         {
             Debug.LogWarning($"購入日付が見つかりません: {key}");
             return DateTime.MinValue;
-        }
+        }*/
     }
+
     public void CheckSubscriptionLocally(string itemId, string flagKey)
     {
         Debug.Log($"" +
                   $"CheckSubscriptionLocally" +
                   $" 開始: itemId = {itemId}, flagKey = {flagKey}");
+        // ファイル名
+        string key = $"{itemId}_purchaseDate";
+        string filePath = $"{key}.es3";
 
-        // ローカルにキーが保存されているか確認
-        if (!ES3.KeyExists($"{itemId}_purchaseDate",$"{itemId}_purchaseDate.es3"))
+        if (!ES3.KeyExists(key, filePath))
         {
             Debug.LogWarning($"ローカルに購入日付が保存されていません: {itemId}");
             SavePurchaseState(itemId, false);
+            isPurchaseStateLoaded = true;
             return;
         }
 
-        DateTime localPurchaseDate = LoadPurchaseDate($"{itemId}_purchaseDate");
+        // 日付の読み込み（難読化キー使用）
+        string obfuscatedDate = ES3.Load<string>(key, filePath);
+        string decryptedDate = ObfuscationUtil.Deobfuscate(obfuscatedDate);
 
-        if (localPurchaseDate == DateTime.MinValue)
+        Debug.Log("decrypted_" + decryptedDate);
+
+        // 復号化された日付文字列をDateTimeに変換
+        if (!DateTime.TryParse(decryptedDate, out DateTime localPurchaseDate))
         {
             Debug.LogWarning($"購入日付が正しく読み込まれませんでした: {itemId}");
             SavePurchaseState(itemId, false);
@@ -147,30 +197,95 @@ public class GameManager : MonoBehaviour
 
         Debug.Log($"ローカルの購入日付: {localPurchaseDate:yyyy-MM-dd HH:mm:ss}");
 
+        if (localPurchaseDate == DateTime.MinValue)
+        {
+            Debug.LogWarning($"購入日付が正しく読み込まれませんでした: {itemId}");
+            SavePurchaseState(itemId, false);
+            return;
+        }
+        Debug.Log($"ローカルの購入日付: {localPurchaseDate:yyyy-MM-dd HH:mm:ss}");
+
+        // 次回更新日を計算
         DateTime nextUpdateDate = CalculateNextUpdateDate(localPurchaseDate);
 
         if (DateTime.UtcNow < nextUpdateDate)
         {
             Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate:yyyy-MM-dd}");
             SavePurchaseState(itemId, true);
+            isPurchaseStateLoaded = true;
+            Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
         }
         else
         {
             Debug.Log($"{itemId}: 次回更新日を超えています。ストアで更新を確認します。");
 
-            // InAppPurchaseManager の RestorePurchases() を実行してストアに確認
-            if (FindObjectOfType<InAppPurchaseManager>() != null)
+            InAppPurchaseManager purchaseManager = FindObjectOfType<InAppPurchaseManager>();
+            if (purchaseManager != null)
             {
-                FindObjectOfType<InAppPurchaseManager>().RestorePurchases();
+                purchaseManager.RestorePurchases();
+                Debug.Log("[GameManager] InAppPurchaseManager による復元を開始しました");
             }
             else
             {
                 Debug.LogWarning("[GameManager] InAppPurchaseManager が見つかりません。");
             }
+
+            isPurchaseStateLoaded = true;
+            Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
         }
+}
+
+
+/*
+// ローカルにキーが保存されているか確認
+if (!ES3.KeyExists($"{itemId}_purchaseDate",$"{itemId}_purchaseDate.es3"))
+{
+    Debug.LogWarning($"ローカルに購入日付が保存されていません: {itemId}");
+    SavePurchaseState(itemId, false);
+    isPurchaseStateLoaded = true; // ★ これを追加！
+    return;
+}
+
+DateTime localPurchaseDate = LoadPurchaseDate($"{itemId}_purchaseDate");
+
+if (localPurchaseDate == DateTime.MinValue)
+{
+    Debug.LogWarning($"購入日付が正しく読み込まれませんでした: {itemId}");
+    SavePurchaseState(itemId, false);
+    return;
+}
+Debug.Log($"ローカルの購入日付: {localPurchaseDate:yyyy-MM-dd HH:mm:ss}");
+
+DateTime nextUpdateDate = CalculateNextUpdateDate(localPurchaseDate);
+
+if (DateTime.UtcNow < nextUpdateDate)
+{
+    Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate:yyyy-MM-dd}");
+    SavePurchaseState(itemId, true);
+    isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
+    Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
+}
+else
+{
+    Debug.Log($"{itemId}: 次回更新日を超えています。ストアで更新を確認します。");
+
+    // InAppPurchaseManager の RestorePurchases() を実行してストアに確認
+    if (FindObjectOfType<InAppPurchaseManager>() != null)
+    {
+        FindObjectOfType<InAppPurchaseManager>().RestorePurchases();
+        isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
+        Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
     }
-    
-    private DateTime ConvertUnixTimestampToDateTime(int timestamp)
+    else
+    {
+        Debug.LogWarning("[GameManager] InAppPurchaseManager が見つかりません。");
+        isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
+        Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
+    }
+}
+*/
+
+private DateTime ConvertUnixTimestampToDateTime(int timestamp)
     {
         return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
     }
@@ -210,6 +325,44 @@ public class GameManager : MonoBehaviour
     
     public void SavePurchaseState(string key, bool value)
     {
+        // 難読化して保存
+        // // 値を難読化（キーとファイル名は難読化しない）
+        string obfuscatedValue = ObfuscationUtil.Obfuscate(value.ToString());
+
+        // 内部フラグ更新とES3保存（キーをわかりやすくしておきたい場合はそのままでもOK）
+        switch (key)
+        {
+            case "romaji_suboff_160jpy":
+                isRomajiSubRemoved = value;
+                // 値のみ難読化して保存（キーとファイル名はそのまま）
+                ES3.Save<string>(key, obfuscatedValue, $"{key}.es3");
+                    
+                // value が true の場合のみ実行
+                if (value)
+                {
+                    Debug.Log("サブスク広告削除");
+                    adMobBanner?.OnBannerPurchaseCompleted();
+                    adMobInterstitial?.OnInterstitialPurchaseCompleted();
+                }
+                break;
+            case "romajioff_480jpy":
+                isPermanentAdsRemoved = value;
+                // オブスク化されたキーで保存（不正防止目的）
+                ES3.Save<string>(key, obfuscatedValue, $"{key}.es3");
+                // value が true の場合のみ実行
+                if (value)
+                {
+                    Debug.Log("永久広告削除");
+                    adMobBanner?.OnBannerPurchaseCompleted();
+                    adMobInterstitial?.OnInterstitialPurchaseCompleted();
+                }
+                break;
+            default:
+                Debug.LogWarning($"未知のアイテムID: {key}");
+                break;
+        }
+        Debug.Log($"課金データ保存: {key} = {value}（難読化保存済み）");
+        /*
         // フラグを更新
         switch (key)
         {
@@ -235,10 +388,34 @@ public class GameManager : MonoBehaviour
         }
         ES3.Save<bool>(key, value, $"{key}.es3");
         Debug.Log($"課金データ保存: {key} = {value}");
+        */
         UpdateAdState();
     }
+
     public void SavePurchaseDate(string itemId, string purchaseDate)
     {
+        // 日付のパースを試みる
+        if (!DateTime.TryParse(purchaseDate, out DateTime parsedDate))
+        {
+            Debug.LogError($"購入日付のパースに失敗しました: {purchaseDate}");
+            return;
+        }
+
+        // ISO8601形式で可読な日付に変換（例: 2025-05-13 12:34:56）
+        string readableDate = parsedDate.ToString("yyyy-MM-dd HH:mm:ss");
+
+        // 難読化（XOR + Base64）
+        string obfuscatedDate = ObfuscationUtil.Obfuscate(readableDate);
+
+        // キーとファイル名を組み立て
+        string key = $"{itemId}_purchaseDate";
+        string filePath = $"{key}.es3";
+
+        // 保存
+        ES3.Save<string>(key, obfuscatedDate, filePath);
+
+        Debug.Log($"[GameManager] 難読化された購入日を保存しました: {key} = {readableDate}");
+        /*
 // purchaseDate を DateTime に変換
         if (!DateTime.TryParse(purchaseDate, out DateTime parsedDate))
         {
@@ -251,11 +428,63 @@ public class GameManager : MonoBehaviour
         string key = $"{itemId}_purchaseDate";
         ES3.Save<string>(key, readableDate, $"{key}.es3");
 
-        Debug.Log($"購入日付を可読形式でローカルに保存: {key} = {readableDate}");
+        Debug.Log($"購入日付を可読形式でローカルに保存: {key} = {readableDate}");*/
     }
 
     public bool LoadPurchaseState(string key, bool defaultValue = false)
     {
+        string filePath = $"{key}.es3"; // 難読化されたファイル名
+        bool value = defaultValue;
+
+        // 保存データが存在するか確認
+        if (ES3.KeyExists(key, filePath))
+        {
+            try
+            {
+                // 保存された文字列を読み込み、復号化する
+                string obfuscatedValue = ES3.Load<string>(key, filePath);
+                string decryptedValue = ObfuscationUtil.Deobfuscate(obfuscatedValue);
+
+                // 復号化された文字列をbool型へ安全に変換する（例外を防止）
+                if (!bool.TryParse(decryptedValue, out value))
+                {
+                    Debug.LogWarning($"boolへの変換に失敗しました。文字列: {decryptedValue}");
+                    value = defaultValue; // 変換失敗時はデフォルト値を使用
+                }
+            }
+            catch (System.Exception ex)
+            {
+                // データ読み込み・復号・変換時のエラーを捕捉
+                Debug.LogWarning($"課金データの読み込み・復号中にエラーが発生: {ex.Message}");
+                value = defaultValue;
+            }
+        }
+        else
+        {
+            // 保存データが存在しない場合
+            Debug.Log($"課金データが存在しない: {key}, デフォルト値: {defaultValue}");
+        }
+
+        // 読み込んだ値を対応するフラグに設定
+        switch (key)
+        {
+            case "romaji_suboff_160jpy":
+                isRomajiSubRemoved = value;
+                break;
+
+            case "romajioff_480jpy":
+                isPermanentAdsRemoved = value;
+                break;
+
+            default:
+                Debug.LogWarning($"未知のアイテムID: {key}");
+                break;
+        }
+
+        // 最終的な読み込み結果をログに出力
+        Debug.Log($"課金データ読み込み: {key} = {value}（難読化復号済み）");
+        return value;
+        /*
         string filePath = $"{key}.es3"; // 読み込み元のファイル名
         bool value = defaultValue;
 
@@ -285,8 +514,8 @@ public class GameManager : MonoBehaviour
         }
 
         Debug.Log($"課金データ読み込み: {key} = {value}");
-        return value;
-    } 
+        return value;*/
+    }
     // 広告状態を更新（広告非表示の処理）
     private void UpdateAdState()
     {

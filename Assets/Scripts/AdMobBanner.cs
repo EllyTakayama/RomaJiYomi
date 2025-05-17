@@ -27,6 +27,7 @@ public class AdMobBanner : MonoBehaviour
     //最初からバナーを表示したくない場合はこの関数を消してください。
     private IEnumerator WaitForGameManager()
     {
+        Debug.Log("[AdMobBanner] GameManagerの生成を待機します。");
         // GameManager が生成されるまで待機
         while (GameManager.instance == null)
         {
@@ -57,6 +58,7 @@ public class AdMobBanner : MonoBehaviour
     }
     private void Start()
     {
+        Debug.Log("[AdMobBanner] Start() が実行されました");
         StartCoroutine(WaitForGameManager());
     }
     
