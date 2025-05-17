@@ -170,7 +170,7 @@ public class TiPanelChange : MonoBehaviour
     public void OnLeftButton(){
         if(currentPanel == Panel.mPanel2 ){
         ShowTikaraPanel(Panel.mPanel1);
-        //Debug.Log("2");
+        Debug.Log("2");
         }
         /*else if(currentPanel == Panel.mPanel3 ){
         ShowTikaraPanel(Panel.mPanel2);
