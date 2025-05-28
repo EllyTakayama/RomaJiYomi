@@ -30,6 +30,7 @@ public class AdMobInterstitial : MonoBehaviour
         MobileAds.SetiOSAppPauseOnBackground(true);
         // 他の初期化処理...
         //isInterstitialAdsRemoved = ES3.KeyExists("isInterstitialAdsRemoved") && ES3.Load<bool>("isInterstitialAdsRemoved");
+       //Xcodeシュミレーター対応でコメントアウト　広告の読み込み少し遅らせた方がいいかな
         if (!GameManager.instance.AreAdsRemoved())
         {
             // 課金状態の読み込み

@@ -59,7 +59,10 @@ public class AdMobBanner : MonoBehaviour
     private void Start()
     {
         Debug.Log("[AdMobBanner] Start() が実行されました");
+        //Xcodeシュミレーター対応でコメントアウト
+        
         StartCoroutine(WaitForGameManager());
+        
     }
     
     //ボタン等に割り付けて使用

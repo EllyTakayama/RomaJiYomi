@@ -34,7 +34,7 @@ public class AdMobReward : MonoBehaviour
         #endif   
         //CreateAndLoadRewardedAd();
     }
-    
+    //リワード広告を読み込むのは各Sceneのタイミングで実行されている
     //リワード広告読み込む関数
     public void CreateAndLoadRewardedAd()
     {

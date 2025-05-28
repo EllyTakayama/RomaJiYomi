@@ -44,7 +44,6 @@ public class SafeAreaController : MonoBehaviour
         print("area.position + area.size" + area.position + area.size);
         */
         
-
         var anchorMin = area.position;
         var anchorMax = area.position + area.size;
         anchorMin.x /= Screen.width;
@@ -53,7 +52,7 @@ public class SafeAreaController : MonoBehaviour
         anchorMax.y /= Screen.height;
         panelRectTransform.anchorMin = anchorMin;
         panelRectTransform.anchorMax = anchorMax;
-        /*
+        
         print("anchorMin.x_" + anchorMin.x);
         print("anchorMin.y_" + anchorMin.y);
         print("anchorMax.x_" + anchorMax.x);
@@ -61,7 +60,7 @@ public class SafeAreaController : MonoBehaviour
 
         print("panelRectTransform.anchorMin_" + panelRectTransform.anchorMin);
         print("panelRectTransform.anchorMax" + panelRectTransform.anchorMax);
-        */
+        
     }
 
 }

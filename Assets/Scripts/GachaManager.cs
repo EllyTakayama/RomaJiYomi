@@ -19,13 +19,18 @@ public class GachaManager : MonoBehaviour
 
 	// 抽選回数
 	//int rollNum = 100;
-	public GameObject GachaObject;
-	public GameObject GachaObject1;
-	public GameObject GachaMana;
+	[Header("GachaItemの参照")]
+	[SerializeField] private GachaItem gachaItem; // Inspectorからアタッチする
+	// データ関連
+	public List<int> GachaNum = new List<int>();//各要素の基準のインデックスを管理
+	public List<int> DeNum = new List<int>();//ガチャで取得したキャラ、アイテムの反映用用List
+	
+	//public GameObject GachaObject;
+	//public GameObject GachaObject1;
+	//public GameObject GachaMana;
 	public GameObject closeButton;
 	public Button gachaButton;//ガチャガチャのButton
-    public List<int> GachaNum = new List<int>();//各要素の基準のインデックスを管理
-	public List<int> DeNum = new List<int>();//ガチャで取得したキャラ、アイテムの反映用用List
+    
     public List<string> nameChara = new List<string>();//名前の管理
 	public string[] names;
 	public string[] setumeis;
@@ -55,14 +60,16 @@ public class GachaManager : MonoBehaviour
     [SerializeField] private GameObject AdMobManager;
 	[SerializeField] private GameObject afterAdPanel;
 	//public GameObject PanelParent;//ガチャを引いている間に画面が動かないよう一時停止にする
-	GameManager GachaGameManager => GameManager.instance;
+	//GameManager GachaGameManager => GameManager.instance;
 	[SerializeField] AdMobReward GachaAdReward;
 	[SerializeField] private Text afterRewardText;
 	[SerializeField] private GameObject afterFlashImage;
 	[SerializeField] private GPanelChange gPanelChange;//スワイプスクリプト一時停止のため
 	//Debug用
 	//public int itemID =1;
+	
 	private bool isInitialized = false; //初期化の判定のbool
+	
 	bool canGacha = false; // ガチャ実行可能かのフラグ
 	[SerializeField] private GameObject loadingPanel;//ローディングパネル
 	[SerializeField] private GameObject homebutton;//topSceneに移動するButton
@@ -72,13 +79,14 @@ public class GachaManager : MonoBehaviour
 		// SceneLoader のロード完了待ち
 		yield return new WaitUntil(() => SceneLoader.IsSceneLoaded);
 		Debug.Log("GachaManager: シーンの初期化OK");
-		GachaAdReward.CreateAndLoadRewardedAd();
-		GachaGameManager.LoadCoinGoukei();
-		coinText.text = GachaGameManager.totalCoin.ToString();
-		GachaMana.GetComponent<GachaItem>().SetGachaText();
-		//gachaButton.enabled = true;
-		//初回時の取得キャラ反映用defaltの作成 Debugにも使える
-		int a = GetComponent<GachaItem>().GachaChara.Length;
+		GameManager.instance.LoadCoinGoukei();
+		coinText.text = GameManager.instance.totalCoin.ToString();
+		
+		// GachaItemの初期化
+		gachaItem.SetGachaText();
+
+		// DeNumの初期化（キャラの数に応じて）
+		int a = gachaItem.GachaChara.Length;
 		for(int i = 0 ; i < a ;i++){
 			DeNum.Add(0);
 		}
@@ -90,39 +98,37 @@ public class GachaManager : MonoBehaviour
 		//Debug.Log(DeNum.Count);
 		GachaNum = ES3.Load("GachaNum","GachaNum.es3",DeNum );
 		//Debug.Log(GachaNum.Count);
+		//キャラの反映
 		SetChara();
+		
+		// GachaItem のデータが揃うまで待機（毎フレームチェック）
+		while (gachaItem == null || gachaItem.GachaChara == null || gachaItem.GachaChara.Length == 0 ||
+		       gachaItem.charaKakuritu == null || gachaItem.charaKakuritu.Length == 0) {
+			yield return null; // 1フレーム待機
+		}
 		InitializeDicts();//GachaItem.csのアイテム名、確率を取得する
-		// リワード広告がロード完了するまで待つ
-		yield return new WaitUntil(() => GachaAdReward.IsRewardedAdLoaded);
+
+		// UI制御
 		loadingPanel.SetActive(false);
 		RightButton.SetActive(true);
 		LeftButton.SetActive(true);
+		
 		Invoke("StartInvoke",1.0f);
 	}
-	// フェードイン（暗くする）処理
-
+	
+	
 	void StartInvoke(){
 		getNekoPanel.SetActive(false);
 		NekoitemPanel.SetActive(false);
 		PanelAd.SetActive(false);
 		flashImage.SetActive(false);
-		GachaGameManager.LoadCoinGoukei();
-		//GachaMana.GetComponent<GachaItem>().SetGachaText();Start関数内で実行する
-		//Debug.Log("coinGoukei"+GameManager.instance.totalCoin);
-		coinText.text = GachaGameManager.totalCoin.ToString();
-
-		//InitializeDicts();
-		/*
-		names = GachaObject.GetComponent<GachaItem>().GachaChara;
-		setumeis = GachaObject.GetComponent<GachaItem>().setumeiText;
-		DebugNames();
+		///Xcodeシュミレーターようにコメントアウト
 		
-		GetDropItem();
-		*/
-
-		if(GachaGameManager.SceneCount==5||GachaGameManager.SceneCount==30||
-        GachaGameManager.SceneCount==80||GachaGameManager.SceneCount==150){
-            GachaGameManager.RequestReview();
+		GachaAdReward.CreateAndLoadRewardedAd();
+		
+		if(GameManager.instance.SceneCount==5||GameManager.instance.SceneCount==30||
+        GameManager.instance.SceneCount==80||GameManager.instance.SceneCount==150){
+            GameManager.instance.RequestReview();
         }
 		gPanelChange.enabled = true;
 	}
@@ -233,6 +239,7 @@ public class GachaManager : MonoBehaviour
 	}
 
 	IEnumerator DropRewardLoad(){
+		yield return null; // 1フレーム待機
 		GachaAdReward.CreateAndLoadRewardedAd();
 		var cachedWait = new WaitForSeconds(0.2f);  
 		yield return cachedWait; 
@@ -360,6 +367,7 @@ public class GachaManager : MonoBehaviour
 		getNekoPanel.SetActive(true);
 		closeButton.SetActive(false);
 		nameText.text = "なにがでるかな？";
+		nameText.GetComponent<DOScale>().BigScale3();
 		SoundManager.instance.PlaySousaSE(4);
 		openBallImage.SetActive(true);
 		openBallImage.GetComponent<DOShake1>().ShakeBall();
@@ -369,19 +377,21 @@ public class GachaManager : MonoBehaviour
 		pOpenBallImage.SetActive(true);
 		pOpenBallImage.GetComponent<DOScale2>().OpenBall();
 		yield return new WaitForSeconds(1.0f);
-		pOpenBallImage.SetActive(false);
+		//pOpenBallImage.SetActive(false);
 		//FadePanel
 		fadePanel.blocksRaycasts = true;
 		yield return fadePanel.DOFade(1.0f,0.8f).WaitForCompletion();
+		pOpenBallImage.SetActive(false);
+		nameText.text = "";
 		fadePanel.DOFade(0,0.7f);
 		yield return new WaitForSeconds(0.1f);
 		fadePanel.blocksRaycasts = false;
-		string name = GetComponent<GachaItem>().GachaChara[nekoNum];//nameで取得した"."を改行に置き換える
+		string name = gachaItem.GachaChara[nekoNum];//nameで取得した"."を改行に置き換える
 		nameText.text = name.Replace(".",System.Environment.NewLine);
 		//nameText.text = GetComponent<GachaItem>().GachaChara[nekoNum];
-		nameText.GetComponent<DOScale>().BigScale3();
+		//nameText.GetComponent<DOScale>().BigScale3();
 		nekoImage.SetActive(true);
-		nekochanImage.sprite = GetComponent<GachaItem>().ItemNeko[nekoNum];
+		nekochanImage.sprite = gachaItem.ItemNeko[nekoNum];
 		SoundManager.instance.PlaySousaSE(8);
 		flashImage.SetActive(true);
 		flashImage.GetComponent<DOflash>().Flash18();
@@ -396,8 +406,8 @@ public class GachaManager : MonoBehaviour
 
 	void InitializeDicts(){
 		// GachaItemからデータを取得
-		names = GachaObject.GetComponent<GachaItem>().GachaChara;
-		kakuritu = GachaObject.GetComponent<GachaItem>().charaKakuritu;
+		names = gachaItem.GachaChara;
+		kakuritu = gachaItem.charaKakuritu;
 		
 		// データが null または空ならガチャ不可に
 		if (names == null || names.Length == 0 || kakuritu == null || kakuritu.Length == 0) {

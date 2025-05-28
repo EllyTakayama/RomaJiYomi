@@ -25,7 +25,6 @@ public class DoRegrade : MonoBehaviour
     public string Rcoin;
     // Start is called before the first frame update
     
-
     public void RgradePanel(){
         SoundManager.instance.PlayPanelBGM("GradePanel");
         retryButton.SetActive(false);
@@ -40,7 +39,9 @@ public class DoRegrade : MonoBehaviour
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
         coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
+        //Xcodeシュミレーター対応で一時的に削除
         AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+        
         Debug.Log("Renshuu,リワード広告読み込み開始");
         StartCoroutine(ReGradePanel());
     }
@@ -82,7 +83,7 @@ public class DoRegrade : MonoBehaviour
         StartCoroutine(CoinMove());
     }
     IEnumerator CoinMove()
-    {   yield return new WaitForSeconds(0.2f);
+    {   yield return new WaitForSeconds(0.1f);
         coinImage.SetActive(true);
         flashImage.SetActive(true);
         flashImage.GetComponent<DOflash>().Flash18();
@@ -96,7 +97,7 @@ public class DoRegrade : MonoBehaviour
        //SoundManager.instance.PlaySousaSE(14);
        //coinAddImage.SetActive(true);
        coinAddText.GetComponent<DOCounter>().CountCoin2();
-       yield return new WaitForSeconds(1.8f);
+       yield return new WaitForSeconds(1.1f);
        SoundManager.instance.StopSE();//一度操作オン消してから
        SoundManager.instance.PlaySousaSE(8);
        coinAddImage.GetComponent<DOScale>().BigScale2();

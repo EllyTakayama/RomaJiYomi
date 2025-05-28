@@ -12,7 +12,7 @@ public class DoTigrade : MonoBehaviour
     [SerializeField] private GameObject coinImage;
     [SerializeField] private GameObject flashImage;
     [SerializeField] private GameObject retryButton;
-    [SerializeField] private GameObject renTopButton;
+    //[SerializeField] private GameObject renTopButton;
     [SerializeField] private GameObject rewardButton;//リワード広告ボタン
     [SerializeField] private GameObject coinAddImage;
     [SerializeField] private Text coinAddText;
@@ -23,7 +23,7 @@ public class DoTigrade : MonoBehaviour
     public string TihiraganaCorrect;
     public string Tikaracoin;
     [SerializeField] private Text afterAdText;
-
+    [SerializeField] private GameObject homeButton;
     // Start is called before the first frame update
     void Start()
     {/*
@@ -102,11 +102,11 @@ public class DoTigrade : MonoBehaviour
         StartCoroutine(CoinMove());
     }
     IEnumerator CoinMove()
-    {   yield return new WaitForSeconds(0.2f);
+    {   yield return new WaitForSeconds(0.1f);
         coinImage.SetActive(true);
         flashImage.SetActive(true);
         flashImage.GetComponent<DOflash>().Flash18();
-        yield return new WaitForSeconds(0.8f);
+        yield return new WaitForSeconds(0.6f);
         if(TikaraQues.instance.isWord == true){
             GameManager.instance.TiTangoCount=0;
             TikaraQues.instance.TiQuesCount = 0; 
@@ -117,12 +117,13 @@ public class DoTigrade : MonoBehaviour
             TiTypingManager.instance.TyQuesCount = 0; 
             GameManager.instance.TyCoin = 0;
         }
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         SoundManager.instance.StopSE();//一度操作オン消してから
         SoundManager.instance.PlaySousaSE(14);
         coinAddText.GetComponent<DOCounter>().CountCoin2();
-        yield return new WaitForSeconds(1.8f);
+        yield return new WaitForSeconds(1.6f);
         //SoundManager.instance.PlaySousaSE(14);
+        SoundManager.instance.StopSE();//一度操作オン消してから
         SoundManager.instance.PlaySousaSE(8);
         coinAddImage.GetComponent<DOScale>().BigScale2();
         coinAddText.GetComponent<DOScale>().BigScale2();

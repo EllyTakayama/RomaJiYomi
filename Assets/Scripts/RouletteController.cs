@@ -98,8 +98,8 @@ public class RouletteController : MonoBehaviour
         hiraganaImage.gameObject.SetActive (false);  
         startButton.gameObject.SetActive (false);
         SoundManager.instance.PlaySousaSE(7);
-        string randomTip = tips[Random.Range(0, tips.Length)];
-        hiraganaImage.GetComponentInChildren<Text>().text = randomTip;
+        //string randomTip = tips[Random.Range(0, tips.Length)];
+        //hiraganaImage.GetComponentInChildren<Text>().text = randomTip;
         //hiraganaImage.GetComponentInChildren<Text>().text = "ローマ字表示の切り替えは\n『設定』から変更できます";
         Invoke ("ShowStopButton", 0.2f);
         isPlaying = true;
@@ -111,6 +111,8 @@ public class RouletteController : MonoBehaviour
         slowDownSpeed = Random.Range (0.75f, 0.95f);//0.92-0.98f
         isStop = true;
         stopButton.gameObject.SetActive (false);
+        string randomTip = tips[Random.Range(0, tips.Length)];
+        hiraganaImage.GetComponentInChildren<Text>().text = randomTip;
     }
 
     private void RetryOnClick(){

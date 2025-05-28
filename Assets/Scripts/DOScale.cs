@@ -7,6 +7,9 @@ using DG.Tweening;
 
 public class DOScale : MonoBehaviour
 {
+    private Tween bigScale2Tween;
+    private Tween bigScale3Tween;
+    private Tween balloonTween;
    public void BigScale2(){
        // transform に関係するTweenを安全に全部Kill（存在しない場合もOKでクラッシュしません）
        DOTween.Kill(transform);
@@ -19,7 +22,6 @@ public class DOScale : MonoBehaviour
         .SetLoops(-1, LoopType.Yoyo)
         .SetLink(gameObject)
         ;
-  
    }
    public void BigScale3(){
        // transform に関係するTweenを安全に全部Kill（存在しない場合もOKでクラッシュしません）

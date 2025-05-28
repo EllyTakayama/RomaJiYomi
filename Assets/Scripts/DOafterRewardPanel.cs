@@ -77,7 +77,7 @@ public class DOafterRewardPanel : MonoBehaviour
        RewardflashImage.SetActive(false);
        SoundManager.instance.PlaySousaSE(8);
        RewardButton.SetActive(true);
-       homeButton.SetActive(true);
+       //homeButton.SetActive(true);//シーンによっては違うこともある
        RewardButton.GetComponent<DOScale>().BigScale2();
 
     }

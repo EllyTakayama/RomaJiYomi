@@ -11,7 +11,7 @@ public class AdRewardManager : MonoBehaviour
     private string _sceneName;//現在のシーンの名前を取得する
     // AdMobRewardはInspectorからアタッチ
     [SerializeField] private AdMobReward adMobReward;
-    
+    /*
     void Awake()
     {
         if (adMobReward != null)
@@ -22,13 +22,28 @@ public class AdRewardManager : MonoBehaviour
             // 広告失敗時
             adMobReward.SetOnAdFailedCallback(HideSpinner);
         }
-    }
+    }*/
 
     void Start()
     {
         // 3. 現在のシーン名に応じてBGM再生
         _sceneName = SceneManager.GetActiveScene().name;
+        // AdMobRewardの初期化を少し遅らせて実行
         
+        StartCoroutine(DelayedRewardInit());
+    }
+    private IEnumerator DelayedRewardInit()
+    {
+        yield return new WaitForSeconds(2f); // 1.5秒遅らせてから初期化
+
+        if (adMobReward != null)
+        {
+            // コールバックを登録
+            adMobReward.SetOnRewardEarnedCallback(() => StartCoroutine(RewardCoroutine()));
+            adMobReward.SetOnAdFailedCallback(HideSpinner);
+
+            Debug.Log("AdMobRewardの初期化完了（遅延実行）");
+        }
     }
     /// <summary>
     /// 広告報酬受け取り後に少し待ってから処理するコルーチン
