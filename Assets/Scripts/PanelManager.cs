@@ -15,7 +15,7 @@ public class PanelManager : MonoBehaviour
     [SerializeField] AdMobReward pAdReward;
     [SerializeField] private GameObject SpinnerPanel;
     GameManager PanelGameManager => GameManager.instance;
-    private const int InterstitialAdInterval = 1;//インタースティシャル広告の表示間隔
+    private const int InterstitialAdInterval = 2;//インタースティシャル広告の表示間隔は2回に1回
     private bool isLoadingScene = false;//重複してシーンの読み込みを実行しないためのフラグ
     private bool isShowingAd = false;    //広告表示中かを管理するフラグ
     /// <summary>

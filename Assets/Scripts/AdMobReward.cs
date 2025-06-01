@@ -17,11 +17,11 @@ public class AdMobReward : MonoBehaviour
     public bool IsRewardedAdLoaded { get; private set; } = false;
     
 #if UNITY_ANDROID
-    string adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
-    //string adUnitId = "ca-app-pub-7439888210247528/2150238155";//ここにAndroidのリワード広告IDを入力
+    //string adUnitId = "ca-app-pub-3940256099942544/5224354917";//TestAndroidのリワード広告ID
+    string adUnitId = "ca-app-pub-7439888210247528/2150238155";//ここにAndroidのリワード広告IDを入力
 #elif UNITY_IPHONE
-    string adUnitId = "ca-app-pub-3940256099942544/1712485313";//TestiOSのリワード広告ID
-    //string adUnitId = "ca-app-pub-7439888210247528/5351116568";//ここにiOSのリワード広告IDを入力
+    //string adUnitId = "ca-app-pub-3940256099942544/1712485313";//TestiOSのリワード広告ID
+    string adUnitId = "ca-app-pub-7439888210247528/5351116568";//ここにiOSのリワード広告IDを入力
 #else
        string adUnitId = "unexpected_platform";
 #endif
