@@ -14,5 +14,6 @@ public class IDFA : MonoBehaviour
         // 許可ダイアログ表示
         ATTrackingStatusBinding.RequestAuthorizationTracking();
     }
-#endif//iOSの処理範囲終わり
 }
+#endif
+//iOSの処理範囲終わ

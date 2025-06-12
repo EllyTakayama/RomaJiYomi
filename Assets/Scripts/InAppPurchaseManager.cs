@@ -251,6 +251,14 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
                             "バナー広告とシーン移動時の動画広告は今後表示されません。\n" +
                             "※リワード広告（任意で視聴する広告）は対象外です。\n\n" +
                             "購入情報はストアに自動的に保存され、同じApple ID/Googleアカウントを使えば復元可能です。";
+            // サブスクリプションが有効な場合は追加案内を追記
+            if (GameManager.instance != null && GameManager.instance.isRomajiSubRemoved)
+            {
+                resultMessage += "\n\n【ご注意】\n" +
+                                 "広告オフのサブスクリプション（1ヶ月自動更新）を以前申し込んだ方は\n" +
+                                 "App StoreまたはGoogle Playの\n" +
+                                 "サブスクリプション設定からご自身で解約を行ってください。";
+            }
         }
         else if (productId == "romaji_suboff_160jpy")
         {
