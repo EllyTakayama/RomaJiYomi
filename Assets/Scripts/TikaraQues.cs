@@ -49,7 +49,7 @@ public class TikaraQues : MonoBehaviour
     public string Kaito5;//配列5の場所
     [SerializeField]private Canvas UICanvas;//UIオフのため
     [SerializeField]private TiPanelChange tiPanelChange;//スワイプスクリプトの取得
-    
+    [SerializeField] private AdMobReward adMobReward;
 
     public enum TikaraType
     {
@@ -130,6 +130,7 @@ public class TikaraQues : MonoBehaviour
         UICanvas.enabled = false;
         tiPanelChange.enabled = false;
         StartCoroutine(FadeCanvasPanel());
+        adMobReward.CreateAndLoadRewardedAd();//リワード広告の読み込み
         //SoundManager.instance.PlayBGM("TikaraScene");
         switch (buttonname)
         {

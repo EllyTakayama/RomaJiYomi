@@ -62,8 +62,8 @@ public class DoTigrade : MonoBehaviour
             TihiraganaCorrect = GameManager.instance.TyHiraganaCount.ToString();
             Tikaracoin = GameManager.instance.TyCoin.ToString();
         }
-        AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
-        Debug.Log("Tikara,リワード広告読み込み開始");
+        //AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+        //Debug.Log("Tikara,リワード広告読み込み開始");
         StartCoroutine(TiGradePanel());
     }
 

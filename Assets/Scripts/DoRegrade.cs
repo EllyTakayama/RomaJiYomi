@@ -39,10 +39,9 @@ public class DoRegrade : MonoBehaviour
         RhiraganaCorrect = GameManager.instance.RcorrectCount.ToString();
         Rcoin = GameManager.instance.RCoin.ToString();
         coinAddText.text = GameManager.instance.beforeTotalCoin.ToString();
-        //Xcodeシュミレーター対応で一時的に削除
-        AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
-        
-        Debug.Log("Renshuu,リワード広告読み込み開始");
+   
+        //AdMobManager.GetComponent<AdMobReward>().CreateAndLoadRewardedAd();
+        //Debug.Log("Renshuu,リワード広告読み込み開始");
         StartCoroutine(ReGradePanel());
     }
 

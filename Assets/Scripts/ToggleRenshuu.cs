@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using System;
 using DG.Tweening;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 //練習問題の基本画面の出題メソッド
 //6月11日更新
@@ -25,6 +26,8 @@ public class ToggleRenshuu : MonoBehaviour
     [SerializeField] private GameObject SetsuImage;
     [SerializeField] private GameObject[] SetPanels;
     public CanvasGroup RTFadePanel;//fade用のCanvasGroup
+
+    [SerializeField] private AdMobReward adMobReward;//リワード広告読み込みのため
     //プレハブの生成のため
     //public List<string> renshuuHiragana50 = new List<string>();
     //public List<string> renshuuRomaji50 = new List<string>();
@@ -451,6 +454,7 @@ public class ToggleRenshuu : MonoBehaviour
             RenMondai();
             SoundManager.instance.PlayBGM("RenshuuScene");
             ShutudaiPanel.SetActive(true);
+            adMobReward.CreateAndLoadRewardedAd();//リワード広告の読み込み
     }
     //FadePanelのコルーチン
     public void StartRTFadePanel(){
