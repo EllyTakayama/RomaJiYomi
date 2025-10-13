@@ -1115,7 +1115,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cefd15881ef0f4a2e876bb6bee2080b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da5db72ec48e840799f4a20440277192, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3547,7 +3547,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 279543146}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b43754f5315d44b18ef9532c3c5114b, type: 3}
   m_Name: 
@@ -5605,7 +5605,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1031811994}
+      - m_Target: {fileID: 2055134160}
         m_TargetAssemblyTypeName: DOafterRewardPanel, Assembly-CSharp
         m_MethodName: CloseAdPanel
         m_Mode: 1
@@ -13152,7 +13152,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031811990}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a82ba5b3c29184c51b93e649f83f196a, type: 3}
   m_Name: 
@@ -17567,7 +17567,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1031811994}
+      - m_Target: {fileID: 2055134160}
         m_TargetAssemblyTypeName: DOafterRewardPanel, Assembly-CSharp
         m_MethodName: CloseAdPanel
         m_Mode: 1
@@ -17599,7 +17599,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dad59b459a3b7401db0f97bed47905b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ad91312709e3940968c83cfa50846b1b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -22550,7 +22550,7 @@ PrefabInstance:
     - target: {fileID: 7712504450887039437, guid: 6aa59cf5a49934579a3150f1be79b89b, type: 3}
       propertyPath: dOafterRewardPanel
       value: 
-      objectReference: {fileID: 1031811994}
+      objectReference: {fileID: 2055134160}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -23845,7 +23845,7 @@ GameObject:
   - component: {fileID: 1982010707}
   - component: {fileID: 1982010706}
   m_Layer: 5
-  m_Name: panelTopImage
+  m_Name: ribonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23890,7 +23890,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cefd15881ef0f4a2e876bb6bee2080b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da5db72ec48e840799f4a20440277192, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -25080,6 +25080,90 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054343191}
   m_CullTransparentMesh: 1
+--- !u!1 &2055134159
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2055134162}
+  - component: {fileID: 2055134161}
+  - component: {fileID: 2055134160}
+  m_Layer: 0
+  m_Name: RenshuuManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2055134160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055134159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82ba5b3c29184c51b93e649f83f196a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardText: {fileID: 2081301427}
+  RewardPanel: {fileID: 1031811990}
+  RewardButton: {fileID: 444633057}
+  RewardCoinImage: {fileID: 1980496733}
+  RewardflashImage: {fileID: 1304160463}
+  coinAddText: {fileID: 1889958989}
+  coinGenerator: {fileID: 780189953}
+  SpinnerPanel: {fileID: 1928887537}
+  RegradePanel: {fileID: 279543146}
+  AdMobManager: {fileID: 1398614141}
+  rewardButton: {fileID: 1453829434}
+  homeButton: {fileID: 1950479118}
+--- !u!114 &2055134161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055134159}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b43754f5315d44b18ef9532c3c5114b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  RegradePanel: {fileID: 279543146}
+  yattaneText: {fileID: 256009298}
+  coinText: {fileID: 1638585497}
+  coinImage: {fileID: 2008667630}
+  flashImage: {fileID: 1561328286}
+  retryButton: {fileID: 1386487108}
+  renTopButton: {fileID: 1950479118}
+  rewardButton: {fileID: 1453829434}
+  coinAddImage: {fileID: 1036448240}
+  coinAddText: {fileID: 1889958989}
+  afterAdPanel: {fileID: 1031811990}
+  afterAdText: {fileID: 2081301427}
+  AdMobManager: {fileID: 1398614141}
+  RhiraganaCorrect: 
+  Rcoin: 
+--- !u!4 &2055134162
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2055134159}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2055608037
 GameObject:
   m_ObjectHideFlags: 0
@@ -25965,6 +26049,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 85776877}
   - {fileID: 1467323350}
+  - {fileID: 2055134162}
   - {fileID: 63502688}
   - {fileID: 907387309530023478}
   - {fileID: 727029064}

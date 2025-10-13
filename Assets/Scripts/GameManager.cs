@@ -567,9 +567,10 @@ private DateTime ConvertUnixTimestampToDateTime(int timestamp)
         ES3.Save<bool>("isGKunrei",isGKunrei,"isGKunrei.es3");
         //Debug.Log("クリックisGKunrei"+isGKunrei);
     }
+    //ヘボン式への統一の見解でデフォルトはヘボン式にする
     public void LoadGKunrei(){
          //if(ES3.KeyExists("isGKunrei"))
-         isGKunrei = ES3.Load<bool>("isGKunrei","isGKunrei.es3",true);
+         isGKunrei = ES3.Load<bool>("isGKunrei","isGKunrei.es3",false);
          //Debug.Log("クリックisGKunrei"+isGKunrei);
     }
 

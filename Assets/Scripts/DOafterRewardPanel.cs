@@ -82,6 +82,29 @@ public class DOafterRewardPanel : MonoBehaviour
 
     }
     public void CloseAdPanel(){
+   
+        // 現在のシーン名を取得
+        string currentSceneName = SceneManager.GetActiveScene().name;
+        Debug.Log("CloseAdPanel: 現在のシーン = " + currentSceneName);
+
+        // AdMobマネージャーが存在する場合、広告関連をクリーンアップ
+        if (AdMobManager != null)
+        {
+            var interstitial = AdMobManager.GetComponent<AdMobInterstitial>();
+            if (interstitial != null)
+            {
+                interstitial.AdSceneName = currentSceneName;
+            }
+
+            var banner = AdMobManager.GetComponent<AdMobBanner>();
+            if (banner != null)
+            {
+                banner.DestroyBannerAd();
+            }
+        }
+
+        // 0.3秒待ってからシーンを再読み込み（フェードやサウンドが残らないように）
+        StartCoroutine(ReloadSceneAfterDelay(currentSceneName, 0.3f));
         /*
         if(RewardflashImage.activeSelf){
            
@@ -95,7 +118,7 @@ public class DOafterRewardPanel : MonoBehaviour
         {
             tween.Kill();
             //Debug.Log("IDBigScale2");
-            })};*/
+            })};
         
         rewardButton.SetActive(false);
         RewardPanel.SetActive(false);
@@ -106,6 +129,19 @@ public class DOafterRewardPanel : MonoBehaviour
         AdMobManager.GetComponent<AdMobInterstitial>().AdSceneName = SceneName;
         AdMobManager.GetComponent<AdMobBanner>().DestroyBannerAd();
         SceneManager.LoadScene(SceneName);*/
+    }
+    /// <summary>
+    /// 指定シーンを一定時間後に再読み込み
+    /// </summary>
+    private IEnumerator ReloadSceneAfterDelay(string sceneName, float delay)
+    {
+        // パネルやボタンを非表示
+        //rewardButton.SetActive(false);
+        //RewardPanel.SetActive(false);
+
+        yield return new WaitForSeconds(delay);
+        Debug.Log("CloseAdPanel: シーンを再読み込みします → " + sceneName);
+        SceneManager.LoadScene(sceneName);
     }
     
 }

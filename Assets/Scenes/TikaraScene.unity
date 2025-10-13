@@ -867,7 +867,7 @@ GameObject:
   - component: {fileID: 39695296}
   - component: {fileID: 39695299}
   - component: {fileID: 39695298}
-  - component: {fileID: 39695297}
+  - component: {fileID: 39695300}
   m_Layer: 5
   m_Name: afterRewardPanel
   m_TagString: Untagged
@@ -898,30 +898,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1000, y: 1345}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &39695297
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 39695295}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a82ba5b3c29184c51b93e649f83f196a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rewardText: {fileID: 1599803981}
-  RewardPanel: {fileID: 39695295}
-  RewardButton: {fileID: 981314893}
-  RewardCoinImage: {fileID: 292389523}
-  RewardflashImage: {fileID: 1168543951}
-  coinAddText: {fileID: 510982880}
-  coinGenerator: {fileID: 398382531}
-  SpinnerPanel: {fileID: 746770594}
-  RegradePanel: {fileID: 1349976771}
-  AdMobManager: {fileID: 405711822}
-  rewardButton: {fileID: 1915862363}
-  homeButton: {fileID: 185705608}
 --- !u!114 &39695298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -960,6 +936,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 39695295}
   m_CullTransparentMesh: 1
+--- !u!114 &39695300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39695295}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82ba5b3c29184c51b93e649f83f196a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardText: {fileID: 1599803981}
+  RewardPanel: {fileID: 39695295}
+  RewardButton: {fileID: 981314893}
+  RewardCoinImage: {fileID: 292389523}
+  RewardflashImage: {fileID: 1168543951}
+  coinAddText: {fileID: 510982880}
+  coinGenerator: {fileID: 398382531}
+  SpinnerPanel: {fileID: 746770594}
+  RegradePanel: {fileID: 1349976771}
+  AdMobManager: {fileID: 405711822}
+  rewardButton: {fileID: 1915862363}
+  homeButton: {fileID: 185705608}
 --- !u!1 &48797122
 GameObject:
   m_ObjectHideFlags: 0
@@ -8709,7 +8709,7 @@ GameObject:
   - component: {fileID: 596049191}
   - component: {fileID: 596049190}
   m_Layer: 5
-  m_Name: panelTopImage
+  m_Name: ribonImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8754,7 +8754,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cefd15881ef0f4a2e876bb6bee2080b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da5db72ec48e840799f4a20440277192, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -10888,6 +10888,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -10909,6 +10911,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -11281,6 +11284,7 @@ GameObject:
   - component: {fileID: 839093096}
   - component: {fileID: 839093097}
   - component: {fileID: 839093098}
+  - component: {fileID: 839093099}
   m_Layer: 0
   m_Name: TQuesManager
   m_TagString: Untagged
@@ -11488,6 +11492,30 @@ MonoBehaviour:
   - {fileID: 21300000, guid: f0f02cef7a1f94e9da3cc5586566266e, type: 3}
   - {fileID: 21300000, guid: ed58f977acf8b4f72b0ba185a938aef1, type: 3}
   - {fileID: 21300000, guid: 1be72299356784a9bb54928a13821c5a, type: 3}
+--- !u!114 &839093099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 839093093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a82ba5b3c29184c51b93e649f83f196a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardText: {fileID: 1599803981}
+  RewardPanel: {fileID: 39695295}
+  RewardButton: {fileID: 981314893}
+  RewardCoinImage: {fileID: 292389523}
+  RewardflashImage: {fileID: 1168543951}
+  coinAddText: {fileID: 510982880}
+  coinGenerator: {fileID: 398382531}
+  SpinnerPanel: {fileID: 746770594}
+  RegradePanel: {fileID: 1349976771}
+  AdMobManager: {fileID: 405711822}
+  rewardButton: {fileID: 1915862363}
+  homeButton: {fileID: 185705608}
 --- !u!1 &842346291
 GameObject:
   m_ObjectHideFlags: 0
@@ -13282,7 +13310,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 39695297}
+      - m_Target: {fileID: 839093099}
         m_TargetAssemblyTypeName: DOafterRewardPanel, Assembly-CSharp
         m_MethodName: CloseAdPanel
         m_Mode: 1
@@ -16105,7 +16133,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 39695297}
+      - m_Target: {fileID: 839093099}
         m_TargetAssemblyTypeName: DOafterRewardPanel, Assembly-CSharp
         m_MethodName: CloseAdPanel
         m_Mode: 1
@@ -16137,7 +16165,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: dad59b459a3b7401db0f97bed47905b5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4ad15db1aebb749f5b1846fbbfa25de7, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16904,6 +16932,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -16925,6 +16955,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -17941,7 +17972,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: cefd15881ef0f4a2e876bb6bee2080b9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: da5db72ec48e840799f4a20440277192, type: 3}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18155,6 +18186,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -18176,6 +18209,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -22716,6 +22750,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -22737,6 +22773,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -24286,6 +24323,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -24307,6 +24346,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -26193,6 +26233,8 @@ SpriteRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -26214,6 +26256,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
@@ -26815,7 +26858,7 @@ PrefabInstance:
     - target: {fileID: 7712504450887039437, guid: 6aa59cf5a49934579a3150f1be79b89b, type: 3}
       propertyPath: dOafterRewardPanel
       value: 
-      objectReference: {fileID: 39695297}
+      objectReference: {fileID: 839093099}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
