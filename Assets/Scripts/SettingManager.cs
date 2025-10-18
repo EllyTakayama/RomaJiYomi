@@ -18,9 +18,11 @@ public class SettingManager : MonoBehaviour
     public Toggle bgmToggle; //BGMオンオフ
     public Toggle seToggle; //SEオンオフ
     public bool canAnswer; //Buttonの不具合を解消するため連続してボタンを押せなないよう制御
-
     public bool TestfontSize; //テスト用データ
-
+    
+    //SoundManagerに参照してもらう用のSlider
+    [SerializeField] private Slider bgmSlider;
+    [SerializeField] private Slider seSlider;
     void Start()
     {
         //GameManager.instance.LoadGfontsize();
@@ -131,6 +133,21 @@ public class SettingManager : MonoBehaviour
         Debug.Log("GisSEOn" + GameManager.instance.isSEOn);
         Debug.Log("ロードSE" + seToggle.isOn);
 
+    }
+    public void OnBGMVolumeChanged()
+    {
+        float volume = bgmSlider.value;
+        SoundManager.instance.SetBGMVolume(volume);
+        GameManager.instance.bgmVolume = volume;
+        GameManager.instance.SaveBgmVolume();
+    }
+
+    public void OnSEVolumeChanged()
+    {
+        float volume = seSlider.value;
+        SoundManager.instance.SetSEVolume(volume);
+        GameManager.instance.seVolume = volume;
+        GameManager.instance.SaveSeVolume();
     }
 
     //Onの時はOnのアイコン、Offの時はOffのアイコンが表示される

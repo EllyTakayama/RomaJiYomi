@@ -33,6 +33,20 @@ public class SoundManager : MonoBehaviour
     public bool isSfontSize;
     public bool isSkunrei;
 
+    
+    //Sliderで音量を管理する
+    public void SetBGMVolume(float volume)
+    {
+        audioSourceBGM.volume = Mathf.Clamp01(volume); // 0〜1に制限
+        Debug.Log("BGM Volume Set: " + volume);
+    }
+    
+    //Sliderで音量を管理する
+    public void SetSEVolume(float volume)
+    {
+        audioSourceSE.volume = Mathf.Clamp01(volume);
+        Debug.Log("SE Volume Set: " + volume);
+    }
     public void PlayPanelBGM(string PanelName)
     {
         audioSourceBGM.Stop();

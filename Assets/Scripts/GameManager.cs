@@ -37,14 +37,14 @@ public class GameManager : MonoBehaviour
     public int SceneCount; //インタースティシャル広告表示のためにScene表示をカウントしていきます
 
     public AdMobBanner adMobBanner; // AdMobBannerスクリプトをアタッチする
-
     public AdMobInterstitial adMobInterstitial; // AdMobInterstitialスクリプトをアタッチする
-
     // 課金状態フラグ（広告のサブスク状態を管理）
     // 購入フラグ
     public bool isPermanentAdsRemoved; //永久課金購入フラグ
-
     public bool isRomajiSubRemoved; // 広告全体オフのサブスクリプション対応
+    // ==== 【音量設定】 ====
+    public float bgmVolume = 1.0f; // デフォルト音量（最大）
+    public float seVolume = 1.0f;  // デフォルト音量（最大）
 
     // 購入フラグを共通化広告非表示判定
     public bool AreAdsRemoved()
@@ -236,55 +236,6 @@ public class GameManager : MonoBehaviour
 }
 
 
-/*
-// ローカルにキーが保存されているか確認
-if (!ES3.KeyExists($"{itemId}_purchaseDate",$"{itemId}_purchaseDate.es3"))
-{
-    Debug.LogWarning($"ローカルに購入日付が保存されていません: {itemId}");
-    SavePurchaseState(itemId, false);
-    isPurchaseStateLoaded = true; // ★ これを追加！
-    return;
-}
-
-DateTime localPurchaseDate = LoadPurchaseDate($"{itemId}_purchaseDate");
-
-if (localPurchaseDate == DateTime.MinValue)
-{
-    Debug.LogWarning($"購入日付が正しく読み込まれませんでした: {itemId}");
-    SavePurchaseState(itemId, false);
-    return;
-}
-Debug.Log($"ローカルの購入日付: {localPurchaseDate:yyyy-MM-dd HH:mm:ss}");
-
-DateTime nextUpdateDate = CalculateNextUpdateDate(localPurchaseDate);
-
-if (DateTime.UtcNow < nextUpdateDate)
-{
-    Debug.Log($"{itemId}: サブスクリプションは有効です。次回更新日: {nextUpdateDate:yyyy-MM-dd}");
-    SavePurchaseState(itemId, true);
-    isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
-    Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
-}
-else
-{
-    Debug.Log($"{itemId}: 次回更新日を超えています。ストアで更新を確認します。");
-
-    // InAppPurchaseManager の RestorePurchases() を実行してストアに確認
-    if (FindObjectOfType<InAppPurchaseManager>() != null)
-    {
-        FindObjectOfType<InAppPurchaseManager>().RestorePurchases();
-        isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
-        Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
-    }
-    else
-    {
-        Debug.LogWarning("[GameManager] InAppPurchaseManager が見つかりません。");
-        isPurchaseStateLoaded = true; // 課金状況の確認フラグをここで立てる
-        Debug.Log("[GameManager] isPurchaseStateLoaded を true に設定しました");
-    }
-}
-*/
-
 private DateTime ConvertUnixTimestampToDateTime(int timestamp)
     {
         return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddSeconds(timestamp);
@@ -362,33 +313,6 @@ private DateTime ConvertUnixTimestampToDateTime(int timestamp)
                 break;
         }
         Debug.Log($"課金データ保存: {key} = {value}（難読化保存済み）");
-        /*
-        // フラグを更新
-        switch (key)
-        {
-            case "romaji_suboff_160jpy":
-                isRomajiSubRemoved = value;
-                ES3.Save<bool>("isRomajiSubRemoved", value, "isRomajiSubRemoved.es3");
-                if (isRomajiSubRemoved)
-                {
-                    Debug.Log("永久広告削除");
-                    adMobBanner?.OnBannerPurchaseCompleted(); // バナー広告を削除
-                    adMobInterstitial?.OnInterstitialPurchaseCompleted();
-                }
-                break;
-            case "romajioff_480jpy":
-                isPermanentAdsRemoved = value;
-                ES3.Save<bool>("isPermanentAdsRemoved", value, "isPermanentAdsRemoved.es3");
-                adMobBanner?.OnBannerPurchaseCompleted(); // バナー広告を削除
-                adMobInterstitial?.OnInterstitialPurchaseCompleted();
-                break;
-            default:
-                Debug.LogWarning($"未知のアイテムID: {key}");
-                break;
-        }
-        ES3.Save<bool>(key, value, $"{key}.es3");
-        Debug.Log($"課金データ保存: {key} = {value}");
-        */
         UpdateAdState();
     }
 
@@ -484,37 +408,7 @@ private DateTime ConvertUnixTimestampToDateTime(int timestamp)
         // 最終的な読み込み結果をログに出力
         Debug.Log($"課金データ読み込み: {key} = {value}（難読化復号済み）");
         return value;
-        /*
-        string filePath = $"{key}.es3"; // 読み込み元のファイル名
-        bool value = defaultValue;
 
-        if (ES3.KeyExists(key, filePath))
-        {
-            value = ES3.Load<bool>(key, filePath, defaultValue);
-        }
-        else
-        {
-            Debug.Log($"課金データが存在しない: {key}, デフォルト値: {defaultValue}");
-        }
-
-        // フラグを復元
-        switch (key)
-        {
-            case "romaji_suboff_160jpy":
-                isRomajiSubRemoved = value;
-                break;
-
-            case "romajioff_480jpy":
-                isPermanentAdsRemoved = value;
-                break;
-
-            default:
-                Debug.LogWarning($"未知のアイテムID: {key}");
-                break;
-        }
-
-        Debug.Log($"課金データ読み込み: {key} = {value}");
-        return value;*/
     }
     // 広告状態を更新（広告非表示の処理）
     private void UpdateAdState()
@@ -573,7 +467,71 @@ private DateTime ConvertUnixTimestampToDateTime(int timestamp)
          isGKunrei = ES3.Load<bool>("isGKunrei","isGKunrei.es3",false);
          //Debug.Log("クリックisGKunrei"+isGKunrei);
     }
+    public void SaveBgmVolume()
+    {
+        ES3.Save("BgmVolume", bgmVolume);
+    }
 
+    /// <summary>
+    /// SE音量を保存（Easy Save 3使用）
+    /// </summary>
+    public void SaveSeVolume()
+    {
+        ES3.Save("SeVolume", seVolume);
+    }
+
+    /// <summary>
+    /// 音量設定をロード（旧バージョン互換対応）
+    /// </summary>
+    private void LoadVolumeSettings()
+    {
+        bool migrated = false; // 移行処理を実行したかどうか
+
+        // --- ▼ 旧バージョン（ON/OFF保存方式）からの互換対応 ---
+        if (ES3.KeyExists("BGM_ON") || ES3.KeyExists("SE_ON"))
+        {
+            // BGM_ON → 1.0 or 0.0 に変換
+            if (ES3.KeyExists("BGM_ON"))
+            {
+                bool oldBgmOn = ES3.Load<bool>("BGM_ON");
+                bgmVolume = oldBgmOn ? 1.0f : 0.0f;
+            }
+
+            // SE_ON → 1.0 or 0.0 に変換
+            if (ES3.KeyExists("SE_ON"))
+            {
+                bool oldSeOn = ES3.Load<bool>("SE_ON");
+                seVolume = oldSeOn ? 1.0f : 0.0f;
+            }
+
+            // 新しいキーに変換して保存
+            SaveBgmVolume();
+            SaveSeVolume();
+
+            // 旧キー削除（不要ならコメントアウトOK）
+            ES3.DeleteKey("BGM_ON");
+            ES3.DeleteKey("SE_ON");
+
+            migrated = true;
+            Debug.Log("[GameManager] 音量設定を旧ON/OFF形式からスライダー形式に移行しました。");
+        }
+
+        // --- ▼ 現行バージョン（スライダー保存方式） ---
+        if (!migrated)
+        {
+            if (ES3.KeyExists("BgmVolume"))
+                bgmVolume = ES3.Load<float>("BgmVolume");
+            if (ES3.KeyExists("SeVolume"))
+                seVolume = ES3.Load<float>("SeVolume");
+        }
+
+        // --- 音量をSoundManagerに適用 ---
+        if (SoundManager.instance != null)
+        {
+            SoundManager.instance.SetBGMVolume(bgmVolume);
+            SoundManager.instance.SetSEVolume(seVolume);
+        }
+    }
 
     public void SaveGse(){
         ES3.Save<bool>("isSEOn",isSEOn,"isSEOn.es3");
