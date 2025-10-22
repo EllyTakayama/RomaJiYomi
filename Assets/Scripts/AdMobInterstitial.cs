@@ -14,8 +14,8 @@ public class AdMobInterstitial : MonoBehaviour
     private Action onAdClosed; // 広告終了後に呼び出す処理
     public bool IsAdShowing { get; private set; } = false;//広告が現在表示中か？を外部参照できるプロパティ
 #if UNITY_ANDROID
-    //string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
-    string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
+    string adUnitId = "ca-app-pub-3940256099942544/1033173712";//TestAndroidのインタースティシャル広告ID
+    //string adUnitId = "ca-app-pub-7439888210247528/6016496823";//ここにAndroidのインタースティシャル広告IDを入力
 
 #elif UNITY_IPHONE
         //string adUnitId = "ca-app-pub-3940256099942544/4411468910";//TestiOSのインタースティシャル広告ID

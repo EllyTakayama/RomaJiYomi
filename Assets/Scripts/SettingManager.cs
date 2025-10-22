@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using System;
-//1月4日更新
+//R7.10月21日更新
 
-
+// 設定パネルの制御を行うクラス
 public class SettingManager : MonoBehaviour
 {
+    [Header("Panels")]
     [SerializeField] private GameObject settingPanel;
     [SerializeField] private GameObject topPanel;
     [SerializeField] private GameObject infoPanel;
+    
+    [Header("Toggles (Font & Style)")]
     public Toggle tallToggle; //大文字の選択 /A
     public Toggle smallToggle; //小文字の選択 /a
     public Toggle hebonToggle; //ヘボン式の選択 /shi
@@ -20,7 +23,11 @@ public class SettingManager : MonoBehaviour
     public bool canAnswer; //Buttonの不具合を解消するため連続してボタンを押せなないよう制御
     public bool TestfontSize; //テスト用データ
     
-    //SoundManagerに参照してもらう用のSlider
+    [Header("AudioSource (for live preview)")]
+    [SerializeField] private AudioSource bgmSource;
+    [SerializeField] private AudioSource seSource;
+    
+    [Header("Sliders (Volume)")]
     [SerializeField] private Slider bgmSlider;
     [SerializeField] private Slider seSlider;
     void Start()
@@ -28,8 +35,16 @@ public class SettingManager : MonoBehaviour
         //GameManager.instance.LoadGfontsize();
         FontTogLoad();
         ShosikiTogLoad();
-        SetBGMLoad();
+        
+        // 音量をスライダーに反映
+        LoadVolumeToSlider();
+
+        // BGM/SEのON/OFFを反映
+        StartCoroutine(SetBGMLoadCoroutine());
+        
+        //SetBGMLoad();
         SetSELoad();
+        
         if (GameManager.instance.SceneCount == 5 || GameManager.instance.SceneCount == 30 ||
             GameManager.instance.SceneCount == 80 || GameManager.instance.SceneCount == 150)
         {
@@ -37,8 +52,37 @@ public class SettingManager : MonoBehaviour
         }
 
     }
-
-    //Debug.Log("スタートロード");
+    // ゲーム開始時にGameManagerの音量設定をスライダーへ反映
+    private void LoadVolumeToSlider()
+    {
+        bgmSlider.value = GameManager.instance.bgmVolume;
+        seSlider.value = GameManager.instance.seVolume;
+        ApplyVolume();
+    }
+    // GameManagerの音量設定をAudioSourceに適用
+    public void ApplyVolume()
+    {
+        bgmSource.volume = GameManager.instance.bgmVolume;
+        seSource.volume = GameManager.instance.seVolume;
+    }
+    public void OnBGMVolumeChanged()
+    {
+        float volume = bgmSlider.value;
+        SoundManager.instance.SetBGMVolume(volume);
+        GameManager.instance.bgmVolume = volume;
+        GameManager.instance.SaveVolumeSettings(); // ← ここを統一
+    }
+    public void OnSEVolumeChanged()
+    {
+        float volume = seSlider.value;
+        SoundManager.instance.SetSEVolume(volume);
+        GameManager.instance.seVolume = volume;
+        GameManager.instance.SaveVolumeSettings(); // ← ここを統一
+    }
+    
+    //==============================
+    //  // パネル切り替え
+    //==============================
     public void SetPanelMove()
     {
         SoundManager.instance.StopSE();
@@ -109,7 +153,6 @@ public class SettingManager : MonoBehaviour
         //BGMトグルをセットする
         if (GameManager.instance.isBgmOn == true)
         {
-
             bgmToggle.isOn = true;
         }
         else
@@ -134,22 +177,7 @@ public class SettingManager : MonoBehaviour
         Debug.Log("ロードSE" + seToggle.isOn);
 
     }
-    public void OnBGMVolumeChanged()
-    {
-        float volume = bgmSlider.value;
-        SoundManager.instance.SetBGMVolume(volume);
-        GameManager.instance.bgmVolume = volume;
-        GameManager.instance.SaveBgmVolume();
-    }
-
-    public void OnSEVolumeChanged()
-    {
-        float volume = seSlider.value;
-        SoundManager.instance.SetSEVolume(volume);
-        GameManager.instance.seVolume = volume;
-        GameManager.instance.SaveSeVolume();
-    }
-
+    
     //Onの時はOnのアイコン、Offの時はOffのアイコンが表示される
     public void FontSelectToggle()
     {
@@ -172,6 +200,9 @@ public class SettingManager : MonoBehaviour
         Debug.Log("GameMfontSize" + GameManager.instance.isGfontsize);
     }
 
+    //==============================
+    // 以下、フォント・書式設定関係
+    //==============================
     public void FontTogLoad()
     {
         GameManager.instance.LoadGfontsize();
@@ -259,6 +290,7 @@ public class SettingManager : MonoBehaviour
         canAnswer = true; //問題に答えた時ボタン押せないブールをtrueに戻しておく
     }
 
+    
     public void SetBGMLoad()
     {
         StartCoroutine(SetBGMLoadCoroutine());

@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//1月1日更新
 
+// 2025年10月版：音量スライダー対応・GameManager連携・旧AudioSource統一済み
 public class SoundManager : MonoBehaviour
 {
     public static SoundManager instance;
     public bool IsInitialized { get; private set; }
+
     private void Awake()
     {
         if (instance == null)
@@ -17,137 +18,195 @@ public class SoundManager : MonoBehaviour
         else
         {
             Destroy(this.gameObject);
+            return;
         }
-        IsInitialized = true;//初期化フラグをtrueにする
+
+        IsInitialized = true; // 初期化フラグ
     }
-    //--シングルトン終わり--
 
-    public AudioSource audioSourceBGM; // BGMのスピーカー
-    public AudioClip[] audioClipsBGM;  // BGMの素材（0:Title, 1:Town, 2:Quest, 3:Battle）
+    // ==============================
+    // 🎵 AudioSource & Clip設定
+    // ==============================
 
-    public AudioSource audioSourceSE; // SEのスピーカー
-    public AudioClip[] hiragana50; //ひらがな単音配列に対応したAudioClip配列
-    public AudioClip[] sousaSE;
-    public AudioClip[] aKihon; //あ行の説明音声を収録したAudioClip配列
-    public AudioClip dore; //あ行の説明音声を収録したAudioClip配列
+    [Header("Audio Sources")]
+    public AudioSource audioSourceBGM; // BGM再生用スピーカー
+    public AudioSource audioSourceSE;  // SE再生用スピーカー
+
+    [Header("BGM Clips")]
+    public AudioClip[] audioClipsBGM;  // BGM素材（0:Title, 1:Town, 2:Quest, 3:Battle）
+
+    [Header("SE Clips")]
+    public AudioClip[] hiragana50; // ひらがな単音
+    public AudioClip[] sousaSE;    // 操作音など
+    public AudioClip[] aKihon;     // あ行の説明音声
+    public AudioClip dore;         // どれの音声
+    
+    [Header("Flags")]
     public bool isSfontSize;
     public bool isSkunrei;
+    // ==============================
+    // 🎚 音量制御関連
+    // ==============================
 
-    
-    //Sliderで音量を管理する
-    public void SetBGMVolume(float volume)
+    private void Start()
     {
-        audioSourceBGM.volume = Mathf.Clamp01(volume); // 0〜1に制限
-        Debug.Log("BGM Volume Set: " + volume);
+        // 起動時にGameManagerの音量設定をAudioSourceに適用
+        ApplyVolume();
     }
-    
-    //Sliderで音量を管理する
-    public void SetSEVolume(float volume)
+
+    /// <summary>
+    /// GameManagerの音量設定をAudioSourceに反映
+    /// </summary>
+    public void ApplyVolume()
     {
-        audioSourceSE.volume = Mathf.Clamp01(volume);
-        Debug.Log("SE Volume Set: " + volume);
+        if (GameManager.instance == null) return;
+
+        audioSourceBGM.volume = GameManager.instance.bgmVolume;
+        audioSourceSE.volume = GameManager.instance.seVolume;
     }
-    public void PlayPanelBGM(string PanelName)
+
+    /// <summary>
+    /// BGM音量を変更＋保存
+    /// </summary>
+    public void SetBGMVolume(float value)
     {
+        if (GameManager.instance == null) return;
+
+        GameManager.instance.bgmVolume = value;
+        audioSourceBGM.volume = value;
+        GameManager.instance.SaveBgmVolume();
+    }
+
+    /// <summary>
+    /// SE音量を変更＋保存
+    /// </summary>
+    public void SetSEVolume(float value)
+    {
+        if (GameManager.instance == null) return;
+
+        GameManager.instance.seVolume = value;
+        audioSourceSE.volume = value;
+        GameManager.instance.SaveSeVolume();
+    }
+
+    // ==============================
+    // 🔊 再生関連
+    // ==============================
+
+    public void PlaySE(AudioClip clip)
+    {
+        if (clip != null && audioSourceSE != null)
+        {
+            audioSourceSE.PlayOneShot(clip, audioSourceSE.volume);
+        }
+    }
+
+    /// <summary>
+    /// パネル名に応じたBGMを再生
+    /// </summary>
+    public void PlayPanelBGM(string panelName)
+    {
+        if (audioSourceBGM == null || audioClipsBGM == null) return;
+
         audioSourceBGM.Stop();
-        switch (PanelName)
+
+        switch (panelName)
         {
             default:
             case "TopPanel":
                 audioSourceBGM.clip = audioClipsBGM[0];
-                Debug.Log("BGM,TopPanel");
+                Debug.Log("BGM: TopPanel");
                 break;
             case "GradePanel":
                 audioSourceBGM.clip = audioClipsBGM[6];
-                Debug.Log("BGM,GradePanel");
+                Debug.Log("BGM: GradePanel");
                 break;
-            case "SelectPanel"://TikaraSceneでButton選択したバトル用音楽
+            case "SelectPanel":
                 audioSourceBGM.clip = audioClipsBGM[3];
-                Debug.Log("BGM,SelectPanel");
+                Debug.Log("BGM: SelectPanel");
                 break;
-            
         }
+
         audioSourceBGM.Play();
     }
-    /*0 TopScene　1:KihonScene 2:RenshuuScene 3:TikaraScene
-    4:GachaScene 5:SelectPanel 6:GradePanel
 
-    */
+    /// <summary>
+    /// シーン名に応じたBGMを再生
+    /// </summary>
     public void PlayBGM(string sceneName)
     {
+        if (audioSourceBGM == null || audioClipsBGM == null) return;
+
         audioSourceBGM.Stop();
+
         switch (sceneName)
         {
             default:
             case "TopScene":
                 audioSourceBGM.clip = audioClipsBGM[0];
-                Debug.Log("BGM,TopScene");
+                Debug.Log("BGM: TopScene");
                 break;
             case "KihonScene":
                 audioSourceBGM.clip = audioClipsBGM[1];
-                Debug.Log("BGM,KihonScene");
+                Debug.Log("BGM: KihonScene");
                 break;
             case "RenshuuScene":
                 audioSourceBGM.clip = audioClipsBGM[2];
-                Debug.Log("BGM,RenshuuScene");
+                Debug.Log("BGM: RenshuuScene");
                 break;
             case "TikaraScene":
                 audioSourceBGM.clip = audioClipsBGM[5];
-                Debug.Log("BGM,TikaraScene");
+                Debug.Log("BGM: TikaraScene");
                 break;
             case "GachaScene":
                 audioSourceBGM.clip = audioClipsBGM[4];
-                 Debug.Log("BGM,GachaScene");
+                Debug.Log("BGM: GachaScene");
                 break;
-            
         }
+
         audioSourceBGM.Play();
     }
+
+    // ==============================
+    // 📢 効果音群
+    // ==============================
 
     public void StopSE()
     {
         audioSourceSE.Stop();
-        //Debug.Log("stopSE");
     }
-    
+
     public void PlaySE(int index)
     {
-        audioSourceSE.PlayOneShot(hiragana50[index]); // SEを一度だけならす
-        //Debug.Log("Se");
+        if (index >= 0 && index < hiragana50.Length)
+            audioSourceSE.PlayOneShot(hiragana50[index]);
     }
+
     public void PlayAgSE(int index)
     {
-        audioSourceSE.PlayOneShot(aKihon[index]); // SEを一度だけならす
-        //Debug.Log("AGSe");
-    }
-    /* PlaySousaSE
-       0:正解 1:ヒュン・不正解時の正解Panel表示音 2:Scene変化のButton音 3:不正解音
-       4:ガチャガチャのボール音 5:Button音2 6：Button音3ぴ（小）7：ルーレット　8：ルーレット結果
-       9:スワイプ（画面移動）音 10:GradePanelテキスト 11:GradePanelスタンプ音
-       12: Gradeファンファーレ（Kihon) 13:ルーレットストップ 14:コインゲット音
-       15: Gradeファンファーレ（Renshuu ,Tikara) 16:ガチャガチャ音,17 Ballon破裂音
-    */
-    public void PlaySousaSE(int index){
-        audioSourceSE.PlayOneShot(sousaSE[index]); // doreを一度だけ鳴らす
+        if (index >= 0 && index < aKihon.Length)
+            audioSourceSE.PlayOneShot(aKihon[index]);
     }
 
-    public void PlaySEDore(){
-        audioSourceSE.PlayOneShot(dore); // doreを一度だけ鳴らす
-    }
-    public void BGMmute(){
-        audioSourceBGM.mute = true;
-    }
-    
-    public void UnmuteBGM(){
-        audioSourceBGM.mute = false;
-    }
-    
-    public void SEmute(){
-        audioSourceSE.mute = true;
-    }
-    
-    public void UnmuteSE(){
-        audioSourceSE.mute = false;
+    public void PlaySousaSE(int index)
+    {
+        if (index >= 0 && index < sousaSE.Length)
+            audioSourceSE.PlayOneShot(sousaSE[index]);
     }
 
+    public void PlaySEDore()
+    {
+        if (dore != null)
+            audioSourceSE.PlayOneShot(dore);
+    }
+
+    // ==============================
+    // 🔇 ミュート関連
+    // ==============================
+
+    public void BGMmute() => audioSourceBGM.mute = true;
+    public void UnmuteBGM() => audioSourceBGM.mute = false;
+
+    public void SEmute() => audioSourceSE.mute = true;
+    public void UnmuteSE() => audioSourceSE.mute = false;
 }

@@ -11,7 +11,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     public bool isGfontsize; //Setting画面での大文字小文字のbool
-
     public bool isGKunrei;
 
     //public bool isGfontSize;
@@ -45,6 +44,12 @@ public class GameManager : MonoBehaviour
     // ==== 【音量設定】 ====
     public float bgmVolume = 1.0f; // デフォルト音量（最大）
     public float seVolume = 1.0f;  // デフォルト音量（最大）
+    
+    private const string BGM_VOLUME_KEY = "BGMVolume";
+    private const string SE_VOLUME_KEY = "SEVolume";
+    private const string OLD_BGM_TOGGLE_KEY = "BGM_ON"; // 旧データ
+    private const string OLD_SE_TOGGLE_KEY = "SE_ON";   // 旧データ
+    private const string MIGRATION_DONE_KEY = "VolumeMigrationDone";
 
     // 購入フラグを共通化広告非表示判定
     public bool AreAdsRemoved()
@@ -62,6 +67,7 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
+            LoadVolumeSettings();
         }
         else
         {
@@ -469,74 +475,70 @@ private DateTime ConvertUnixTimestampToDateTime(int timestamp)
     }
     public void SaveBgmVolume()
     {
-        ES3.Save("BgmVolume", bgmVolume);
+        ES3.Save<float>("BGM_Volume", bgmVolume);
+        Debug.Log("BGM Volume Saved: " + bgmVolume);
     }
-
-    /// <summary>
     /// SE音量を保存（Easy Save 3使用）
-    /// </summary>
     public void SaveSeVolume()
     {
-        ES3.Save("SeVolume", seVolume);
+        ES3.Save<float>("SE_Volume", seVolume);
+        Debug.Log("SE Volume Saved: " + seVolume);
     }
 
     /// <summary>
     /// 音量設定をロード（旧バージョン互換対応）
     /// </summary>
-    private void LoadVolumeSettings()
+    public void LoadVolumeSettings()
     {
-        bool migrated = false; // 移行処理を実行したかどうか
-
-        // --- ▼ 旧バージョン（ON/OFF保存方式）からの互換対応 ---
-        if (ES3.KeyExists("BGM_ON") || ES3.KeyExists("SE_ON"))
+        // すでに移行済みなら通常読み込み
+        if (ES3.KeyExists(MIGRATION_DONE_KEY))
         {
-            // BGM_ON → 1.0 or 0.0 に変換
-            if (ES3.KeyExists("BGM_ON"))
-            {
-                bool oldBgmOn = ES3.Load<bool>("BGM_ON");
-                bgmVolume = oldBgmOn ? 1.0f : 0.0f;
-            }
-
-            // SE_ON → 1.0 or 0.0 に変換
-            if (ES3.KeyExists("SE_ON"))
-            {
-                bool oldSeOn = ES3.Load<bool>("SE_ON");
-                seVolume = oldSeOn ? 1.0f : 0.0f;
-            }
-
-            // 新しいキーに変換して保存
-            SaveBgmVolume();
-            SaveSeVolume();
-
-            // 旧キー削除（不要ならコメントアウトOK）
-            ES3.DeleteKey("BGM_ON");
-            ES3.DeleteKey("SE_ON");
-
-            migrated = true;
-            Debug.Log("[GameManager] 音量設定を旧ON/OFF形式からスライダー形式に移行しました。");
+            bgmVolume = ES3.Load(BGM_VOLUME_KEY, 1.0f);
+            seVolume = ES3.Load(SE_VOLUME_KEY, 1.0f);
+            return;
         }
 
-        // --- ▼ 現行バージョン（スライダー保存方式） ---
-        if (!migrated)
+        // 旧データが存在する場合（ON/OFF）
+        bool hasOldBgm = ES3.KeyExists(OLD_BGM_TOGGLE_KEY);
+        bool hasOldSe = ES3.KeyExists(OLD_SE_TOGGLE_KEY);
+
+        if (hasOldBgm || hasOldSe)
         {
-            if (ES3.KeyExists("BgmVolume"))
-                bgmVolume = ES3.Load<float>("BgmVolume");
-            if (ES3.KeyExists("SeVolume"))
-                seVolume = ES3.Load<float>("SeVolume");
+            bool oldBgmOn = ES3.Load(OLD_BGM_TOGGLE_KEY, true);
+            bool oldSeOn = ES3.Load(OLD_SE_TOGGLE_KEY, true);
+
+            // ON → 1.0f, OFF → 0.0f に変換
+            bgmVolume = oldBgmOn ? 1.0f : 0.0f;
+            seVolume = oldSeOn ? 1.0f : 0.0f;
+
+            // 新フォーマットで保存
+            SaveVolumeSettings();
+
+            // 旧データ削除（任意）
+            ES3.DeleteKey(OLD_BGM_TOGGLE_KEY);
+            ES3.DeleteKey(OLD_SE_TOGGLE_KEY);
+        }
+        else
+        {
+            // 新規ユーザー用
+            bgmVolume = ES3.Load(BGM_VOLUME_KEY, 1.0f);
+            seVolume = ES3.Load(SE_VOLUME_KEY, 1.0f);
         }
 
-        // --- 音量をSoundManagerに適用 ---
-        if (SoundManager.instance != null)
-        {
-            SoundManager.instance.SetBGMVolume(bgmVolume);
-            SoundManager.instance.SetSEVolume(seVolume);
-        }
+        // 一度移行処理が走ったことを記録
+        ES3.Save(MIGRATION_DONE_KEY, true);
     }
 
     public void SaveGse(){
         ES3.Save<bool>("isSEOn",isSEOn,"isSEOn.es3");
         //Debug.Log("クリックisSEOn"+isSEOn);
     }
+    public void SaveVolumeSettings()
+    {
+        ES3.Save(BGM_VOLUME_KEY, bgmVolume);
+        ES3.Save(SE_VOLUME_KEY, seVolume);
+    }
+
 
     public void LoadGse(){
          //if(ES3.KeyExists("isSEOn"))

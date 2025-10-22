@@ -10,8 +10,8 @@ public class AdMobBanner : MonoBehaviour
 {
 
 #if UNITY_ANDROID
-        //string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
-        string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
+        string adUnitId = "ca-app-pub-3940256099942544/6300978111";//テストAndroidのバナーID
+        //string adUnitId = "ca-app-pub-7439888210247528/7402564833";//ここにAndroidのバナーIDを入力
 
 #elif UNITY_IPHONE
     //string adUnitId = "ca-app-pub-3940256099942544/2934735716";//テストiOSのバナーID

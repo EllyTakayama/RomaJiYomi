@@ -784,7 +784,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: SOUND
+  m_Text: "SE<size=28> \u52B9\u679C\u97F3</size>"
 --- !u!222 &47776584
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1001,7 +1001,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &85776874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7401,7 +7401,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: MUSIC
+  m_Text: BGM
 --- !u!222 &739659360
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -9977,11 +9977,11 @@ RectTransform:
   - {fileID: 1725620174}
   m_Father: {fileID: 1980514712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 145.2, y: -227}
-  m_SizeDelta: {x: 180, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 145.2, y: -689}
+  m_SizeDelta: {x: 200, y: 40}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1073079105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10032,7 +10032,19 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3677596211029221237}
+        m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
+        m_MethodName: OnSEVolumeChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1090349039
 GameObject:
   m_ObjectHideFlags: 0
@@ -13649,11 +13661,11 @@ RectTransform:
   - {fileID: 1935075424}
   m_Father: {fileID: 1980514712}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 145.2, y: -130}
-  m_SizeDelta: {x: 180, y: 40}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 145.2, y: -592}
+  m_SizeDelta: {x: 200, y: 40}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1416097152
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13704,7 +13716,19 @@ MonoBehaviour:
   m_Value: 0.5
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3677596211029221237}
+        m_TargetAssemblyTypeName: SettingManager, Assembly-CSharp
+        m_MethodName: OnBGMVolumeChanged
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1418028588
 GameObject:
   m_ObjectHideFlags: 0
@@ -17678,6 +17702,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1830946662}
   m_CullTransparentMesh: 1
+--- !u!82 &1837925065 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3143854434567620800, guid: cde9b8be8e6e742f4be98268fc89a280, type: 3}
+  m_PrefabInstance: {fileID: 525943536}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1837925066 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3143854434567620803, guid: cde9b8be8e6e742f4be98268fc89a280, type: 3}
+  m_PrefabInstance: {fileID: 525943536}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1848320781
 GameObject:
   m_ObjectHideFlags: 0
@@ -19549,11 +19583,11 @@ RectTransform:
   - {fileID: 78380526}
   - {fileID: 739659358}
   - {fileID: 47776582}
+  - {fileID: 1416097151}
+  - {fileID: 1073079104}
   - {fileID: 1734232127}
   - {fileID: 1647436721}
   - {fileID: 1770586863}
-  - {fileID: 1416097151}
-  - {fileID: 1073079104}
   m_Father: {fileID: 882015628}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
@@ -21719,8 +21753,10 @@ MonoBehaviour:
   seToggle: {fileID: 78380528}
   canAnswer: 0
   TestfontSize: 0
-  bgmSlider: {fileID: 0}
-  seSlider: {fileID: 0}
+  bgmSource: {fileID: 1837925066}
+  seSource: {fileID: 1837925065}
+  bgmSlider: {fileID: 1416097152}
+  seSlider: {fileID: 1073079105}
 --- !u!1 &3677596211029221238
 GameObject:
   m_ObjectHideFlags: 0
