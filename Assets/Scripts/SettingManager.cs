@@ -44,6 +44,8 @@ public class SettingManager : MonoBehaviour
         
         //SetBGMLoad();
         SetSELoad();
+        //Toggleのオンオフ表示させる
+        SetSettingPanel();
         
         if (GameManager.instance.SceneCount == 5 || GameManager.instance.SceneCount == 30 ||
             GameManager.instance.SceneCount == 80 || GameManager.instance.SceneCount == 150)
@@ -55,8 +57,24 @@ public class SettingManager : MonoBehaviour
     // ゲーム開始時にGameManagerの音量設定をスライダーへ反映
     private void LoadVolumeToSlider()
     {
+        // GameManagerに値がまだ保存されていない場合のデフォルト値設定
+        if (!ES3.KeyExists("BGM_Volume"))
+        {
+            GameManager.instance.bgmVolume = 0.2f; // ★初期値：BGM 0.2
+            GameManager.instance.SaveVolumeSettings();
+        }
+        if (!ES3.KeyExists("SE_Volume"))
+        {
+            GameManager.instance.seVolume = 0.7f; // ★初期値：SE 0.7
+            GameManager.instance.SaveVolumeSettings();
+        }
+
+        // スライダー上の表示は「0〜1」だが、実際の音量は0〜0.7にマップ
+        bgmSlider.value = GameManager.instance.bgmVolume / 0.7f;
+        seSlider.value = GameManager.instance.seVolume / 0.7f;
+        /*
         bgmSlider.value = GameManager.instance.bgmVolume;
-        seSlider.value = GameManager.instance.seVolume;
+        seSlider.value = GameManager.instance.seVolume;*/
         ApplyVolume();
     }
     // GameManagerの音量設定をAudioSourceに適用
@@ -65,18 +83,30 @@ public class SettingManager : MonoBehaviour
         bgmSource.volume = GameManager.instance.bgmVolume;
         seSource.volume = GameManager.instance.seVolume;
     }
+
     public void OnBGMVolumeChanged()
     {
-        float volume = bgmSlider.value;
+        /*
+       float volume = bgmSlider.value;
         SoundManager.instance.SetBGMVolume(volume);
         GameManager.instance.bgmVolume = volume;
+        */
+        float sliderValue = bgmSlider.value;           // 0〜1
+        float mappedVolume = sliderValue * 0.7f;       // ★最大0.7までに制限
+        SoundManager.instance.SetBGMVolume(mappedVolume);
+        GameManager.instance.bgmVolume = mappedVolume;
         GameManager.instance.SaveVolumeSettings(); // ← ここを統一
     }
     public void OnSEVolumeChanged()
     {
+        /*
         float volume = seSlider.value;
         SoundManager.instance.SetSEVolume(volume);
-        GameManager.instance.seVolume = volume;
+        GameManager.instance.seVolume = volume;*/
+        float sliderValue = seSlider.value;            // 0〜1
+        float mappedVolume = sliderValue * 0.7f;       // ★最大0.7までに制限
+        SoundManager.instance.SetSEVolume(mappedVolume);
+        GameManager.instance.seVolume = mappedVolume;
         GameManager.instance.SaveVolumeSettings(); // ← ここを統一
     }
     
@@ -149,7 +179,7 @@ public class SettingManager : MonoBehaviour
 
         Debug.Log("ロードkunreiToggle" + kunreiToggle.isOn);
         Debug.Log("ロードhebonToggle" + hebonToggle.isOn);
-
+        /*
         //BGMトグルをセットする
         if (GameManager.instance.isBgmOn == true)
         {
@@ -175,7 +205,7 @@ public class SettingManager : MonoBehaviour
 
         Debug.Log("GisSEOn" + GameManager.instance.isSEOn);
         Debug.Log("ロードSE" + seToggle.isOn);
-
+        */
     }
     
     //Onの時はOnのアイコン、Offの時はOffのアイコンが表示される
@@ -206,7 +236,6 @@ public class SettingManager : MonoBehaviour
     public void FontTogLoad()
     {
         GameManager.instance.LoadGfontsize();
-
     }
 
     public void ShosikiSelectToggle()
