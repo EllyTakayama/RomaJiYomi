@@ -1,17 +1,16 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using Unity.Services.Core;
 using UnityEngine;
 using UnityEngine.Purchasing;
-using UnityEngine.Purchasing.Extension;
 using UnityEngine.UI;
-using Unity.Services.Core;
-using System;
-using System.Globalization;
 
-public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
+public class InAppPurchaseManager : MonoBehaviour
 {
-    private IStoreController storeController;
-    private IExtensionProvider storeExtensionProvider;
-    private IAppleExtensions appleExtensions;
+    private StoreController storeController;
+    private bool productsFetched;
+    private bool restoreRequested;
 
     // 課金結果表示用UI
     public Text KakinResultText;
@@ -19,10 +18,10 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
     public GameObject KakinPanels;
 
     // 商品IDとタイプの定義（定期購読・非消耗型など）
-    private Dictionary<string, ProductType> productCatalog = new Dictionary<string, ProductType>
+    private readonly Dictionary<string, ProductType> productCatalog = new Dictionary<string, ProductType>
     {
         { "romaji_suboff_160jpy", ProductType.Subscription }, //サブスク広告一括オフ
-        { "romajioff_480jpy", ProductType.NonConsumable }          // 広告削除完全版（買い切り）
+        { "romajioff_480jpy", ProductType.NonConsumable }      // 広告削除完全版（買い切り）
     };
 
     private async void Awake()
@@ -32,6 +31,7 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
             await UnityServices.InitializeAsync();
         }
     }
+
     private void Start()
     {
         if (storeController == null)
@@ -40,126 +40,175 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         }
     }
 
-    public void InitializePurchasing()
+    private async void InitializePurchasing()
     {
         if (storeController != null) return;
 
-        var builder = ConfigurationBuilder.Instance(StandardPurchasingModule.Instance());
+        storeController = UnityIAPServices.StoreController();
+        storeController.OnStoreConnected += OnStoreConnected;
+        storeController.OnStoreDisconnected += OnStoreDisconnected;
+        storeController.OnProductsFetched += OnProductsFetched;
+        storeController.OnProductsFetchFailed += OnProductsFetchFailed;
+        storeController.OnPurchasesFetched += OnPurchasesFetched;
+        storeController.OnPurchasesFetchFailed += OnPurchasesFetchFailed;
+        storeController.OnPurchasePending += OnPurchasePending;
+        storeController.OnPurchaseConfirmed += OnPurchaseConfirmed;
+        storeController.OnPurchaseFailed += OnPurchaseFailed;
+        storeController.OnPurchaseDeferred += OnPurchaseDeferred;
 
-        // 登録された商品をすべて追加
-        foreach (var product in productCatalog)
-        {
-            builder.AddProduct(product.Key, product.Value);
-        }
-
-        // 課金システムの初期化
-        UnityPurchasing.Initialize(this, builder);
-    }
-
-    // 購入の復元（iOSのみ公式に対応）
-    public void RestorePurchases()
-    {
-#if UNITY_IOS
-        if (storeController == null)
-        {
-            Debug.LogWarning("RestorePurchases called but storeController is null.");
-            return;
-        }
         try
         {
-            if (appleExtensions != null)
-            {
-                appleExtensions.RestoreTransactions((success, message) =>
-                {
-                    if (success)
-                    {
-                        Debug.Log("Restore succeeded: " + message);
+            Debug.Log("Connecting to the app store.");
+            await storeController.Connect();
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Purchasing failed to connect: " + ex.Message);
+        }
+    }
 
-                        foreach (var product in storeController.products.all)
-                        {
-                            if (product.hasReceipt && !string.IsNullOrEmpty(product.definition.id))
-                            {
-                                GameManager.instance.SavePurchaseState(product.definition.id, true);
-                                GameManager.instance.SavePurchaseDate(product.definition.id, DateTime.Now.ToString());
-                            }
-                        }
-                    }
-                    else
-                    {
-                        Debug.LogWarning("Restore failed or canceled: " + message);
-                    }
-                });
-            }
-            else
-            {
-                Debug.LogWarning("appleExtensions is null. Restore not supported.");
-            }
+    private void OnStoreConnected()
+    {
+        var productsToFetch = productCatalog
+            .Select(product => new ProductDefinition(product.Key, product.Value))
+            .ToList();
+
+        Debug.Log("Store connected. Fetching products.");
+        storeController.FetchProducts(productsToFetch);
+    }
+
+    private void OnStoreDisconnected(StoreConnectionFailureDescription failure)
+    {
+        Debug.LogWarning("Store disconnected: " + failure.message);
+    }
+
+    private void OnProductsFetched(List<Product> products)
+    {
+        productsFetched = true;
+        Debug.Log("Products fetched successfully: " + products.Count);
+        storeController.FetchPurchases();
+    }
+
+    private void OnProductsFetchFailed(ProductFetchFailed failure)
+    {
+        Debug.LogError("Product fetch failed: " + failure.FailureReason);
+    }
+
+    // IAP5ではストアへ問い合わせるFetchPurchasesをiOS/Android共通で使用する。
+    public void RestorePurchases()
+    {
+        if (storeController == null || !productsFetched)
+        {
+            Debug.LogWarning("RestorePurchases called before the store and products were initialized.");
+            return;
+        }
+
+        restoreRequested = true;
+        try
+        {
+            storeController.FetchPurchases();
         }
         catch (Exception ex)
         {
             Debug.LogError("Exception during RestorePurchases: " + ex.Message);
-            if (KakinResultPanel != null && KakinResultText != null)
+            restoreRequested = false;
+            ShowRestoreErrorMessage();
+        }
+    }
+
+    private void OnPurchasesFetched(Orders orders)
+    {
+        foreach (var confirmedOrder in orders.ConfirmedOrders)
+        {
+            foreach (var cartItem in confirmedOrder.CartOrdered.Items())
             {
-                KakinResultPanel.SetActive(true);
-                KakinResultText.text = "復元処理中にエラーが発生しました。\nインターネット接続を確認してください。";
+                SavePurchasedProduct(cartItem.Product, false);
             }
         }
-#elif UNITY_ANDROID
-    try
-    {
-        ApplyPurchaseStatus();
+
+        Debug.Log("Purchases fetched. Confirmed orders: " + orders.ConfirmedOrders.Count);
+        if (restoreRequested)
+        {
+            restoreRequested = false;
+            ApplyPurchaseStatus();
+        }
     }
-    catch (Exception ex)
+
+    private void OnPurchasesFetchFailed(PurchasesFetchFailureDescription failure)
     {
-        Debug.LogError("Exception during Android restore simulation: " + ex.Message);
+        Debug.LogError("Purchases fetch failed: " + failure.message);
+        if (restoreRequested)
+        {
+            restoreRequested = false;
+            ShowRestoreErrorMessage();
+        }
+    }
+
+    private void ShowRestoreErrorMessage()
+    {
         if (KakinResultPanel != null && KakinResultText != null)
         {
             KakinResultPanel.SetActive(true);
             KakinResultText.text = "復元処理中にエラーが発生しました。\nインターネット接続を確認してください。";
         }
     }
-#endif
-    }
-    /*
-    public void RestorePurchases()
+
+    private void SavePurchasedProduct(Product product, bool savePurchaseDate)
     {
-#if UNITY_IOS
-        if (storeController == null)
+        if (product == null || GameManager.instance == null || !productCatalog.ContainsKey(product.definition.id))
         {
-            Debug.LogWarning("RestorePurchases called but storeController is null.");
             return;
         }
-        if (appleExtensions != null)
-        {
-            appleExtensions.RestoreTransactions((success, message) =>
-            {
-                if (success)
-                {
-                    Debug.Log("Restore succeeded: " + message);
 
-                    // ストア内の全ての製品を確認
-                    foreach (var product in storeController.products.all)
-                    {
-                        // レシート（購入履歴）が存在するかつ、対象商品ID（広告削除）と一致する場合
-                        if (product.hasReceipt && !string.IsNullOrEmpty(product.definition.id))
-                        {
-                            // 購入済みとしてローカル状態を保存（Easy Save 3）
-                            GameManager.instance.SavePurchaseState(product.definition.id, true);
-                            GameManager.instance.SavePurchaseDate(product.definition.id, DateTime.Now.ToString());
-                        }
-                    }
-                }
-                else
-                {
-                    Debug.LogError("Restore failed: " + message);
-                }
-            });
+        var productId = product.definition.id;
+        GameManager.instance.SavePurchaseState(productId, true);
+        if (savePurchaseDate)
+        {
+            GameManager.instance.SavePurchaseDate(productId, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
         }
-#elif UNITY_ANDROID
-        // Androidでは特別な処理なしで状態を復元
-        ApplyPurchaseStatus();
-#endif
-    }*/
+    }
+
+    private void OnPurchasePending(PendingOrder order)
+    {
+        var productsInOrder = order.CartOrdered.Items()
+            .Select(item => item.Product)
+            .Where(product => product != null)
+            .ToList();
+
+        foreach (var product in productsInOrder)
+        {
+            SavePurchasedProduct(product, true);
+            Debug.Log("Purchase pending: " + product.definition.id);
+            ShowPurchaseResultMessage(product.definition.id);
+        }
+
+        if (productsInOrder.Count > 0)
+        {
+            storeController.ConfirmPurchase(order);
+        }
+    }
+
+    private void OnPurchaseConfirmed(Order order)
+    {
+        Debug.Log("Purchase confirmed: " + GetOrderProductIds(order));
+    }
+
+    private void OnPurchaseFailed(FailedOrder order)
+    {
+        Debug.LogError("Purchase failed - Reason: " + order.FailureReason + ", Details: " + order.Details);
+    }
+
+    private void OnPurchaseDeferred(DeferredOrder order)
+    {
+        Debug.LogWarning("Purchase deferred: " + GetOrderProductIds(order));
+    }
+
+    private string GetOrderProductIds(Order order)
+    {
+        return string.Join(", ", order.CartOrdered.Items()
+            .Where(item => item.Product != null)
+            .Select(item => item.Product.definition.id));
+    }
 
     // 購入状況に応じた説明テキストを表示
     private void ApplyPurchaseStatus()
@@ -189,7 +238,7 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         {
             resultMessage = "現在広告削除は購入されていません";
         }
-        
+
         if (KakinResultPanel != null)
         {
             KakinResultPanel.SetActive(true);
@@ -198,46 +247,6 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         {
             KakinResultText.text = resultMessage;
         }
-    }
-
-    // 課金初期化成功時のコールバック
-    public void OnInitialized(IStoreController controller, IExtensionProvider extensions)
-    {
-        storeController = controller;
-        storeExtensionProvider = extensions;
-        appleExtensions = extensions.GetExtension<IAppleExtensions>();
-    }
-
-    // 課金初期化失敗
-    public void OnInitializeFailed(InitializationFailureReason error) =>
-        Debug.LogError($"Purchasing failed to initialize. Reason: {error}");
-
-    public void OnInitializeFailed(InitializationFailureReason error, string message) =>
-        Debug.LogError($"Purchasing failed to initialize. Reason: {error}. More details: {message}");
-
-    // 購入失敗（通常）
-    public void OnPurchaseFailed(Product product, PurchaseFailureReason failureReason) =>
-        Debug.LogError($"Purchase failed - Product: {product.definition.id}, Reason: {failureReason}");
-
-    // 購入失敗（詳細情報あり）
-    public void OnPurchaseFailed(Product product, PurchaseFailureDescription failureDescription) =>
-        Debug.LogError($"Purchase failed - Product: {product.definition.id}, Reason: {failureDescription.reason}, Details: {failureDescription.message}");
-
-    // 購入成功時の処理
-    public PurchaseProcessingResult ProcessPurchase(PurchaseEventArgs args)
-    {
-        var productId = args.purchasedProduct.definition.id;
-
-        if (GameManager.instance != null)
-        {
-            GameManager.instance.SavePurchaseState(productId, true); // 購入状態を保存
-            GameManager.instance.SavePurchaseDate(productId, System.DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss")); // 日時も記録
-        }
-
-        Debug.Log($"Purchase successful: {productId}");
-
-        ShowPurchaseResultMessage(productId);
-        return PurchaseProcessingResult.Complete;
     }
 
     // 購入結果メッセージをUIに反映
@@ -293,9 +302,10 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         Debug.Log("Simulating purchase in Unity Editor: " + productId);
         ProcessFakePurchase(productId);
 #else
-        if (storeController != null && storeController.products.WithID(productId) != null)
+        var product = storeController?.GetProductById(productId);
+        if (product != null)
         {
-            storeController.InitiatePurchase(productId);
+            storeController.PurchaseProduct(product);
         }
         else
         {
@@ -325,7 +335,7 @@ public class InAppPurchaseManager : MonoBehaviour, IDetailedStoreListener
         if (GameManager.instance != null)
         {
             GameManager.instance.SavePurchaseState(productId, true);
-            GameManager.instance.SavePurchaseDate(productId, System.DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
+            GameManager.instance.SavePurchaseDate(productId, DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"));
         }
 
         Debug.Log("UnityEditorでの購入処理: " + productId);
